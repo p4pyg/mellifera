@@ -48,70 +48,85 @@ Les actions sur le rucher sont :
 ## COLONIES
 
 ### ESSAIMS
-*  id                  int          Identification
-*  creation            date         Date de création de l'essaim
-*  souche              varchar      Race/Couleur/Souche de la reine
-*  reine               year         Âge de la reine
-*  douceur             boolean      Douceur, agressive ou pas
-*  origine             varchar      Éleveur/Origine
-*  export              date         Date de vente/export
+|  Colonne   |  Type     |  Description                     |
+|  --------  |:---------:|  -------------------------------:|
+|  id        |  int      |  Identification                  |
+|  creation  |  date     |  Date de création de l'essaim    |
+|  souche    |  varchar  |  Race/Couleur/Souche de la reine |
+|  reine     |  year     |  Âge de la reine                 |
+|  douceur   |  boolean  |  Douceur, agressive ou pas       |
+|  origine   |  varchar  |  Éleveur/Origine                 |
+|  export    |  date     |  Date de vente/export            |
 
 ### ESSAIMS_NOURRISSEMENT
-*  id
-*  id_essaim            int         Identifiant de l'essaim
-*  date                 date        Dates de nourrisement
+|  Colonne   |  Type     |  Description                     |
+|  --------  |:---------:|  -------------------------------:|
+|  id        |  int      |                                  |
+|  id_essaim |  int      |  Identifiant de l'essaim         |
+|  date      |  date     |  Dates de nourrisement           |
 
 ### RUCHES
-*  id                   int         Identification de la ruche
-*  creation             date        Date de création de la ruche
-*  nombre_couvain       int         Division/Extension
-*  observation          varchar     Raison division/extension
-        *Transhumance*
-*  id_rucher            int         Identifiant du rucher
-*  transhumance         date        Date de transhumance
+|  Colonne        |  Type     |  Description                    |
+|  -------------  |:---------:|  ------------------------------:|
+|  id             |  int      |  Identification de la ruche     |
+|  creation       |  date     |  Date de création de la ruche   |
+|  nombre_couvain |  int      |  Division/Extension             |
+|  observation    |  varchar  |  Raison division/extension      |
+|  id_rucher      |  int      |  Identifiant du rucher          |
+|  transhumance   |  date     |  Date de transhumance           |
 
 ### RUCHES_COUVAIN
-*  id
-*  id_essaim            int         Identifiant du couvain
-*  id_ruche             int         Identifiant de la ruche
-*  date                 date        Date Import/Export d'essaim
+|  Colonne   |  Type     |  Description                     |
+|  --------  |:---------:|  -------------------------------:|
+|  id        |  int      |  Identification du couvain       |
+|  id_essaim |  int      |  Identifiant du couvain          |
+|  id_ruche  |  int      |  Identifiant de la ruche         |
+|  date      |  date     |  Date Import/Export d'essaim     |
 
 ### RUCHES_EVALUATION
-        Évaluation de la ruche (étoiles, note, ...)
-            Force de la ruche
-                Quantité de cadre
-                Saison 
-                    Printemps
-                    Automne
-                Volume de la "ruche" par lecture des cadre du couvain
-                Photo du couvain
-        Tenue au cadre
-        Récole
-        Hygiène
-        Hivernage
+|  Colonne   |  Type     |  Description                     |
+|  --------  |:---------:|  -------------------------------:|
+
+*Évaluation de la ruche (étoiles, note, ...)*
+
+*  Force de la ruche
+    -  Quantité de cadre
+        +  Saison 
+            *  Printemps
+            *  Automne
+        +  Volume de la "ruche" par lecture des cadre du couvain
+    -  Photo du couvain
+    -  Tenue au cadre
+    -  Récolte
+    -  Hygiène
+    -  Hivernage
 
 ### RUCHES_NOURRISEMENT
-
+|  Colonne   |  Type     |  Description                     |
+|  --------  |:---------:|  -------------------------------:|
 
 ## RUCHERS
+|  Colonne   |  Type     |  Description                     |
+|  --------  |:---------:|  -------------------------------:|
 
-    Gestion des ruchers
-        Identification du rucher
-        Nom du rucher
-        Lieu du rucher
-            Adresse
-            Coordonnées GPS
-        Nourrissement (affecte l'ensemble des ruches)
-        État du rucher
-            Date des nourrissements
-            Volume de nourrissement
-            Nombre de ruches
-            Liste des ruches
-            Position des ruches dans le rucher
-            Date d'arrivée de chaque ruche dans le rucher concerné
-        Ajout/suppression de ruche
-        Import/Export vers un autre rucher
-        Cartographie
-            Couche forestière/végétale
-        Scan du rucher
-            Flashage de chaque ruche permettant l'import automatique d'une ruche dans un rucher
+*Gestion des ruchers*
+
+*  Identification du rucher
+*  Nom du rucher
+*  Lieu du rucher
+    -  Adresse
+    -  Coordonnées GPS
+*  Nourrissement (affecte l'ensemble des ruches)
+*  État du rucher
+    -  Date des nourrissements
+    -  Volume de nourrissement
+    -  Nombre de ruches
+    -  Liste des ruches
+    -  Position des ruches dans le rucher
+*  Date d'arrivée de chaque ruche dans le rucher concerné
+*  Ajout/suppression de ruche
+*  Import/Export vers un autre rucher
+*  Cartographie
+    -  Couche forestière/végétale
+*  Scan du rucher
+    -  Flashage de chaque ruche permettant l'import automatique d'une ruche dans un rucher
