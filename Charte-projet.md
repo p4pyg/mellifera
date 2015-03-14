@@ -16,9 +16,9 @@ La partie "Back-office", s'incrit donc dans un projet de plus grande envergure o
     -  Paramètres de l'application back    -office
 
 *  Préparer ses interventions sur un rucher
-    -  Un document au format PDF à imprimer contenant une check    -list des actions à réaliser
+    -  Un document au format PDF à imprimer contenant une check-list des actions à réaliser
 *  Générer des étiquettes
-    -  Un document PDF à imprimer contenant les identifiant de chaque ruche et son QRcode/BarCode? 
+    -  Un document PDF à imprimer contenant les identifiants de chaque ruche et son QRcode/BarCode? 
 *  Administer les colonies
     -  Gérer les reines
     -  Gérer les essaims
