@@ -51,10 +51,11 @@ Les actions sur le rucher sont :
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
-|  souche         |  varchar  |  Race/Couleur/Souche de la reine  |
-|  reine          |  year     |  Âge de la reine                  |
+|  souche         |  varchar  |  Race/Couleur/Souche              |
+|  age            |  year     |  Année de naissance               |
 |  origine        |  varchar  |  Éleveur/Origine                  |
-|  photo          |  varchar  |  Photo de la reine                |
+|  clippage       |  enmum    |  Non, droite, gauche              |
+|  photo          |  varchar  |  Photo                            |
 
 ### REINES_ESSAIMS
 |  Colonne        |  Type     |  Description                      |
@@ -62,6 +63,15 @@ Les actions sur le rucher sont :
 |  id             |  int      |  Identifiant                      |
 |  id_reine       |  int      |  Identifiant de la reine          |
 |  id_essaim      |  int      |  Identifiant de l'essaim          |
+|  date           |  date     |  Dates d'association              |
+
+### REINES_EVALUATION
+|  Colonne        |  Type     |  Description                      |
+|  -------------  |:---------:|  --------------------------------:|
+|  id             |  int      |  Identifiant                      |
+|  id_reine       |  int      |  Identifiant de la reine          |
+|  id_essaim      |  int      |  Identifiant de l'essaim          |
+|  note           |  int      |  Note / 10                        |
 |  date           |  date     |  Dates d'association              |
 
 ### ESSAIMS
@@ -77,6 +87,7 @@ Les actions sur le rucher sont :
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
 |  creation       |  date     |  Date de création de la ruche     |
+|  type           |  varchar  |  Type de ruche                    |
 |  observation    |  varchar  |  Raison division/extension        |
 |  transhumance   |  date     |  Date de transhumance             |
 |  date           |  date     |  Dates de nourrisement            |
@@ -124,8 +135,10 @@ Les actions sur le rucher sont :
 |  id             |  int      |  Identifiant                      |
 |  nom            |  varcher  |  Nom du rucher                    |
 |  lieu           |  varchar  |  Nom du lieu                      |
+|  altitude       |  int      |  Altitude du rucher               |
 |  lat            |  double   |  Latitude                         |
 |  lng            |  double   |  Longitude                        |
+|  vegetation     |  varchar  |  Type de végétation dominante     |
 
 ## RUCHERS_RUCHES
 |  Colonne        |  Type     |  Description                      |
