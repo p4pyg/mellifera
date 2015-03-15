@@ -1,7 +1,7 @@
 
 # DICTIONNAIRES DES DONNÉES
 
-### REINES
+### REINES*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
@@ -11,43 +11,58 @@
 |  clippage       |  enmum    |  Non, droite, gauche              |
 |  photo          |  varchar  |  Photo                            |
 
-### REINES_ESSAIMS
+### REINES_ESSAIMS*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
 |  id_reine       |  int      |  Identifiant de la reine          |
 |  id_essaim      |  int      |  Identifiant de l'essaim          |
-|  date           |  date     |  Dates d'association              |
+|  association    |  date     |  Dates d'association              |
 
-### REINES_EVALUATION
+### REINE_EVALUATION*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
 |  id_reine       |  int      |  Identifiant de la reine          |
-|  id_essaim      |  int      |  Identifiant de l'essaim          |
 |  note           |  int      |  Note / 10                        |
-|  date           |  date     |  Dates d'association              |
+|  date           |  date     |  Dates d'évaluation               |
 
-### ESSAIMS
+### ESSAIMS*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
 |  creation       |  date     |  Date de création de l'essaim     |
-|  douceur        |  boolean  |  Douceur, agressive ou pas        |
+|  douceur        |  int      |  Note / 10                        |
 |  export         |  date     |  Date de vente/export             |
 
-### RUCHES
+### ESSAIM_EVALUATION*
+|  Colonne        |  Type     |  Description                      |
+|  -------------  |:---------:|  --------------------------------:|
+|  id             |  int      |  Identifiant                      |
+|  id_essaim       |  int     |  Identifiant de la essaim         |
+|  note           |  int      |  Note / 10                        |
+|  date           |  date     |  Dates d'évaluation               |
+
+### ESSAIMS_RUCHES*
+|  Colonne        |  Type     |  Description                      |
+|  -------------  |:---------:|  --------------------------------:|
+|  id             |  int      |  Identifiant                      |
+|  id_ruche       |  int      |  Identifiant de la ruche          |
+|  id_essaim      |  int      |  Identifiant de l'essaim          |
+|  association    |  date     |  Dates d'association              |
+
+### RUCHES*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
 |  creation       |  date     |  Date de création de la ruche     |
 |  type           |  varchar  |  Type de ruche                    |
-|  observation    |  varchar  |  Raison division/extension        |
+|  observation    |  text     |  Raison division/extension        |
 |  transhumance   |  date     |  Date de transhumance             |
-|  date           |  date     |  Dates de nourrisement            |
+|  nourrissement  |  date     |  Dates de nourrisement            |
 |  statut         |  enum     |  Hivernage/Stimulation/Prod.      |
 
-### RUCHES_EVALUATION
+### RUCHES_EVALUATION*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
@@ -73,7 +88,7 @@
 |  observ.        |  text     |  Observation nourrissement        |
 |  id_ruche       |  int      |  Identifiant de la ruche          |
 
-### RUCHES_RECOLTE
+### RUCHES_RECOLTE*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
@@ -83,7 +98,7 @@
 |  id_ruche       |  int      |  Identifiant de la ruche          |
 
 
-## RUCHERS
+## RUCHERS*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
@@ -94,7 +109,7 @@
 |  lng            |  double   |  Longitude                        |
 |  vegetation     |  varchar  |  Type de végétation dominante     |
 
-## RUCHERS_RUCHES
+## RUCHERS_RUCHES*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
