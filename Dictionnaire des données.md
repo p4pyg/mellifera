@@ -79,7 +79,7 @@
 |  id_ruche       |  int      |  Identifiant de la ruche          |
 *Évaluation de la ruche (étoiles, note, ...)*
 
-### RUCHES_NOURRISEMENT
+### RUCHES_NOURRISEMENT*
 |  Colonne        |  Type     |  Description                      |
 |  -------------  |:---------:|  --------------------------------:|
 |  id             |  int      |  Identifiant                      |
