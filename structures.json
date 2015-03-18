@@ -9,167 +9,172 @@
  * Objet attendus sur appel GET/RESOURCE
  */
 
-{ vegetations : [ vegetation ] }		// liste des végétations
-{ races: [ race ] }						// liste des races d'abeilles
-{ queens: [ queen ] } 					// liste des reines
-{ swarms: [ swarm ] } 					// liste des essaims
-{ hives: [ hive ] } 					// liste des ruches
-{ apiaries: [ apiary ] } 				// liste des ruchers
+{ token: }                              // jeton de communication
 
 
-{ apiary: 								// rucher
-	{
-		id: ,
-		name: , 						// nom
-		place: , 						// lieu
-		altitude: , 					// altitude
-		lat: , 							// latitude
-		lng: , 							// longitude
-		vegetation: , 					// végétation principale
-		hives:[ hive ], 				// liste des ruches
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+
+
+{ vegetations : [ vegetation ] }        // liste des végétations
+{ races: [ race ] }                     // liste des races d'abeilles
+{ queens: [ queen ] }                   // liste des reines
+{ swarms: [ swarm ] }                   // liste des essaims
+{ hives: [ hive ] }                     // liste des ruches
+{ apiaries: [ apiary ] }                // liste des ruchers
+
+
+{ apiary:                               // rucher
+    {
+        id: ,
+        name: ,                         // nom
+        place: ,                        // lieu
+        altitude: ,                     // altitude
+        lat: ,                          // latitude
+        lng: ,                          // longitude
+        vegetation: ,                   // végétation principale
+        hives:[ hive ],                 // liste des ruches
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ hive : 								// ruche
-	{
-		id: ,
-		created: , 						// date de création
-		type: , 						// type de ruche
-		comment: , 						// observation
-		statut: , 						// statut (hivernage, stimulation, production,...)
-		harvests : [ hive_harvests ], 	// liste des récoltes (3 dernières)
-		rankings: [ hive_rankings ], 	// liste des évaluations (3 dernières)
-		current_apiary: , 				// identifiant du rucher actuel
-		affectations: [ hive_apiaries ] // historique des affectations à un rucher (3 dernières)
-		feedings: [ hive_feedings ], 	// historique des nourrissements (3 dernières)
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ hive :                                // ruche
+    {
+        id: ,
+        created: ,                      // date de création
+        type: ,                         // type de ruche
+        comment: ,                      // observation
+        statut: ,                       // statut (hivernage, stimulation, production,...)
+        harvests : [ hive_harvests ],   // liste des récoltes (3 dernières)
+        rankings: [ hive_rankings ],    // liste des évaluations (3 dernières)
+        current_apiary: ,               // identifiant du rucher actuel
+        affectations: [ hive_apiaries ] // historique des affectations à un rucher (3 dernières)
+        feedings: [ hive_feedings ],    // historique des nourrissements (3 dernières)
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ hive_apiaries: 						// affectation rucher
-	{
-		id: ,
-		date: , 						// date de l'affectation
-		position: , 					// position dans le rucher
-		apiary_id: , 					// identifiant du rucher
-		hive_id: , 						// identifiant de la ruche
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ hive_apiaries:                        // affectation rucher
+    {
+        id: ,
+        date: ,                         // date de l'affectation
+        position: ,                     // position dans le rucher
+        apiary_id: ,                    // identifiant du rucher
+        hive_id: ,                      // identifiant de la ruche
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ hive_harvests : 						// récolte
-	{
-		id: ,
-		volume: , 						// volume récolté
-		comment: , 						// observation
-		date: , 						// date de récolte
-		hive_id : 						// identifiant de la ruche
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ hive_harvests :                       // récolte
+    {
+        id: ,
+        volume: ,                       // volume récolté
+        comment: ,                      // observation
+        date: ,                         // date de récolte
+        hive_id :                       // identifiant de la ruche
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 
 }
 { hive_feedings:
-	{
-		id: ,
-		volume: , 						// volume nourrissement
-		comment: , 						// observation
-		date: , 						// date de récolte
-		hive_id : 						// identifiant de la ruche
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+    {
+        id: ,
+        volume: ,                       // volume nourrissement
+        comment: ,                      // observation
+        date: ,                         // date de récolte
+        hive_id :                       // identifiant de la ruche
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ hive_rankings : 						// évaluation d'une ruche
-	{
-		id: ,
-		hive_frame: , 					// nombre de cadre de la ruche
-		wintering: , 					// hivernage
-		fertility: , 					// fertilité
-		energy: , 						// energie
-		sweetness: , 					// douceur
-		taking_frame: , 				// tenue au cadre
-		hygiene: , 						// hygiène
-		spring_harvest: ,				// recolte de printemps
-		summer_harvest: , 				// recolte d'été
-		date: , 						// date de l'évaluation
-		hive_id : 						// identifiant de la ruche
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ hive_rankings :                       // évaluation d'une ruche
+    {
+        id: ,
+        hive_frame: ,                   // nombre de cadre de la ruche
+        wintering: ,                    // hivernage
+        fertility: ,                    // fertilité
+        energy: ,                       // energie
+        sweetness: ,                    // douceur
+        taking_frame: ,                 // tenue au cadre
+        hygiene: ,                      // hygiène
+        spring_harvest: ,               // recolte de printemps
+        summer_harvest: ,               // recolte d'été
+        date: ,                         // date de l'évaluation
+        hive_id :                       // identifiant de la ruche
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ hive_swarms: 							// affectation d'un essaim à une ruche
-	{
-		id: ,
-		date: , 						// date de l'affectation
-		swarm_id: , 					// identifiant de l'essaim
-		hive_id: , 						// identifiant de la ruche
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ hive_swarms:                          // affectation d'un essaim à une ruche
+    {
+        id: ,
+        date: ,                         // date de l'affectation
+        swarm_id: ,                     // identifiant de l'essaim
+        hive_id: ,                      // identifiant de la ruche
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ swarm: 								// essaim
-	{
-		id: ,
-		created: ,						// date de création de l'essaim
-		sweetness: ,					// douceur
-		current_queen: ,				// identifiant de la reine actuelle
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ swarm:                                // essaim
+    {
+        id: ,
+        created: ,                      // date de création de l'essaim
+        sweetness: ,                    // douceur
+        current_queen: ,                // identifiant de la reine actuelle
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ swarm_rankings: 						// évaluation des essaims
-	{
-		id: ,
-		score: , 						// note sur l'essaim
-		date: , 						// date d'évaluation
-		swarm_id: , 					// identifiant de l'essaim
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ swarm_rankings:                       // évaluation des essaims
+    {
+        id: ,
+        score: ,                        // note sur l'essaim
+        date: ,                         // date d'évaluation
+        swarm_id: ,                     // identifiant de l'essaim
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ swarm_queens: 						// historique des affectations de reine
-	{
-		id: ,
-		association: ,					// date de l'association
-		queen_id: ,						// identifiant de la reine
-		swarm_id: ,						// identifiant de l'essaim
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ swarm_queens:                         // historique des affectations de reine
+    {
+        id: ,
+        association: ,                  // date de l'association
+        queen_id: ,                     // identifiant de la reine
+        swarm_id: ,                     // identifiant de l'essaim
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ queen: 								// reine
-	{
-		id: ,
-		parent_tree: , 					// souche
-		age: , 							// age
-		origin: , 						// origine
-		clipping: , 					// clippage
-		thumbnail: , 					// url le la photo
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ queen:                                // reine
+    {
+        id: ,
+        parent_tree: ,                  // souche
+        age: ,                          // age
+        origin: ,                       // origine
+        clipping: ,                     // clippage
+        thumbnail: ,                    // url le la photo
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
-{ queen_rankings: 						// évaluation des reines
-	{
-		id: ,
-		score: , 						// note sur de la reine
-		date: , 						// date d'évaluation
-		queen_id: , 					// identifiant de la reine
-		created_at: ,
-		updated_at: ,
-		deleted_at:
-	}
+{ queen_rankings:                       // évaluation des reines
+    {
+        id: ,
+        score: ,                        // note sur de la reine
+        date: ,                         // date d'évaluation
+        queen_id: ,                     // identifiant de la reine
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
 }
