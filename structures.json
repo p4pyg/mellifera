@@ -1,0 +1,92 @@
+/**
+ * ###########################################
+ * Structure json utiles au back-office
+ * ###########################################
+ */
+
+
+/**
+ * Objet attendus sur appel GET/RESOURCE
+ */
+
+{ apiaries: [ apiary ] } 				// liste des ruchers
+{ hives: [ hive ] } 					// liste des ruches
+{ swarms: [ swarm ] } 					// liste des essaims
+{ queens: [ queen ] } 					// liste des reines
+
+{ apiary: 								// rucher
+	{
+		id: ,
+		name: , 						// nom
+		place: , 						// lieu
+		altitude: , 					// altitude
+		lat: , 							// latitude
+		lng: , 							// longitude
+		vegetation: , 					// végétation principale
+		hives:[ hive ], 				// liste des ruches
+		created_at: ,
+		updated_at: ,
+		deleted_at:
+	}
+}
+{ hive : 								// ruche
+	{
+		id: ,
+		created: , 						// date de création
+		type: , 						// type de ruche
+		comment: , 						// observation
+		statut: , 						// statut (hivernage, stimulation, production,...)
+		harvests : [ hive_harvests ], 	// liste des récoltes (3 dernières)
+		rankings: [ hive_rankings ], 	// liste des évaluations (3 dernières)
+		current_apiary: , 				// identifiant du rucher actuel
+		affectations: [ hive_apiaries ] // historique des affectations à un rucher (3 dernières)
+		feedings: [ hive_feedings ], 	// historique des nourrissements (3 dernières)
+		created_at: ,
+		updated_at: ,
+		deleted_at:
+	}
+}
+{ hive_apiaries: 						// affectation
+	{
+		id: ,
+		date: , 						// date de l'affectation
+		position: , 					// position dans le rucher
+		apiary_id: , 					// identifiant du rucher
+		created_at: ,
+		updated_at: ,
+		deleted_at:
+	}
+}
+{ hive_harvests : 						// récolte d'une ruche
+	{
+		id: ,
+		volume: , 						// volume récolté
+		comment: , 						// observation
+		date: , 						// date de récolte
+		created_at: ,
+		updated_at: ,
+		deleted_at:
+	}
+
+}
+{ hive_rankings : 						// évaluation d'une ruche
+	{
+		id: ,
+		hive_frame: , 					// nombre de cadre de la ruche
+		wintering: , 					// hivernage
+		fertility: , 					// fertilité
+		energy: , 						// energie
+		sweetness: , 					// douceur
+		taking_frame: , 				// tenue au cadre
+		hygiene: , 						// hygiène
+		spring_harvest: ,				// recolte de printemps
+		summer_harvest: , 				// recolte d'été
+		date: , 						// date de l'évaluation
+		created_at: ,
+		updated_at: ,
+		deleted_at:
+	}
+}
+{ hive_feedings
+
+}
