@@ -14,8 +14,7 @@
 
 
 
-{ vegetations : [ vegetation ] }        // liste des végétations
-{ races: [ race ] }                     // liste des races d'abeilles
+
 { queens: [ queen ] }                   // liste des reines
 { swarms: [ swarm ] }                   // liste des essaims
 { hives: [ hive ] }                     // liste des ruches
@@ -32,6 +31,7 @@
         lng: ,                          // longitude
         vegetation: ,                   // végétation principale
         hives:[ hive ],                 // liste des ruches
+        capacity: ,                     // capacité en nombre de ruches
         created_at: ,
         updated_at: ,
         deleted_at:
@@ -42,6 +42,7 @@
         id: ,
         created: ,                      // date de création
         type: ,                         // type de ruche
+        acquired: ,                     // date d'acquisition
         comment: ,                      // observation
         statut: ,                       // statut (hivernage, stimulation, production,...)
         harvests : [ hive_harvests ],   // liste des récoltes (3 dernières)
@@ -95,6 +96,7 @@
     {
         id: ,
         hive_frame: ,                   // nombre de cadre de la ruche
+        'rehausses': ,                  // nombre de réhausse
         wintering: ,                    // hivernage
         fertility: ,                    // fertilité
         energy: ,                       // energie
@@ -109,6 +111,19 @@
         updated_at: ,
         deleted_at:
     }
+}
+{ hive_traitments :
+    {
+        id: ,
+        date: ,                         // date
+        'maladie': ,                    // maladie traitée
+        product_id: ,                   // identifiant du produit utilisé
+        product_quantity: ,             // quantité de produit utilisé
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
+
 }
 { hive_swarms:                          // affectation d'un essaim à une ruche
     {
@@ -125,7 +140,9 @@
     {
         id: ,
         created: ,                      // date de création de l'essaim
+        destroyed: ,                    // date de création de l'essaim
         sweetness: ,                    // douceur
+        swarm_type: ,
         current_queen: ,                // identifiant de la reine actuelle
         created_at: ,
         updated_at: ,
@@ -162,6 +179,7 @@
         origin: ,                       // origine
         clipping: ,                     // clippage
         thumbnail: ,                    // url le la photo
+        die_date: ,                     // date de déces
         created_at: ,
         updated_at: ,
         deleted_at:
@@ -173,6 +191,81 @@
         score: ,                        // note sur de la reine
         date: ,                         // date d'évaluation
         queen_id: ,                     // identifiant de la reine
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
+}
+{ races:
+    {
+        id: ,
+        origin: ,                       // origine géographique
+        life:,                          // longévité
+        sweetness: ,                    // douceur
+        swarm_level: ,                  // niveau d'essaimage
+        taking_frame: ,                 // tenue au cadre
+        'hivernage': ,                  // resitance à l'hivernage
+        'mois de reveil': ,             // mois de reveil
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
+
+}
+{ products :
+    {
+        id: ,
+        name: ,                         // nom
+        mark: ,                         // marque
+        reference: ,                    // référence
+        volume: ,                       // volume
+        price: ,                        // prix HT
+        quality: ,                      // qualité
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
+
+}
+{ users :
+    {
+        id: ,
+        firstname: ,
+        lastname: ,
+        username: ,
+        email: ,
+        address: ,
+        address_next: ,
+        zipcode: ,
+        city: ,
+        phone: ,
+        exploitation_id: ,
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
+}
+{ exploitations:
+    {
+        id: ,
+        name: ,
+        email: ,
+        address: ,
+        address_next: ,
+        zipcode: ,
+        city: ,
+        phone: ,
+        'agrément': ,
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
+}
+{ vegetations :
+    {
+        id: ,
+        name: ,
+        'floraison': ,
         created_at: ,
         updated_at: ,
         deleted_at:
