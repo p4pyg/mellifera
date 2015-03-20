@@ -14,13 +14,19 @@
 
 
 
-
-{ queens: [ queen ] }                   // liste des reines
-{ swarms: [ swarm ] }                   // liste des essaims
-{ hives: [ hive ] }                     // liste des ruches
+/**
+ * Objets retournant les entités et leurs enfants
+ * @type {Array}
+ */
 { apiaries: [ apiary ] }                // liste des ruchers
+{ hives: [ hive ] }                     // liste des ruches
+{ swarms: [ swarm ] }                   // liste des essaims
+{ queens: [ queen ] }                   // liste des reines
 
-
+/**
+ * Objets entités et relations
+ * @type {[type]}
+ */
 { apiary:                               // rucher
     {
         id: ,
@@ -55,6 +61,11 @@
         deleted_at:
     }
 }
+
+/**
+ * Objets à l'unité
+ * @type {[type]}
+ */
 { hive_apiaries:                        // affectation rucher
     {
         id: ,
@@ -230,16 +241,16 @@
 { users :
     {
         id: ,
-        firstname: ,
-        lastname: ,
-        username: ,
-        email: ,
-        address: ,
-        address_next: ,
-        zipcode: ,
-        city: ,
-        phone: ,
-        exploitation_id: ,
+        firstname: ,                    // prénom
+        lastname: ,                     // nom
+        username: ,                     // pseudonyme
+        email: ,                        // email
+        address: ,                      // premiere lgne d'adresse
+        address_next: ,                 // seconde ligne d'adresse
+        zipcode: ,                      // code postal
+        city: ,                         // commune
+        phone: ,                        // téléphone
+        exploitation_id: ,              // identifiant de l'exploitation
         created_at: ,
         updated_at: ,
         deleted_at:
@@ -248,14 +259,14 @@
 { exploitations:
     {
         id: ,
-        name: ,
-        email: ,
-        address: ,
-        address_next: ,
-        zipcode: ,
-        city: ,
-        phone: ,
-        'agrément': ,
+        name: ,                         // nom
+        email: ,                        // email
+        address: ,                      // première ligne d'adresse
+        address_next: ,                 // seconde ligne d'adresse
+        zipcode: ,                      // code postal
+        city: ,                         // commune
+        phone: ,                        // telephone
+        'agrément': ,                   // agrément préfecture
         created_at: ,
         updated_at: ,
         deleted_at:
@@ -264,8 +275,8 @@
 { vegetations :
     {
         id: ,
-        name: ,
-        'floraison': ,
+        name: ,                         // nom
+        'floraison': ,                  // période de floraison attendue
         created_at: ,
         updated_at: ,
         deleted_at:
