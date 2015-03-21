@@ -11,9 +11,6 @@
 
 { token: }                              // jeton de communication
 
-
-
-
 /**
  * Objets retournant les entités et leurs enfants
  * @type {Array}
@@ -281,4 +278,16 @@
         updated_at: ,
         deleted_at:
     }
+}
+{ todo:                                 // les cailloux ?
+    {
+        id: ,
+        criticity_level: ,              // niveau d'urgence
+        comment: ,                      // observations
+        hive_id: ,                      // identifiant de la ruche
+        created_at: ,
+        updated_at: ,
+        deleted_at:
+    }
+
 }
