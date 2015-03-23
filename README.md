@@ -18,11 +18,13 @@ Nous utiliserons dans ce projet les outils de developpement back-end modernes te
 _L'utilisation de la dernière version (5) engendrerait une consommation trop importante de temps pour l'apprentissage de l'utilisation et l'intégration des nouveautés mais à déteminer tout de même_
 
 Le choix du framework front-end reste encore à définir entre 3 :
+
 *  Zurb Foundation v5.5 http://foundation.zurb.com/
 *  Ink CSS http://ink.sapo.pt/
 *  Refills bourbon http://refills.bourbon.io/
 
 D'autres outils seront utilisés cette fois au niveau de l'environnement de développement :
+
 *  Composer https://getcomposer.org/ pour la gestion des dépendances back-end
 *  Bower http://bower.io/ pour la gestion des dépendances front-end
 *  Grunt [lien] pour l'automatisation de tâches front-end

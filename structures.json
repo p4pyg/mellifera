@@ -28,6 +28,9 @@
     {
         "id": ,
         "name": ,                               // nom
+        "address": ,                            // première ligne d'adresse
+        "zipcode": ,                            // code postal
+        "city": ,                               // commune
         "place": ,                              // lieu
         "altitude": ,                           // altitude
         "lat": ,                                // latitude
@@ -35,6 +38,8 @@
         "vegetation": ,                         // végétation principale
         "hives":[ "hive" ],                     // liste des ruches
         "capacity": ,                           // capacité en nombre de ruches
+        "comment" : ,
+        "proprio": ,
         "created_at": ,
         "updated_at": ,
         "deleted_at":
@@ -43,16 +48,16 @@
 { "hive" :                                      // ruche
     {
         "id": ,
-        "created": ,                            // date de création
         "type": ,                               // type de ruche
         "acquired": ,                           // date d'acquisition
         "comment": ,                            // observation
         "statut": ,                             // statut (hivernage, stimulation, production,...)
-        "harvests" : [ "hive_harvests" ],       // liste des récoltes (3 dernières)
-        "rankings": [ "hive_rankings" ],        // liste des évaluations (3 dernières)
+        "harvests" : [ "hive_harvests" ],       // liste filtré des récoltes
+        "rankings": [ "hive_rankings" ],        // liste filtré des évaluations
         "current_apiary": ,                     // identifiant du rucher actuel
-        "affectations": [ "hive_apiaries" ],    // historique des affectations à un rucher (3 dernières)
-        "feedings": [ "hive_feedings" ],        // historique des nourrissements (3 dernières)
+        "current_swarm": ,                      // identifiant de l'essaim courant
+        "affectations": [ "hive_apiaries" ],    // historique filtré des affectations à un rucher
+        "feedings": [ "hive_feedings" ],        // historique filtré des nourrissements
         "created_at": ,
         "updated_at": ,
         "deleted_at":
@@ -234,21 +239,27 @@
 { "users" :
     {
         "id": ,
-        "firstname": ,                          // prénom
-        "lastname": ,                           // nom
         "username": ,                           // pseudonyme
-        "email": ,                              // email
-        "address": ,                            // premiere lgne d'adresse
-        "address_next": ,                       // seconde ligne d'adresse
-        "zipcode": ,                            // code postal
-        "city": ,                               // commune
-        "phone": ,                              // téléphone
         "exploitation_id": ,                    // identifiant de l'exploitation
         "created_at": ,
         "updated_at": ,
         "deleted_at":
     }
 },
+{ "person" :
+    {
+        "id":,
+        "firstname": ,                          // prénom
+        "lastname": ,                           // nom
+
+        "email": ,                              // email
+        "address": ,                            // premiere lgne d'adresse
+        "address_next": ,                       // seconde ligne d'adresse
+        "zipcode": ,                            // code postal
+        "city": ,                               // commune
+        "phone": ,                              // téléphone
+    }
+ },
 { "exploitations":
     {
         "id": ,
@@ -278,6 +289,7 @@
 { "todo":                                       // les cailloux ?
     {
         "id": ,
+        "date": ,                               // date d'évaluation
         "criticity_level": ,                    // niveau d'urgence
         "comment": ,                            // observations
         "hive_id": ,                            // identifiant de la ruche
