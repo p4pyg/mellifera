@@ -12,9 +12,9 @@
 			<thead>
 				<tr>
 					<th class="align-left" data-sortable="true">@lang('queens.id')</th>
-					<th data-sortable="true">@lang('queens.parent_tree')</th>
+					<th data-sortable="true">@lang('queens.race')</th>
 					<th class="align-center" data-sortable="true">@lang('queens.age')</th>
-					<th data-sortable="true">@lang('queens.origin')</th>
+					<th data-sortable="true">@lang('queens.geographical_origin')</th>
 					<th data-sortable="true">@lang('queens.clipping')</th>
 					<th data-sortable="true">@lang('queens.current_swarm')</th>
 					<th data-sortable="true">@lang('queens.thumbnail')</th>
@@ -25,9 +25,9 @@
 			@foreach( $queens as $queen )
 				<tr id="queen-{{ $queen->id }}" data-item-index="{{ $queen->id }}">
 					<td>{{ $queen->id }}</td>
-					<td>{{ $queen->parent_tree }}</td>
+					<td>{{ $queen->race }}</td>
 					<td>{{ $queen->age }}</td>
-					<td>{{ $queen->origin }}</td>
+					<td>{{ $queen->geographical_origin }}</td>
 					<td>{{ $queen->clipping }}</td>
 					<td>{{ $queen->current_swarm }}</td>
 					<td><figure  class="ink-image table-img">{{ HTML::image( $queen->thumbnail, $queen->thumbname, [ 'class' => 'table-img' ] ) }}</figure></td>

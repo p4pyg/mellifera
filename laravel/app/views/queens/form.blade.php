@@ -16,9 +16,9 @@ if ( is_null( $queen ) ) {
 	<form class="ink-form">
 		<div class="column-group gutters">
 			<div class="control-group all-33">
-				<label for="parent_tree">@lang( 'queens.parent_tree' )</label>
+				<label for="race">@lang( 'queens.race' )</label>
 				<div class="control">
-					<input type="text" name="parent_tree" id="parent_tree" value="{{ is_null( $queen ) ? '' : $queen->parent_tree }}">
+					<input type="text" name="race" id="race" placeholder="@lang( 'queens.race' )" value="{{ is_null( $queen ) ? '' : $queen->race }}">
 				</div>
 				<p class="tip">You can add tips to fields</p>
 			</div>
@@ -30,9 +30,9 @@ if ( is_null( $queen ) ) {
 				<p class="tip">You can add tips to fields</p>
 			</div>
 			<div class="control-group all-33">
-				<label for="origin">@lang( 'queens.origin' )</label>
+				<label for="geographical_origin">@lang( 'queens.geographical_origin' )</label>
 				<div class="control">
-					<input type="text" name="origin" id="origin" value="{{ is_null( $queen ) ? '' : $queen->origin }}">
+					<input type="text" name="geographical_origin" id="geographical_origin" value="{{ is_null( $queen ) ? '' : $queen->geographical_origin }}">
 				</div>
 				<p class="tip">You can add tips to fields</p>
 			</div>

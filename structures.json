@@ -139,7 +139,8 @@
 { "hive_swarms":                                // affectation d'un essaim à une ruche
     {
         "id": ,
-        "date": ,                               // date de l'affectation
+        "association": ,                        // date de l'affectation
+        "separation": ,                         // date de séparation
         "swarm_id": ,                           // identifiant de l'essaim
         "hive_id": ,                            // identifiant de la ruche
         "created_at": ,
@@ -151,13 +152,9 @@
     {
         "id": ,
         "created": ,                            // date de création de l'essaim
-        "destroyed": ,                          // date de création de l'essaim
-        "sweetness": ,                          // douceur
-        "swarm_type": ,                         // type d'essaimage
-        "current_queen": ,                      // identifiant de la reine actuelle
-        "created_at": ,
-        "updated_at": ,
-        "deleted_at":
+        "extermination": ,                      // date de destruction de l'essaim
+        "purpose": ,                            // ?????
+        "note": ,                               // ?????
     }
 },
 { "swarm_rankings":                             // évaluation des essaims
@@ -186,16 +183,12 @@
     {
         "id": ,
         "parent_tree": ,                        // souche
-        "age": ,                                // age
-        "origin": ,                             // origine
+        "birth_date": ,                         // date de naissance
+        "death_date": ,                         // date de déces
         "clipping": ,                           // clippage
-        "thumbnail": ,                          // url le la photo
-        "thumbname": ,                          // nom pour la photo
-        "current_swarm": ,                      // identifiant de l'essaim courant
-        "die_date": ,                           // date de déces
-        "created_at": ,
-        "updated_at": ,
-        "deleted_at":
+        "thumbnail": ,                          // url le la photo ??????????????
+        "thumbname": ,                          // nom pour la photo ????????????
+        "race_id": ,                            // identifiant de la race
     }
 },
 { "queen_rankings":                             // évaluation des reines
@@ -204,24 +197,27 @@
         "score": ,                              // note sur de la reine
         "date": ,                               // date d'évaluation
         "queen_id": ,                           // identifiant de la reine
-        "created_at": ,
-        "updated_at": ,
-        "deleted_at":
     }
 },
 { "races":
     {
         "id": ,
-        "origin": ,                             // origine géographique
-        "life":,                                // longévité
-        "sweetness": ,                          // douceur
-        "swarm_level": ,                        // niveau d'essaimage
+        "name": ,                               // nom de la race
+        "geographical_origin": ,                // origine géographique
+        "life_span": ,                          // longévité
         "taking_frame": ,                       // tenue au cadre
-        'hivernage': ,                          // resitance à l'hivernage
-        'mois de reveil': ,                     // mois de reveil
-        "created_at": ,
-        "updated_at": ,
-        "deleted_at":
+        "characteristics_id": ,                 // identifiant de caractéristique
+    }
+},
+{ "characteristics" :
+    {
+        "id": ,
+        "date": ,                               // ?????
+        "racial_type": ,                        // ?????
+        "agressiveness_level": ,                // niveau d'agressivité
+        "swarm_level": ,                        // niveau d'essaimage
+        "winter_hardiness_level": ,             // resitance à l'hivernage
+        "wake_up_month": ,                      // mois de reveil
     }
 },
 { "products" :
@@ -233,9 +229,6 @@
         "volume": ,                             // volume
         "price": ,                              // prix HT
         "quality": ,                            // qualité
-        "created_at": ,
-        "updated_at": ,
-        "deleted_at":
     }
 },
 { "users" :
@@ -243,9 +236,6 @@
         "id": ,
         "username": ,                           // pseudonyme
         "exploitation_id": ,                    // identifiant de l'exploitation
-        "created_at": ,
-        "updated_at": ,
-        "deleted_at":
     }
 },
 { "person" :

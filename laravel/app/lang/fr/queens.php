@@ -11,18 +11,18 @@ return array(
 	|
 	*/
 
-	"queen" 		=> "Reine",
-	"queens" 		=> "Reines",
-	"id" 			=> "Numéro",
-	"parent_tree"	=> "Souche",
-	"age"			=> "Âge",
-	"origin"		=> "Origine",
-	"clipping"		=> "Clippage",
-	"current_swarm"	=> "Essaim actuel",
-	"thumbnail"		=> "Photo",
-	"thumbname" 	=> "Nom de la photo",
-	"die_date"		=> "Date de décés",
-	'create_new_queen' 	=> "Création d'une nouvelle reine",
-	'edit_queen' 		=> "Modification d'une reine",
+	"queen" 				=> "Reine",
+	"queens" 				=> "Reines",
+	"id" 					=> "Numéro",
+	"race"					=> "Race",
+	"age"					=> "Âge",
+	"clipping"				=> "Clippage",
+	"current_swarm"			=> "Essaim actuel",
+	"thumbnail"				=> "Photo",
+	"thumbname" 			=> "Nom de la photo",
+	"die_date"				=> "Date de décés",
+	'create_new_queen' 		=> "Création d'une nouvelle reine",
+	'edit_queen' 			=> "Modification d'une reine",
+	"geographical_origin"	=> "Origine géographique",
 
 );
