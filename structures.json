@@ -190,6 +190,8 @@
         "origin": ,                             // origine
         "clipping": ,                           // clippage
         "thumbnail": ,                          // url le la photo
+        "thumbname": ,                          // nom pour la photo
+        "current_swarm": ,                      // identifiant de l'essaim courant
         "die_date": ,                           // date de déces
         "created_at": ,
         "updated_at": ,

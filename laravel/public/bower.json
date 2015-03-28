@@ -1,0 +1,19 @@
+{
+  "name": "mellifera-backoffice",
+  "version": "0.0.1",
+  "authors": [
+    "Laurent <p4py.geek@gmail.com>"
+  ],
+  "description": "Plateforme de gestion de rucher",
+  "main": "index.php",
+  "license": "MIT",
+  "homepage": "backoffice.mellifera.cu.cc",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
