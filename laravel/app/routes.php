@@ -15,6 +15,7 @@ Route::get('/', function()
 {
 	return View::make('queens.index');
 } );
+Route::get('queens', [ 'use' => 'index@QueenController', 'as' => 'queens.index' ] );
 Route::get('queens', function()
 {
 	// Récupération des reines depuis le webservice
@@ -30,6 +31,9 @@ Route::get( 'queen/edit/{id?}', function( $id = null )
 		$queen = json_decode( '{"id": 151, "race": "Mellifera corsica", "age": 1, "geographical_origin": "Bastia", "clipping": "1", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_1", "current_swarm": 1, "die_date": null, "created_at": "2015-03-25", "updated_at": "2015-03-25", "deleted_at": null }' );
 	return View::make('queens.form', [ 'queen' => $queen ] );
 } );
+Route::post( 'queen/create', [ 'use' => 'create@QueenController' ] );
+Route::post( 'queen/update', [ 'use' => 'update@QueenController' ] );
+
 Route::get('swarms', function()
 {
 	return View::make('swarms.index');

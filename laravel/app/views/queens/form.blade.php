@@ -7,7 +7,7 @@ if ( is_null( $queen ) ) {
 	$markup_delete 	= '';
 }else{
 	$title 			= trans( 'queens.edit_queen' );
-	$route 			= 'queen/edit';
+	$route 			= 'queen/update';
 	$markup_delete 	= '<button><span class="fa fa-trash fa-lg"></span></button>';
 }
 ?>
