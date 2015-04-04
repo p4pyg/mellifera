@@ -17,20 +17,76 @@ Route::get('/', function()
 } );
 Route::get('queens', function()
 {
-	// Récupération des reines depuis le webservice
-	$json_queens = '{ "queens": [{"id": 151, "race": "Mellifera corsica", "age": 1, "geographical_origin": "Bastia", "clipping": "1", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_1", "current_swarm": 1, "die_date": null, "created_at": "2015-03-25", "updated_at": "2015-03-25", "deleted_at": null }, {"id": 152, "race": "Mellifera Iberica", "age": 3, "geographical_origin": "Alicante", "clipping": "2", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_2", "current_swarm": 2, "die_date": null, "created_at": "2015-03-25", "updated_at": "2015-03-25", "deleted_at": null },{"id": 153, "race": "Mellifera corsica", "age": 1, "geographical_origin": "Bastia", "clipping": "0", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_3", "current_swarm": 3, "die_date": "2015-03-27", "created_at": "2015-03-25", "updated_at": "2015-03-27", "deleted_at": null },{"id": 154, "race": "Mellifera corsica", "age": 1, "geographical_origin": "Bastia", "clipping": "0", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_4", "current_swarm": 4, "die_date": "2015-03-27", "created_at": "2015-03-25", "updated_at": "2015-03-27", "deleted_at": null },{"id": 155, "race": "Mellifera corsica", "age": 1, "geographical_origin": "Bastia", "clipping": "0", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_5", "current_swarm": 5, "die_date": "2015-03-27", "created_at": "2015-03-25", "updated_at": "2015-03-27", "deleted_at": null },{"id": 156, "race": "Mellifera corsica", "age": 1, "geographical_origin": "Bastia", "clipping": "0", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_6", "current_swarm": 6, "die_date": "2015-03-27", "created_at": "2015-03-25", "updated_at": "2015-03-27", "deleted_at": null } ] }';
-	$json = json_decode( $json_queens ); //!\ Test du decodage json -> tableau d'objets /!\\
-	return View::make('queens.index', [ "queens" => $json->queens ] );
+
+	/**
+	 * Structure retournée par le webservice
+	 * [{
+	 * 	"id":201,
+	 * 	"transaction":null,
+	 * 	"unit":null,
+	 * 	"race": {"id":161,"characteristics":null,"geographical_origin":"Tolède","life_span":4,"race_name":"iberica douce"},
+	 * 	"birth_date":null,
+	 * 	"death_date":null,
+	 * 	"clipping":true
+	 * }]
+	 * {
+	 * 	"id":301,
+	 * 	"transaction":null,
+	 * 	"unit":null,
+	 * 	"race": {"id":161,"characteristics":null,"geographical_origin":"Tol\u00e8de","life_span":4,"race_name":"iberica douce"},
+	 * 	"birth_date":null,
+	 * 	"death_date":null,
+	 * 	"clipping":"2"
+	 * 	}
+	 */
+	$json_queens 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Queen" );
+	$json 			= json_decode( $json_queens );
+	return View::make('queens.index', [ "queens" => $json ] );
 } );
 Route::get( 'queen/edit/{id?}', function( $id = null )
 {
 	if( is_null( $id ) )
 		$queen = null;
-	else
-		$queen = json_decode( '{"id": 151, "race": "Mellifera corsica", "age": 1, "geographical_origin": "Bastia", "clipping": "1", "thumbnail": "images/test_reine_1.jpg", "thumbname": "test_reine_1", "current_swarm": 1, "die_date": null, "created_at": "2015-03-25", "updated_at": "2015-03-25", "deleted_at": null }' );
+	else{
+		$json_queen = file_get_contents( "https://bee-mellifera.herokuapp.com/Queen/" . $id );
+		$queen 		= json_decode( $json_queen );
+	}
 	return View::make('queens.form', [ 'queen' => $queen ] );
 } );
 Route::get('swarms', function()
 {
 	return View::make('swarms.index');
+} );
+Route::post( 'queen/edit/{id?}', function( $id = null ){
+	$inputs 		= Input::except( '_token' );
+	$race 			= [ "id" => 161, "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => 4, "race_name" => $inputs['race'] ];
+	$queen 			= [ "id" => (int) $id, 	"transaction" => null, "unit" => null, "race" => $race, "birth_date" => null, "death_date" => null, "clipping" => $inputs['clipping'] ];
+	$url 			= "https://bee-mellifera.herokuapp.com/Queen";
+	$data_json 		= json_encode( $queen );
+
+			echo '<pre>';
+			print_r( $data_json );
+			echo '</pre>';
+			die('<p style="color:orange; font-weight:bold;">Raison</p>');
+
+
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $url);
+	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+	curl_setopt($ch, CURLOPT_POST, 1);
+	curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	$response  = curl_exec($ch);
+	curl_close($ch);
+
+
+
+	echo '<pre>';
+	print_r($response);
+	echo '</pre>';
+	die('<p style="color:orange; font-weight:bold;">Raison</p>');
+
+
+
+
 } );
