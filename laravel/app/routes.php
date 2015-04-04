@@ -15,6 +15,7 @@ Route::get('/', function()
 {
 	return View::make('queens.index');
 } );
+Route::get('queens', [ 'use' => 'index@QueenController', 'as' => 'queens.index' ] );
 Route::get('queens', function()
 {
 
@@ -53,6 +54,9 @@ Route::get( 'queen/edit/{id?}', function( $id = null )
 	}
 	return View::make('queens.form', [ 'queen' => $queen ] );
 } );
+Route::post( 'queen/create', [ 'use' => 'create@QueenController' ] );
+Route::post( 'queen/update', [ 'use' => 'update@QueenController' ] );
+
 Route::get('swarms', function()
 {
 	return View::make('swarms.index');
