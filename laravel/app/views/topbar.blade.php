@@ -2,6 +2,7 @@
 	<h1>Mellifera<small> Back-office</small></h1>
 	<nav class="ink-navigation">
 		<ul class="menu horizontal black">
+			<li>{{ HTML::link( 'home', 'Accueil' ) }}</li>
 			<li>{{ HTML::link( 'queens', 'Reines' ) }}</li>
 			<li><a href="#">Colonnies</a></li>
 			<li><a href="#">Ruches</a></li>

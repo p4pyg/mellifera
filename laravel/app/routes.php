@@ -13,6 +13,10 @@
 
 Route::get('/', function()
 {
+	return View::make('home.landing');
+} );
+Route::get('backoffice', function()
+{
 	return View::make('queens.index');
 } );
 Route::get('queens', function()
