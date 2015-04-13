@@ -4,7 +4,7 @@
 		<ul class="menu horizontal black">
 			<li>{{ HTML::link( 'home', 'Accueil' ) }}</li>
 			<li>{{ HTML::link( 'queens', 'Reines' ) }}</li>
-			<li><a href="#">Colonnies</a></li>
+			<li><a href="#">Colonies</a></li>
 			<li><a href="#">Ruches</a></li>
 			<li><a href="#">Ruchers</a></li>
 			<li><a href="#">Administration</a></li>

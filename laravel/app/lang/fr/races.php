@@ -18,6 +18,8 @@ return array(
 	"characteristics"		=> "Caracterisques",
 	"geographical_origin"	=> "Origine géographique",
 	"life_span"				=> "Durée de vie",
-	"race_name"				=> "Nom"
+	"race_name"				=> "Nom",
+	'create_new_race' 		=> "Création d'une nouvelle race",
+	'edit_race' 			=> "Modification d'une race",
 
 );

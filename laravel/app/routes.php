@@ -54,30 +54,6 @@ Route::get('queens', function()
 	return View::make('queens.index', [ "queens" => $queens ] );
 } );
 
-Route::get('races', function(){
-	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
-	$races 			= json_decode( $json_races );
-	return View::make('races.index', [ "races" => $races ] );
-} );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::get( 'queen/edit/{id?}', function( $id = null )
 {
@@ -89,10 +65,6 @@ Route::get( 'queen/edit/{id?}', function( $id = null )
 	}
 	return View::make('queens.form', [ 'queen' => $queen ] );
 } );
-Route::get('swarms', function()
-{
-	return View::make('swarms.index');
-} );
 Route::post( 'queen/edit/{id?}', function( $id = null ){
 	$inputs 		= Input::except( '_token' );
 	$race 			= [ "id" => 161 , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => 4, "race_name" => $inputs['race'] ];
@@ -100,10 +72,6 @@ Route::post( 'queen/edit/{id?}', function( $id = null ){
 
 	$url 			= "https://bee-mellifera.herokuapp.com/Queen";
 	$data_json 		= json_encode( $queen );
-	// echo '<pre>';
-	// print_r( $data_json );
-	// echo '</pre>';
-	// die('<p style="color:orange; font-weight:bold;">Raison</p>');
 
 
 	$ch = curl_init();
@@ -121,6 +89,90 @@ Route::post( 'queen/edit/{id?}', function( $id = null ){
 	print_r( $response );
 	echo '</pre>';
 	die('<p style="color:orange; font-weight:bold;">Raison</p>');
+
+	if ( $response ) {
+		$error 	= "";
+	}else{
+		$queen 	= json_decode( $response );
+	}
+} );
+
+/**
+ * Gestion des essaims
+ */
+Route::get('swarms', function()
+{
+	return View::make('swarms.index');
+} );
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Gestion des races
+ */
+
+/**
+ * Accès à la liste des races
+ * @return  View List
+ */
+Route::get('races', function(){
+	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
+	$races 			= json_decode( $json_races );
+	return View::make('races.index', [ "races" => $races ] );
+} );
+
+/**
+ * Accès au formulaire de création/édition/suppression de race
+ * @param integer identifiant de la race
+ * @return view Formulaire
+ */
+Route::get( 'race/edit/{id?}', function( $id = null )
+{
+	if( is_null( $id ) )
+		$race = null;
+	else{
+		$json_race = file_get_contents( "https://bee-mellifera.herokuapp.com/Race/" . $id );
+		$race 		= json_decode( $json_race );
+	}
+	return View::make('races.form', [ 'race' => $race ] );
+} );
+
+/**
+ * Enregistrement du formulaire
+ * @param integer identifiant de la race (optionnel)
+ * @return  Error|Success
+ */
+Route::post( 'race/edit/{id?}', function( $id = null ){
+	$inputs 		= Input::except( '_token' );
+	echo '<pre>';
+	print_r( $inputs );
+	echo '</pre>';
+	die('<p style="color:orange; font-weight:bold;">Raison</p>');
+	$race 			= [ "id" => 161 , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['geographical_origin' ], "race_name" => $inputs['race_name'] ];
+
+	$url 			= "https://bee-mellifera.herokuapp.com/Race";
+	$data_json 		= json_encode( $race );
+
+
+	$ch = curl_init();
+	curl_setopt( $ch, CURLOPT_URL, $url );
+	curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
+	curl_setopt( $ch, CURLOPT_POST, 1 );
+	curl_setopt( $ch, CURLOPT_FAILONERROR, 1 );
+	curl_setopt( $ch, CURLOPT_HEADER, 1);
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $data_json );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	$response  = curl_exec( $ch );
+	curl_close( $ch );
+
 
 	if ( $response ) {
 		$error 	= "";

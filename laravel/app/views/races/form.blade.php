@@ -14,7 +14,7 @@ if ( is_null( $race ) ) {
 <div class="all-100">
 	<h1>{{ $title }}</h1>
 	<button class="ink-button" id="delete">Delete</button>
-{{	Form::open( [ 'url' => 'race/edit/' . $race->id, 'method' => 'POST', 'class' => 'ink-form', 'id' => 'race_form' ] )	}}
+{{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'ink-form', 'id' => 'race_form' ] )	}}
 
 		<div class="column-group gutters">
 			<div class="control-group all-33">
@@ -29,7 +29,7 @@ if ( is_null( $race ) ) {
 				<div class="control">
 					<input type="text" name="characteristics" id="characteristics" value="{{ is_null( $race ) ? '' :  $race->characteristics  }}">
 				</div>
-				<p class="tip">Indiquez ici les caracrtéristiques de la race</p>
+				<p class="tip">Indiquez ici les caractéristiques de la race</p>
 			</div>
 			<div class="control-group all-33">
 				<label for="geographical_origin">@lang( 'races.geographical_origin' )</label>
