@@ -38,10 +38,19 @@ Route::get('queens', function()
 	 * 	"death_date":null,
 	 * 	"clipping":"2"
 	 * 	}
+	 * 	Tests 05/04
+	 * 	FAIL : {"id":301,"transaction":null,"unit":null,"race":{"id":161,"characteristics":null,"geographical_origin":"Tol\u00e8de","life_span":4,"race_name":"iberica douce"},"birth_date":null,"death_date":null,"clipping":0}
+	 * 	FAIL : {"id":301,"transaction":null,"unit":null,"race":{"id":161},"birth_date":null,"death_date":null,"clipping":0}
+	 *  Tests 06/04
+	 *  FAIL : {"id":301,"transaction":null,"unit":null,"race":{"id":161},"birth_date":null,"death_date":null,"clipping": true}
 	 */
+	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
 	$json_queens 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Queen" );
-	$json 			= json_decode( $json_queens );
-	return View::make('queens.index', [ "queens" => $json ] );
+	$races 			= json_decode( $json_races );
+	$queens 		= json_decode( $json_queens );
+
+
+	return View::make('queens.index', [ "queens" => $queens ] );
 } );
 Route::get( 'queen/edit/{id?}', function( $id = null )
 {
@@ -59,32 +68,39 @@ Route::get('swarms', function()
 } );
 Route::post( 'queen/edit/{id?}', function( $id = null ){
 	$inputs 		= Input::except( '_token' );
-	$race 			= [ "id" => 161, "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => 4, "race_name" => $inputs['race'] ];
-	$queen 			= [ "id" => (int) $id, 	"transaction" => null, "unit" => null, "race" => $race, "birth_date" => null, "death_date" => null, "clipping" => $inputs['clipping'] ];
+	$race 			= [ "id" => 161 , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => 4, "race_name" => $inputs['race'] ];
+	$queen 			= [ "id" => (int) $id, 	"transaction" => null, "unit" => null, "race" => $race, "birth_date" => "2015-04-01", "death_date" => null, "clipping" => (bool)$inputs['clipping'] ];
+
 	$url 			= "https://bee-mellifera.herokuapp.com/Queen";
 	$data_json 		= json_encode( $queen );
-
-			echo '<pre>';
-			print_r( $data_json );
-			echo '</pre>';
-			die('<p style="color:orange; font-weight:bold;">Raison</p>');
+	// echo '<pre>';
+	// print_r( $data_json );
+	// echo '</pre>';
+	// die('<p style="color:orange; font-weight:bold;">Raison</p>');
 
 
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-	curl_setopt($ch, CURLOPT_POST, 1);
-	curl_setopt($ch, CURLOPT_POSTFIELDS,$data_json);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	$response  = curl_exec($ch);
-	curl_close($ch);
-
-
+	curl_setopt( $ch, CURLOPT_URL, $url );
+	curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
+	curl_setopt( $ch, CURLOPT_POST, 1 );
+	curl_setopt( $ch, CURLOPT_FAILONERROR, 1 );
+	curl_setopt( $ch, CURLOPT_HEADER, 1);
+	curl_setopt( $ch, CURLOPT_POSTFIELDS, $data_json );
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+	$response  = curl_exec( $ch );
+	curl_close( $ch );
 
 	echo '<pre>';
-	print_r($response);
+	print_r( $response );
 	echo '</pre>';
 	die('<p style="color:orange; font-weight:bold;">Raison</p>');
+
+	if ( $response ) {
+		$error 	= "";
+	}else{
+		$queen 	= json_decode( $response );
+	}
+
 
 
 

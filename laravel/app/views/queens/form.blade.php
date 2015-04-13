@@ -41,9 +41,8 @@ if ( is_null( $queen ) ) {
 			<div class="control-group all-33">
 				<label for="clipping">@lang( 'queens.clipping' )</label>
 				<ul class="control unstyled">
-					<li><input type="radio" id="clipping_1" name="clipping" value="0" {{ $queen->clipping == 0 ? 'checked' : '' }}><label for="clipping_1">@lang( 'queens.clip.0' )</label></li>
-					<li><input type="radio" id="clipping_2" name="clipping" value="1" {{ $queen->clipping == 1 ? 'checked' : '' }}><label for="clipping_2">@lang( 'queens.clip.1' )</label></li>
-					<li><input type="radio" id="clipping_3" name="clipping" value="2" {{ $queen->clipping == 2 ? 'checked' : '' }}><label for="clipping_3">@lang( 'queens.clip.2' )</label></li>
+					<li><input type="radio" id="clipping_1" name="clipping" value="false" {{ $queen->clipping == false ? 'checked' : '' }}><label for="clipping_1">@lang( 'queens.clip.false' )</label></li>
+					<li><input type="radio" id="clipping_2" name="clipping" value="true" {{ $queen->clipping == true ? 'checked' : '' }}><label for="clipping_2">@lang( 'queens.clip.true' )</label></li>
 				</ul>
 				<p class="tip">Indiquez ici la méthode de clippage</p>
 			</div>

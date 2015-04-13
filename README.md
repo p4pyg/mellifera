@@ -1,7 +1,7 @@
 # Mellifera - Backoffice
 
 _Membres du groupe :_
-Cyril - Yoan - Laurent
+Cyril - Yoann - Laurent
 
 _Objectifs :_
 
@@ -14,14 +14,15 @@ Les services web s'imposent comme les gardiens des données pour l'ensemble des 
 
 _Choix des technologies_
 Nous utiliserons dans ce projet les outils de developpement back-end modernes tel le framework PHP :
+
 *  Laravel (v4.2) http://laravel.com/docs/4.2
 _L'utilisation de la dernière version (5) engendrerait une consommation trop importante de temps pour l'apprentissage de l'utilisation et l'intégration des nouveautés mais à déteminer tout de même_
 
-Le choix du framework front-end reste encore à définir entre 3 :
+Pour le framework front-end, le choix se porte sur :
 
-*  Zurb Foundation v5.5 http://foundation.zurb.com/
 *  Ink CSS http://ink.sapo.pt/
-*  Refills bourbon http://refills.bourbon.io/
+
+Qui se démarque par l'intégration de facilitateur ergonomiques et sa documentation bien fournie
 
 D'autres outils seront utilisés cette fois au niveau de l'environnement de développement :
 

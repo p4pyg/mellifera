@@ -17,7 +17,7 @@ return array(
 	"race"					=> "Race",
 	"birth_date"			=> "Date de naissance",
 	"clipping"				=> "Clippage",
-	"clip"					=> [ "non clippée" , "clippage droite" , "clippage gauche" ],
+	"clip"					=> [ "Non" , "Oui" ],
 	"current_swarm"			=> "Essaim actuel",
 	"thumbnail"				=> "Photo",
 	"thumbname" 			=> "Nom de la photo",
