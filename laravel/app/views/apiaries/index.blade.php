@@ -12,10 +12,8 @@
 			<thead>
 				<tr>
 					<th class="align-left" data-sortable="true">@lang('apiaries.id')</th>
-					<th data-sortable="true">@lang('apiaries.apiary')</th>
-					<th data-sortable="true">@lang('apiaries.life_span')</th>
-					<th data-sortable="true">@lang('apiaries.geographical_origin')</th> 
-					<th data-sortable="true">@lang('apiaries.characteristics')</th>	
+					<th data-sortable="true">@lang( 'apiaries.apiary_name' )</th>
+					 
 				</tr>
 			</thead>
 			<tbody>
@@ -23,9 +21,6 @@
 				<tr id="apiary-{{ $apiary->id }}" data-item-index="{{ $apiary->id }}">
 					<td>{{ $apiary->id }}</td>
 					<td>{{ $apiary->apiary_name }}</td>
-					<td>{{ $apiary->life_span }}</td>
-					<td>{{ $apiary->geographical_origin }}</td>
-					<td>{{ $apiary->characteristics }}</td>
 				</tr>
 			@endforeach
 			</tbody>
@@ -46,3 +41,4 @@
 	</div>
 </div>
 @stop
+

@@ -187,4 +187,17 @@ Route::post( 'race/edit/{id?}', [ function( $id = null )
 	die('<p style="color:orange; font-weight:bold;">Raison</p>');
 }, 'as' => 'form.race' ] );
 
+/**
+ * Gestion des ruchers
+ */
+
+/**
+ * Accès à la liste des ruchers
+ * @return  View List
+ */
+Route::get('apiaries', function(){
+	$json_apiaries	= file_get_contents( "https://bee-mellifera.herokuapp.com/Apiary" );
+	$apiaries 			= json_decode( $json_apiaries );
+	return View::make('apiaries.index', [ "apiaries" => $apiaries ] );
+} );
 
