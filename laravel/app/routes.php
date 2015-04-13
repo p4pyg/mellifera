@@ -54,7 +54,10 @@ Route::get('queens', function()
 	return View::make('queens.index', [ "queens" => $queens ] );
 } );
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> lyanthri
 Route::get( 'queen/edit/{id?}', function( $id = null )
 {
 	if( is_null( $id ) )
@@ -95,6 +98,7 @@ Route::post( 'queen/edit/{id?}', function( $id = null ){
 	}else{
 		$queen 	= json_decode( $response );
 	}
+<<<<<<< HEAD
 } );
 
 /**
@@ -120,10 +124,18 @@ Route::get('hives', function(){
 	return View::make('hives.index', [ "hives" => $hives ] );
 } );
 
+=======
+}
+);
+>>>>>>> lyanthri
 
 
+Route::get('races', function()
+{
 
-
+	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
+	$races 			= json_decode( $json_races );
+	return View::make('races.index', [ "races" => $races ] );
 
 
 
@@ -141,6 +153,7 @@ Route::get('races', function(){
 	return View::make('races.index', [ "races" => $races ] );
 } );
 
+<<<<<<< HEAD
 /**
  * Accès au formulaire de création/édition/suppression de race
  * @param integer identifiant de la race
@@ -191,3 +204,11 @@ Route::post( 'race/edit/{id?}', [ function( $id = null )
 	echo '</pre>';
 	die('<p style="color:orange; font-weight:bold;">Raison</p>');
 }, 'as' => 'form.race' ] );
+=======
+Route::get('swarms', function()
+{
+	$json_swarms	= file_get_contents( "https://bee-mellifera.herokuapp.com/Swarm" );
+	$swarms 		= json_decode( $json_swarms );
+	return View::make('swarms.index', [ "swarms" => $swarms] );
+} );
+>>>>>>> lyanthri

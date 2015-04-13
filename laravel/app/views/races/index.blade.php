@@ -12,10 +12,17 @@
 			<thead>
 				<tr>
 					<th class="align-left" data-sortable="true">@lang('races.id')</th>
+<<<<<<< HEAD
 					<th data-sortable="true">@lang('races.race_name')</th>
 					<th class="align-center" data-sortable="true">@lang('races.life_span')</th>
 					<th data-sortable="true">@lang('races.geographical_origin')</th>
 					<th data-sortable="true">@lang('races.characteristics')</th>
+=======
+					<th data-sortable="true">@lang('races.race')</th>
+					<th data-sortable="true">@lang('races.life_span')</th>
+					<th data-sortable="true">@lang('races.geographical_origin')</th> 
+					<th data-sortable="true">@lang('races.characteristics')</th>	
+>>>>>>> lyanthri
 				</tr>
 			</thead>
 			<tbody>
@@ -39,6 +46,10 @@
 				var tableObj = new Table( tableElement );
 			} );
 			$( "tr[id^='race']" ).on( 'click', function(){
+<<<<<<< HEAD
+=======
+				// console.log("race_id", $( this ).attr( 'data-item-index' ) );
+>>>>>>> lyanthri
 				document.location.href="race/edit/" + $( this ).attr( 'data-item-index' );
 			} );
 		</script>
