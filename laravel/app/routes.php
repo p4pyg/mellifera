@@ -106,7 +106,19 @@ Route::get('swarms', function()
 } );
 
 
+/**
+ * Gestion des ruches
+ */
 
+/**
+ * Accès à la liste des ruches
+ * @return  View List
+ */
+Route::get('hives', function(){
+	$json_hives	= file_get_contents( "https://bee-mellifera.herokuapp.com/BeeHive" );
+	$hives 			= json_decode( $json_hives );
+	return View::make('hives.index', [ "hives" => $hives ] );
+} );
 
 
 
@@ -150,17 +162,13 @@ Route::get( 'race/edit/{id?}', function( $id = null )
  * @param integer identifiant de la race (optionnel)
  * @return  Error|Success
  */
-Route::post( 'race/edit/{id?}', function( $id = null ){
+Route::post( 'race/edit/{id?}', [ function( $id = null )
+{
 	$inputs 		= Input::except( '_token' );
-	echo '<pre>';
-	print_r( $inputs );
-	echo '</pre>';
-	die('<p style="color:orange; font-weight:bold;">Raison</p>');
-	$race 			= [ "id" => 161 , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['geographical_origin' ], "race_name" => $inputs['race_name'] ];
+	$race 			= [ "id" => 161 , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
 
 	$url 			= "https://bee-mellifera.herokuapp.com/Race";
 	$data_json 		= json_encode( $race );
-
 
 	$ch = curl_init();
 	curl_setopt( $ch, CURLOPT_URL, $url );
@@ -173,10 +181,13 @@ Route::post( 'race/edit/{id?}', function( $id = null ){
 	$response  = curl_exec( $ch );
 	curl_close( $ch );
 
-
 	if ( $response ) {
 		$error 	= "";
 	}else{
-		$queen 	= json_decode( $response );
+		$race 	= json_decode( $response );
 	}
-} );
+	echo '<pre>';
+	print_r( $response );
+	echo '</pre>';
+	die('<p style="color:orange; font-weight:bold;">Raison</p>');
+}, 'as' => 'form.race' ] );
