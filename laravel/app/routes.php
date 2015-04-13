@@ -17,7 +17,7 @@ Route::get('/', function()
 } );
 Route::get('backoffice', function()
 {
-	return View::make('queens.index');
+	return Redirect::to('queens');
 } );
 Route::get('queens', function()
 {
@@ -107,6 +107,12 @@ Route::post( 'queen/edit/{id?}', function( $id = null ){
 
 
 
+Route::get('races', function()
+{
 
+	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
+	$races 			= json_decode( $json_races );
+	return View::make('races.index', [ "races" => $races ] );
 
 } );
+
