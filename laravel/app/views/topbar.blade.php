@@ -9,6 +9,7 @@
 			<li><a href="#">Ruchers</a></li>
 			<li><a href="#">Administration</a></li>
 			<li>{{ HTML::link( 'races', 'Races' ) }}</li>
+			<li>{{ HTML::link( 'apiaries', 'Apiaries' ) }}</li>
 		</ul>
 	</nav>
 </header>

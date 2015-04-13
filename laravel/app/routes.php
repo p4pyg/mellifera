@@ -56,6 +56,7 @@ Route::get('queens', function()
 
 	return View::make('queens.index', [ "queens" => $queens ] );
 } );
+
 Route::get( 'queen/edit/{id?}', function( $id = null )
 {
 	if( is_null( $id ) )
@@ -104,7 +105,8 @@ Route::post( 'queen/edit/{id?}', function( $id = null ){
 	}else{
 		$queen 	= json_decode( $response );
 	}
-
+}
+);
 
 
 Route::get('races', function()
@@ -116,3 +118,9 @@ Route::get('races', function()
 
 } );
 
+Route::get('swarms', function()
+{
+	$json_swarms	= file_get_contents( "https://bee-mellifera.herokuapp.com/Swarm" );
+	$swarms 		= json_decode( $json_swarms );
+	return View::make('swarms.index', [ "swarms" => $swarms] );
+} );
