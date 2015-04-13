@@ -28,10 +28,10 @@ D'autres outils seront utilisés cette fois au niveau de l'environnement de dév
 
 *  Composer https://getcomposer.org/ pour la gestion des dépendances back-end
 *  Bower http://bower.io/ pour la gestion des dépendances front-end
-*  Grunt [lien] pour l'automatisation de tâches front-end
-*  Git [lien] pour la gestion des versions
-*  Phpdocs [lien] pour la production de la documentation (côté code)
-*  _àcompléter_
+*  Grunt http://gruntjs.com/ pour l'automatisation de tâches front-end
+*  Git http://git-scm.com/ pour la gestion des versions
+*  Phpdocs http://www.phpdoc.org/ pour la production de la documentation
+
 
 
 
