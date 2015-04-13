@@ -8,6 +8,7 @@
 			<li><a href="#">Ruches</a></li>
 			<li><a href="#">Ruchers</a></li>
 			<li><a href="#">Administration</a></li>
+			<li>{{ HTML::link( 'races', 'Races' ) }}</li>
 		</ul>
 	</nav>
 </header>

@@ -17,8 +17,9 @@ Route::get('/', function()
 } );
 Route::get('backoffice', function()
 {
-	return View::make('queens.index');
+	return Redirect::to('queens');
 } );
+
 Route::get('queens', function()
 {
 
@@ -48,14 +49,36 @@ Route::get('queens', function()
 	 *  Tests 06/04
 	 *  FAIL : {"id":301,"transaction":null,"unit":null,"race":{"id":161},"birth_date":null,"death_date":null,"clipping": true}
 	 */
-	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
 	$json_queens 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Queen" );
-	$races 			= json_decode( $json_races );
 	$queens 		= json_decode( $json_queens );
-
-
 	return View::make('queens.index', [ "queens" => $queens ] );
 } );
+
+Route::get('races', function(){
+	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
+	$races 			= json_decode( $json_races );
+	return View::make('races.index', [ "races" => $races ] );
+} );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Route::get( 'queen/edit/{id?}', function( $id = null )
 {
 	if( is_null( $id ) )
@@ -104,9 +127,4 @@ Route::post( 'queen/edit/{id?}', function( $id = null ){
 	}else{
 		$queen 	= json_decode( $response );
 	}
-
-
-
-
-
 } );
