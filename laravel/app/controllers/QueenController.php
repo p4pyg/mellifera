@@ -54,7 +54,7 @@ class QueenController extends \BaseController {
 	public function store()
 	{
 		$inputs 		= Input::except( '_token' );
-		$queen 			= [ "transaction" => $inputs['transaction'], "unit" => $inputs['unit'], "race" => $race, "birth_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['birth_date'] ), "death_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['death_date'] ), "clipping" => (bool)$inputs['clipping'] ];
+		$queen 			= [ "transaction" => $inputs['transaction'], "unit" => $inputs['unit'], "race" => $race, "birth_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['birth_date'] ) ), "death_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['death_date'] ) ), "clipping" => (bool)$inputs['clipping'] ];
 
 		$request = [
 			'url' 		=> "https://bee-mellifera.herokuapp.com/Queen",
@@ -77,7 +77,7 @@ class QueenController extends \BaseController {
 	public function update( $id )
 	{
 		$inputs 		= Input::except( '_token' );
-		$queen 			= [ "id" => (int) $id, 	"transaction" => $inputs['transaction'], "unit" => $inputs['unit'], "race" => $race, "birth_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['birth_date'] ), "death_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['death_date'] ), "clipping" => (bool)$inputs['clipping'] ];
+		$queen 			= [ "id" => (int) $id, 	"transaction" => $inputs['transaction'], "unit" => $inputs['unit'], "race" => $race, "birth_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['birth_date'] ) ), "death_date" => date( 'Y-m-d h:i:s', strtotime( $inputs['death_date'] ) ), "clipping" => (bool)$inputs['clipping'] ];
 
 		$request = [
 			'url' 		=> "https://bee-mellifera.herokuapp.com/Queen",

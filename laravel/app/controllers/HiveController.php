@@ -10,8 +10,8 @@ class HiveController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Hive" ] );
-		$hives 	= $response->json();
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Beehive" ] );
+		$hives 		= $response->json();
 		return View::make( 'hives.index', [ "hives" => $hives ] );
 	}
 
@@ -42,7 +42,7 @@ class HiveController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Hive/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Beehive/" . $id ] );
 		$hive 		= $response->json();
 		return View::make( 'hives.form', [ 'hive' => $hive ] );
 	}
@@ -57,7 +57,7 @@ class HiveController extends \BaseController {
 		$hive 			= [  ];
 
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Hive",
+			'url' 		=> "https://bee-mellifera.herokuapp.com/Beehive",
 			'params' 	=>  $hive
 		];
 		$client 	= new HttpClient;
@@ -80,7 +80,7 @@ class HiveController extends \BaseController {
 		$hive 			= [ ];
 
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Hive",
+			'url' 		=> "https://bee-mellifera.herokuapp.com/Beehive",
 			'params' 	=>  $hive
 		];
 		$client 	= new HttpClient;
@@ -100,7 +100,7 @@ class HiveController extends \BaseController {
 	public function delete( $id )
 	{
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Hive",
+			'url' 		=> "https://bee-mellifera.herokuapp.com/Beehive",
 			'params' 	=> [ "id" => (int) $id ]
 		];
 		$client 	= new HttpClient;

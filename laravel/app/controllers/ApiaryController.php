@@ -4,15 +4,15 @@ use Vinelab\Http\Client as HttpClient;
 class ApiaryController extends \BaseController {
 
 	/**
-	 * Display a listing of the apiarys.
-	 * @return View apiarys.index with all apiarys
+	 * Display a listing of the apiaries.
+	 * @return View apiaries.index with all apiaries
 	 */
 	public function index()
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Apiary" ] );
-		$apiarys 	= $response->json();
-		return View::make( 'apiarys.index', [ "apiarys" => $apiarys ] );
+		$apiaries 	= $response->json();
+		return View::make( 'apiaries.index', [ "apiaries" => $apiaries ] );
 	}
 
 /**
@@ -27,24 +27,24 @@ class ApiaryController extends \BaseController {
 	}
 	/**
 	 * Show the form for creating a new apiary.
-	 * @return View apiarys.form with apiary null
+	 * @return View apiaries.form with apiary null
 	 */
 	public function create()
 	{
 		$apiary = null;
-		return View::make( 'apiarys.form', [ 'apiary' => $apiary ] );
+		return View::make( 'apiaries.form', [ 'apiary' => $apiary ] );
 	}
 	/**
 	 * Show the form for editing the specified apiary.
 	 * @param  int  $id
-	 * @return View apiarys.form with apiary
+	 * @return View apiaries.form with apiary
 	 */
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Apiary/" . $id ] );
 		$apiary 		= $response->json();
-		return View::make( 'apiarys.form', [ 'apiary' => $apiary ] );
+		return View::make( 'apiaries.form', [ 'apiary' => $apiary ] );
 	}
 	/**
 	 * Store a newly created apiary in storage.
