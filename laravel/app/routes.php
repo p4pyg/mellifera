@@ -12,176 +12,68 @@
 |
 */
 
+/**
+ * Accès landing page
+ */
 Route::get('/', function()
 {
 	return View::make('home.landing');
 } );
+
+/**
+ * Accès back-office
+ */
 Route::get('backoffice', function()
 {
 	return Redirect::to('queens');
-} );
-
-Route::get('queens', function()
-{
-
-	/**
-	 * Structure retournée par le webservice
-	 * [{
-	 * 	"id":201,
-	 * 	"transaction":null,
-	 * 	"unit":null,
-	 * 	"race": {"id":161,"characteristics":null,"geographical_origin":"Tolède","life_span":4,"race_name":"iberica douce"},
-	 * 	"birth_date":null,
-	 * 	"death_date":null,
-	 * 	"clipping":true
-	 * }]
-	 * {
-	 * 	"id":301,
-	 * 	"transaction":null,
-	 * 	"unit":null,
-	 * 	"race": {"id":161,"characteristics":null,"geographical_origin":"Tol\u00e8de","life_span":4,"race_name":"iberica douce"},
-	 * 	"birth_date":null,
-	 * 	"death_date":null,
-	 * 	"clipping":"2"
-	 * 	}
-	 * 	Tests 05/04
-	 * 	FAIL : {"id":301,"transaction":null,"unit":null,"race":{"id":161,"characteristics":null,"geographical_origin":"Tol\u00e8de","life_span":4,"race_name":"iberica douce"},"birth_date":null,"death_date":null,"clipping":0}
-	 * 	FAIL : {"id":301,"transaction":null,"unit":null,"race":{"id":161},"birth_date":null,"death_date":null,"clipping":0}
-	 *  Tests 06/04
-	 *  FAIL : {"id":301,"transaction":null,"unit":null,"race":{"id":161},"birth_date":null,"death_date":null,"clipping": true}
-	 */
-	$json_queens 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Queen" );
-	$queens 		= json_decode( $json_queens );
-	return View::make('queens.index', [ "queens" => $queens ] );
-} );
-
-
-Route::get( 'queen/edit/{id?}', function( $id = null )
-{
-	if( is_null( $id ) )
-		$queen = null;
-	else{
-		$json_queen = file_get_contents( "https://bee-mellifera.herokuapp.com/Queen/" . $id );
-		$queen 		= json_decode( $json_queen );
-	}
-	return View::make('queens.form', [ 'queen' => $queen ] );
-} );
-Route::post( 'queen/edit/{id?}', function( $id = null ){
-	$inputs 		= Input::except( '_token' );
-	$race 			= [ "id" => 161 , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => 4, "race_name" => $inputs['race'] ];
-	$queen 			= [ "id" => (int) $id, 	"transaction" => null, "unit" => null, "race" => $race, "birth_date" => "2015-04-01", "death_date" => null, "clipping" => (bool)$inputs['clipping'] ];
-
-	$url 			= "https://bee-mellifera.herokuapp.com/Queen";
-	$data_json 		= json_encode( $queen );
-
-
-	$ch = curl_init();
-	curl_setopt( $ch, CURLOPT_URL, $url );
-	curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
-	curl_setopt( $ch, CURLOPT_POST, 1 );
-	curl_setopt( $ch, CURLOPT_FAILONERROR, 1 );
-	curl_setopt( $ch, CURLOPT_HEADER, 1);
-	curl_setopt( $ch, CURLOPT_POSTFIELDS, $data_json );
-	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	$response  = curl_exec( $ch );
-	curl_close( $ch );
-
-	echo '<pre>';
-	print_r( $response );
-	echo '</pre>';
-	die('<p style="color:orange; font-weight:bold;">Raison</p>');
-
-	if ( $response ) {
-		$error 	= "";
-	}else{
-		$queen 	= json_decode( $response );
-	}
-} );
-
-/**
- * Gestion des essaims
- */
-Route::get('swarms', function()
-{
-	return View::make('swarms.index');
-} );
-
-
-/**
- * Gestion des ruches
- */
-
-/**
- * Accès à la liste des ruches
- * @return  View List
- */
-Route::get('hives', function(){
-	$json_hives	= file_get_contents( "https://bee-mellifera.herokuapp.com/BeeHive" );
-	$hives 			= json_decode( $json_hives );
-	return View::make('hives.index', [ "hives" => $hives ] );
 } );
 
 
 /**
  * Gestion des races
  */
+Route::get( 'races', 				[ 'uses' => 'RaceController@index', 	'as' => 'races.index' 	] );
+Route::get( 'race/edit', 			[ 'uses' => 'RaceController@create', 	'as' => 'races.create' 	] );
+Route::get( 'race/edit/{id}', 		[ 'uses' => 'RaceController@edit', 		'as' => 'races.edit' 	] );
+Route::post( 'race/edit', 			[ 'uses' => 'RaceController@store', 	'as' => 'races.store' 	] );
+Route::post( 'race/edit/{id}', 		[ 'uses' => 'RaceController@update', 	'as' => 'races.update' 	] );
+Route::post( 'race/delete/{id}',	[ 'uses' => 'RaceController@delete', 	'as' => 'races.delete' 	] );
+/**
+ * Gestion des reines
+ */
+Route::get( 'queens', 				[ 'uses' => 'QueenController@index', 	'as' => 'queens.index' 	] );
+Route::get( 'queen/edit', 			[ 'uses' => 'QueenController@create', 	'as' => 'queens.create' ] );
+Route::get( 'queen/edit/{id}', 		[ 'uses' => 'QueenController@edit', 	'as' => 'queens.edit' 	] );
+Route::post( 'queen/edit', 			[ 'uses' => 'QueenController@store', 	'as' => 'queens.store' 	] );
+Route::post( 'queen/edit/{id}', 	[ 'uses' => 'QueenController@update', 	'as' => 'queens.update' ] );
+Route::post( 'queen/delete/{id}',	[ 'uses' => 'QueenController@delete', 	'as' => 'queens.delete' ] );
 
 /**
- * Accès à la liste des races
- * @return  View List
+ * Gestion des essaims
  */
-Route::get('races', function(){
-	$json_races 	= file_get_contents( "https://bee-mellifera.herokuapp.com/Race" );
-	$races 			= json_decode( $json_races );
-	return View::make('races.index', [ "races" => $races ] );
-} );
-
+Route::get( 'swarms', 				[ 'uses' => 'SwarmController@index', 	'as' => 'swarms.index' 	] );
+Route::get( 'swarm/edit', 			[ 'uses' => 'SwarmController@create', 	'as' => 'swarms.create' ] );
+Route::get( 'swarm/edit/{id}', 		[ 'uses' => 'SwarmController@edit', 	'as' => 'swarms.edit' 	] );
+Route::post( 'swarm/edit', 			[ 'uses' => 'SwarmController@store', 	'as' => 'swarms.store' 	] );
+Route::post( 'swarm/edit/{id}', 	[ 'uses' => 'SwarmController@update', 	'as' => 'swarms.update' ] );
+Route::post( 'swarm/delete/{id}',	[ 'uses' => 'SwarmController@delete', 	'as' => 'swarms.delete' ] );
 
 /**
- * Accès au formulaire de création/édition/suppression de race
- * @param integer identifiant de la race
- * @return view Formulaire
+ * Gestion des ruches
  */
-Route::get( 'race/edit/{id?}', function( $id = null )
-{
-	if( is_null( $id ) )
-		$race = null;
-	else{
-		$json_race = file_get_contents( "https://bee-mellifera.herokuapp.com/Race/" . $id );
-		$race 		= json_decode( $json_race );
-	}
-	// echo '<pre>';
-	// print_r( $json_race);
-	// echo '</pre>';
-	// echo '<pre>';
-	// print_r( json_encode( $race ) );
-	// echo '</pre>';
-	// die('<p style="color:orange; font-weight:bold;">Debug</p>');
-	return View::make('races.form', [ 'race' => $race ] );
-} );
+Route::get( 'hives', 				[ 'uses' => 'HiveController@index', 	'as' => 'hives.index' 	] );
+Route::get( 'hive/edit', 			[ 'uses' => 'HiveController@create', 	'as' => 'hives.create' 	] );
+Route::get( 'hive/edit/{id}', 		[ 'uses' => 'HiveController@edit', 		'as' => 'hives.edit' 	] );
+Route::post( 'hive/edit', 			[ 'uses' => 'HiveController@store', 	'as' => 'hives.store' 	] );
+Route::post( 'hive/edit/{id}', 		[ 'uses' => 'HiveController@update', 	'as' => 'hives.update' 	] );
+Route::post( 'hive/delete/{id}',	[ 'uses' => 'HiveController@delete', 	'as' => 'hives.delete' 	] );
 
 /**
- * Enregistrement du formulaire
- * @param integer identifiant de la race (optionnel)
- * @return Error|Success
+ * Gestion des ruchers
  */
-Route::post( 'race/edit/{id?}', [ function( $id = null )
-{
-
-	$inputs 		= Input::except( '_token' );
-	$race 			= [ "id" => $id , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
-	$data_json 		= json_encode( $race );
-	$request = [
-		'url' => "https://bee-mellifera.herokuapp.com/Race",
-		'params' =>  $race
-	];
-	$client = new HttpClient;
-	$response 	= $client->post( $request );
-	echo '<pre>';
-	print_r( $response );
-	echo '</pre>';
-	die('<p style="color:orange; font-weight:bold;">Debug</p>');
-
-}, 'as' => 'form.race' ] );
-
-
+Route::get( 'apiaries', 			[ 'uses' => 'ApiaryController@index', 	'as' => 'apiaries.index' 	] );
+Route::get( 'apiary/edit', 			[ 'uses' => 'ApiaryController@create', 	'as' => 'apiaries.create' 	] );
+Route::get( 'apiary/edit/{id}', 	[ 'uses' => 'ApiaryController@edit', 	'as' => 'apiaries.edit' 	] );
+Route::post( 'apiary/edit', 		[ 'uses' => 'ApiaryController@store', 	'as' => 'apiaries.store' 	] );
+Route::post( 'apiary/edit/{id}', 	[ 'uses' => 'ApiaryController@update', 	'as' => 'apiaries.update' 	] );
+Route::post( 'apiary/delete/{id}',	[ 'uses' => 'ApiaryController@delete', 	'as' => 'apiaries.delete' 	] );
