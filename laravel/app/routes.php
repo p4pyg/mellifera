@@ -170,50 +170,17 @@ Route::post( 'race/edit/{id?}', [ function( $id = null )
 
 	$inputs 		= Input::except( '_token' );
 	$race 			= [ "id" => $id , "characteristics" => null, "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
-
-	// $url 			= "https://bee-mellifera.herokuapp.com/Race";
 	$data_json 		= json_encode( $race );
-// echo '<pre>';
-// print_r( $data_json );
-// echo '</pre>';
-// die('<p style="color:orange; font-weight:bold;">Debug</p>');
 	$request = [
 		'url' => "https://bee-mellifera.herokuapp.com/Race",
 		'params' =>  $race
 	];
-
-
 	$client = new HttpClient;
 	$response 	= $client->post( $request );
-
 	echo '<pre>';
 	print_r( $response );
 	echo '</pre>';
 	die('<p style="color:orange; font-weight:bold;">Debug</p>');
-
-
-
-	// $ch = curl_init();
-	// curl_setopt( $ch, CURLOPT_URL, $url );
-	// curl_setopt( $ch, CURLOPT_HTTPHEADER, [ 'Content-Type: application/json' ] );
-	// curl_setopt( $ch, CURLOPT_POST, 1 );
-	//curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, 'PATCH');
-	// curl_setopt( $ch, CURLOPT_FAILONERROR, 1 );
-	// curl_setopt( $ch, CURLOPT_HEADER, 1);
-	// curl_setopt( $ch, CURLOPT_POSTFIELDS, $data_json );
-	// curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	// $response  = curl_exec( $ch );
-	// curl_close( $ch );
-
-
-
-
-
-	// echo '<pre>';
-	// print_r( $race );
-	// echo '</pre>';
-	// die('<p style="color:orange; font-weight:bold;">Debug</p>');
-
 
 }, 'as' => 'form.race' ] );
 
