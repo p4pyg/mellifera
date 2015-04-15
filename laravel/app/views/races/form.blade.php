@@ -8,12 +8,12 @@ if ( is_null( $race ) ) {
 }else{
 	$title 			= trans( 'races.edit_race' );
 	$route 			= 'race/update';
-	$markup_delete 	= '<button><span class="fa fa-trash fa-lg"></span></button>';
+	$markup_delete 	= '<button class="ink-button" id="delete" data-item-index="' . $race->id . '"><span class="fa fa-trash fa-lg"></span></button>';
 }
 ?>
 <div class="all-100">
 	<h1>{{ $title }}</h1>
-	<button class="ink-button" id="delete">Delete</button>
+	{{ $markup_delete }}
 {{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'ink-form', 'id' => 'race_form' ] )	}}
 
 		<div class="column-group gutters">
@@ -50,6 +50,12 @@ if ( is_null( $race ) ) {
 		<button class="ink-button" id="valid">Valider</button>
 {{ Form::close() }}
 </div>
+<script type="text/javascript">
+	$( '#delete' ).on( 'click', function(){
+		document.location.href="/race/delete/" + $( this ).attr( 'data-item-index' );
+	} );
+
+</script>
 {{-- <script>
 // $( '#valid' ).on( 'click', function(){
 // 	var race = $( '#race' ).val();

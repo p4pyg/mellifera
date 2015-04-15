@@ -54,46 +54,51 @@ class RaceController extends BaseController {
 	public function store()
 	{
 		$inputs 		= Input::except( '_token' );
+		foreach ( $inputs as $key => $input )
+			$inputs[$key] = $input === '' ? null : $input;
+
 		$race 			= [ "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
+
 
 		$request = [
 			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
-			'params' 	=>  $race
+			'params' 	=> json_encode( $race ),
+			'headers' 	=> ['Content-type: application/json' ]
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->post( $request );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
 	}
 	/**
 	 * Update the specified race in storage.
-	 *
+	 * ===============================================================> /!\ WARNING /!\  HTTP Verbs PUT =======> all parameters are provided !
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
 		$inputs 		= Input::except( '_token' );
+		foreach ( $inputs as $key => $input )
+			$inputs[$key] = $input === '' ? null : $input;
+
 		$race 			= [ "id" => (int) $id , "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
 
 		$request = [
 			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
-			'params' 	=>  $race
+			'params' 	=>  json_encode( $race ),
+			'headers' 	=> ['Content-type: application/json' ]
 		];
 		$client 	= new HttpClient;
-		$response 	= $client->patch( $request );
+		$response 	= $client->put( $request );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
 	}
 	/**
 	 * Remove the specified race from storage.
-	 *
+	 * ===============================================================> /!\ WARNING /!\  HTTP Verbs DELETE =======> No action found !
 	 * @param  int  $id
 	 * @return Response
 	 */
@@ -101,14 +106,16 @@ class RaceController extends BaseController {
 	{
 		$request = [
 			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
-			'params' 	=> [ "id" => (int) $id ]
+			// WORK IN PROGRESS
+			// 'params' 	=> json_encode( [ "id" => (int) $id ] ),
+			// 'params' 	=> '{"id":' . (int) $id . '}',
+			'params' 	=> $id,
+			'headers' 	=> ['Content-type: application/json' ]
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->delete( $request );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
 	}
 }
