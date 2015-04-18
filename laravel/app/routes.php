@@ -36,7 +36,8 @@ Route::get( 'structures', function(){
 
 	return View::make( 'structures.search', [ 'entities' => $entities ] );
 } );
-Route::get( 'structures/{$entity}', function( $entity){
+
+Route::get( 'structures/{$entity}', function( $entity ){
 	$request = [
 		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $entity,
 		'params' 	=> '{}',
@@ -48,6 +49,7 @@ Route::get( 'structures/{$entity}', function( $entity){
 
 	return View::make( 'structures.index', [ 'structures' => $structures ] );
 } );
+
 Route::post( 'structures', function(){
 	$inputs = Input::all();
 	$request = [
@@ -61,22 +63,22 @@ Route::post( 'structures', function(){
 
 	return View::make( 'structures.index', [ 'structures' => $structures ] );
 } );
-Route::get( 'structures/all', function(){
-	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
+// Route::get( 'structures/all', function(){
+// 	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
 
-	$structures = [];
-	foreach ( $entities as $entity ) {
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $entity,
-			'params' 	=> '{}',
-			'headers' 	=> ['Content-type: application/json' ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
-		$structures[ $entity ] = $response->json();
-	}
-	return View::make( 'structures.index', [ 'structures' => $structures ] );
-} );
+// 	$structures = [];
+// 	foreach ( $entities as $entity ) {
+// 		$request = [
+// 			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $entity,
+// 			'params' 	=> '{}',
+// 			'headers' 	=> ['Content-type: application/json' ]
+// 		];
+// 		$client 	= new HttpClient;
+// 		$response 	= $client->post( $request );
+// 		$structures[ $entity ] = $response->json();
+// 	}
+// 	return View::make( 'structures.index', [ 'structures' => $structures ] );
+// } );
 
 
 
