@@ -32,40 +32,40 @@ Route::get('backoffice', function()
 /**
  * Gestion des races
  */
-Route::get( 'races', 				[ 'uses' => 'RaceController@index', 	'as' => 'races.index' 	] );
-Route::get( 'race/edit', 			[ 'uses' => 'RaceController@create', 	'as' => 'races.create' 	] );
-Route::get( 'race/edit/{id}', 		[ 'uses' => 'RaceController@edit', 		'as' => 'races.edit' 	] );
-Route::post( 'race/edit', 			[ 'uses' => 'RaceController@store', 	'as' => 'races.store' 	] );
-Route::post( 'race/edit/{id}', 		[ 'uses' => 'RaceController@update', 	'as' => 'races.update' 	] );
+Route::get( 'races', 			[ 'uses' => 'RaceController@index', 	'as' => 'races.index' 	] );
+Route::get( 'race/edit', 		[ 'uses' => 'RaceController@create', 	'as' => 'races.create' 	] );
+Route::get( 'race/edit/{id}', 	[ 'uses' => 'RaceController@edit', 		'as' => 'races.edit' 	] );
+Route::post( 'race/edit', 		[ 'uses' => 'RaceController@store', 	'as' => 'races.store' 	] );
+Route::post( 'race/edit/{id}', 	[ 'uses' => 'RaceController@update', 	'as' => 'races.update' 	] );
 Route::get( 'race/delete/{id}',	[ 'uses' => 'RaceController@delete', 	'as' => 'races.delete' 	] );
 /**
  * Gestion des reines
  */
-Route::get( 'queens', 				[ 'uses' => 'QueenController@index', 	'as' => 'queens.index' 	] );
-Route::get( 'queen/edit', 			[ 'uses' => 'QueenController@create', 	'as' => 'queens.create' ] );
-Route::get( 'queen/edit/{id}', 		[ 'uses' => 'QueenController@edit', 	'as' => 'queens.edit' 	] );
-Route::post( 'queen/edit', 			[ 'uses' => 'QueenController@store', 	'as' => 'queens.store' 	] );
-Route::post( 'queen/edit/{id}', 	[ 'uses' => 'QueenController@update', 	'as' => 'queens.update' ] );
-Route::get( 'queen/delete/{id}',	[ 'uses' => 'QueenController@delete', 	'as' => 'queens.delete' ] );
+Route::get( 'queens', 			[ 'uses' => 'QueenController@index', 	'as' => 'queens.index' 	] );
+Route::get( 'queen/edit', 		[ 'uses' => 'QueenController@create', 	'as' => 'queens.create' ] );
+Route::get( 'queen/edit/{id}', 	[ 'uses' => 'QueenController@edit', 	'as' => 'queens.edit' 	] );
+Route::post( 'queen/edit', 		[ 'uses' => 'QueenController@store', 	'as' => 'queens.store' 	] );
+Route::post( 'queen/edit/{id}', [ 'uses' => 'QueenController@update', 	'as' => 'queens.update' ] );
+Route::get( 'queen/delete/{id}',[ 'uses' => 'QueenController@delete', 	'as' => 'queens.delete' ] );
 
 /**
  * Gestion des essaims
  */
-Route::get( 'swarms', 				[ 'uses' => 'SwarmController@index', 	'as' => 'swarms.index' 	] );
-Route::get( 'swarm/edit', 			[ 'uses' => 'SwarmController@create', 	'as' => 'swarms.create' ] );
-Route::get( 'swarm/edit/{id}', 		[ 'uses' => 'SwarmController@edit', 	'as' => 'swarms.edit' 	] );
-Route::post( 'swarm/edit', 			[ 'uses' => 'SwarmController@store', 	'as' => 'swarms.store' 	] );
-Route::post( 'swarm/edit/{id}', 	[ 'uses' => 'SwarmController@update', 	'as' => 'swarms.update' ] );
-Route::get( 'swarm/delete/{id}',	[ 'uses' => 'SwarmController@delete', 	'as' => 'swarms.delete' ] );
+Route::get( 'swarms', 			[ 'uses' => 'SwarmController@index', 	'as' => 'swarms.index' 	] );
+Route::get( 'swarm/edit', 		[ 'uses' => 'SwarmController@create', 	'as' => 'swarms.create' ] );
+Route::get( 'swarm/edit/{id}', 	[ 'uses' => 'SwarmController@edit', 	'as' => 'swarms.edit' 	] );
+Route::post( 'swarm/edit', 		[ 'uses' => 'SwarmController@store', 	'as' => 'swarms.store' 	] );
+Route::post( 'swarm/edit/{id}', [ 'uses' => 'SwarmController@update', 	'as' => 'swarms.update' ] );
+Route::get( 'swarm/delete/{id}',[ 'uses' => 'SwarmController@delete', 	'as' => 'swarms.delete' ] );
 
 /**
  * Gestion des ruches
  */
-Route::get( 'hives', 				[ 'uses' => 'HiveController@index', 	'as' => 'hives.index' 	] );
-Route::get( 'hive/edit', 			[ 'uses' => 'HiveController@create', 	'as' => 'hives.create' 	] );
-Route::get( 'hive/edit/{id}', 		[ 'uses' => 'HiveController@edit', 		'as' => 'hives.edit' 	] );
-Route::post( 'hive/edit', 			[ 'uses' => 'HiveController@store', 	'as' => 'hives.store' 	] );
-Route::post( 'hive/edit/{id}', 		[ 'uses' => 'HiveController@update', 	'as' => 'hives.update' 	] );
+Route::get( 'hives', 			[ 'uses' => 'HiveController@index', 	'as' => 'hives.index' 	] );
+Route::get( 'hive/edit', 		[ 'uses' => 'HiveController@create', 	'as' => 'hives.create' 	] );
+Route::get( 'hive/edit/{id}', 	[ 'uses' => 'HiveController@edit', 		'as' => 'hives.edit' 	] );
+Route::post( 'hive/edit', 		[ 'uses' => 'HiveController@store', 	'as' => 'hives.store' 	] );
+Route::post( 'hive/edit/{id}', 	[ 'uses' => 'HiveController@update', 	'as' => 'hives.update' 	] );
 Route::get( 'hive/delete/{id}',	[ 'uses' => 'HiveController@delete', 	'as' => 'hives.delete' 	] );
 
 /**
