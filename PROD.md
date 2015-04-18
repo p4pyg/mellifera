@@ -13,4 +13,4 @@ Un mot de passe vous est demandé, c'est normal, le fonctionnement diffère du d
 Une fois authentifié, la procédure de mise en production s'effectue. La mise à jour du répertoire web est automatisée. Vous pouvez joindre http://backoffice.mellifera.cu.cc avec votre navigateur préféré.
 
 > Les ip, port et mot de passe vous seront communiquer par e-mail.
-> En cas d'oubli, merci de me contacter : laurent@impermanenceweb.fr
+> En cas d'oubli ou de problème, merci de me contacter : laurent@impermanenceweb.fr
