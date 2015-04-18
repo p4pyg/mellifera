@@ -11,3 +11,5 @@ Puis vous pouvez pousser la branche "master" sur le serveur de production :
 
 Un mot de passe vous est demandé, c'est normal, le fonctionnement diffère du dépôt GitLab, ici pas de clé SSH pour l'authentification (restons simple)
 Une fois authentifié, la procédure de mise en production s'effectue. La mise à jour du répertoire web est automatisée. Vous pouvez joindre http://backoffice.mellifera.cu.cc avec votre navigateur préféré.
+
+> Les ip, port et mot de passe vous seront communiquer par e-mail
