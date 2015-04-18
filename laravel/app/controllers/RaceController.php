@@ -42,7 +42,7 @@ class RaceController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Race/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/races/" . $id ] );
 		$race 		= $response->json();
 		return View::make( 'races.form', [ 'race' => $race ] );
 	}
@@ -57,11 +57,11 @@ class RaceController extends BaseController {
 		foreach ( $inputs as $key => $input )
 			$inputs[$key] = $input === '' ? null : $input;
 
-		$race 			= [ "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "raceName" => $inputs['raceName'] ];
+		$race 			= [ "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
 
 
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
+			'url' 		=> "https://bee-mellifera.herokuapp.com/races",
 			'params' 	=> json_encode( $race ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -73,7 +73,6 @@ class RaceController extends BaseController {
 	}
 	/**
 	 * Update the specified race in storage.
-	 * ===============================================================> /!\ WARNING /!\  HTTP Verbs PUT =======> all parameters are provided !
 	 * @param  int  $id
 	 * @return Response
 	 */
@@ -86,36 +85,53 @@ class RaceController extends BaseController {
 		$race 			= [ "id" => (int) $id , "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
 
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
+			'url' 		=> "https://bee-mellifera.herokuapp.com/races",
 			'params' 	=>  json_encode( $race ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->put( $request );
 
+		return Redirect::to( 'races' );
+
 		// WORK IN PROGRESS
 		// return response
 	}
 	/**
 	 * Remove the specified race from storage.
-	 * ===============================================================> /!\ WARNING /!\  HTTP Verbs DELETE =======> No action found !
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete( $id )
 	{
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
-			// WORK IN PROGRESS
-			// 'params' 	=> json_encode( [ "id" => (int) $id ] ),
-			// 'params' 	=> '{"id":' . (int) $id . '}',
-			'params' 	=> $id,
-			'headers' 	=> ['Content-type: application/json' ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->delete( $request );
-
 		// WORK IN PROGRESS
+
+		$url 	= "https://bee-mellifera.herokuapp.com/races/" . $id;
+		$json 	= '{}';
+		$ch 	= curl_init();
+		curl_setopt( $ch, CURLOPT_URL, $url );
+		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "DELETE" );
+		curl_setopt( $ch, CURLOPT_POSTFIELDS, $json );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		$result 	= curl_exec( $ch );
+		$response 	= json_decode( $result );
+		curl_close( $ch );
+
+		// Package seem breaked for DELETE HTTP verb
+		// $request = [
+		// 	'url' 		=> "https://bee-mellifera.herokuapp.com/races/" . $id,
+		// 	'params' 	=> '{}',
+		// 	'headers' 	=> ['Content-type: application/json' ]
+		// ];
+
+		// $client 	= new HttpClient;
+		// $response 	= $client->delete( $request );
+
+		echo '<pre>';
+		print_r($response);
+		echo '</pre>';
+		die('<p style="color:orange; font-weight:bold;">Raison</p>');
+
 		// return response
 	}
 }

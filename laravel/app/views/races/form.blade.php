@@ -18,9 +18,9 @@ if ( is_null( $race ) ) {
 
 		<div class="column-group gutters">
 			<div class="control-group all-33">
-				<label for="raceName">@lang( 'races.raceName' )</label>
+				<label for="race_name">@lang( 'races.race_name' )</label>
 				<div class="control">
-					<input type="text" name="raceName" id="raceName" placeholder="@lang( 'races.raceName' )" value="{{ is_null( $race ) ? '' : $race->raceName }}">
+					<input type="text" name="race_name" id="race_name" placeholder="@lang( 'races.race_name' )" value="{{ is_null( $race ) ? '' : $race->race_name }}">
 				</div>
 				<p class="tip">Indiquez ici le nom de la race</p>
 			</div>
