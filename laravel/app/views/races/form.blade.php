@@ -18,9 +18,9 @@ if ( is_null( $race ) ) {
 
 		<div class="column-group gutters">
 			<div class="control-group all-33">
-				<label for="race_name">@lang( 'races.race_name' )</label>
+				<label for="raceName">@lang( 'races.raceName' )</label>
 				<div class="control">
-					<input type="text" name="race_name" id="race_name" placeholder="@lang( 'races.race_name' )" value="{{ is_null( $race ) ? '' : $race->race_name }}">
+					<input type="text" name="raceName" id="raceName" placeholder="@lang( 'races.raceName' )" value="{{ is_null( $race ) ? '' : $race->raceName }}">
 				</div>
 				<p class="tip">Indiquez ici le nom de la race</p>
 			</div>
@@ -56,29 +56,4 @@ if ( is_null( $race ) ) {
 	} );
 
 </script>
-{{-- <script>
-// $( '#valid' ).on( 'click', function(){
-// 	var race = $( '#race' ).val();
-// 	var birth_date = $( '#birth_date' ).val();
-// 	var geographical_origin = $( '#geographical_origin' ).val();
-// 	var clipping = $( '#clipping' ).val();
-// 	var death_date = $( '#death_date' ).val();
-// 	$.post( 'https://bee-mellifera.herokuapp.com/race',
-// 		{
-// 			"id": {{ $race->id }},
-// 			"transaction":null,
-// 			"unit":null,
-// 			"race": { "id": {{ $race->race->id }},"characteristics":null,"geographical_origin": geographical_origin,"life_span":4,"race_name": race },
-// 			"clipping": clipping
-// 		} )
-// 	.done( function( response ){
-// 		console.log( 'response', response );
-// 	} )
-// 	.fail( function( error ){
-// 		console.log( 'error', error );
-// 	} );
-// } );
-			// "birth_date": birth_date,
-			// "death_date": death_date,
-</script> --}}
 @stop

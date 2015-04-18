@@ -28,6 +28,57 @@ Route::get('backoffice', function()
 	return Redirect::to('queens');
 } );
 
+/**
+ * Visualisation des structures JSON pour chaque entité
+ */
+Route::get( 'structures', function(){
+	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
+
+	return View::make( 'structures.search', [ 'entities' => $entities ] );
+} );
+Route::get( 'structures/{$entity}', function( $entity){
+	$request = [
+		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $entity,
+		'params' 	=> '{}',
+		'headers' 	=> ['Content-type: application/json' ]
+	];
+	$client 	= new HttpClient;
+	$response 	= $client->post( $request );
+	$structures[ $entity ] = $response->json();
+
+	return View::make( 'structures.index', [ 'structures' => $structures ] );
+} );
+Route::post( 'structures', function(){
+	$inputs = Input::all();
+	$request = [
+		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $inputs['entity'],
+		'params' 	=> '{}',
+		'headers' 	=> ['Content-type: application/json' ]
+	];
+	$client 	= new HttpClient;
+	$response 	= $client->post( $request );
+	$structures[ $inputs['entity'] ] = $response->json();
+
+	return View::make( 'structures.index', [ 'structures' => $structures ] );
+} );
+Route::get( 'structures/all', function(){
+	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
+
+	$structures = [];
+	foreach ( $entities as $entity ) {
+		$request = [
+			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $entity,
+			'params' 	=> '{}',
+			'headers' 	=> ['Content-type: application/json' ]
+		];
+		$client 	= new HttpClient;
+		$response 	= $client->post( $request );
+		$structures[ $entity ] = $response->json();
+	}
+	return View::make( 'structures.index', [ 'structures' => $structures ] );
+} );
+
+
 
 /**
  * Gestion des races

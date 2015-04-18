@@ -57,7 +57,7 @@ class RaceController extends BaseController {
 		foreach ( $inputs as $key => $input )
 			$inputs[$key] = $input === '' ? null : $input;
 
-		$race 			= [ "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
+		$race 			= [ "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "raceName" => $inputs['raceName'] ];
 
 
 		$request = [

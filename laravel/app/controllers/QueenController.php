@@ -10,7 +10,7 @@ class QueenController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Queen" ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/queens" ] );
 		$queens 	= $response->json();
 		return View::make( 'queens.index', [ "queens" => $queens ] );
 	}
