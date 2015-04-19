@@ -1,21 +1,20 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
 
-class FeedingController extends \BaseController {
+class FeedingController extends BaseController {
 
 	/**
-	 * Display a listing of the feedings.
-	 * @return View feedings.index with all feedings
+	 * Display feedings list
+	 * @return  View feedings.index with all feedings
 	 */
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Feeding" ] );
-		$feedings 	= $response->json();
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/feedings" ] );
+		$feedings 		= $response->json();
 		return View::make( 'feedings.index', [ "feedings" => $feedings ] );
 	}
-
-/**
+	/**
 	 * Display the specified feeding.
 	 *
 	 * @param  int  $id
@@ -42,74 +41,67 @@ class FeedingController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Feeding/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/feedings/" . $id ] );
 		$feeding 		= $response->json();
 		return View::make( 'feedings.form', [ 'feeding' => $feeding ] );
 	}
 	/**
 	 * Store a newly created feeding in storage.
-	 *
+	 * Object structure for HTTP POST
+	 * $feeding = [
+	 * 	"createdAt" 				=> [timestamp],
+	 * 	"updatedAt" 				=> [timestamp],
+	 * 	"feeding_date" 				=> [timestamp],
+	 * 	"feeding_product_quantity" 	=> [double]
+	 * 	];
 	 * @return Response
 	 */
 	public function store()
 	{
-		$inputs 		= Input::except( '_token' );
-		$feeding 			= [ ];
+		$inputs 	= Input::except( '_token' );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_store( $inputs, 'feedings' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Feeding",
-			'params' 	=>  $feeding
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'feedings' );
 	}
 	/**
 	 * Update the specified feeding in storage.
-	 *
+	 * Object structure for HTTP PUT
+	 * $feeding = [
+	 * 	"id" 						=> [integer][notnull],
+	 * 	"createdAt" 				=> [timestamp],
+	 * 	"updatedAt" 				=> [timestamp],
+	 * 	"feeding_date" 				=> [timestamp],
+	 * 	"feeding_product_quantity" 	=> [double]
+	 * 	];
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
-		$inputs 		= Input::except( '_token' );
-		$feeding 			= [ ];
+		$feeding 			= Input::except( '_token' );
+		$feeding[ 'id' ] 	= (int) $id;
+		// Refactored in BeeTools Model
+		$response 		= BeeTools::entity_update( $feeding, 'feedings' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Feeding",
-			'params' 	=>  $feeding
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->patch( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'feedings' );
 	}
 	/**
 	 * Remove the specified feeding from storage.
-	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete( $id )
 	{
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Feeding",
-			'params' 	=> [ "id" => (int) $id ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->delete( $request );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_delete( $id, 'feedings' );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'feedings' );
 	}
-
 }

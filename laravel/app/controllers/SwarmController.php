@@ -10,12 +10,12 @@ class SwarmController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Swarm" ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/swarms" ] );
 		$swarms 	= $response->json();
 		return View::make( 'swarms.index', [ "swarms" => $swarms ] );
 	}
 
-/**
+	/**
 	 * Display the specified swarm.
 	 *
 	 * @param  int  $id
@@ -42,74 +42,77 @@ class SwarmController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Swarm/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/swarms/" . $id ] );
 		$swarm 		= $response->json();
 		return View::make( 'swarms.form', [ 'swarm' => $swarm ] );
 	}
 	/**
 	 * Store a newly created swarm in storage.
-	 *
+	 * Object structure for HTTP POST
+	 * $swarm = [
+	 * 			"id" 					=> [integer][notnull],
+	 * 			"createdAt" 			=> [timestamp],
+	 * 			"updatedAt" 			=> [timestamp],
+	 * 			"is_in" 				=> [object],
+	 * 			"trades" 				=> [object],
+	 * 			"creation_date" 		=> [timestamp],
+	 * 			"extermination_date" 	=> [timestamp],
+	 * 			"purpose" 				=> [string],
+	 * 			"notes" 				=> [string]
+	 * 		];
 	 * @return Response
 	 */
 	public function store()
 	{
-		$inputs 		= Input::except( '_token' );
-		$swarm 			= [ ];
+		$inputs 	= Input::except( '_token' );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_store( $inputs, 'swarms' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Swarm",
-			'params' 	=>  $swarm
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'swarms' );
 	}
 	/**
 	 * Update the specified swarm in storage.
-	 *
+	 * Object structure for HTTP PUT
+	 * $swarm = [
+	 * 			"id" 					=> [id][notnull],
+	 * 			"createdAt" 			=> [timestamp],
+	 * 			"updatedAt" 			=> [timestamp],
+	 * 			"is_in" 				=> [object],
+	 * 			"trades" 				=> [object],
+	 * 			"creation_date" 		=> [timestamp],
+	 * 			"extermination_date" 	=> [timestamp],
+	 * 			"purpose" 				=> [string],
+	 * 			"notes" 				=> [string]
+	 * 		];
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
-		$inputs 		= Input::except( '_token' );
-		$swarm 			= [ ];
+		$swarm 			= Input::except( '_token' );
+		$swarm[ 'id' ]	= (int) $id;
+		// Refactored in BeeTools Model
+		$response 		= BeeTools::entity_update( $swarm, 'swarms' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Swarm",
-			'params' 	=>  $swarm
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->patch( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'swarms' );
 	}
 	/**
 	 * Remove the specified swarm from storage.
-	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete( $id )
 	{
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Swarm",
-			'params' 	=> [ "id" => (int) $id ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->delete( $request );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_delete( $id, 'swarms' );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'swarms' );
 	}
 
 }

@@ -1,21 +1,20 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
 
-class FileController extends \BaseController {
+class FileController extends BaseController {
 
 	/**
-	 * Display a listing of the files.
-	 * @return View files.index with all files
+	 * Display files list
+	 * @return  View files.index with all files
 	 */
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/File" ] );
-		$files 	= $response->json();
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/files" ] );
+		$files 		= $response->json();
 		return View::make( 'files.index', [ "files" => $files ] );
 	}
-
-/**
+	/**
 	 * Display the specified file.
 	 *
 	 * @param  int  $id
@@ -42,74 +41,71 @@ class FileController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/File/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/files/" . $id ] );
 		$file 		= $response->json();
 		return View::make( 'files.form', [ 'file' => $file ] );
 	}
 	/**
 	 * Store a newly created file in storage.
-	 *
+	 * Object structure for HTTP POST
+	 * $file = [
+	 * 	"createdAt" => [timestamp],
+	 * 	"updatedAt" => [timestamp],
+	 * 	"file_name" => [string],
+	 * 	"file_type" => [string],
+	 * 	"url" 		=> [string],
+	 * 	"notes" 	=> [string]
+	 * 	];
 	 * @return Response
 	 */
 	public function store()
 	{
-		$inputs 		= Input::except( '_token' );
-		$file 			= [ ];
+		$inputs 	= Input::except( '_token' );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_store( $inputs, 'files' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/File",
-			'params' 	=>  $file
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'files' );
 	}
 	/**
 	 * Update the specified file in storage.
-	 *
+	 * Object structure for HTTP PUT
+	 * $file = [
+	 * 	"id" 		=> [integer][notnull],
+	 * 	"createdAt" => [timestamp],
+	 * 	"updatedAt" => [timestamp],
+	 * 	"file_name" => [string],
+	 * 	"file_type" => [string],
+	 * 	"url" 		=> [string],
+	 * 	"notes" 	=> [string]
+	 * 	];
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
-		$inputs 		= Input::except( '_token' );
-		$file 			= [ ];
+		$file 			= Input::except( '_token' );
+		$file[ 'id' ] 	= (int) $id;
+		// Refactored in BeeTools Model
+		$response 		= BeeTools::entity_update( $file, 'files' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/File",
-			'params' 	=>  $file
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->patch( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'files' );
 	}
 	/**
 	 * Remove the specified file from storage.
-	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete( $id )
 	{
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/File",
-			'params' 	=> [ "id" => (int) $id ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->delete( $request );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_delete( $id, 'files' );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'files' );
 	}
-
 }

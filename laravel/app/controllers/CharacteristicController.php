@@ -1,21 +1,20 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
 
-class CharacteristicController extends \BaseController {
+class CharacteristicController extends BaseController {
 
 	/**
-	 * Display a listing of the characteristics.
-	 * @return View characteristics.index with all characteristics
+	 * Display characteristics list
+	 * @return  View characteristics.index with all characteristics
 	 */
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Characteristic" ] );
-		$characteristics 	= $response->json();
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/characteristics" ] );
+		$characteristics 		= $response->json();
 		return View::make( 'characteristics.index', [ "characteristics" => $characteristics ] );
 	}
-
-/**
+	/**
 	 * Display the specified characteristic.
 	 *
 	 * @param  int  $id
@@ -42,74 +41,75 @@ class CharacteristicController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Characteristic/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/characteristics/" . $id ] );
 		$characteristic 		= $response->json();
 		return View::make( 'characteristics.form', [ 'characteristic' => $characteristic ] );
 	}
 	/**
 	 * Store a newly created characteristic in storage.
-	 *
+	 * Object structure for HTTP POST
+	 * $characteristic = [
+	 * 					"createdAt" 			=> [timestamp],
+	 * 					"updatedAt" 			=> [timestamp],
+	 * 					"date" 					=> [timestamp],
+	 * 					"racial_type" 			=> [string],
+	 * 					"aggressivness_level" 	=> [integer],
+	 * 					"swarming_level" 		=> [integer],
+	 * 					"winter_hardiness_level"=> [integer],
+	 * 					"wake_up_month" 		=> [string]
+	 * 				];
 	 * @return Response
 	 */
 	public function store()
 	{
-		$inputs 		= Input::except( '_token' );
-		$characteristic 			= [ ];
+		$inputs 	= Input::except( '_token' );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_store( $inputs, 'characteristics' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Characteristic",
-			'params' 	=>  $characteristic
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'characteristics' );
 	}
 	/**
 	 * Update the specified characteristic in storage.
-	 *
+	 * Object structure for HTTP PUT
+	 * $characteristic = [
+	 * 					"id" 					=> [integer][notnull],
+	 * 					"createdAt" 			=> [timestamp],
+	 * 					"updatedAt" 			=> [timestamp],
+	 * 					"date" 					=> [timestamp],
+	 * 					"racial_type" 			=> [string],
+	 * 					"aggressivness_level" 	=> [integer],
+	 * 					"swarming_level" 		=> [integer],
+	 * 					"winter_hardiness_level"=> [integer],
+	 * 					"wake_up_month" 		=> [string]
+	 * 				];
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
-		$inputs 		= Input::except( '_token' );
-		$characteristic 			= [ ];
+		$characteristic 			= Input::except( '_token' );
+		$characteristic[ 'id' ] 	= (int) $id;
+		// Refactored in BeeTools Model
+		$response 		= BeeTools::entity_update( $characteristic, 'characteristics' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Characteristic",
-			'params' 	=>  $characteristic
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->patch( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'characteristics' );
 	}
 	/**
 	 * Remove the specified characteristic from storage.
-	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete( $id )
 	{
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Characteristic",
-			'params' 	=> [ "id" => (int) $id ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->delete( $request );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_delete( $id, 'characteristics' );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'characteristics' );
 	}
-
 }

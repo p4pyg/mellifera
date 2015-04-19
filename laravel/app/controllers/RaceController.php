@@ -3,7 +3,6 @@ use Vinelab\Http\Client as HttpClient;
 
 class RaceController extends BaseController {
 
-
 	/**
 	 * Display races list
 	 * @return  View races.index with all races
@@ -11,7 +10,7 @@ class RaceController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Race" ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/races" ] );
 		$races 		= $response->json();
 		return View::make( 'races.index', [ "races" => $races ] );
 	}
@@ -48,54 +47,48 @@ class RaceController extends BaseController {
 	}
 	/**
 	 * Store a newly created race in storage.
-	 *
+	 * Object structure for HTTP POST
+	 * $race = [
+	 * 			"characteristics" 		=> [object],
+	 * 			"geographical_origin" 	=> [string],
+	 * 			"life_span" 			=> [integer],
+	 * 			"race_name" 			=> [string]
+	 * 		];
 	 * @return Response
 	 */
 	public function store()
 	{
-		$inputs 		= Input::except( '_token' );
-		foreach ( $inputs as $key => $input )
-			$inputs[$key] = $input === '' ? null : $input;
-
-		$race 			= [ "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
-
-
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/races",
-			'params' 	=> json_encode( $race ),
-			'headers' 	=> ['Content-type: application/json' ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
+		$inputs 	= Input::except( '_token' );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_store( $inputs, 'races' );
 
 		// WORK IN PROGRESS
 		// return response
+		return Redirect::to( 'races' );
 	}
 	/**
 	 * Update the specified race in storage.
+	 * Object structure for HTTP PUT
+	 * $race = [
+	 * 			"id" 					=> [integer][notnull],
+	 * 			"characteristics" 		=> [object],
+	 * 			"geographical_origin" 	=> [string],
+	 * 			"life_span" 			=> [integer],
+	 * 			"race_name" 			=> [string]
+	 * 		];
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
-		$inputs 		= Input::except( '_token' );
-		foreach ( $inputs as $key => $input )
-			$inputs[$key] = $input === '' ? null : $input;
-
-		$race 			= [ "id" => (int) $id , "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
-
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/races",
-			'params' 	=>  json_encode( $race ),
-			'headers' 	=> ['Content-type: application/json' ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->put( $request );
-
-		return Redirect::to( 'races' );
+		$race 			= Input::except( '_token' );
+		$race[ 'id' ] 	= (int) $id;
+		// Refactored in BeeTools Model
+		$response 		= BeeTools::entity_update( $race, 'races' );
 
 		// WORK IN PROGRESS
 		// return response
+		return Redirect::to( 'races' );
 	}
 	/**
 	 * Remove the specified race from storage.
@@ -104,34 +97,11 @@ class RaceController extends BaseController {
 	 */
 	public function delete( $id )
 	{
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_delete( $id, 'races' );
+
 		// WORK IN PROGRESS
-
-		$url 	= "https://bee-mellifera.herokuapp.com/races/" . $id;
-		$json 	= '{}';
-		$ch 	= curl_init();
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "DELETE" );
-		curl_setopt( $ch, CURLOPT_POSTFIELDS, $json );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		$result 	= curl_exec( $ch );
-		$response 	= json_decode( $result );
-		curl_close( $ch );
-
-		// Package seem breaked for DELETE HTTP verb
-		// $request = [
-		// 	'url' 		=> "https://bee-mellifera.herokuapp.com/races/" . $id,
-		// 	'params' 	=> '{}',
-		// 	'headers' 	=> ['Content-type: application/json' ]
-		// ];
-
-		// $client 	= new HttpClient;
-		// $response 	= $client->delete( $request );
-
-		echo '<pre>';
-		print_r($response);
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Raison</p>');
-
 		// return response
+		return Redirect::to( 'races' );
 	}
 }

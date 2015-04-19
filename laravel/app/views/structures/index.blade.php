@@ -13,7 +13,7 @@
 							@foreach( $structures as $key => $structure )
 
 							<tr id="entity-{{ $structure->id }}" data-item-index="{{ $structure->id }}" data-item-name="{{ str_singular( $key ) }}">
-								<td>{{ ucfirst( str_singular( $key ) ) }}</td>
+								<td>{{ BeeTools::table_entity( $key ) }}</td>
 								<td><pre>{{ print_r( $structure ) }}</pre></td>
 							</tr>
 
