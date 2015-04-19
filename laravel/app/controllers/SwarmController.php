@@ -50,7 +50,6 @@ class SwarmController extends \BaseController {
 	 * Store a newly created swarm in storage.
 	 * Object structure for HTTP POST
 	 * $swarm = [
-	 * 			"id" 					=> [integer][notnull],
 	 * 			"createdAt" 			=> [timestamp],
 	 * 			"updatedAt" 			=> [timestamp],
 	 * 			"is_in" 				=> [object],
@@ -76,7 +75,7 @@ class SwarmController extends \BaseController {
 	 * Update the specified swarm in storage.
 	 * Object structure for HTTP PUT
 	 * $swarm = [
-	 * 			"id" 					=> [id][notnull],
+	 * 			"id" 					=> [integer][notnull],
 	 * 			"createdAt" 			=> [timestamp],
 	 * 			"updatedAt" 			=> [timestamp],
 	 * 			"is_in" 				=> [object],

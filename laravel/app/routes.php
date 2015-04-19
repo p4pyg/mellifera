@@ -28,6 +28,10 @@ Route::get('backoffice', function()
 	return Redirect::to('queens');
 } );
 
+
+
+
+/************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 /**
  * Visualisation des structures JSON pour chaque entité
  */
@@ -63,64 +67,8 @@ Route::post( 'structures', function(){
 
 	return View::make( 'structures.index', [ 'structures' => $structures ] );
 } );
-// Route::get( 'structures/all', function(){
-// 	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
 
-// 	$structures = [];
-// 	foreach ( $entities as $entity ) {
-// 		$request = [
-// 			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $entity,
-// 			'params' 	=> '{}',
-// 			'headers' 	=> ['Content-type: application/json' ]
-// 		];
-// 		$client 	= new HttpClient;
-// 		$response 	= $client->post( $request );
-// 		$structures[ $entity ] = $response->json();
-// 	}
-// 	return View::make( 'structures.index', [ 'structures' => $structures ] );
-// } );
-
-
-
-/**
- * Gestion des races
- */
-Route::get( 'races', 			[ 'uses' => 'RaceController@index', 	'as' => 'races.index' 	] );
-Route::get( 'race/edit', 		[ 'uses' => 'RaceController@create', 	'as' => 'races.create' 	] );
-Route::get( 'race/edit/{id}', 	[ 'uses' => 'RaceController@edit', 		'as' => 'races.edit' 	] );
-Route::post( 'race/edit', 		[ 'uses' => 'RaceController@store', 	'as' => 'races.store' 	] );
-Route::post( 'race/edit/{id}', 	[ 'uses' => 'RaceController@update', 	'as' => 'races.update' 	] );
-Route::get( 'race/delete/{id}',	[ 'uses' => 'RaceController@delete', 	'as' => 'races.delete' 	] );
-/**
- * Gestion des reines
- */
-Route::get( 'queens', 			[ 'uses' => 'QueenController@index', 	'as' => 'queens.index' 	] );
-Route::get( 'queen/edit', 		[ 'uses' => 'QueenController@create', 	'as' => 'queens.create' ] );
-Route::get( 'queen/edit/{id}', 	[ 'uses' => 'QueenController@edit', 	'as' => 'queens.edit' 	] );
-Route::post( 'queen/edit', 		[ 'uses' => 'QueenController@store', 	'as' => 'queens.store' 	] );
-Route::post( 'queen/edit/{id}', [ 'uses' => 'QueenController@update', 	'as' => 'queens.update' ] );
-Route::get( 'queen/delete/{id}',[ 'uses' => 'QueenController@delete', 	'as' => 'queens.delete' ] );
-
-/**
- * Gestion des essaims
- */
-Route::get( 'swarms', 			[ 'uses' => 'SwarmController@index', 	'as' => 'swarms.index' 	] );
-Route::get( 'swarm/edit', 		[ 'uses' => 'SwarmController@create', 	'as' => 'swarms.create' ] );
-Route::get( 'swarm/edit/{id}', 	[ 'uses' => 'SwarmController@edit', 	'as' => 'swarms.edit' 	] );
-Route::post( 'swarm/edit', 		[ 'uses' => 'SwarmController@store', 	'as' => 'swarms.store' 	] );
-Route::post( 'swarm/edit/{id}', [ 'uses' => 'SwarmController@update', 	'as' => 'swarms.update' ] );
-Route::get( 'swarm/delete/{id}',[ 'uses' => 'SwarmController@delete', 	'as' => 'swarms.delete' ] );
-
-/**
- * Gestion des ruches
- */
-Route::get( 'hives', 			[ 'uses' => 'HiveController@index', 	'as' => 'hives.index' 	] );
-Route::get( 'hive/edit', 		[ 'uses' => 'HiveController@create', 	'as' => 'hives.create' 	] );
-Route::get( 'hive/edit/{id}', 	[ 'uses' => 'HiveController@edit', 		'as' => 'hives.edit' 	] );
-Route::post( 'hive/edit', 		[ 'uses' => 'HiveController@store', 	'as' => 'hives.store' 	] );
-Route::post( 'hive/edit/{id}', 	[ 'uses' => 'HiveController@update', 	'as' => 'hives.update' 	] );
-Route::get( 'hive/delete/{id}',	[ 'uses' => 'HiveController@delete', 	'as' => 'hives.delete' 	] );
-
+/************************************************************************** ACCÈS AUX ENTITÉS **************************************************************************/
 /**
  * Gestion des ruchers
  */
@@ -162,6 +110,36 @@ Route::post( 'file/edit/{id}', 	[ 'uses' => 'FileController@update', 	'as' => 'f
 Route::get( 'file/delete/{id}',	[ 'uses' => 'FileController@delete', 	'as' => 'files.delete' 	] );
 
 /**
+ * Gestion des ruches
+ */
+Route::get( 'hives', 			[ 'uses' => 'HiveController@index', 	'as' => 'hives.index' 	] );
+Route::get( 'hive/edit', 		[ 'uses' => 'HiveController@create', 	'as' => 'hives.create' 	] );
+Route::get( 'hive/edit/{id}', 	[ 'uses' => 'HiveController@edit', 		'as' => 'hives.edit' 	] );
+Route::post( 'hive/edit', 		[ 'uses' => 'HiveController@store', 	'as' => 'hives.store' 	] );
+Route::post( 'hive/edit/{id}', 	[ 'uses' => 'HiveController@update', 	'as' => 'hives.update' 	] );
+Route::get( 'hive/delete/{id}',	[ 'uses' => 'HiveController@delete', 	'as' => 'hives.delete' 	] );
+
+/**
+ * Gestion des honeysuper
+ */
+Route::get( 'honeysupers', 				[ 'uses' => 'HoneySuperController@index', 	'as' => 'honeysupers.index' ] );
+Route::get( 'honeysuper/edit', 			[ 'uses' => 'HoneySuperController@create',	'as' => 'honeysupers.create'] );
+Route::get( 'honeysuper/edit/{id}', 	[ 'uses' => 'HoneySuperController@edit', 	'as' => 'honeysupers.edit' 	] );
+Route::post( 'honeysuper/edit', 		[ 'uses' => 'HoneySuperController@store', 	'as' => 'honeysupers.store' ] );
+Route::post( 'honeysuper/edit/{id}', 	[ 'uses' => 'HoneySuperController@update',	'as' => 'honeysupers.update'] );
+Route::get( 'honeysuper/delete/{id}',	[ 'uses' => 'HoneySuperController@delete',	'as' => 'honeysupers.delete'] );
+
+/**
+ * Gestion des nuisances
+ */
+Route::get( 'nuisances', 			[ 'uses' => 'NuisanceController@index', 'as' => 'nuisances.index' 	] );
+Route::get( 'nuisance/edit', 		[ 'uses' => 'NuisanceController@create','as' => 'nuisances.create' 	] );
+Route::get( 'nuisance/edit/{id}', 	[ 'uses' => 'NuisanceController@edit', 	'as' => 'nuisances.edit' 	] );
+Route::post( 'nuisance/edit', 		[ 'uses' => 'NuisanceController@store', 'as' => 'nuisances.store' 	] );
+Route::post( 'nuisance/edit/{id}', 	[ 'uses' => 'NuisanceController@update','as' => 'nuisances.update' 	] );
+Route::get( 'nuisance/delete/{id}',	[ 'uses' => 'NuisanceController@delete','as' => 'nuisances.delete' 	] );
+
+/**
  * Gestion des personnes
  */
 Route::get( 'persons', 				[ 'uses' => 'PersonController@index', 	'as' => 'persons.index' 	] );
@@ -171,12 +149,92 @@ Route::post( 'person/edit', 		[ 'uses' => 'PersonController@store', 	'as' => 'pe
 Route::post( 'person/edit/{id}', 	[ 'uses' => 'PersonController@update', 	'as' => 'persons.update' 	] );
 Route::get( 'person/delete/{id}',	[ 'uses' => 'PersonController@delete', 	'as' => 'persons.delete' 	] );
 
-// Nuisance
-// Treatment
-// Product
-// Production
-// Strength
-// HoneySuper
-// TradeTransaction
-// Unit
-// Weather
+/**
+ * Gestion des produits
+ */
+Route::get( 'products', 			[ 'uses' => 'ProductController@index', 	'as' => 'products.index' 	] );
+Route::get( 'product/edit', 		[ 'uses' => 'ProductController@create',	'as' => 'products.create' 	] );
+Route::get( 'product/edit/{id}', 	[ 'uses' => 'ProductController@edit', 	'as' => 'products.edit' 	] );
+Route::post( 'product/edit', 		[ 'uses' => 'ProductController@store', 	'as' => 'products.store' 	] );
+Route::post( 'product/edit/{id}', 	[ 'uses' => 'ProductController@update',	'as' => 'products.update' 	] );
+Route::get( 'product/delete/{id}',	[ 'uses' => 'ProductController@delete',	'as' => 'products.delete' 	] );
+
+/**
+ * Gestion des productions
+ */
+Route::get( 'productions', 				[ 'uses' => 'ProductionController@index', 	'as' => 'productions.index' 	] );
+Route::get( 'production/edit', 			[ 'uses' => 'ProductionController@create',	'as' => 'productions.create' 	] );
+Route::get( 'production/edit/{id}', 	[ 'uses' => 'ProductionController@edit', 	'as' => 'productions.edit' 		] );
+Route::post( 'production/edit', 		[ 'uses' => 'ProductionController@store', 	'as' => 'productions.store' 	] );
+Route::post( 'production/edit/{id}', 	[ 'uses' => 'ProductionController@update',	'as' => 'productions.update' 	] );
+Route::get( 'production/delete/{id}',	[ 'uses' => 'ProductionController@delete',	'as' => 'productions.delete' 	] );
+
+/**
+ * Gestion des reines
+ */
+Route::get( 'queens', 			[ 'uses' => 'QueenController@index', 	'as' => 'queens.index' 	] );
+Route::get( 'queen/edit', 		[ 'uses' => 'QueenController@create', 	'as' => 'queens.create' ] );
+Route::get( 'queen/edit/{id}', 	[ 'uses' => 'QueenController@edit', 	'as' => 'queens.edit' 	] );
+Route::post( 'queen/edit', 		[ 'uses' => 'QueenController@store', 	'as' => 'queens.store' 	] );
+Route::post( 'queen/edit/{id}', [ 'uses' => 'QueenController@update', 	'as' => 'queens.update' ] );
+Route::get( 'queen/delete/{id}',[ 'uses' => 'QueenController@delete', 	'as' => 'queens.delete' ] );
+
+/**
+ * Gestion des races
+ */
+Route::get( 'races', 			[ 'uses' => 'RaceController@index', 	'as' => 'races.index' 	] );
+Route::get( 'race/edit', 		[ 'uses' => 'RaceController@create', 	'as' => 'races.create' 	] );
+Route::get( 'race/edit/{id}', 	[ 'uses' => 'RaceController@edit', 		'as' => 'races.edit' 	] );
+Route::post( 'race/edit', 		[ 'uses' => 'RaceController@store', 	'as' => 'races.store' 	] );
+Route::post( 'race/edit/{id}', 	[ 'uses' => 'RaceController@update', 	'as' => 'races.update' 	] );
+Route::get( 'race/delete/{id}',	[ 'uses' => 'RaceController@delete', 	'as' => 'races.delete' 	] );
+
+/**
+ * Gestion des strengthe
+ */
+Route::get( 'strenghtes', 			[ 'uses' => 'StrengtheController@index', 	'as' => 'strenghtes.index' 	] );
+Route::get( 'strengthe/edit', 		[ 'uses' => 'StrengtheController@create',	'as' => 'strenghtes.create' ] );
+Route::get( 'strengthe/edit/{id}', 	[ 'uses' => 'StrengtheController@edit', 	'as' => 'strenghtes.edit' 	] );
+Route::post( 'strengthe/edit', 		[ 'uses' => 'StrengtheController@store', 	'as' => 'strenghtes.store' 	] );
+Route::post( 'strengthe/edit/{id}', [ 'uses' => 'StrengtheController@update',	'as' => 'strenghtes.update' ] );
+Route::get( 'strengthe/delete/{id}',[ 'uses' => 'StrengtheController@delete',	'as' => 'strenghtes.delete' ] );
+
+/**
+ * Gestion des essaims
+ */
+Route::get( 'swarms', 			[ 'uses' => 'SwarmController@index', 	'as' => 'swarms.index' 	] );
+Route::get( 'swarm/edit', 		[ 'uses' => 'SwarmController@create', 	'as' => 'swarms.create' ] );
+Route::get( 'swarm/edit/{id}', 	[ 'uses' => 'SwarmController@edit', 	'as' => 'swarms.edit' 	] );
+Route::post( 'swarm/edit', 		[ 'uses' => 'SwarmController@store', 	'as' => 'swarms.store' 	] );
+Route::post( 'swarm/edit/{id}', [ 'uses' => 'SwarmController@update', 	'as' => 'swarms.update' ] );
+Route::get( 'swarm/delete/{id}',[ 'uses' => 'SwarmController@delete', 	'as' => 'swarms.delete' ] );
+
+/**
+ * Gestion des transactions
+ */
+Route::get( 'tradetransactions', 			[ 'uses' => 'TradeTransactionController@index', 	'as' => 'tradetransactions.index' 	] );
+Route::get( 'tradetransaction/edit', 		[ 'uses' => 'TradeTransactionController@create',	'as' => 'tradetransactions.create'	] );
+Route::get( 'tradetransaction/edit/{id}', 	[ 'uses' => 'TradeTransactionController@edit', 		'as' => 'tradetransactions.edit' 	] );
+Route::post( 'tradetransaction/edit', 		[ 'uses' => 'TradeTransactionController@store', 	'as' => 'tradetransactions.store' 	] );
+Route::post( 'tradetransaction/edit/{id}', 	[ 'uses' => 'TradeTransactionController@update',	'as' => 'tradetransactions.update'	] );
+Route::get( 'tradetransaction/delete/{id}',	[ 'uses' => 'TradeTransactionController@delete',	'as' => 'tradetransactions.delete'	] );
+
+/**
+ * Gestion des traitements
+ */
+Route::get( 'treatments', 			[ 'uses' => 'TreatmentController@index', 	'as' => 'treatments.index' 	] );
+Route::get( 'treatment/edit', 		[ 'uses' => 'TreatmentController@create',	'as' => 'treatments.create' ] );
+Route::get( 'treatment/edit/{id}', 	[ 'uses' => 'TreatmentController@edit', 	'as' => 'treatments.edit' 	] );
+Route::post( 'treatment/edit', 		[ 'uses' => 'TreatmentController@store', 	'as' => 'treatments.store' 	] );
+Route::post( 'treatment/edit/{id}', [ 'uses' => 'TreatmentController@update',	'as' => 'treatments.update' ] );
+Route::get( 'treatment/delete/{id}',[ 'uses' => 'TreatmentController@delete',	'as' => 'treatments.delete' ] );
+
+/**
+ * Gestion des unités
+ */
+Route::get( 'units', 			[ 'uses' => 'UnitController@index', 	'as' => 'units.index' 	] );
+Route::get( 'unit/edit', 		[ 'uses' => 'UnitController@create',	'as' => 'units.create'	] );
+Route::get( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@edit', 		'as' => 'units.edit' 	] );
+Route::post( 'unit/edit', 		[ 'uses' => 'UnitController@store', 	'as' => 'units.store' 	] );
+Route::post( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
+Route::get( 'unit/delete/{id}',	[ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
