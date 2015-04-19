@@ -10,7 +10,7 @@ class HiveController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Beehive" ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/beehives" ] );
 		$hives 		= $response->json();
 		return View::make( 'hives.index', [ "hives" => $hives ] );
 	}
@@ -42,74 +42,78 @@ class HiveController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Beehive/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/beehives/" . $id ] );
 		$hive 		= $response->json();
 		return View::make( 'hives.form', [ 'hive' => $hive ] );
 	}
 	/**
 	 * Store a newly created hive in storage.
-	 *
+	 * Object structure for HTTP POST
+	 * $hive = [
+	 * 		"createdAt" 		=> [timestamp],
+	 * 		"updatedAt" 		=> [timestamp],
+	 * 		"trades" 			=> [object],
+	 * 		"units" 			=> [object],
+	 * 		"id_lot" 			=> [integer],
+	 * 		"beehive_type" 		=> [string],
+	 * 		"number_of_frames"	=> [integer],
+	 * 		"number_of_rocks" 	=> [integer],
+	 * 		"notes" 			=> [string]
+	 * 		];
 	 * @return Response
 	 */
 	public function store()
 	{
-		$inputs 		= Input::except( '_token' );
-		$hive 			= [  ];
+		$inputs 	= Input::except( '_token' );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_store( $inputs, 'beehives' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Beehive",
-			'params' 	=>  $hive
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'hives' );
 	}
 	/**
 	 * Update the specified hive in storage.
-	 *
+	 * Object structure for HTTP PUT
+	 * $hive = [
+	 * 		"id" 				=> [integer][notnull],
+	 * 		"createdAt" 		=> [timestamp],
+	 * 		"updatedAt" 		=> [timestamp],
+	 * 		"trades" 			=> [object],
+	 * 		"units" 			=> [object],
+	 * 		"id_lot" 			=> [integer],
+	 * 		"beehive_type" 		=> [string],
+	 * 		"number_of_frames"	=> [integer],
+	 * 		"number_of_rocks" 	=> [integer],
+	 * 		"notes" 			=> [string]
+	 * 		];
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
-		$inputs 		= Input::except( '_token' );
-		$hive 			= [ ];
+		$hive 			= Input::except( '_token' );
+		$hive[ 'id' ] 	= (int)$id;
+		// Refactored in BeeTools Model
+		$response 		= BeeTools::entity_update( $hive, 'beehives' );
 
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Beehive",
-			'params' 	=>  $hive
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->patch( $request );
-
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'hives' );
 	}
 	/**
 	 * Remove the specified hive from storage.
-	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete( $id )
 	{
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Beehive",
-			'params' 	=> [ "id" => (int) $id ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->delete( $request );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_delete( $id, 'beehives' );
 
-		echo '<pre>';
-		print_r( $response );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Debug</p>');
+		// WORK IN PROGRESS
+		// return response
+		return Redirect::to( 'hives' );
 	}
 
 }

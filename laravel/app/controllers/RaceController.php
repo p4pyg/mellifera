@@ -3,7 +3,6 @@ use Vinelab\Http\Client as HttpClient;
 
 class RaceController extends BaseController {
 
-
 	/**
 	 * Display races list
 	 * @return  View races.index with all races
@@ -11,7 +10,7 @@ class RaceController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Race" ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/races" ] );
 		$races 		= $response->json();
 		return View::make( 'races.index', [ "races" => $races ] );
 	}
@@ -42,80 +41,67 @@ class RaceController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/Race/" . $id ] );
+		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/races/" . $id ] );
 		$race 		= $response->json();
 		return View::make( 'races.form', [ 'race' => $race ] );
 	}
 	/**
 	 * Store a newly created race in storage.
-	 *
+	 * Object structure for HTTP POST
+	 * $race = [
+	 * 			"characteristics" 		=> [object],
+	 * 			"geographical_origin" 	=> [string],
+	 * 			"life_span" 			=> [integer],
+	 * 			"race_name" 			=> [string]
+	 * 		];
 	 * @return Response
 	 */
 	public function store()
 	{
-		$inputs 		= Input::except( '_token' );
-		foreach ( $inputs as $key => $input )
-			$inputs[$key] = $input === '' ? null : $input;
-
-		$race 			= [ "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "raceName" => $inputs['raceName'] ];
-
-
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
-			'params' 	=> json_encode( $race ),
-			'headers' 	=> ['Content-type: application/json' ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->post( $request );
+		$inputs 	= Input::except( '_token' );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_store( $inputs, 'races' );
 
 		// WORK IN PROGRESS
 		// return response
+		return Redirect::to( 'races' );
 	}
 	/**
 	 * Update the specified race in storage.
-	 * ===============================================================> /!\ WARNING /!\  HTTP Verbs PUT =======> all parameters are provided !
+	 * Object structure for HTTP PUT
+	 * $race = [
+	 * 			"id" 					=> [integer][notnull],
+	 * 			"characteristics" 		=> [object],
+	 * 			"geographical_origin" 	=> [string],
+	 * 			"life_span" 			=> [integer],
+	 * 			"race_name" 			=> [string]
+	 * 		];
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update( $id )
 	{
-		$inputs 		= Input::except( '_token' );
-		foreach ( $inputs as $key => $input )
-			$inputs[$key] = $input === '' ? null : $input;
-
-		$race 			= [ "id" => (int) $id , "characteristics" => $inputs['characteristics' ], "geographical_origin" => $inputs['geographical_origin' ], "life_span" => $inputs['life_span' ], "race_name" => $inputs['race_name'] ];
-
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
-			'params' 	=>  json_encode( $race ),
-			'headers' 	=> ['Content-type: application/json' ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->put( $request );
+		$race 			= Input::except( '_token' );
+		$race[ 'id' ] 	= (int) $id;
+		// Refactored in BeeTools Model
+		$response 		= BeeTools::entity_update( $race, 'races' );
 
 		// WORK IN PROGRESS
 		// return response
+		return Redirect::to( 'races' );
 	}
 	/**
 	 * Remove the specified race from storage.
-	 * ===============================================================> /!\ WARNING /!\  HTTP Verbs DELETE =======> No action found !
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function delete( $id )
 	{
-		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/Race",
-			// WORK IN PROGRESS
-			// 'params' 	=> json_encode( [ "id" => (int) $id ] ),
-			// 'params' 	=> '{"id":' . (int) $id . '}',
-			'params' 	=> $id,
-			'headers' 	=> ['Content-type: application/json' ]
-		];
-		$client 	= new HttpClient;
-		$response 	= $client->delete( $request );
+		// Refactored in BeeTools Model
+		$response 	= BeeTools::entity_delete( $id, 'races' );
 
 		// WORK IN PROGRESS
 		// return response
+		return Redirect::to( 'races' );
 	}
 }

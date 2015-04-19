@@ -37,18 +37,21 @@ Route::get( 'structures', function(){
 	return View::make( 'structures.search', [ 'entities' => $entities ] );
 } );
 
-Route::get( 'structures/{$entity}', function( $entity ){
+
+Route::get( 'structures/{param}', [ function( $param){
 	$request = [
-		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $entity,
+		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $param,
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
 	$client 	= new HttpClient;
 	$response 	= $client->post( $request );
-	$structures[ $entity ] = $response->json();
+	$structures[ $param ] = $response->json();
 
 	return View::make( 'structures.index', [ 'structures' => $structures ] );
-} );
+
+}, 'as' => 'structures.api' ] );
+
 
 Route::post( 'structures', function(){
 	$inputs = Input::all();
