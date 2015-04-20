@@ -11,6 +11,7 @@ return array(
 	|
 	*/
 
+	"weathers"			=> "Conditions météorologiques",
 	"apiaries"			=> "Ruchers",
 	"id" 				=> "Numéro",
 	"person" 			=> "Responsable",
