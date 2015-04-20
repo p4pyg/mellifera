@@ -14,7 +14,7 @@ if ( is_null( $queen ) ) {
 <div class="all-100">
 	<h1>{{ $title }}</h1>
 	<button class="ink-button" id="delete">Delete</button>
-{{	Form::open( [ 'url' => 'queen/edit/' . $queen->id, 'method' => 'POST', 'class' => 'ink-form', 'id' => 'queen_form' ] )	}}
+{{	Form::open( [ 'url' => 'queen/edit/' . ( is_null( $queen ) ? '' : $queen->id ), 'method' => 'POST', 'class' => 'ink-form', 'id' => 'queen_form' ] )	}}
 
 		<div class="column-group gutters">
 			<div class="control-group all-33">
@@ -41,18 +41,12 @@ if ( is_null( $queen ) ) {
 			<div class="control-group all-33">
 				<label for="clipping">@lang( 'queens.clipping' )</label>
 				<ul class="control unstyled">
-					<li><input type="radio" id="clipping_1" name="clipping" value="false" {{ $queen->clipping == false ? 'checked' : '' }}><label for="clipping_1">@lang( 'queens.clip.false' )</label></li>
-					<li><input type="radio" id="clipping_2" name="clipping" value="true" {{ $queen->clipping == true ? 'checked' : '' }}><label for="clipping_2">@lang( 'queens.clip.true' )</label></li>
+					<li><input type="radio" id="clipping_1" name="clipping" value="false" {{ is_null( $queen ) ? '' : $queen->clipping == false ? 'checked' : '' }}><label for="clipping_1">@lang( 'queens.clip.false' )</label></li>
+					<li><input type="radio" id="clipping_2" name="clipping" value="true" {{ is_null( $queen ) ? '' : $queen->clipping == true ? 'checked' : '' }}><label for="clipping_2">@lang( 'queens.clip.true' )</label></li>
 				</ul>
 				<p class="tip">Indiquez ici la méthode de clippage</p>
 			</div>
-{{-- 		<div class="control-group all-33">
-				<label for="current_swarm">@lang( 'queens.current_swarm' )</label>
-				<div class="control">
-					<input type="text" name="current_swarm" id="current_swarm" value="{{ is_null( $queen ) ? '' : $queen->current_swarm }}">
-				</div>
-				<p class="tip">You can add tips to fields</p>
-			</div> --}}
+
 			<div class="control-group all-33">
 				<label for="death_date">@lang( 'queens.die_date' )</label>
 				<div class="control">
@@ -60,47 +54,8 @@ if ( is_null( $queen ) ) {
 				</div>
 				<p class="tip">Indiquez ici la date de décés</p>
 			</div>
-{{-- 			<div class="control-group all-33">
-				<label for="thumbnail">@lang( 'queens.thumbnail' )</label>
-				<div class="control">
-					<input type="text" name="thumbnail" id="thumbnail" value="{{ is_null( $queen ) ? '' : $queen->thumbnail }}">
-				</div>
-				<p class="tip">You can add tips to fields</p>
-			</div>
-			<div class="control-group all-33">
-				<label for="thumbname">@lang( 'queens.thumbname' )</label>
-				<div class="control">
-					<input type="text" name="thumbname" id="thumbname" value="{{ is_null( $queen ) ? '' : $queen->thumbname }}">
-				</div>
-				<p class="tip">You can add tips to fields</p>
-			</div> --}}
 		</div>
 		<button class="ink-button" id="valid">Valider</button>
 {{ Form::close() }}
 </div>
-<script>
-// $( '#valid' ).on( 'click', function(){
-// 	var race = $( '#race' ).val();
-// 	var birth_date = $( '#birth_date' ).val();
-// 	var geographical_origin = $( '#geographical_origin' ).val();
-// 	var clipping = $( '#clipping' ).val();
-// 	var death_date = $( '#death_date' ).val();
-// 	$.post( 'https://bee-mellifera.herokuapp.com/Queen',
-// 		{
-// 			"id": {{ $queen->id }},
-// 			"transaction":null,
-// 			"unit":null,
-// 			"race": { "id": {{ $queen->race->id }},"characteristics":null,"geographical_origin": geographical_origin,"life_span":4,"race_name": race },
-// 			"clipping": clipping
-// 		} )
-// 	.done( function( response ){
-// 		console.log( 'response', response );
-// 	} )
-// 	.fail( function( error ){
-// 		console.log( 'error', error );
-// 	} );
-// } );
-			// "birth_date": birth_date,
-			// "death_date": death_date,
-</script>
 @stop

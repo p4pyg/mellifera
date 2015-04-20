@@ -6,7 +6,7 @@
 	<title>Mellifera : Landing page</title>
 	<meta name="description" content="Page de présentation de la solution de gestion de ruches et ruchers">
 	<meta name="keywords" content="abeilles, ruches, ruchers, transhumance">
-	<meta name="author" content="Cyril, Yoann et Laurent">
+	<meta name="author" content="Projet CNAM NFA036 ">
 	<link rel="apple-touch-icon" sizes="57x57" href="landing/favicons/apple-touch-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="landing/favicons/apple-touch-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="landing/favicons/apple-touch-icon-72x72.png">
@@ -151,7 +151,7 @@
 								<div class="slide">
 									<div class="img-box">
 										<div class="text-holder">
-											<h3>Alane, David et Johnattan</h3>
+											<h3>Alane, David et Jonathan</h3>
 										</div>
 									</div>
 									<p>L'équipe en charge des services web et API RestFull, les gardiens des données</p>
@@ -193,7 +193,8 @@
 			</div>
 		</div>
 	</section>
-	<!-- <section class="visual-container">
+	<section class="visual-container">
+		<!--
 		<div class="visual-area">
 			<div class="container">
 				<h2>People Are Talking About Fork</h2>
@@ -226,68 +227,76 @@
 			</div>
 			<img src="landing/images/img-decor-02.jpg" height="764" width="1380" alt="" class="bg-stretch">
 		</div>
+		-->
 		<div class="visual-area">
 			<div class="container">
-				<h2>Fork Subscription Pricing</h2>
+				<h2>Les quatres briques</h2>
 				<div class="pricing-tables">
 					<div class="plan">
 						<div class="head">
-							<h3>Students</h3>
+							<h3>Service web</h3>
 						</div>
 						<div class="price">
-							<span class="price-main"><span class="symbol">$</span>8</span>
-							<span class="price-additional">per month</span>
+							<span class="price-main"><i class="fa fa-database fa-2x"></i></span>
+							<span class="price-additional">Les données</span>
 						</div>
 						<ul class="item-list">
-							<li>Personal License</li>
+							<li>Accès sécurisé aux données</li>
+							<li>Format ouvert des échanges</li>
+							<li>Intégration de services tiers</li>
 						</ul>
+						<button type="button" class="btn btn-default rounded">En savoir plus</button>
+					</div>
+					<div class="plan">
+						<div class="head">
+							<h3>Plateforme</h3> </div>
+						<div class="price">
+							<span class="price-main"><i class="fa fa-server fa-2x"></i></span>
+							<span class="price-additional">La gestion</span>
+						</div>
+							<ul class="item-list">
+							   <li>Administration</li>
+							   <li>Création de ruchers</li>
+							   <li>Édition des données</li>
+							</ul>
+						<button type="button" class="btn btn-default rounded">En savoir plus</button>
+					</div>
+					<div class="plan ">
+						<div class="head">
+							<h3>Smartphone</h3> </div>
+						<div class="price">
+							<span class="price-main"><i class="fa fa-mobile fa-2x"></i></span>
+							<span class="price-additional">La mobilté</span>
+						</div>
+							<ul class="item-list">
+								<li>Relevé sur le terrain</li>
+								<li>Mode hors connexion</li>
+								<li>Mise à jour et historique</li>
+							</ul>
 						<button type="button" class="btn btn-default rounded">purchase</button>
 					</div>
 					<div class="plan">
 						<div class="head">
-							<h3>professional</h3> </div>
+							<h3>Tablette</h3> </div>
 						<div class="price">
-							<span class="price-main"><span class="symbol">$</span>19</span>
-							<span class="price-additional">per month</span>
-						</div>
-							<ul class="item-list">
-							   <li>Professional License</li>
-							   <li>Email Support</li>
-							</ul>
-						<button type="button" class="btn btn-default rounded">purchase</button>
-					</div>
-					<div class="plan recommended">
-						<div class="head">
-							<h3>agency</h3> </div>
-						<div class="price">
-							<span class="price-main"><span class="symbol">$</span>49</span>
-							<span class="price-additional">per month</span>
-						</div>
-							<ul class="item-list">
-								<li>1-12 Team Members</li>
-								<li>Phone Support</li>
-							</ul>
-						<button type="button" class="btn btn-default rounded">purchase</button>
-					</div>
-					<div class="plan">
-						<div class="head">
-							<h3>enterprise</h3> </div>
-						<div class="price">
-							<span class="price-main"><span class="symbol">$</span>79</span>
-							<span class="price-additional">per month</span>
+							<span class="price-main"><i class="fa fa-tablet fa-2x"></i></span>
+							<span class="price-additional">L'ergonomie</span>
 						</div>
 						<ul class="item-list">
-							<li>Unlimited Team Members</li>
-							<li>24/ 7 Phone Support</li>
+							<li>Confort d'utilisation</li>
+							<li>Interopérabilité</li>
+							<li>Fonctionnalité avancée</li>
 						</ul>
 						<button type="button" class="btn btn-default rounded">purchase</button>
 					</div>
 				</div>
 				<p class="silent">Duis lobortis arcu sed arcu tincidunt feugiat. Nulla nisi mauris, facilisis vitae aliquet id, imperdiet quis nibh. Donec eget elit eu libero tincidunt consequat nec elementum orci. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
 			</div>
-			<img src="landing/images/img-decor-03.jpg" height="1175" width="1380" alt="" class="bg-stretch">
+
+			<!-- <img src="landing/images/img-decor-03.jpg" height="1175" width="1380" alt="" class="bg-stretch"> -->
 		</div>
 	</section>
+	<!--
 	<section class="area">
 		<div class="container">
 			<div class="subscribe">
@@ -391,5 +400,19 @@
 <script src="landing/js/jquery-1.11.2.min.js"></script>
 <script src="landing/js/bootstrap.js"></script>
 <script src="landing/js/jquery.main.js"></script>
+			<script>
+			var plan = {};
+				$( '.plan' ).on( 'click', function(){
+					if( plan.length > 0 ){
+						plan.removeClass( 'recommended' );
+						$( this ).addClass( 'recommended' );
+						plan = $( this );
+					}else{
+						$( this ).addClass( 'recommended' );
+						plan = $( this );
+					}
+
+				} );
+			</script>
 </body>
 </html>
