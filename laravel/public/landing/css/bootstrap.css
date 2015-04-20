@@ -1140,7 +1140,7 @@ h1, h2, h3, h4, h5, h6,
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
-  color: #635C73; }
+  color: #C35509; }
   h1 small,
   h1 .small, h2 small,
   h2 .small, h3 small,
@@ -1261,7 +1261,7 @@ mark,
   color: #C35509; }
 
 a.text-primary:hover {
-  color: #726397; }
+  color: #9B4307; }
 
 .text-success {
   color: #3c763d; }
@@ -1294,7 +1294,7 @@ a.text-danger:hover {
   background-color: #C35509; }
 
 a.bg-primary:hover {
-  background-color: #726397; }
+  background-color: #9B4307; }
 
 .bg-success {
   background-color: #dff0d8; }
@@ -2895,7 +2895,7 @@ select[multiple].input-lg,
   border-color: #C35509; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary.focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
     color: #fff;
-    background-color: #726397;
+    background-color: #9B4307;
     border-color: #C35509; }
   .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
     background-image: none; }
@@ -4117,7 +4117,7 @@ a.label:hover, a.label:focus {
 .label-primary {
   background-color: #C35509; }
   .label-primary[href]:hover, .label-primary[href]:focus {
-    background-color: #726397; }
+    background-color: #9B4307; }
 
 .label-success {
   background-color: #5cb85c; }
