@@ -48,12 +48,10 @@ class TreatmentController extends \BaseController {
 	}
 	/**
 	 * Store a newly created treatment in storage.
-	 * Object structure for HTTP POST (2015/19/04 not confirmed)
+	 * Object structure for HTTP POST
 	 * $treatment = [
 	 * 			"createdAt" 			=> [timestamp],
 	 * 			"updatedAt" 			=> [timestamp],
-	 * 			"product" 				=> [object]
-	 * 			"production" 			=> [object],
 	 * 			"treatment_date" 		=> [timestamp],
 	 * 			"desease_treated" 		=> [string]
 	 * 			"product_quantity" 		=> [float],
@@ -72,13 +70,11 @@ class TreatmentController extends \BaseController {
 	}
 	/**
 	 * Update the specified treatment in storage.
-	 * Object structure for HTTP PUT (2015/19/04 not confirmed)
+	 * Object structure for HTTP PUT
 	 * $treatment = [
 	 * 			"id" 					=> [integer][notnull],
 	 * 			"createdAt" 			=> [timestamp],
 	 * 			"updatedAt" 			=> [timestamp],
-	 * 			"product" 				=> [object]
-	 * 			"production" 			=> [object],
 	 * 			"treatment_date" 		=> [timestamp],
 	 * 			"desease_treated" 		=> [string]
 	 * 			"product_quantity" 		=> [float],
