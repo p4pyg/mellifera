@@ -151,7 +151,7 @@
 								<div class="slide">
 									<div class="img-box">
 										<div class="text-holder">
-											<h3>Alane, David et Johnattan</h3>
+											<h3>Alane, David et Jonathan</h3>
 										</div>
 									</div>
 									<p>L'équipe en charge des services web et API RestFull, les gardiens des données</p>
