@@ -17,7 +17,9 @@ return array(
 	"race"					=> "Race",
 	"birth_date"			=> "Date de naissance",
 	"clipping"				=> "Clippage",
-	"clip"					=> [ "Non" , "Oui" ],
+	"true"					=> "Oui",
+	"false"					=> "Non",
+	// "clip"					=> [ "Non" , "Oui" ],
 	"current_swarm"			=> "Essaim actuel",
 	"thumbnail"				=> "Photo",
 	"thumbname" 			=> "Nom de la photo",
@@ -25,5 +27,6 @@ return array(
 	'create_new_queen' 		=> "Création d'une nouvelle reine",
 	'edit_queen' 			=> "Modification d'une reine",
 	"geographical_origin"	=> "Origine géographique",
+
 
 );
