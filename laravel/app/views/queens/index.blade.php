@@ -16,7 +16,7 @@
 					<th class="align-center" data-sortable="true">@lang('queens.age')</th>
 					<th data-sortable="true">@lang('queens.geographical_origin')</th> --}}
 					<th data-sortable="true">@lang('queens.clipping')</th>
-{{-- 					<th data-sortable="true">@lang('queens.current_swarm')</th>
+{{-- 				<th data-sortable="true">@lang('queens.current_swarm')</th>
 					<th data-sortable="true">@lang('queens.thumbnail')</th> --}}
 					{{-- <th data-sortable="true">@lang('queens.die_date')</th> --}}
 				</tr>

@@ -5,7 +5,7 @@
 			{{-- <li>{{ HTML::link( 'home', 'Accueil' ) }}</li> --}}
 			{{-- <li><a href="#">Colonies</a></li> --}}
 			{{-- <li>{{ HTML::link( 'hives', 'Ruches' ) }}</li> --}}
-			{{-- <li>{{ HTML::link( 'apiaries', 'Ruchers' ) }}</li> --}}
+			<li>{{ HTML::link( 'apiaries', 'Ruchers' ) }}</li>
 			{{-- <li><a href="#">Administration</a></li> --}}
 			<li>{{ HTML::link( 'races', 'Races' ) }}</li>
 			<li>{{ HTML::link( 'queens', 'Reines' ) }}</li>

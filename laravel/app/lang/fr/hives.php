@@ -4,10 +4,10 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
-	| All terms for queens
+	| All terms for hives
 	|--------------------------------------------------------------------------
 	|
-	| Les lignes suivantes représentent les traductions en français des termes et expressions utilisés lorsque l'on parle de reine
+	| Les lignes suivantes représentent les traductions en français des termes et expressions utilisés lorsque l'on parle de ruche
 	|
 	*/
 
