@@ -14,7 +14,6 @@
 					<th class="align-left" data-sortable="true">@lang('hives.id')</th>
 					<th data-sortable="true">@lang('hives.id_lot')</th>
 					<th class="align-center" data-sortable="true">@lang('hives.beehive_type')</th>
-					<th data-sortable="true">@lang('hives.acquisition_date')</th>
 					<th data-sortable="true">@lang('hives.number_of_frames')</th>
 					<th data-sortable="true">@lang('hives.number_of_rocks')</th>
 					<th data-sortable="true">@lang('hives.notes')</th>
@@ -27,7 +26,6 @@
 					<td>{{ $hive->id }}</td>
 					<td>{{ $hive->id_lot }}</td>
 					<td>{{ $hive->beehive_type }}</td>
-					<td>{{ $hive->acquisition_date  }}</td>
 					<td>{{ $hive->number_of_frames }}</td>
 					<td>{{ $hive->number_of_rocks }}</td>
 					<td>{{ $hive->notes }}</td>

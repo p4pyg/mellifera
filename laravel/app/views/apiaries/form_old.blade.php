@@ -72,28 +72,25 @@ if ( is_null( $apiary ) ) {
 					<input type="text" name="notes" id="notes" value="{{ is_null( $apiary ) ? '' : $apiary->notes }}">
 				</div>
 				<p class="tip">Vous pouvez ajouter ici des notes</p>
-			</div> 
+			</div> --}}
 		</div>
 		<button class="ink-button" id="valid">Valider</button>
 {{ Form::close() }}
 </div>
 <script>
 // $( '#valid' ).on( 'click', function(){
-// 	var name = $( '#name' ).val();
+// 	var race = $( '#race' ).val();
 // 	var longitude = $( '#longitude' ).val();
-//  var latitude = $( '#latitude' ).val();
-// 	var altitude = $( '#altitude' ).val();
-// 	var vegetation_type = $( '#vegetation_type' ).val();
-//  var hives_capacity = $( '#hives_capacity' ).val();
-//  var apiary_notes = $( '#apiary_notes' ).val();
-//  var notes = $( '#notes' ).val();
+// 	var geographical_origin = $( '#geographical_origin' ).val();
+// 	var clipping = $( '#clipping' ).val();
+// 	var death_date = $( '#death_date' ).val();
 // 	$.post( 'https://bee-mellifera.herokuapp.com/apiary',
 // 		{
 // 			"id": {{ $apiary->id }},
 // 			"transaction":null,
 // 			"unit":null,
-//
-// 			
+// 			"race": { "id": {{ $apiary->race->id }},"characteristics":null,"geographical_origin": geographical_origin,"life_span":4,"race_name": race },
+// 			"clipping": clipping
 // 		} )
 // 	.done( function( response ){
 // 		console.log( 'response', response );
@@ -103,7 +100,6 @@ if ( is_null( $apiary ) ) {
 // 	} );
 // } );
 			// "longitude": longitude,
-			// "latitude": latitude,
-			// "altitude": altitude
+			// "death_date": death_date,
 </script>
 @stop
