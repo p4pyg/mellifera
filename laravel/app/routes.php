@@ -28,8 +28,27 @@ Route::get('backoffice', function()
 	return Redirect::to('queens');
 } );
 
-
-
+/**
+ * Authentification
+ */
+// en création, 200 pour une simple authentification réussie
+// {
+// 	"code":"201",
+// 	"description": [ "user", "supervisor", "token" ],
+// 	"data":[
+// 		{	"@id": 1,
+// 			"id" : 8,
+// 			"name": "user",
+// 			"etc": "..."
+// 		},true,"AF345EC9371B30A25"
+// 	]
+// }
+//ici une erreur de mot de passe
+// {
+// 	"code":"418",
+// 	"description": ["email","password","client_id","client_key"],
+// 	"data": [ false, true, false, false ]
+// }
 
 /************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 /**
