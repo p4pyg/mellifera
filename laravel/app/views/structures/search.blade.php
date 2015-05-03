@@ -1,22 +1,22 @@
 @extends('template')
 @section('content')
-			<div class="column-group">
-				<div class="all-100">
-					<h1>Structures</h1>
-					<p>Outil de visualisation de la structure JSON mise en forme pour une entité donnée.</p>
-					<form class="ink-form" method="post" action="/structures">
-						<fieldset>
-							<legend>Sélectionnez l'entité</legend>
-							<div class="control-group">
-								<ul class="control unstyled">
-								@foreach( $entities as $key => $entity )
-									<li><input type="radio" id="entity{{ $key }}" name="entity" value="{{ $entity }}"><label for="entity{{ $key }}">{{ ucfirst( str_singular( $entity ) )}}</label></li>
-								@endforeach
-								</ul>
-							</div>
-						</fieldset>
-						<button class="ink-button">Voir la structure</button>
-					</form>
-				</div>
-			</div>
+<h2>Structures</h2>
+<p>Outil de visualisation de la structure JSON mise en forme pour une entité donnée.</p>
+<h3>Sélectionnez l'entité</h3>
+<form method="post" action="/structures">
+	<div  class="row">
+		<div class="col l6 m6 s6">
+		@foreach( $entities as $key => $entity )
+			<p><input type="radio" id="entity{{ $key }}" name="entity" value="{{ $entity }}" {{ $key == 0 ? 'checked' : '' }}><label for="entity{{ $key }}">{{ ucfirst( str_singular( $entity ) )}}</label></p>
+			@if( $key == ( round( count( $entities ) / 2 ) - 1 ) )
+		</div>
+		<div class="col l6 m6 s6">
+			@endif
+		@endforeach
+		</div>
+	</div>
+	<div class="row">
+		@include( 'components.button_submit' )
+	</div>
+</form>
 @stop

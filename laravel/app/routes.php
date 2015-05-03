@@ -51,33 +51,33 @@ Route::get('backoffice', [ function()
 // }
 //
 
-Route::get('signin', function()
+Route::get('signin', [ function()
 {
 	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
 	Session::put('user', $user_auth->data);
 	return Redirect::to( '/' );
-} );
-Route::get('signup', function()
+}, 'as' => 'users.signin' ] );
+Route::get('signup', [ function()
 {
 	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
 	Session::put('user', $user_auth->data);
 	return Redirect::to( '/' );
-} );
-Route::get('logout', function()
+} , 'as' => 'users.signup' ] );
+Route::get('logout', [function()
 {
 	Session::forget('user');
 	return Redirect::to( '/' );
-} );
+} , 'as' => 'users.logout' ] );
 
 /************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 /**
  * Visualisation des structures JSON pour chaque entité
  */
-Route::get( 'structures', function(){
+Route::get( 'structures', [ function(){
 	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
 
 	return View::make( 'structures.search', [ 'entities' => $entities ] );
-} );
+} , 'as' => 'structures.list' ]);
 
 
 Route::get( 'structures/{param}', [ function( $param){
@@ -95,7 +95,7 @@ Route::get( 'structures/{param}', [ function( $param){
 }, 'as' => 'structures.api' ] );
 
 
-Route::post( 'structures', function(){
+Route::post( 'structures', [ function(){
 	$inputs = Input::all();
 	$request = [
 		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $inputs['entity'],
@@ -107,7 +107,7 @@ Route::post( 'structures', function(){
 	$structures[ $inputs['entity'] ] = $response->json();
 
 	return View::make( 'structures.index', [ 'structures' => $structures ] );
-} );
+}, 'as' => 'structures.search' ] );
 
 /************************************************************************** ACCÈS AUX ENTITÉS **************************************************************************/
 /**

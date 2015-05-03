@@ -48,6 +48,10 @@ ul.pagination{
 	padding : 1rem;
 }
 
+[type="radio"]:checked + label::after{
+	border: 2px solid #e65100;
+	background-color: #e65100;
+}
 input[type="text"]:focus:not([readonly]),
 input[type="password"]:focus:not([readonly]),
 input[type="email"]:focus:not([readonly]),
@@ -75,7 +79,6 @@ input[type=search]:focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
 	color: #e65100;
 }
-
 .pagination li.active{
 	background-color: #e65100;
 }
