@@ -10,7 +10,7 @@ class ProductController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/products" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/products" ] );
 		$products 	= $response->json();
 		return View::make( 'products.index', [ "products" => $products ] );
 	}
@@ -42,7 +42,7 @@ class ProductController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/products/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/products/" . $id ] );
 		$product 		= $response->json();
 		return View::make( 'products.form', [ 'product' => $product ] );
 	}

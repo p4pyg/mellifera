@@ -10,7 +10,7 @@ class CharacteristicController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/characteristics" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/characteristics" ] );
 		$characteristics 		= $response->json();
 		return View::make( 'characteristics.index', [ "characteristics" => $characteristics ] );
 	}
@@ -41,7 +41,7 @@ class CharacteristicController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/characteristics/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/characteristics/" . $id ] );
 		$characteristic 		= $response->json();
 		return View::make( 'characteristics.form', [ 'characteristic' => $characteristic ] );
 	}

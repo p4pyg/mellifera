@@ -10,7 +10,7 @@ class ProductionController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/productions" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/productions" ] );
 		$productions 	= $response->json();
 		return View::make( 'productions.index', [ "productions" => $productions ] );
 	}
@@ -42,7 +42,7 @@ class ProductionController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/productions/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/productions/" . $id ] );
 		$production 		= $response->json();
 		return View::make( 'productions.form', [ 'production' => $production ] );
 	}

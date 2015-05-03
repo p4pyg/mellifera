@@ -10,7 +10,7 @@ class UnitController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/units" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/units" ] );
 		$units 	= $response->json();
 		return View::make( 'units.index', [ "units" => $units ] );
 	}
@@ -42,7 +42,7 @@ class UnitController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/units/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/units/" . $id ] );
 		$unit 		= $response->json();
 		return View::make( 'units.form', [ 'unit' => $unit ] );
 	}

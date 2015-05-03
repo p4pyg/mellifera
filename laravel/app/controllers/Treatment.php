@@ -10,7 +10,7 @@ class TreatmentController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/treatments" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/treatments" ] );
 		$treatments 	= $response->json();
 		return View::make( 'treatments.index', [ "treatments" => $treatments ] );
 	}
@@ -42,7 +42,7 @@ class TreatmentController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/treatments/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/treatments/" . $id ] );
 		$treatment 		= $response->json();
 		return View::make( 'treatments.form', [ 'treatment' => $treatment ] );
 	}

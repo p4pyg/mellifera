@@ -10,7 +10,7 @@ class PersonController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/persons" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/persons" ] );
 		$persons 	= $response->json();
 		return View::make( 'persons.index', [ "persons" => $persons ] );
 	}
@@ -42,7 +42,7 @@ class PersonController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/persons/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/persons/" . $id ] );
 		$person 	= $response->json();
 		return View::make( 'persons.form', [ 'person' => $person ] );
 	}

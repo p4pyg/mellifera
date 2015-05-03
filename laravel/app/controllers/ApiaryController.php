@@ -10,7 +10,7 @@ class ApiaryController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/apiaries" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/apiaries" ] );
 		$apiaries 		= $response->json();
 		return View::make( 'apiaries.index', [ "apiaries" => $apiaries ] );
 	}
@@ -41,7 +41,7 @@ class ApiaryController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/apiaries/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/apiaries/" . $id ] );
 		$apiary 		= $response->json();
 		return View::make( 'apiaries.form', [ 'apiary' => $apiary ] );
 	}

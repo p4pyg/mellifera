@@ -10,7 +10,7 @@ class QueenController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/queens" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/queens" ] );
 		$queens 	= $response->json();
 		return View::make( 'queens.index', [ "queens" => $queens ] );
 	}
@@ -42,7 +42,7 @@ class QueenController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/queens/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/queens/" . $id ] );
 		$queen 		= $response->json();
 		return View::make( 'queens.form', [ 'queen' => $queen ] );
 	}

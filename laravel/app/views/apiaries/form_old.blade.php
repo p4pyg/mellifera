@@ -51,7 +51,7 @@ if ( is_null( $apiary ) ) {
 					<input type="text" name="vegetation_type" id="vegetation_type" value="{{ is_null( $apiary ) ? '' : $apiary->vegetation_type }}">
 				</div>
 				<p class="tip">Indiquez ici le type de végétation</p>
-			</div> 
+			</div>
 			<div class="control-group all-33">
 				<label for="hives_capacity">@lang( 'apiaries.hives_capacity' )</label>
 				<div class="control">
@@ -84,7 +84,7 @@ if ( is_null( $apiary ) ) {
 // 	var geographical_origin = $( '#geographical_origin' ).val();
 // 	var clipping = $( '#clipping' ).val();
 // 	var death_date = $( '#death_date' ).val();
-// 	$.post( 'https://bee-mellifera.herokuapp.com/apiary',
+// 	$.post( 'http://api.mellifera.cu.cc/apiary',
 // 		{
 // 			"id": {{ $apiary->id }},
 // 			"transaction":null,

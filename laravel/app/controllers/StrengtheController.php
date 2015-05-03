@@ -10,7 +10,7 @@ class StrengtheController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/strengthes" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/strengthes" ] );
 		$strengthes 	= $response->json();
 		return View::make( 'strengthes.index', [ "strengthes" => $strengthes ] );
 	}
@@ -42,7 +42,7 @@ class StrengtheController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/strengthes/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/strengthes/" . $id ] );
 		$strengthe 		= $response->json();
 		return View::make( 'strengthes.form', [ 'strengthe' => $strengthe ] );
 	}

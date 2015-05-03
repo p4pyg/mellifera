@@ -10,7 +10,7 @@ class NuisanceController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/nuisances" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/nuisances" ] );
 		$nuisances 	= $response->json();
 		return View::make( 'nuisances.index', [ "nuisances" => $nuisances ] );
 	}
@@ -42,7 +42,7 @@ class NuisanceController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/nuisances/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/nuisances/" . $id ] );
 		$nuisance 		= $response->json();
 		return View::make( 'nuisances.form', [ 'nuisance' => $nuisance ] );
 	}

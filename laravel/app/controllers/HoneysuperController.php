@@ -10,7 +10,7 @@ class HoneysuperController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/honeysupers" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/honeysupers" ] );
 		$honeysupers 	= $response->json();
 		return View::make( 'honeysupers.index', [ "honeysupers" => $honeysupers ] );
 	}
@@ -42,7 +42,7 @@ class HoneysuperController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/honeysupers/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/honeysupers/" . $id ] );
 		$honeysuper 		= $response->json();
 		return View::make( 'honeysupers.form', [ 'honeysuper' => $honeysuper ] );
 	}

@@ -10,7 +10,7 @@ class TradetransactionController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/tradetransactions" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/tradetransactions" ] );
 		$tradetransactions 	= $response->json();
 		return View::make( 'tradetransactions.index', [ "tradetransactions" => $tradetransactions ] );
 	}
@@ -42,7 +42,7 @@ class TradetransactionController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/tradetransactions/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/tradetransactions/" . $id ] );
 		$tradetransaction 		= $response->json();
 		return View::make( 'tradetransactions.form', [ 'tradetransaction' => $tradetransaction ] );
 	}

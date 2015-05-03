@@ -10,7 +10,7 @@ class SwarmController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/swarms" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/swarms" ] );
 		$swarms 	= $response->json();
 		return View::make( 'swarms.index', [ "swarms" => $swarms ] );
 	}
@@ -42,7 +42,7 @@ class SwarmController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/swarms/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/swarms/" . $id ] );
 		$swarm 		= $response->json();
 		return View::make( 'swarms.form', [ 'swarm' => $swarm ] );
 	}

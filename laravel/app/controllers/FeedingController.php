@@ -10,7 +10,7 @@ class FeedingController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/feedings" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/feedings" ] );
 		$feedings 		= $response->json();
 		return View::make( 'feedings.index', [ "feedings" => $feedings ] );
 	}
@@ -41,7 +41,7 @@ class FeedingController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/feedings/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/feedings/" . $id ] );
 		$feeding 		= $response->json();
 		return View::make( 'feedings.form', [ 'feeding' => $feeding ] );
 	}

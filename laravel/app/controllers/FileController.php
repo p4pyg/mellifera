@@ -10,7 +10,7 @@ class FileController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/files" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/files" ] );
 		$files 		= $response->json();
 		return View::make( 'files.index', [ "files" => $files ] );
 	}
@@ -41,7 +41,7 @@ class FileController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/files/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/files/" . $id ] );
 		$file 		= $response->json();
 		return View::make( 'files.form', [ 'file' => $file ] );
 	}

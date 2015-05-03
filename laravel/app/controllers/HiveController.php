@@ -10,7 +10,7 @@ class HiveController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/beehives" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/beehives" ] );
 		$hives 		= $response->json();
 		return View::make( 'hives.index', [ "hives" => $hives ] );
 	}
@@ -42,7 +42,7 @@ class HiveController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/beehives/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/beehives/" . $id ] );
 		$hive 		= $response->json();
 		return View::make( 'hives.form', [ 'hive' => $hive ] );
 	}

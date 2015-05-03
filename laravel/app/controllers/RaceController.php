@@ -10,7 +10,7 @@ class RaceController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/races" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/races" ] );
 		$races 		= $response->json();
 		return View::make( 'races.index', [ "races" => $races ] );
 	}
@@ -41,7 +41,7 @@ class RaceController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "https://bee-mellifera.herokuapp.com/races/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/races/" . $id ] );
 		$race 		= $response->json();
 		return View::make( 'races.form', [ 'race' => $race ] );
 	}
