@@ -18,7 +18,7 @@ class BeeTools {
 
 		// Uncomment this bloc when webservice is ready
 		// $request = [
-		// 	'url' 			=> "https://bee-mellifera.herokuapp.com/signin",
+		// 	'url' 			=> "http://api.mellifera.cu.cc/signin",
 		// 	'description' 	=> [ "email","password","client_id","client_key" ],
 		// 	'params' 		=> json_encode( $user ),
 		// 	'headers' 		=> [ 'Content-type: application/json' ]
@@ -80,7 +80,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $string,
+			'url' 		=> "http://api.mellifera.cu.cc/" . $string,
 			'params' 	=> json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -102,7 +102,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $string,
+			'url' 		=> "http://api.mellifera.cu.cc/" . $string,
 			'params' 	=>  json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -120,7 +120,7 @@ class BeeTools {
 	 */
 	static public function entity_delete( $id, $string )
 	{
-		$url 	= "https://bee-mellifera.herokuapp.com/" . $string . "/" . $id;
+		$url 	= "http://api.mellifera.cu.cc/" . $string . "/" . $id;
 		$json 	= '{}';
 		$ch 	= curl_init();
 		curl_setopt( $ch, CURLOPT_URL, $url );

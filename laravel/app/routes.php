@@ -82,7 +82,7 @@ Route::get( 'structures', [ function(){
 
 Route::get( 'structures/{param}', [ function( $param){
 	$request = [
-		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $param,
+		'url' 		=> "http://api.mellifera.cu.cc/" . $param,
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
@@ -98,7 +98,7 @@ Route::get( 'structures/{param}', [ function( $param){
 Route::post( 'structures', [ function(){
 	$inputs = Input::all();
 	$request = [
-		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $inputs['entity'],
+		'url' 		=> "http://api.mellifera.cu.cc/" . $inputs['entity'],
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
