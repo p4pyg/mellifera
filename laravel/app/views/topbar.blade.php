@@ -1,15 +1,16 @@
-<header class="vertical-space">
-	<h1>Mellifera<small> Back-office</small></h1>
-	<nav class="ink-navigation">
-		<ul class="menu horizontal black">
-			{{-- <li>{{ HTML::link( 'home', 'Accueil' ) }}</li> --}}
-			{{-- <li><a href="#">Colonies</a></li> --}}
-			{{-- <li>{{ HTML::link( 'hives', 'Ruches' ) }}</li> --}}
-			<li>{{ HTML::link( 'apiaries', 'Ruchers' ) }}</li>
-			{{-- <li><a href="#">Administration</a></li> --}}
-			<li>{{ HTML::link( 'races', 'Races' ) }}</li>
-			<li>{{ HTML::link( 'queens', 'Reines' ) }}</li>
-			<li>{{ HTML::link( 'structures', 'Structures JSON' ) }}</li>
+<nav>
+	<div class="nav-wrapper">
+		<a href="/" class="brand-logo"><h4>Mellifera<small> Back-office</small></h4></a>
+		<a href="#" data-activates="mobile-menu" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+		<ul class="right hide-on-med-and-down">
+			<li>{{ HTML::link( 'backoffice', 'Mon exploitation', [ "class" => "waves-effect waves-light" ] ) }}</li>
+			<li>{{ HTML::link( 'account', 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
+			<li>{{ HTML::link( 'logout', 'Me déconnecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
 		</ul>
-	</nav>
-</header>
+		<ul class="side-nav" id="mobile-menu">
+			<li>{{ HTML::link( 'backoffice', 'Mon exploitation', [ "class" => "waves-effect waves-light" ] ) }}</li>
+			<li>{{ HTML::link( 'account', 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
+			<li>{{ HTML::link( 'logout', 'Me déconnecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
+		</ul>
+	</div>
+</nav>

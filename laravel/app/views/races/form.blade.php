@@ -4,56 +4,42 @@
 if ( is_null( $race ) ) {
 	$title 			= trans( 'races.create_new_race' );
 	$route 			= 'race/create';
-	$markup_delete 	= '';
 }else{
 	$title 			= trans( 'races.edit_race' );
 	$route 			= 'race/update';
-	$markup_delete 	= '<button class="ink-button" id="delete" data-item-index="' . $race->id . '"><span class="fa fa-trash fa-lg"></span></button>';
 }
 ?>
-<div class="all-100">
-	<h1>{{ $title }}</h1>
-	{{ $markup_delete }}
-{{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'ink-form', 'id' => 'race_form' ] )	}}
-
-		<div class="column-group gutters">
-			<div class="control-group all-33">
-				<label for="race_name">@lang( 'races.race_name' )</label>
-				<div class="control">
-					<input type="text" name="race_name" id="race_name" placeholder="@lang( 'races.race_name' )" value="{{ is_null( $race ) ? '' : $race->race_name }}">
-				</div>
-				<p class="tip">Indiquez ici le nom de la race</p>
+		<div class="row valign-wrapper">
+			<div class="col l10 m10 s10">
+				<h2>{{ $title }}&nbsp;</h2>
 			</div>
-			<div class="control-group all-33">
-				<label for="characteristics">@lang( 'races.characteristics' )</label>
-				<div class="control">
-					<input type="text" name="characteristics" id="characteristics" value="{{ is_null( $race ) ? '' :  $race->characteristics  }}">
-				</div>
-				<p class="tip">Indiquez ici les caractéristiques de la race</p>
+			<div class="col l2 m2 s2 valign">
+			@if( ! is_null( $race ) )
+				@include( 'components.button_delete', [ 'item' => $race ] )
+			@endif
 			</div>
-			<div class="control-group all-33">
-				<label for="geographical_origin">@lang( 'races.geographical_origin' )</label>
-				<div class="control">
-					<input type="text" name="geographical_origin" id="geographical_origin" value="{{ is_null( $race ) ? '' : $race->geographical_origin }}">
-				</div>
-				<p class="tip">Indiquez ici l'origine géographique</p>
-			</div>
-			<div class="control-group all-33">
-				<label for="life_span">@lang( 'races.life_span' )</label>
-				<div class="control">
-					<input type="text" name="life_span"  id="life_span"  value="{{ is_null( $race ) ? '' : $race->life_span }}" >
-				</div>
-				<p class="tip">Indiquez ici la méthode de clippage</p>
-			</div>
-
 		</div>
-		<button class="ink-button" id="valid">Valider</button>
-{{ Form::close() }}
-</div>
-<script type="text/javascript">
-	$( '#delete' ).on( 'click', function(){
-		document.location.href="/race/delete/" + $( this ).attr( 'data-item-index' );
-	} );
+	<div class="row">
+{{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'race_form' ] )	}}
+		<div class="row">
+			<div class="input-field col l6 m6 s12">
+				<input type="text" name="race_name" id="race_name" class="validate" value="{{ is_null( $race ) ? '' : $race->race_name }}">
+				<label for="race_name">@lang( 'races.race_name' )</label>
+			</div>
+			<div class="input-field col l6 m6 s12">
+				<input type="text" name="characteristics" id="characteristics" class="validate" value="{{ is_null( $race ) ? '' :  $race->characteristics  }}">
+				<label for="characteristics">@lang( 'races.characteristics' )</label>
+			</div>
+			<div class="input-field col l6 m6 s12">
+				<input type="text" name="geographical_origin" id="geographical_origin" class="validate" value="{{ is_null( $race ) ? '' : $race->geographical_origin }}">
+				<label for="geographical_origin">@lang( 'races.geographical_origin' )</label>
+			</div>
+			<div class="input-field col l6 m6 s12">
+				<input type="text" name="life_span"  id="life_span" class="validate" value="{{ is_null( $race ) ? '' : $race->life_span }}" >
+				<label for="life_span">@lang( 'races.life_span' )</label>
+			</div>
+		</div>
+		@include( 'components.button_submit' )
 
-</script>
+{{ Form::close() }}
 @stop

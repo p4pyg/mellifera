@@ -23,10 +23,10 @@ Route::get('/', function()
 /**
  * Accès back-office
  */
-Route::get('backoffice', function()
+Route::get('backoffice', [ function()
 {
-	return Redirect::to('queens');
-} );
+	return View::make('home');
+}, 'as' => 'backoffice.home' ] );
 
 /**
  * Authentification
@@ -49,6 +49,25 @@ Route::get('backoffice', function()
 // 	"description": ["email","password","client_id","client_key"],
 // 	"data": [ false, true, false, false ]
 // }
+//
+
+Route::get('signin', function()
+{
+	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
+	Session::put('user', $user_auth->data);
+	return Redirect::to( '/' );
+} );
+Route::get('signup', function()
+{
+	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
+	Session::put('user', $user_auth->data);
+	return Redirect::to( '/' );
+} );
+Route::get('logout', function()
+{
+	Session::forget('user');
+	return Redirect::to( '/' );
+} );
 
 /************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 /**

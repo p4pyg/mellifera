@@ -49,6 +49,7 @@
 							<li><a href="#">Code source</a></li>
 							<li><a href="#">License</a></li>
 							<li><a href="#">Support</a></li>
+							<li><a href="/logout"><?php echo ( is_null( Session::get( 'user' ) ) ? '' : Session::get('user')[0]->name ) ; ?></a></li>
 						</ul>
 						<div class="drop-holder visible-sm visible-xs">
 							<span>Follow Us</span>

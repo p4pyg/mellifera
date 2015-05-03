@@ -12,5 +12,8 @@ return array(
 	*/
 
 	"add" 			=> "Ajouter",
+	"delete" 		=> "Supprimer",
+	"submit" 		=> "Valider",
+	"scrolltop"		=> "Haut de page",
 
 );

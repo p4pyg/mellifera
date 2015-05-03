@@ -1,14 +1,16 @@
 @extends('template')
 @section('content')
-<div class="column-group">
-	<div class="all-100">
-		<h1>@lang('races.races')&nbsp;
-			<small>
-				{{ HTML::decode(
-					HTML::link( 'race/edit/', '<span class="fa fa-plus-circle fa-lg"></span>',  trans( 'tools.add' ) ) ) }}
-			</small>
-		</h1>
-		<table id="races" class="ink-table bordered hover alternating" data-page-size="5" data-pagination="#racesPagination" >
+<?php list( $entity, $page ) = explode( '.', Route::currentRouteName() ); ?>
+		<div class="row valign-wrapper">
+			<div class="col l10 m10 s10">
+				<h2>@lang('races.races')&nbsp;</h2>
+			</div>
+			<div class="col l2 m2 s2 valign">
+				@include( 'components.button_add' )
+			</div>
+		</div>
+
+		<table id="races" class="responsive-table hover hoverable striped bordered" data-page-size="5" data-pagination="#racesPagination" >
 			<thead>
 				<tr>
 					<th class="align-left" data-sortable="true">@lang('races.id')</th>
@@ -22,7 +24,7 @@
 			@foreach( $races as $race )
 				<tr id="race-{{ $race->id }}" data-item-index="{{ $race->id }}">
 					<td>{{ $race->id }}</td>
-					<td>{{ $race->race_name }}</td>
+					<td>{{ ucfirst( $race->race_name ) }}</td>
 					<td>{{ $race->life_span }}</td>
 					<td>{{ $race->geographical_origin }}</td>
 					<td>{{ $race->characteristics }}</td>
@@ -30,18 +32,5 @@
 			@endforeach
 			</tbody>
 		</table>
-		<nav class="ink-navigation" id="racesPagination">
-			<ul class="pagination black"></ul>
-		</nav>
-		<script>
-			Ink.requireModules( ['Ink.Dom.Selector_1','Ink.UI.Table_1'], function( Selector, Table ){
-				var tableElement = Ink.s('#races');
-				var tableObj = new Table( tableElement );
-			} );
-			$( "tr[id^='race']" ).on( 'click', function(){
-				document.location.href="race/edit/" + $( this ).attr( 'data-item-index' );
-			} );
-		</script>
-	</div>
-</div>
+		<ul class="pagination"  id="racesPagination"></ul>
 @stop
