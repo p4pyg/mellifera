@@ -20,6 +20,6 @@ return array(
 	"life_span"				=> "Durée de vie",
 	"race_name"				=> "Nom",
 	'create_new_race' 		=> "Création d'une nouvelle race",
-	'edit_race' 			=> "Modification d'une race",
+	'edit_race' 			=> "Modification d'une race"
 
 );

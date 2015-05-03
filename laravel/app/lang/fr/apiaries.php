@@ -31,7 +31,8 @@ return array(
 	"vegetation_type" 	=> "Type de végétation",
 	"hives_capacity" 	=> "Capacité de la ruche",
 	"apiary_notes" 		=> "Note du rucher",
-	"notes" 			=> "Notes"
+	"notes" 			=> "Notes",
+	"edit_apiary"		=> "Edition d'un rucher"
 
 
 

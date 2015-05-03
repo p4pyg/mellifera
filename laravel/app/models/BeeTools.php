@@ -5,6 +5,47 @@ class BeeTools {
 
 
 	/**
+	 * Create or authenticate use
+	 */
+	static public function authenticate( $email, $password )
+	{
+		$user = [
+			"email" 		=> $email,
+			"password" 		=> $password,
+			"client_id" 	=> Request::getClientIp(),
+			"client_key" 	=> Config::get('app.key')
+		];
+
+		// Uncomment this bloc when webservice is ready
+		// $request = [
+		// 	'url' 			=> "http://api.mellifera.cu.cc/signin",
+		// 	'description' 	=> [ "email","password","client_id","client_key" ],
+		// 	'params' 		=> json_encode( $user ),
+		// 	'headers' 		=> [ 'Content-type: application/json' ]
+		// ];
+		// $client 	= new HttpClient;
+		// $response 	= $client->post( $request );
+		// return $response->json();
+		//
+		// Delete this bloc when webservice is ready
+		$response =
+				'{
+					"code":"201",
+					"description": [ "user", "supervisor", "token" ],
+					"data":[
+						{	"@id": 1,
+							"id" : 8,
+							"name": "user",
+							"etc": "..."
+						},
+						true,
+						"AF345EC9371B30A25"
+					]
+				}';
+		return json_decode( $response );
+	}
+
+	/**
 	 * Helper combo
 	 * Transform entity name (first letter uppercase singular) to table name (full lowercase plural)
 	 * @param  [string] $string [name of entity]
@@ -39,7 +80,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $string,
+			'url' 		=> "http://api.mellifera.cu.cc/" . $string,
 			'params' 	=> json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -61,7 +102,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "https://bee-mellifera.herokuapp.com/" . $string,
+			'url' 		=> "http://api.mellifera.cu.cc/" . $string,
 			'params' 	=>  json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -79,7 +120,7 @@ class BeeTools {
 	 */
 	static public function entity_delete( $id, $string )
 	{
-		$url 	= "https://bee-mellifera.herokuapp.com/" . $string . "/" . $id;
+		$url 	= "http://api.mellifera.cu.cc/" . $string . "/" . $id;
 		$json 	= '{}';
 		$ch 	= curl_init();
 		curl_setopt( $ch, CURLOPT_URL, $url );

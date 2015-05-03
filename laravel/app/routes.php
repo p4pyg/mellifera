@@ -23,28 +23,66 @@ Route::get('/', function()
 /**
  * Accès back-office
  */
-Route::get('backoffice', function()
+Route::get('backoffice', [ function()
 {
-	return Redirect::to('queens');
-} );
+	return View::make('home');
+}, 'as' => 'backoffice.home' ] );
 
+/**
+ * Authentification
+ */
+// en création, 200 pour une simple authentification réussie
+// {
+// 	"code":"201",
+// 	"description": [ "user", "supervisor", "token" ],
+// 	"data":[
+// 		{	"@id": 1,
+// 			"id" : 8,
+// 			"name": "user",
+// 			"etc": "..."
+// 		},true,"AF345EC9371B30A25"
+// 	]
+// }
+//ici une erreur de mot de passe
+// {
+// 	"code":"418",
+// 	"description": ["email","password","client_id","client_key"],
+// 	"data": [ false, true, false, false ]
+// }
+//
 
-
+Route::get('signin', [ function()
+{
+	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
+	Session::put('user', $user_auth->data);
+	return Redirect::to( '/' );
+}, 'as' => 'users.signin' ] );
+Route::get('signup', [ function()
+{
+	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
+	Session::put('user', $user_auth->data);
+	return Redirect::to( '/' );
+} , 'as' => 'users.signup' ] );
+Route::get('logout', [function()
+{
+	Session::forget('user');
+	return Redirect::to( '/' );
+} , 'as' => 'users.logout' ] );
 
 /************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 /**
  * Visualisation des structures JSON pour chaque entité
  */
-Route::get( 'structures', function(){
+Route::get( 'structures', [ function(){
 	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
 
 	return View::make( 'structures.search', [ 'entities' => $entities ] );
-} );
+} , 'as' => 'structures.list' ]);
 
 
 Route::get( 'structures/{param}', [ function( $param){
 	$request = [
-		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $param,
+		'url' 		=> "http://api.mellifera.cu.cc/" . $param,
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
@@ -57,10 +95,10 @@ Route::get( 'structures/{param}', [ function( $param){
 }, 'as' => 'structures.api' ] );
 
 
-Route::post( 'structures', function(){
+Route::post( 'structures', [ function(){
 	$inputs = Input::all();
 	$request = [
-		'url' 		=> "https://bee-mellifera.herokuapp.com/" . $inputs['entity'],
+		'url' 		=> "http://api.mellifera.cu.cc/" . $inputs['entity'],
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
@@ -69,7 +107,7 @@ Route::post( 'structures', function(){
 	$structures[ $inputs['entity'] ] = $response->json();
 
 	return View::make( 'structures.index', [ 'structures' => $structures ] );
-} );
+}, 'as' => 'structures.search' ] );
 
 /************************************************************************** ACCÈS AUX ENTITÉS **************************************************************************/
 /**

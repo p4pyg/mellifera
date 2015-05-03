@@ -3,7 +3,7 @@
  * @module Ink.UI.Pagination_1
  * @version 1
  */
- 
+
 Ink.createModule('Ink.UI.Pagination', '1',
     ['Ink.UI.Common_1','Ink.Dom.Event_1','Ink.Dom.Css_1','Ink.Dom.Element_1','Ink.Dom.Selector_1'],
     function(Common, Event, Css, Element, Selector ) {
@@ -206,6 +206,7 @@ Ink.createModule('Ink.UI.Pagination', '1',
                     liEl.appendChild( genAEl( this._options.numberFormatter(i,this._size), i) );
                     // add "active" class if this is the active element.
                     Css.setClassName(liEl, this._options.activeClass, i === this._current);
+                    Css.addClassName(liEl, 'waves-effect');
                     if (this._nextEl) {
                         this._ulEl.insertBefore(liEl, this._nextEl);
                     } else {

@@ -1,0 +1,192 @@
+
+body {
+	font-weight: 300;
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+}
+main {
+	flex: 1 0 auto;
+}
+
+nav{
+	background-color: rgba(255, 152, 0, 1.0);
+}
+nav .brand-logo{
+	font-size : 1.7rem;
+	font-weight: 300;
+	padding-left : 1rem;
+}
+h2, h3, h4, h5{
+	font-weight: 200;
+}
+
+footer.page-footer{
+	margin-top : 0;
+	color : #FAFAFA;
+	background-color: #3E2723;
+}
+blockquote{
+	border-left: 5px solid #e65100;
+}
+
+table.hover tbody tr:hover {
+  cursor: pointer;
+}
+table tr th[data-sortable="true"]:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+table tr th[data-sortable="true"]:hover i {
+  text-decoration: none;
+}
+table tr th[data-sortable="true"] i {
+  padding-left: .5em;
+}
+
+ul.pagination{
+	padding : 1rem;
+}
+
+[type="radio"]:checked + label::after{
+	border: 2px solid #e65100;
+	background-color: #e65100;
+}
+input[type="text"]:focus:not([readonly]),
+input[type="password"]:focus:not([readonly]),
+input[type="email"]:focus:not([readonly]),
+input[type="url"]:focus:not([readonly]),
+input[type="time"]:focus:not([readonly]),
+input[type="date"]:focus:not([readonly]),
+input[type="datetime-local"]:focus:not([readonly]),
+input[type="tel"]:focus:not([readonly]),
+input[type="number"]:focus:not([readonly]),
+input[type="search"]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+	border-bottom: 1px solid #e65100;
+	box-shadow: 0px 1px 0px 0px #e65100;
+}
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+	color: #e65100;
+}
+.pagination li.active{
+	background-color: #e65100;
+}
+
+.show-all {
+  display: inherit;
+}
+
+.hide-all {
+  display: none !important;
+}
+
+/*----------------------------------------------------------------
+    Map
+----------------------------------------------------------------*/
+.map {
+    height: 15em;
+}
+
+.gm-style > div > div {
+ /* Overlay color */
+    height: 100%;
+}
+
+.gm-style img {
+ /* Fix tooltip */
+    max-width: none;
+}
+
+.gm-style div {
+ /* Fix tooltip */
+    border-style: none;
+}
+
+.gm-style > div.gmnoprint {
+     display: none;
+}
+
+.gm-style > div > a {
+     display: none !important;
+}
+
+.infoBox {
+    text-align: center;
+}
+
+.infobox-inner {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #FFF;
+    -webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.infobox-inner:after, .infobox-inner:before {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: solid transparent;
+    content: " ";
+    pointer-events: none;
+}
+
+.infobox-inner:after {
+    margin-left: -10px;
+    border-width: 10px;
+    border-color: rgba(0,0,0,0);
+}
+
+.infobox-inner:before {
+    margin-left: -10px;
+    border-width: 10px;
+    border-color: rgba(0,0,0,0);
+    border-bottom-color: #fff;
+}
+
+
+
+/*----------------------------------------------------------------
+    Scroll to top
+----------------------------------------------------------------*/
+.cd-top {
+	display: inline-block;
+	position: fixed;
+	right: 1.5rem;
+	bottom: 10rem;
+	visibility: hidden;
+	opacity: 0;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+	-webkit-transition: opacity .3s 0s, visibility 0s 0s;
+	-moz-transition: opacity .3s 0s, visibility 0s 0s;
+	transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+	visibility: visible;
+	opacity: 1;
+}
+.cd-top.cd-fade-out {
+	opacity: .5;
+}
+.cd-top:hover {
+	background-color: #FF9800;
+	opacity: 1;
+}
