@@ -95,8 +95,8 @@ class ApiaryController extends BaseController {
 	 * 			"altitude" 			=> [integer],
 	 * 			"vegetation_type" 	=> [string],
 	 * 			"hives_capacity" 	=> [integer],
-	 * 			"apiary_notes" 		=> [string],
-	 * 			"notes" 			=> [integer]
+	 * 			"notes" 			=> [string],
+	 * 			"rank" 				=> [integer]
 	 * 		];
 	 * @param  int  $id
 	 * @return Response
