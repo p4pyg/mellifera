@@ -19,6 +19,8 @@ return array(
 	"clipping"				=> "Clippage",
 	"true"					=> "Oui",
 	"false"					=> "Non",
+	"age"					=> "Âge",
+	"origin"				=> "Origine",
 	// "clip"					=> [ "Non" , "Oui" ],
 	"current_swarm"			=> "Essaim actuel",
 	"thumbnail"				=> "Photo",
