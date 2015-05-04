@@ -54,11 +54,34 @@
 			} );
 		</script>
 @endif
-@if( $page == 'form' )
+@if( in_array( $page, [ 'create', 'edit' ] ) )
 		<script type="text/javascript">
 			$( document ).ready( function(){
 				$( '#delete' ).on( 'click', function(){
 					document.location.href="/{{  str_singular( $entity )  }}/delete/" + $( this ).attr( 'data-item-index' );
+				} );
+				$('.datepicker').pickadate({
+					selectMonths: true, // Creates a dropdown to control month
+					selectYears: 15, // Creates a dropdown of 15 years to control year
+					labelMonthNext: 'Mois suivant',
+					labelYearSelect: 'Select a year',
+					// Months and weekdays
+					monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
+					monthsShort: [ 'Jan', 'Fvb', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec' ],
+					weekdaysFull: [ 'Dimanche', 'Lundi', 'Jeudi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
+					weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
+
+					// Materialize modified
+					weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+
+					// Today and clear
+					today: 'Aujourd\'hui',
+					clear: 'Effacer',
+					close: 'Fermer',
+
+					// The format to show on the `input` element
+					format: 'd mmmm yyyy',
+
 				} );
 			} );
 		</script>
