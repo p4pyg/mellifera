@@ -19,7 +19,6 @@ if ( is_null( $race ) ) {
 			@endif
 			</div>
 		</div>
-	<div class="row">
 {{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'race_form' ] )	}}
 		<div class="row">
 			<div class="input-field col l6 m6 s12">
@@ -38,8 +37,8 @@ if ( is_null( $race ) ) {
 				<input type="text" name="life_span"  id="life_span" class="validate" value="{{ is_null( $race ) ? '' : $race->life_span }}" >
 				<label for="life_span">@lang( 'races.life_span' )</label>
 			</div>
-		</div>
 		@include( 'components.button_submit' )
+		</div>
 
 {{ Form::close() }}
 @stop

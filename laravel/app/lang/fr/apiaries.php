@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return array(
 
@@ -11,27 +11,28 @@ return array(
 	|
 	*/
 
+	"create_new_apiary" => "Création d'un nouveau rucher",
 	"weathers"			=> "Conditions météorologiques",
 	"apiaries"			=> "Ruchers",
 	"id" 				=> "Numéro",
 	"person" 			=> "Responsable",
 	"last_name" 		=> "Nom",
 	"first_name" 		=> "Prénom",
-	"address1" 			=> "Adresse 1",
-	"address2" 			=> "Adresse 2",
-	"postcode" 			=> "Code Postal",
+	"address1" 			=> "Adresse",
+	"address2" 			=> "Comp.",
+	"postcode" 			=> "C.P",
 	"city" 				=> "Ville",
 	"phone" 			=> "Téléphone",
 	"email" 			=> "Email",
 	"notes" 			=> "Note",
-	"apiary_name" 		=> "Nom de rucher",
+	"apiary_name" 		=> "Nom",
 	"longitude" 		=> "Longitude",
 	"latitude" 			=> "Latitude",
 	"altitude" 			=> "Altitude",
-	"vegetation_type" 	=> "Type de végétation",
-	"hives_capacity" 	=> "Capacité de la ruche",
-	"apiary_notes" 		=> "Note du rucher",
-	"notes" 			=> "Notes",
+	"vegetation_type" 	=> "Végétation",
+	"hives_capacity" 	=> "Capacité",
+	"notes" 			=> "Commentaire",
+	"rank" 				=> "Note",
 	"edit_apiary"		=> "Edition d'un rucher"
 
 
