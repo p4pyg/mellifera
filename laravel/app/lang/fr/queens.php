@@ -25,7 +25,7 @@ return array(
 	"current_swarm"			=> "Essaim actuel",
 	"thumbnail"				=> "Photo",
 	"thumbname" 			=> "Nom de la photo",
-	"die_date"				=> "Date de décés",
+	"death_date"			=> "Date de décés",
 	'create_new_queen' 		=> "Création d'une nouvelle reine",
 	'edit_queen' 			=> "Modification d'une reine",
 	"geographical_origin"	=> "Origine géographique"

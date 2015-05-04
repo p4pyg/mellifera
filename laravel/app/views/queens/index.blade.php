@@ -9,7 +9,7 @@
 			<th class="align-center" data-sortable="true">@lang('queens.age')</th>
 			<th data-sortable="true">@lang('queens.origin')</th>
 			<th data-sortable="true">@lang('queens.clipping')</th>
-			<th data-sortable="true">@lang('queens.die_date')</th>
+			<th data-sortable="true">@lang('queens.death_date')</th>
 			<!-- <th data-sortable="true">@lang('queens.current_swarm')</th> -->
 			<!-- <th data-sortable="true">@lang('queens.thumbnail')</th> -->
 		</tr>
