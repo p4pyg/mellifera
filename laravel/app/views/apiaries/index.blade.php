@@ -6,6 +6,7 @@
 		<tr>
 			<th class="align-left" data-sortable="true">@lang( 'apiaries.id' )</th>
 			<th data-sortable="true">@lang( 'apiaries.apiary_name' )</th>
+			<th data-sortable="true">@lang( 'apiaries.person' )</th>
 			<th data-sortable="true">@lang( 'apiaries.address1' )</th>
 			<th data-sortable="true">@lang( 'apiaries.address2' )</th>
 			<th data-sortable="true">@lang( 'apiaries.postcode' )</th>
@@ -24,6 +25,7 @@
 		<tr id="apiary-{{ $apiary->id }}" data-item-index="{{ $apiary->id }}">
 			<td>{{ $apiary->id }}</td>
 			<td>{{ $apiary->apiary_name }}</td>
+			<td>{{ $apiary->person }}</td>
 			<td>{{ $apiary->address1 }}</td>
 			<td>{{ $apiary->address2 }}</td>
 			<td>{{ $apiary->postcode }}</td>

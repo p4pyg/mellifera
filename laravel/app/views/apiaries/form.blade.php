@@ -26,6 +26,26 @@ if ( is_null( $apiary ) ) {
 		<label for="name">@lang( 'apiaries.apiary_name' )</label>
 	</div>
 	<div class="input-field col l6 m6 s12">
+		<input type="text" name="person" id="person" placeholder="@lang( 'apiaries.person' )" value="{{ is_null( $apiary ) ? '' : $apiary->person }}">
+		<label for="person">@lang( 'apiaries.person' )</label>
+	</div>
+	<div class="input-field col l6 m6 s12">
+		<input type="text" name="address1" id="address1" value="{{ is_null( $apiary ) ? '' : $apiary->address1 }}">
+		<label for="address1">@lang( 'apiaries.address1' )</label>
+	</div>
+	<div class="input-field col l6 m6 s12">
+		<input type="text" name="address2" id="address2" value="{{ is_null( $apiary ) ? '' : $apiary->address2 }}">
+		<label for="address2">@lang( 'apiaries.address2' )</label>
+	</div>
+	<div class="input-field col l6 m6 s12">
+		<input type="text" name="postcode" id="postcode" value="{{ is_null( $apiary ) ? '' : $apiary->postcode }}">
+		<label for="postcode">@lang( 'apiaries.postcode' )</label>
+	</div>
+	<div class="input-field col l6 m6 s12">
+		<input type="text" name="city" id="city" value="{{ is_null( $apiary ) ? '' : $apiary->city }}">
+		<label for="city">@lang( 'apiaries.city' )</label>
+	</div>
+	<div class="input-field col l6 m6 s12">
 		<input type="text" name="longitude" id="longitude" value="{{ is_null( $apiary ) ? '' : $apiary->longitude }}">
 		<label for="longitude">@lang( 'apiaries.longitude' )</label>
 	</div>
@@ -53,6 +73,7 @@ if ( is_null( $apiary ) ) {
 		<input type="text" name="rank" id="rank" value="{{ is_null( $apiary ) ? '' : $apiary->rank }}">
 		<label for="rank">@lang( 'apiaries.rank' )</label>
 	</div>
+	
 	@include( 'components.button_submit' )
 </div>
 {{ Form::close() }}
