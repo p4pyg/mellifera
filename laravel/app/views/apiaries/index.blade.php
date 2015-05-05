@@ -15,7 +15,6 @@
 			<th data-sortable="true">@lang( 'apiaries.altitude' )</th>
 			<th data-sortable="true">@lang( 'apiaries.vegetation_type' )</th>
 			<th data-sortable="true">@lang( 'apiaries.hives_capacity' )</th>
-			<th data-sortable="true">@lang( 'apiaries.notes' )</th>
 			<th data-sortable="true">@lang( 'apiaries.rank' )</th>
 		</tr>
 	</thead>
@@ -23,7 +22,7 @@
 	@foreach( $apiaries as $apiary )
 		<tr id="apiary-{{ $apiary->id }}" data-item-index="{{ $apiary->id }}">
 			<td>{{ $apiary->id }}</td>
-			<td>{{ $apiary->apiary_name }}</td>
+			<td>{{ ucfirst( $apiary->apiary_name ) }}</td>
 			<td>{{ $apiary->address1 }}</td>
 			<td>{{ $apiary->address2 }}</td>
 			<td>{{ $apiary->postcode }}</td>
@@ -31,9 +30,8 @@
 			<td>{{ $apiary->longitude }}</td>
 			<td>{{ $apiary->latitude }}</td>
 			<td>{{ $apiary->altitude }}</td>
-			<td>{{ $apiary->hives_capacity }}</td>
 			<td>{{ $apiary->vegetation_type }}</td>
-			<td>{{ $apiary->notes }}</td>
+			<td>{{ $apiary->hives_capacity }}</td>
 			<td>{{ $apiary->rank }}</td>
 		</tr>
 	@endforeach
@@ -41,4 +39,3 @@
 </table>
 <ul class="pagination"  id="apiariesPagination"></ul>
 @stop
-
