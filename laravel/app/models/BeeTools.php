@@ -68,6 +68,17 @@ class BeeTools {
 	}
 
 	/**
+	 * Helper list of month
+	 * @return [array]
+	 */
+	static public function list_month( $index = null ){
+		$months = [ trans( 'tools.jan' ), trans( 'tools.feb' ), trans( 'tools.mar' ), trans( 'tools.apr' ), trans( 'tools.may' ), trans( 'tools.jun' ), trans( 'tools.jul' ), trans( 'tools.aug' ), trans( 'tools.sept' ), trans( 'tools.oct' ), trans( 'tools.nov' ), trans( 'tools.dec' ) ];
+		if( is_null( $index ) )
+			return $months;
+		return $months[ $index ];
+	}
+
+	/**
 	 * Refactoring for controllers
 	 * Store method
 	 * @param  [array]  $data   [array of data from form]
@@ -86,6 +97,7 @@ class BeeTools {
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->post( $request );
+
 		return $response->json();
 	}
 

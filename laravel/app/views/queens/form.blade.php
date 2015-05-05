@@ -27,7 +27,7 @@ if ( is_null( $queen ) ) {
 	</div>
 	<div class="input-field col l6 m6 s12">
 		<input type="text" class="datepicker picker__input" name="death_date" id="death_date">
-		<label for="death_date">@lang( 'queens.die_date' )</label>
+		<label for="death_date">@lang( 'queens.death_date' )</label>
 	</div>
 	<div class="col l6 m6 s12">
 		<h6>@lang( 'queens.clipping' )</h6>

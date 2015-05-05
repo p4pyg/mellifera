@@ -15,5 +15,17 @@ return array(
 	"delete" 		=> "Supprimer",
 	"submit" 		=> "Valider",
 	"scrolltop"		=> "Haut de page",
+	"jan" 			=> "Janvier",
+	"feb"			=> "Février",
+	"mar" 			=> "Mars",
+	"apr" 			=> "Avril",
+	"may" 			=> "Mai",
+	"jun" 			=> "Juin",
+	"jul"			=> "Juillet",
+	"aug"			=> "Août",
+	"sept" 			=> "Septembre",
+	"oct" 			=> "Octobre",
+	"nov" 			=> "Novembre",
+	"dec" 			=> "Décembre",
 
 );

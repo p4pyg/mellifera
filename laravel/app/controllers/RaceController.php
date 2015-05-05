@@ -58,9 +58,20 @@ class RaceController extends BaseController {
 	 */
 	public function store()
 	{
-		$inputs 	= Input::except( '_token' );
+		$inputs = Input::except( '_token', 'characteristic_id');
+		$race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_notes' );
+
+
+		$characteristics = [];
+		foreach ( $inputs as $key => $input )
+			if( str_contains( $key, 'characteristic_' ) )
+				$characteristics[ str_replace( 'characteristic_', '', $key ) ] = $input;
+
+		$characteristics[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
+		$response_characteristic 	= BeeTools::entity_store( $characteristics, 'characteristics' );
+		$race['characteristics'] 	= $response_characteristic;
 		// Refactored in BeeTools Model
-		$response 	= BeeTools::entity_store( $inputs, 'races' );
+		$response_race 				= BeeTools::entity_store( $race, 'races' );
 
 		// WORK IN PROGRESS
 		// return response
@@ -81,8 +92,19 @@ class RaceController extends BaseController {
 	 */
 	public function update( $id )
 	{
-		$race 			= Input::except( '_token' );
+		$inputs = Input::except( '_token' );
+		$race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_notes' );
+
+
+		$characteristics = [];
+		foreach ( $inputs as $key => $input )
+			if( str_contains( $key, 'characteristic_' ) )
+				$characteristics[ str_replace( 'characteristic_', '', $key ) ] = $input;
+
+		$characteristics[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
+		$response_characteristic 	= BeeTools::entity_update( $characteristics, 'characteristics' );
 		$race[ 'id' ] 	= (int) $id;
+
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $race, 'races' );
 

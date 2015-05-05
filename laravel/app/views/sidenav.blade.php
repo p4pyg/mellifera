@@ -1,10 +1,11 @@
 <ul id="slide-out" class="side-nav">
 	{{-- <li>{{ HTML::link( 'home', 'Accueil' ) }}</li> --}}
 	{{-- <li><a href="#">Colonies</a></li> --}}
-	{{-- <li>{{ HTML::link( 'hives', 'Ruches' ) }}</li> --}}
-	<li>{{ HTML::link( 'apiaries', 'Ruchers' ) }}</li>
-	<li>{{ HTML::link( 'races', 'Races' ) }}</li>
-	<li>{{ HTML::link( 'queens', 'Reines' ) }}</li>
+	<li>{{ HTML::link( 'apiaries', trans( 'apiaries.apiaries' ) ) }}</li>
+	<li>{{ HTML::link( 'hives', trans( 'hives.hives' ) ) }}</li>
+	<li>{{ HTML::link( 'races', trans( 'races.races' ) ) }}</li>
+	<li>{{ HTML::link( 'queens', trans( 'queens.queens' ) ) }}</li>
+	<li>{{ HTML::link( 'characteristics', trans( 'characteristics.characteristics' ) ) }}</li>
 	<li>{{ HTML::link( 'structures', 'Structures JSON' ) }}</li>
 	<li><a href="#">Aide</a></li>
 </ul>

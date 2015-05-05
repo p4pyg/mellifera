@@ -21,21 +21,60 @@ if ( is_null( $race ) ) {
 		</div>
 {{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'race_form' ] )	}}
 		<div class="row">
-			<div class="input-field col l6 m6 s12">
-				<input type="text" name="race_name" id="race_name" class="validate" value="{{ is_null( $race ) ? '' : $race->race_name }}">
-				<label for="race_name">@lang( 'races.race_name' )</label>
+			<div class="col l6 m6 s12">
+				<h5>@lang( 'races.global' )</h5>
+				<div class="input-field col l12 m12 s12">
+					<input type="text" name="race_name" id="race_name" class="validate" value="{{ is_null( $race ) ? '' : $race->race_name }}">
+					<label for="race_name">@lang( 'races.race_name' )</label>
+				</div>
+				<div class="input-field col l12 m12 s12">
+					<input type="text" name="geographical_origin" id="geographical_origin" class="validate" value="{{ is_null( $race ) ? '' : $race->geographical_origin }}">
+					<label for="geographical_origin">@lang( 'races.geographical_origin' )</label>
+				</div>
+				<div class="input-field col l12 m12 s12">
+					<input type="text" name="life_span"  id="life_span" class="validate" value="{{ is_null( $race ) ? '' : $race->life_span }}" >
+					<label for="life_span">@lang( 'races.life_span' )</label>
+				</div>
 			</div>
-			<div class="input-field col l6 m6 s12">
-				<input type="text" name="characteristics" id="characteristics" class="validate" value="{{ is_null( $race ) ? '' :  $race->characteristics  }}">
-				<label for="characteristics">@lang( 'races.characteristics' )</label>
-			</div>
-			<div class="input-field col l6 m6 s12">
-				<input type="text" name="geographical_origin" id="geographical_origin" class="validate" value="{{ is_null( $race ) ? '' : $race->geographical_origin }}">
-				<label for="geographical_origin">@lang( 'races.geographical_origin' )</label>
-			</div>
-			<div class="input-field col l6 m6 s12">
-				<input type="text" name="life_span"  id="life_span" class="validate" value="{{ is_null( $race ) ? '' : $race->life_span }}" >
-				<label for="life_span">@lang( 'races.life_span' )</label>
+			<div class="col l6 m6 s12">
+				<h5>@lang( 'characteristics.characteristics' )</h5>
+				<input type="hidden" name="characteristic_id" value="{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->id ) }}">
+				{{-- [characteristic_unit] => --}}
+				<div class="input-field col l12 m12 s12">
+					<input type="text" class="datepicker" name="characteristic_date" id="characteristic_date" value="{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : date( 'd-m-Y', strtotime( $race->characteristics->date ) ) ) }}">
+					<label>@lang( 'characteristics.date' )</label>
+				</div>
+				<div class="input-field col l12 m12 s12">
+					<input type="text" name="characteristic_racial_type" id="characteristic_racial_type" value="{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->racial_type ) }}" >
+					<label>@lang( 'characteristics.racial_type' )</label>
+				</div>
+				<div class="input-field col l12 m12 s12">
+					<h6>@lang( 'characteristics.aggressivness_level' )</h6>
+					<p class="range-field">
+						<input type="range" id="characteristic_aggressivness_level" name="characteristic_aggressivness_level" min="0" max="100" value="{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->aggressivness_level ) }}" />
+					</p>
+					<h6>@lang( 'characteristics.swarming_level' )</h6>
+					<p class="range-field">
+						<input type="range" id="characteristic_swarming_level" name="characteristic_swarming_level" min="0" max="100" value="{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->swarming_level ) }}" />
+					</p>
+					<h6>@lang( 'characteristics.winter_hardiness_level' )</h6>
+					<p class="range-field">
+						<input type="range" id="characteristic_winter_hardiness_level" name="characteristic_winter_hardiness_level" min="0" max="100" value="{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->winter_hardiness_level ) }}" />
+					</p>
+				</div>
+				<div class="input-field col s12">
+					<select name="characteristic_wake_up_month">
+						<option value="" disabled {{ is_null( $race ) ? 'selected' : ( is_null( $race->characteristics ) ? 'selected' : '' ) }}></option>
+						@foreach( BeeTools::list_month() as $key => $month )
+						<option value="{{ $key }}" {{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : ( $race->characteristics->wake_up_month == $key ? 'selected' : '' ) ) }}>{{ $month }}</option>
+						@endforeach
+					</select>
+					<label>@lang( 'characteristics.wake_up_month' )</label>
+				</div>
+				<div class="input-field col l12 m12 s12">
+					<textarea name="characteristic_notes" id="characteristic_notes" class="materialize-textarea" cols="30" rows="10">{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->notes ) }}</textarea>
+					<label>@lang( 'characteristics.notes' )</label>
+				</div>
 			</div>
 		@include( 'components.button_submit' )
 		</div>

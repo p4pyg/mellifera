@@ -63,6 +63,7 @@ class CharacteristicController extends BaseController {
 	public function store()
 	{
 		$inputs 	= Input::except( '_token' );
+		$inputs[ 'date' ] 	= date( 'Y-m-d', strtotime( $inputs[ 'date' ] ) );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'characteristics' );
 
@@ -91,6 +92,7 @@ class CharacteristicController extends BaseController {
 	{
 		$characteristic 			= Input::except( '_token' );
 		$characteristic[ 'id' ] 	= (int) $id;
+		$characteristic[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristic[ 'date' ] ) );
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $characteristic, 'characteristics' );
 

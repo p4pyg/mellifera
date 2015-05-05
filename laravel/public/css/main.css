@@ -1,9 +1,12 @@
+/**{
+    font-size : 14px;
+  }*/
 
 body {
-	font-weight: 300;
-	display: flex;
-	min-height: 100vh;
-	flex-direction: column;
+  font-weight: 300;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
 main {
 	flex: 1 0 auto;
@@ -89,6 +92,64 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 
 .hide-all {
   display: none !important;
+}
+/*----------------------------------------------------------------
+    Switch
+----------------------------------------------------------------*/
+.switch label input[type="checkbox"]:checked + .lever{
+  background-color: #ffcc80;
+}
+.switch label input[type="checkbox"]:checked + .lever::after{
+  background-color: #e65100;
+}
+/*----------------------------------------------------------------
+    Select
+----------------------------------------------------------------*/
+.dropdown-content li > a, .dropdown-content li > span{
+  color : #e65100;
+}
+/*----------------------------------------------------------------
+    Range
+----------------------------------------------------------------*/
+input[type="range"] + .thumb{
+  background-color: #fb8c00;
+}
+input[type=range]::-ms-thumb{
+  background: #fb8c00;
+}
+input[type=range]::-moz-range-thumb{
+  background: #fb8c00;
+}
+input[type=range]::-webkit-slider-thumb{
+  background: #fb8c00;
+}
+
+input[type="range"] + .thumb .value{
+    color : #e65100;
+}
+/*----------------------------------------------------------------
+    Datepicker
+----------------------------------------------------------------*/
+.picker__date-display,
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected{
+  background-color: #fb8c00;
+}
+.picker__weekday-display{
+  background-color: #e65100;
+}
+button.picker__today:focus,
+button.picker__clear:focus,
+button.picker__close:focus,
+.picker__nav--prev:hover,
+.picker__nav--next:hover{
+  background-color: #ffcc80;
+}
+.picker__close,
+.picker__today,
+.picker__day.picker__day--today{
+  color : #e65100;
 }
 
 /*----------------------------------------------------------------

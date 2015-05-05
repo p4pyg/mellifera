@@ -64,10 +64,10 @@
 					selectMonths: true, // Creates a dropdown to control month
 					selectYears: 15, // Creates a dropdown of 15 years to control year
 					labelMonthNext: 'Mois suivant',
-					labelYearSelect: 'Select a year',
+					labelYearSelect: 'Sélectionnez une année',
 					// Months and weekdays
 					monthsFull: [ 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ],
-					monthsShort: [ 'Jan', 'Fvb', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec' ],
+					monthsShort: [ 'Jan', 'Fev', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sept', 'Oct', 'Nov', 'Dec' ],
 					weekdaysFull: [ 'Dimanche', 'Lundi', 'Jeudi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
 					weekdaysShort: [ 'Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam' ],
 
@@ -76,13 +76,14 @@
 
 					// Today and clear
 					today: 'Aujourd\'hui',
-					clear: 'Effacer',
-					close: 'Fermer',
+					clear: '<i class="mdi-content-undo"></i>',
+					close: '<i class="mdi-content-clear"></i>',
 
 					// The format to show on the `input` element
-					format: 'd mmmm yyyy',
+					format: 'd-mm-yyyy',
 
 				} );
+				$('select').material_select();
 			} );
 		</script>
 @endif
