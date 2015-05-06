@@ -67,7 +67,11 @@ class UnitController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'units' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'units' );
@@ -96,7 +100,11 @@ class UnitController extends \BaseController {
 		$unit[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $unit, 'units' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'units' );
@@ -110,7 +118,11 @@ class UnitController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'units' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'units' );

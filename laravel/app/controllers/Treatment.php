@@ -63,7 +63,11 @@ class TreatmentController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'treatments' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'treatments' );
@@ -88,7 +92,11 @@ class TreatmentController extends \BaseController {
 		$treatment[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $treatment, 'treatments' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'treatments' );
@@ -102,7 +110,11 @@ class TreatmentController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'treatments' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'treatments' );

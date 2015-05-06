@@ -62,7 +62,11 @@ class HoneysuperController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'honeysupers' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'honeysupers' );
@@ -86,7 +90,11 @@ class HoneysuperController extends \BaseController {
 		$honeysuper[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $honeysuper, 'honeysupers' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'honeysupers' );
@@ -100,7 +108,11 @@ class HoneysuperController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'honeysupers' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'honeysupers' );

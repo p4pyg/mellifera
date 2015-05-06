@@ -62,7 +62,11 @@ class NuisanceController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'nuisances' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'nuisances' );
@@ -86,7 +90,11 @@ class NuisanceController extends \BaseController {
 		$nuisance[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $nuisance, 'nuisances' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'nuisances' );
@@ -100,7 +108,11 @@ class NuisanceController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'nuisances' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'nuisances' );

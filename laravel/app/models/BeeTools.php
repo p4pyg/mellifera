@@ -98,7 +98,9 @@ class BeeTools {
 		$client 	= new HttpClient;
 		$response 	= $client->post( $request );
 
-		return $response->json();
+
+
+		return $response;
 	}
 
 	/**
@@ -120,7 +122,7 @@ class BeeTools {
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->put( $request );
-		return $response->json();
+		return $response;
 	}
 
 	/**

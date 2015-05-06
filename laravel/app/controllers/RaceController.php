@@ -59,7 +59,7 @@ class RaceController extends BaseController {
 	public function store()
 	{
 		$inputs = Input::except( '_token', 'characteristic_id');
-		$race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_notes' );
+		$race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_comment' );
 
 
 		$characteristics = [];
@@ -68,11 +68,21 @@ class RaceController extends BaseController {
 				$characteristics[ str_replace( 'characteristic_', '', $key ) ] = $input;
 
 		$characteristics[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
+		// Refactored in BeeTools Model
 		$response_characteristic 	= BeeTools::entity_store( $characteristics, 'characteristics' );
+		if( $response_characteristic->statusCode() != 200 ){
+			$error['code'] = $response_characteristic->statusCode();
+			$error['message'] = $response_characteristic->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		$race['characteristics'] 	= $response_characteristic;
 		// Refactored in BeeTools Model
 		$response_race 				= BeeTools::entity_store( $race, 'races' );
-
+		if( $response_race->statusCode() != 200 ){
+			$error['code'] = $response_race->statusCode();
+			$error['message'] = $response_race->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'races' );
@@ -93,7 +103,7 @@ class RaceController extends BaseController {
 	public function update( $id )
 	{
 		$inputs = Input::except( '_token' );
-		$race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_notes' );
+		$race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_comment' );
 
 
 		$characteristics = [];
@@ -102,11 +112,26 @@ class RaceController extends BaseController {
 				$characteristics[ str_replace( 'characteristic_', '', $key ) ] = $input;
 
 		$characteristics[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
-		$response_characteristic 	= BeeTools::entity_update( $characteristics, 'characteristics' );
+		if( $characteristics['id'] == '' ){
+			unset( $characteristics['id'] );
+			$response_characteristic 	= BeeTools::entity_store( $characteristics, 'characteristics' );
+		}
+		else
+			$response_characteristic 	= BeeTools::entity_update( $characteristics, 'characteristics' );
+		if( $response_characteristic->statusCode() != 200 ){
+			$error['code'] = $response_characteristic->statusCode();
+			$error['message'] = $response_characteristic->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		$race[ 'id' ] 	= (int) $id;
-
+		$race['characteristics'] 	= $response_characteristic;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $race, 'races' );
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 
 		// WORK IN PROGRESS
 		// return response
@@ -121,7 +146,11 @@ class RaceController extends BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'races' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'races' );

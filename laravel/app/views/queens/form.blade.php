@@ -34,11 +34,20 @@ if ( is_null( $queen ) ) {
 		<div class="switch">
 			<label>
 				Non
-				<input type="checkbox" name="clipping" {{ is_null( $queen ) ? '' : $queen->clipping == false ? 'checked' : '' }} >
+				<input type="checkbox" name="clipping" {{ is_null( $queen ) ? '' : $queen->clipping == false ? 'checked' : '' }} value="true" >
 				<span class="lever"></span>
 				Oui
 			</label>
 		</div>
+	</div>
+	<div class="input-field col l6 m6 s12">
+		<select name="race">
+			<option value="" disabled selected ></option>
+			@foreach( $races as $race )
+			<option value="{{ $race->id }}">{{ $race->race_name }}</option>
+			@endforeach
+		</select>
+	<label>@lang( 'queens.race' )</label>
 	</div>
 	<div class="input-field col l6 m6 s12">
 		@include( 'components.button_submit' )

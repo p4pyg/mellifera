@@ -32,7 +32,9 @@ class QueenController extends \BaseController {
 	public function create()
 	{
 		$queen = null;
-		return View::make( 'queens.form', [ 'queen' => $queen ] );
+		$races = Race::get();
+
+		return View::make( 'queens.form', [ 'queen' => $queen, 'races' => $races ] );
 	}
 	/**
 	 * Show the form for editing the specified queen.
@@ -61,10 +63,15 @@ class QueenController extends \BaseController {
 	 */
 	public function store()
 	{
-		$inputs = Input::except( '_token' );
+		$inputs 			= Input::except( '_token' );
+		$inputs[ 'race' ] 	= Race::get( $inputs[ 'race' ] );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'queens' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'queens' );
@@ -90,7 +97,11 @@ class QueenController extends \BaseController {
 		$queen[ 'id' ] 	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $queen, 'queens' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'queens' );
@@ -104,7 +115,11 @@ class QueenController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'queens' );
-
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = $response->content();
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'queens' );

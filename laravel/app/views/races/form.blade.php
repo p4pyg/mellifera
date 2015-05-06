@@ -72,8 +72,8 @@ if ( is_null( $race ) ) {
 					<label>@lang( 'characteristics.wake_up_month' )</label>
 				</div>
 				<div class="input-field col l12 m12 s12">
-					<textarea name="characteristic_notes" id="characteristic_notes" class="materialize-textarea" cols="30" rows="10">{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->notes ) }}</textarea>
-					<label>@lang( 'characteristics.notes' )</label>
+					<textarea name="characteristic_comment" id="characteristic_comment" class="materialize-textarea" cols="30" rows="10">{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->comment ) }}</textarea>
+					<label>@lang( 'characteristics.comment' )</label>
 				</div>
 			</div>
 		@include( 'components.button_submit' )
