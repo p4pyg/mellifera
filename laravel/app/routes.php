@@ -74,7 +74,7 @@ Route::get('logout', [function()
  * Visualisation des structures JSON pour chaque entité
  */
 Route::get( 'structures', [ function(){
-	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
+	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "race_names", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
 
 	return View::make( 'structures.search', [ 'entities' => $entities ] );
 } , 'as' => 'structures.list' ]);

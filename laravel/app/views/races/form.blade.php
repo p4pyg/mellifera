@@ -10,8 +10,11 @@ if ( is_null( $race ) ) {
 }
 ?>
 		<div class="row valign-wrapper">
-			<div class="col l10 m10 s10">
+			<div class="col l8 m8 s8">
 				<h2>{{ $title }}&nbsp;</h2>
+			</div>
+			<div class="col l2 m2 s2 valign">
+				@include( 'components.button_back', [ 'item' => 'races' ]  )
 			</div>
 			<div class="col l2 m2 s2 valign">
 			@if( ! is_null( $race ) )
