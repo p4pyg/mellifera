@@ -53,13 +53,14 @@ Route::get('backoffice', [ function()
 
 Route::get('signin', [ function()
 {
-	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
+	$user_auth = User::authenticate( 'greeftdc@gmail.com', '12345' );
 	Session::put('user', $user_auth->data);
 	return Redirect::to( '/' );
 }, 'as' => 'users.signin' ] );
+
 Route::get('signup', [ function()
 {
-	$user_auth = BeeTools::authenticate( 'user@host.tld', '13p455w0Rd214m0R7Qu!7U3' );
+	$user_auth = User::authenticate( 'greeftdc@gmail.com', '12345' );
 	Session::put('user', $user_auth->data);
 	return Redirect::to( '/' );
 } , 'as' => 'users.signup' ] );
