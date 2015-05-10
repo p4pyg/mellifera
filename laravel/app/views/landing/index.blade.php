@@ -26,7 +26,7 @@
 		<div class="section">
 			<div class="row">
 				<h2 class="white-text">Bee <span class="orange-text text-darken-2">solutions</span></h2>
-				<div id="subtitle" class="container">
+				<div id="subtitle" class="container hide-on-med-and-down">
 					<div class="col l12 m12 s12">
 						<p class="right-align grey-text text-darken-1">
 							Un ensemble d'outils de gestion apicole<br />
@@ -64,38 +64,30 @@
 	<div class="container  brown-text">
 		<div id="description" class="row">
 			<div class="col l6 m6 s12">
-				<div class="warp-image">
-					<img class="responsive-img" src="landing/images/graph-04.svg" alt="">
-				</div>
+				<img class="responsive-img" src="images/logo4.svg" alt="">
 				<h3>Gérez vos essaims</h3>
 				<p>Indiquez la race et l'origine d'une reine, son intégration à la colonnie et appréciez la force globale.</p>
 			</div>
 			<div class="col l6 m6 s12">
-				<div class="warp-image">
-					<img class="responsive-img" src="landing/images/graph-03.svg" alt="">
-				</div>
+				<img class="responsive-img" src="images/logo3.svg" alt="">
 				<h3>Listez vos ruches</h3>
 				<p>Visualisez les ruches composant votre rucher, accedez à l'historique de chacune d'entre elles, paramétrez leur caractéristiques.</p>
 			</div>
 			<div class="col l6 m6 s12">
-				<div class="warp-image">
-					<img class="responsive-img" src="landing/images/graph-02.svg" alt="">
-				</div>
+				<img class="responsive-img" src="images/logo2.svg" alt="">
 				<h3>Localisez vos ruchers</h3>
 				<p>Un outil de cartographie vous permet de visualiser la disposition de vos ruchers et ainsi vous aider à plannifier les repositionement dans le respect des règles de distance entre rucher.</p>
 			</div>
 			<div class="col l6 m6 s12">
-				<div class="warp-image">
-					<img class="responsive-img" src="landing/images/graph-01.svg" alt="">
-				</div>
+				<img class="responsive-img" src="images/logo1.svg" alt="">
 				<h3>Planifiez vos actions</h3>
 				<p>Depuis l'interface de gestion, organisez vos traitements et interventions sur les ruchers, éditez vos étiquettes et feuilles d'intervention. </p>
 			</div>
 		</div>
 	</div>
-	<section id="team" class="parallax-container">
+	<section id="team" class="parallax-container hide-on-med-and-down">
 		<div class="parallax">
-			<img src="images/abstract.jpg" alt="Team background Image">
+			<img src="images/honeycomb.jpg" alt="Team background Image">
 		</div>
 
 		<h2>Les équipes du projet</h2>
