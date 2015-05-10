@@ -12,6 +12,7 @@
 
 	</head>
 	<body>
+	@if( $entity !== 'landing' )
 		<header>
 			@include( 'topbar' )
 			@include( 'sidenav' )
@@ -26,6 +27,10 @@
 		<footer class="page-footer orange"  role="contentinfo">
 			@include( 'footer' )
 		</footer>
+	@else
+
+			@yield('content')
+	@endif
 		@include( 'components.button_scroll_top' )
 		{{ HTML::script( "https://code.jquery.com/jquery-2.1.1.min.js" ) }}
 		{{ HTML::script( "bower_components/Ink/dist/js/ink-all.min.js" ) }}
@@ -33,6 +38,8 @@
 		<script>
 			$( document ).ready( function(){
 				$( ".button-collapse" ).sideNav();
+				$('.parallax').parallax();
+				$('.slider').slider({full_width: false});
 			} );
 			/* Scroll to top */
 			var offset = 300, offset_opacity = 1200, scroll_top_duration = 700, $back_to_top = $('.cd-top'); $(window).scroll(function(){( $(this).scrollTop() > offset ) ? $back_to_top.addClass('cd-is-visible') : $back_to_top.removeClass('cd-is-visible cd-fade-out'); if( $(this).scrollTop() > offset_opacity ) {$back_to_top.addClass('cd-fade-out'); } }); $back_to_top.on('click', function(event){event.preventDefault(); $('body,html').animate({scrollTop: 0 , }, scroll_top_duration ); });

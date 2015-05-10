@@ -15,10 +15,10 @@
 /**
  * Accès landing page
  */
-Route::get('/', function()
+Route::get('/', [ function()
 {
-	return View::make('home.landing');
-} );
+	return View::make('landing.index');
+}, 'as' => 'landing.index' ] );
 
 /**
  * Accès back-office
@@ -31,42 +31,23 @@ Route::get('backoffice', [ function()
 /**
  * Authentification
  */
-// en création, 200 pour une simple authentification réussie
-// {
-// 	"code":"201",
-// 	"description": [ "user", "supervisor", "token" ],
-// 	"data":[
-// 		{	"@id": 1,
-// 			"id" : 8,
-// 			"name": "user",
-// 			"etc": "..."
-// 		},true,"AF345EC9371B30A25"
-// 	]
-// }
-//ici une erreur de mot de passe
-// {
-// 	"code":"418",
-// 	"description": ["email","password","client_id","client_key"],
-// 	"data": [ false, true, false, false ]
-// }
-//
 
 Route::get('signin', [ function()
 {
-	$user_auth = User::authenticate( 'greeftdc@gmail.com', '12345' );
-	Session::put('user', $user_auth->data);
+	$user_token = User::authenticate( 'greeftdc@gmail.com', '12345' );
+	Session::put('token', $user_token);
 	return Redirect::to( '/' );
 }, 'as' => 'users.signin' ] );
 
 Route::get('signup', [ function()
 {
-	$user_auth = User::authenticate( 'greeftdc@gmail.com', '12345' );
-	Session::put('user', $user_auth->data);
+	$user_token = User::authenticate( 'greeftdc@gmail.com', '12345' );
+	Session::put('token', $user_token);
 	return Redirect::to( '/' );
 } , 'as' => 'users.signup' ] );
 Route::get('logout', [function()
 {
-	Session::forget('user');
+	Session::forget('token');
 	return Redirect::to( '/' );
 } , 'as' => 'users.logout' ] );
 

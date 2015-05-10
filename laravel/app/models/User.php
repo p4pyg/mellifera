@@ -46,27 +46,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->post( $request );
-		echo '<pre>';
-		print_r( $response->json() );
-		echo '</pre>';
-		die('<p style="color:orange; font-weight:bold;">Raison</p>');
 		return $response->json();
-		//
-		// Delete this bloc when webservice is ready
-		// $response =
-		// 		'{
-		// 			"code":"201",
-		// 			"description": [ "user", "supervisor", "token" ],
-		// 			"data":[
-		// 				{	"@id": 1,
-		// 					"id" : 8,
-		// 					"name": "user",
-		// 					"etc": "..."
-		// 				},
-		// 				true,
-		// 				"AF345EC9371B30A25"
-		// 			]
-		// 		}';
-		//return json_decode( $response );
 	}
 }
