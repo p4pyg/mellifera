@@ -1,0 +1,90 @@
+// ##############################
+// User Object :
+// Objet attendu suite à l'inscription ou l'authentification d'un utilisateur
+{
+    "id": 1,                        // integer notnull identifiant de l'User
+    "email": null,                  // varchar e-mail
+    "password": null,               // varchar mot de passe
+    "person": null,                 // object unique Person correspondant à l'User
+    "device": null,                 // object unique Device reconnu par le webservice lors de la connexion
+    "group": null,                  // object unique Group dans lequel l'User est contenu
+    "comment": null,                // text
+    "created_at": 1430950347506,    // timestamp
+    "updated_at": 1430950347508,    // timestamp
+    "deleted_at": null              // timestamp or null
+}
+// ##############################
+// Device Object
+// Concernant les client_id et client_key
+// Ce couple identifie le device (appli ou backoffice)
+// Un utilisateur peut se connecter à partir de plusieurs appareils
+// il est donc nécessaire de connaitre ces différents appareils
+// ci-dessous l'objet Device correspondant
+{
+    "id": 1,                        // integer notnull identifiant du Device
+    "user_id": 1,                   // integer identifiant de l'utilisateur
+    "client_id": null,              // varchar identifiant du Device (ip pour le bo, imei pour les smartphones)
+    "client_key": null,             // varchar hash de l'application
+    "token": null,                  // token pour ce Device
+    "valid": false,                 // boolean active ou désactive l'accès pour ce Device
+    "comment": null,                // text description du Device
+    "created_at": 1430950347506,    // timestamp
+    "updated_at": 1430950347508,    // timestamp
+    "deleted_at": null              // timestamp or null
+}
+// ##############################
+// Group Object
+//
+{
+    "id": 41,                       // integer notnul identifiant du Group
+    "name": null,                   // varchar nom du Group
+    "users": [ ],                   // liste des id des Users appartenant à ce Group
+    "productions": [ ],             // liste des id des Productions gérées par ce Group
+    "owner": null,                  // integer identifiant de l'User propriétaire du Group
+    "comment": null,                // text description du Group
+    "created_at": 1430950347506,    // timestamp
+    "updated_at": 1430950347508,    // timestamp
+    "deleted_at": null              // timestamp or null
+}
+// ##############################
+// Production Object
+//
+{
+    "id": 461,                      // integer notnull identifiant de la Production
+    "apiaries": null,               // liste des id des Apiaries contenu dans la Production
+    "nuisances": [ ],
+    "feedings": [ ],
+    "treatments": [ ],
+    "arrival_date_of_hive": null,
+    "departure_date_of_hive": null,
+    "harvest_date": null,
+    "harvest_weight": null,
+    "comment": null,                // text description de la Production
+    "created_at": 1430950347506,    // timestamp
+    "updated_at": 1430950347508,    // timestamp
+    "deleted_at": null              // timestamp or null
+}
+// ##############################
+// Apiary Object
+//
+{
+    "id": 441,                      // integer notnull identifiant de l'Apiary
+    "person": null,                 // j'imagine l'objet Person definissant la personne responsable du rucher ???
+    "weathers": [ ],                // Objects Weather, liste d'objet météo horodaté ???
+    "units": [ ],                   // liste des identifiant des Units composant l'Apiary
+    "name": "Rucher 1",             // varchar nom de l'Apiary
+    "address1": "1 rue Bee",        // varchar adresse de l'Apiary
+    "address2": null,               // varchar complément d'adresse de l'Apiary
+    "zipcode": "34110",             // varchar !!! code postal
+    "city": "Frontignan",           // varchar commune de l'Apiary
+    "longitude": 3.919166,
+    "latitude": 44.008128,
+    "altitude": 2,
+    "vegetation_type": null,
+    "hives_capacity": null,
+    "rank": 2,
+    "comment": null,
+    "created_at": 1430950347506,    // timestamp
+    "updated_at": 1430950347508,    // timestamp
+    "deleted_at": null              // timestamp or null
+}
