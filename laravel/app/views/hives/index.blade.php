@@ -30,7 +30,10 @@
 			<td>{{ $hive->number_of_frames }}</td>
 			<td>{{ $hive->number_of_rocks }}</td>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 21eea5a4f14cb708c9bfa7409d53f1ba0df382fd
 			<td>{{ $hive->comment }}</td>
 		</tr>
 >>>>>>> 21eea5a4f14cb708c9bfa7409d53f1ba0df382fd
