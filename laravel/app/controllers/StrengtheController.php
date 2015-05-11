@@ -11,6 +11,10 @@ class StrengtheController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/strengthes" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$strengthes 	= $response->json();
 		return View::make( 'strengthes.index', [ "strengthes" => $strengthes ] );
 	}
@@ -43,6 +47,10 @@ class StrengtheController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/strengthes/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$strengthe 		= $response->json();
 		return View::make( 'strengthes.form', [ 'strengthe' => $strengthe ] );
 	}
@@ -63,10 +71,9 @@ class StrengtheController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'strengthes' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response
@@ -92,10 +99,9 @@ class StrengtheController extends \BaseController {
 		$strengthe[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $strengthe, 'strengthes' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response
@@ -110,10 +116,9 @@ class StrengtheController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'strengthes' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response

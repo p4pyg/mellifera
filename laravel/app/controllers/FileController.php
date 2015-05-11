@@ -11,6 +11,10 @@ class FileController extends BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/files" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$files 		= $response->json();
 		return View::make( 'files.index', [ "files" => $files ] );
 	}
@@ -42,6 +46,10 @@ class FileController extends BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/files/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$file 		= $response->json();
 		return View::make( 'files.form', [ 'file' => $file ] );
 	}
@@ -63,10 +71,9 @@ class FileController extends BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'files' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response
@@ -93,10 +100,9 @@ class FileController extends BaseController {
 		$file[ 'id' ] 	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $file, 'files' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response
@@ -111,10 +117,9 @@ class FileController extends BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'files' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response

@@ -11,6 +11,10 @@ class RaceController extends BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/races" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$races 		= $response->json();
 		return View::make( 'races.index', [ "races" => $races ] );
 	}
@@ -42,6 +46,10 @@ class RaceController extends BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/races/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$race 		= $response->json();
 		return View::make( 'races.form', [ 'race' => $race ] );
 	}
@@ -70,18 +78,16 @@ class RaceController extends BaseController {
 		$characteristics[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
 		// Refactored in BeeTools Model
 		$response_characteristic 	= BeeTools::entity_store( $characteristics, 'characteristics' );
-		if( $response_characteristic->statusCode() != 200 ){
-			$error['code'] = $response_characteristic->statusCode();
-			$error['message'] = $response_characteristic->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		$race['characteristics'] 	= $response_characteristic;
 		// Refactored in BeeTools Model
 		$response_race 				= BeeTools::entity_store( $race, 'races' );
-		if( $response_race->statusCode() != 200 ){
-			$error['code'] = $response_race->statusCode();
-			$error['message'] = $response_race->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response
@@ -118,19 +124,17 @@ class RaceController extends BaseController {
 		}
 		else
 			$response_characteristic 	= BeeTools::entity_update( $characteristics, 'characteristics' );
-		if( $response_characteristic->statusCode() != 200 ){
-			$error['code'] = $response_characteristic->statusCode();
-			$error['message'] = $response_characteristic->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		$race[ 'id' ] 	= (int) $id;
 		$race['characteristics'] 	= $response_characteristic;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $race, 'races' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 
 		// WORK IN PROGRESS
@@ -146,10 +150,9 @@ class RaceController extends BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'races' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response

@@ -9,7 +9,7 @@
 			<th class="align-center" data-sortable="true">@lang('hives.beehive_type')</th>
 			<th data-sortable="true">@lang('hives.number_of_frames')</th>
 			<th data-sortable="true">@lang('hives.number_of_rocks')</th>
-			<th data-sortable="true">@lang('hives.notes')</th>
+			<th data-sortable="true">@lang('hives.comment')</th>
 
 		</tr>
 	</thead>
@@ -21,7 +21,7 @@
 			<td>{{ $hive->beehive_type }}</td>
 			<td>{{ $hive->number_of_frames }}</td>
 			<td>{{ $hive->number_of_rocks }}</td>
-			<td>{{ $hive->notes }}</td>
+			<td>{{ $hive->comment }}</td>
 		</tr>
 	@endforeach
 	</tbody>

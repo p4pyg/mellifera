@@ -11,6 +11,10 @@ class TradetransactionController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/tradetransactions" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$tradetransactions 	= $response->json();
 		return View::make( 'tradetransactions.index', [ "tradetransactions" => $tradetransactions ] );
 	}
@@ -43,6 +47,10 @@ class TradetransactionController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/tradetransactions/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$tradetransaction 		= $response->json();
 		return View::make( 'tradetransactions.form', [ 'tradetransaction' => $tradetransaction ] );
 	}
@@ -63,10 +71,9 @@ class TradetransactionController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'tradetransactions' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response
@@ -92,10 +99,9 @@ class TradetransactionController extends \BaseController {
 		$tradetransaction[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $tradetransaction, 'tradetransactions' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response
@@ -110,10 +116,9 @@ class TradetransactionController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'tradetransactions' );
-		if( $response->statusCode() != 200 ){
-			$error['code'] = $response->statusCode();
-			$error['message'] = $response->content();
-			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
 		}
 		// WORK IN PROGRESS
 		// return response

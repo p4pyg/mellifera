@@ -58,9 +58,6 @@ class BeeTools {
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->post( $request );
-
-
-
 		return $response;
 	}
 
@@ -107,6 +104,35 @@ class BeeTools {
 		curl_close( $ch );
 
 		return $response;
+	}
+
+	/**
+	 * Webservice errors
+	 * @param  response $response Object Response from Webservice
+	 * @return  View Custom view for display error | false
+	 */
+	static public function is_error( $response ){
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = "<pre>" .  $response->content() . "</pre>";
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
+		if( empty( $response->json() ) ){
+			$error['code'] = 404;
+			$error['message'] = "L'entité demandée est vide";
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
+		foreach ( $response->json() as $key => $item ) {
+			if( is_int( $item ) ){
+				$error['code'] = 500;
+				$error['message']  = "L'entité demandée se compose d'identifiants et d'objets.<br />";
+				$error['message'] .= "Un élément de type 'Entier' a été détécté en position : " . ( $key + 1 ) . "<br />";
+				$error['message'] .= "Ce résultat n'est pas attendu<br />";
+				$error['message'] .= "<pre>" . str_replace( $item, '<span class="red-text">' . $item . '</span>' ,str_replace( '},', '},<br />', $response->content() ) ) . "</pre>";
+				return View::make( 'errors.http_response', [ 'response' => $error ] );
+			}
+		}
+		return false;
 	}
 }
 ?>
