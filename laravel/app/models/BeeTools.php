@@ -4,46 +4,7 @@ use Vinelab\Http\Client as HttpClient;
 class BeeTools {
 
 
-	/**
-	 * Create or authenticate use
-	 */
-	static public function authenticate( $email, $password )
-	{
-		$user = [
-			"email" 		=> $email,
-			"password" 		=> $password,
-			"client_id" 	=> Request::getClientIp(),
-			"client_key" 	=> Config::get('app.key')
-		];
 
-		// Uncomment this bloc when webservice is ready
-		// $request = [
-		// 	'url' 			=> "http://api.mellifera.cu.cc/signin",
-		// 	'description' 	=> [ "email","password","client_id","client_key" ],
-		// 	'params' 		=> json_encode( $user ),
-		// 	'headers' 		=> [ 'Content-type: application/json' ]
-		// ];
-		// $client 	= new HttpClient;
-		// $response 	= $client->post( $request );
-		// return $response->json();
-		//
-		// Delete this bloc when webservice is ready
-		$response =
-				'{
-					"code":"201",
-					"description": [ "user", "supervisor", "token" ],
-					"data":[
-						{	"@id": 1,
-							"id" : 8,
-							"name": "user",
-							"etc": "..."
-						},
-						true,
-						"AF345EC9371B30A25"
-					]
-				}';
-		return json_decode( $response );
-	}
 
 	/**
 	 * Helper combo
@@ -97,8 +58,7 @@ class BeeTools {
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->post( $request );
-
-		return $response->json();
+		return $response;
 	}
 
 	/**
@@ -120,7 +80,7 @@ class BeeTools {
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->put( $request );
-		return $response->json();
+		return $response;
 	}
 
 	/**
@@ -144,6 +104,35 @@ class BeeTools {
 		curl_close( $ch );
 
 		return $response;
+	}
+
+	/**
+	 * Webservice errors
+	 * @param  response $response Object Response from Webservice
+	 * @return  View Custom view for display error | false
+	 */
+	static public function is_error( $response ){
+		if( $response->statusCode() != 200 ){
+			$error['code'] = $response->statusCode();
+			$error['message'] = "<pre>" .  $response->content() . "</pre>";
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
+		if( empty( $response->json() ) ){
+			$error['code'] = 404;
+			$error['message'] = "L'entité demandée est vide";
+			return View::make( 'errors.http_response', [ 'response' => $error ] );
+		}
+		foreach ( $response->json() as $key => $item ) {
+			if( is_int( $item ) ){
+				$error['code'] = 500;
+				$error['message']  = "L'entité demandée se compose d'identifiants et d'objets.<br />";
+				$error['message'] .= "Un élément de type 'Entier' a été détécté en position : " . ( $key + 1 ) . "<br />";
+				$error['message'] .= "Ce résultat n'est pas attendu<br />";
+				$error['message'] .= "<pre>" . str_replace( $item, '<span class="red-text">' . $item . '</span>' ,str_replace( '},', '},<br />', $response->content() ) ) . "</pre>";
+				return View::make( 'errors.http_response', [ 'response' => $error ] );
+			}
+		}
+		return false;
 	}
 }
 ?>

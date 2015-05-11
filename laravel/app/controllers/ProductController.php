@@ -11,6 +11,10 @@ class ProductController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/products" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$products 	= $response->json();
 		return View::make( 'products.index', [ "products" => $products ] );
 	}
@@ -43,6 +47,10 @@ class ProductController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/products/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$product 		= $response->json();
 		return View::make( 'products.form', [ 'product' => $product ] );
 	}
@@ -66,7 +74,10 @@ class ProductController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'products' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'products' );
@@ -94,7 +105,10 @@ class ProductController extends \BaseController {
 		$product[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $product, 'products' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'products' );
@@ -108,7 +122,10 @@ class ProductController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'products' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'products' );

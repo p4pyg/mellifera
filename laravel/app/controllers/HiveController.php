@@ -11,6 +11,10 @@ class HiveController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/beehives" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$hives 		= $response->json();
 		return View::make( 'hives.index', [ "hives" => $hives ] );
 	}
@@ -43,6 +47,10 @@ class HiveController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/beehives/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$hive 		= $response->json();
 		return View::make( 'hives.form', [ 'hive' => $hive ] );
 	}
@@ -67,7 +75,10 @@ class HiveController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'beehives' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'hives' );
@@ -96,7 +107,10 @@ class HiveController extends \BaseController {
 		$hive[ 'id' ] 	= (int)$id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $hive, 'beehives' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'hives' );
@@ -110,7 +124,10 @@ class HiveController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'beehives' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'hives' );

@@ -25,7 +25,7 @@ return array(
 	"phone" 			=> "Téléphone",
 	"email" 			=> "Email",
 	"notes" 			=> "Note",
-	"apiary_name" 		=> "Nom",
+	"name" 				=> "Nom",
 	"longitude" 		=> "Longitude",
 	"latitude" 			=> "Latitude",
 	"altitude" 			=> "Altitude",

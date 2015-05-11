@@ -11,6 +11,10 @@ class TradetransactionController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/tradetransactions" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$tradetransactions 	= $response->json();
 		return View::make( 'tradetransactions.index', [ "tradetransactions" => $tradetransactions ] );
 	}
@@ -43,6 +47,10 @@ class TradetransactionController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/tradetransactions/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$tradetransaction 		= $response->json();
 		return View::make( 'tradetransactions.form', [ 'tradetransaction' => $tradetransaction ] );
 	}
@@ -63,7 +71,10 @@ class TradetransactionController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'tradetransactions' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'tradetransactions' );
@@ -88,7 +99,10 @@ class TradetransactionController extends \BaseController {
 		$tradetransaction[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $tradetransaction, 'tradetransactions' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'tradetransactions' );
@@ -102,7 +116,10 @@ class TradetransactionController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'tradetransactions' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'tradetransactions' );

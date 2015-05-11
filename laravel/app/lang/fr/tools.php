@@ -15,6 +15,7 @@ return array(
 	"delete" 		=> "Supprimer",
 	"submit" 		=> "Valider",
 	"scrolltop"		=> "Haut de page",
+	"back" 			=> "Retour",
 	"jan" 			=> "Janvier",
 	"feb"			=> "Février",
 	"mar" 			=> "Mars",

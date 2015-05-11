@@ -10,11 +10,8 @@ if ( is_null( $race ) ) {
 }
 ?>
 		<div class="row valign-wrapper">
-			<div class="col l8 m8 s8">
+			<div class="col l10 m10 s10">
 				<h2>{{ $title }}&nbsp;</h2>
-			</div>
-			<div class="col l2 m2 s2 valign">
-				@include( 'components.button_back', [ 'item' => 'races' ]  )
 			</div>
 			<div class="col l2 m2 s2 valign">
 			@if( ! is_null( $race ) )
@@ -75,8 +72,8 @@ if ( is_null( $race ) ) {
 					<label>@lang( 'characteristics.wake_up_month' )</label>
 				</div>
 				<div class="input-field col l12 m12 s12">
-					<textarea name="characteristic_comment" id="characteristic_comment" class="materialize-textarea" cols="30" rows="10">{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->comment ) }}</textarea>
-					<label>@lang( 'characteristics.comment' )</label>
+					<textarea name="characteristic_notes" id="characteristic_notes" class="materialize-textarea" cols="30" rows="10">{{ is_null( $race ) ? '' : ( is_null( $race->characteristics ) ? '' : $race->characteristics->notes ) }}</textarea>
+					<label>@lang( 'characteristics.notes' )</label>
 				</div>
 			</div>
 		@include( 'components.button_submit' )

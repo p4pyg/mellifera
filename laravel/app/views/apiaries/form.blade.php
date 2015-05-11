@@ -22,8 +22,8 @@ if ( is_null( $apiary ) ) {
 {{	Form::open( [ 'url' => 'apiary/edit/' . ( is_null( $apiary ) ? '' :  $apiary->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'apiary_form' ] )	}}
 		<div class="row">
 			<div class="input-field col l6 m6 s12">
-				<input type="text" name="apiary_name" id="apiary_name" class="validate" value="{{ is_null( $apiary ) ? '' : $apiary->apiary_name }}">
-				<label for="apiary_name">@lang( 'apiaries.apiary_name' )</label>
+				<input type="text" name="name" id="name" class="validate" value="{{ is_null( $apiary ) ? '' : $apiary->name }}">
+				<label for="name">@lang( 'apiaries.name' )</label>
 			</div>
 			<div class="input-field col l6 m6 s12">
 				<input type="text" name="address1" id="address1" class="validate" value="{{ is_null( $apiary ) ? '' : $apiary->address1 }}">

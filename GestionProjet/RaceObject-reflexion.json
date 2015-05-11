@@ -1,0 +1,160 @@
+// #Race Object
+[ {
+    "id": 302,
+    "comment": null,
+    "created_at": 1430991542224,
+    "updated_at": 1430991542225,
+    "deleted_at": null,
+    "queens": [ ],
+    "swarms": [ ],
+    "characteristics": null,
+    "race_name":  //-------------------------------------------- complication inutile, le nom en string suffit largement
+        {
+            "id": 321,
+            "comment": null,
+            "created_at": 1430991060955,
+            "updated_at": 1430991541984,
+            "deleted_at": null,
+            "race":
+                [ {
+                    "id": 301,
+                    "comment": null,
+                    "created_at": 1430985918980,
+                    "updated_at": 1430991542241,
+                    "deleted_at": null,
+                    "queens": [ ],
+                    "swarms": [ ],
+                    "characteristics":
+                        {
+                            "id": 266,
+                            "comment": null,
+                            "created_at": 1430986170593,
+                            "updated_at": 1430986170593,
+                            "deleted_at": null,
+                            "unit": null,
+                            "date": null,
+                            "racial_type": null, //-------------------------------------------- WTF ?
+                            "aggressivness_level": null,
+                            "swarming_level": null,
+                            "winter_hardiness_level": null,
+                            "wake_up_month": null,
+                            "label": "266"  //-------------------------------------------- WTF ?
+                        },
+                    "race_name": 321,  //-------------------------------------------- WTF ?
+                    "geographical_origin": "Corse",
+                    "life_span": 5,
+                    "label": null
+                  },
+                  302 //-------------------------------------------- WTF ?
+                ],
+            "name": null,  //-------------------------------------------- WTF ?
+            "label": null  //-------------------------------------------- WTF ?
+        },
+    "geographical_origin": "Monaco",
+    "life_span": 4,
+    "label": null //-------------------------------------------- WTF ?
+  },
+  301, //-------------------------------------------- WTF ?
+  {
+    "id": 304,
+    "comment": null,
+    "created_at": 1430991989964,
+    "updated_at": 1430991989964,
+    "deleted_at": null,
+    "queens": [ ],
+    "swarms": [ ],
+    "characteristics":
+        {
+            "id": 267,
+            "comment": null,
+            "created_at": 1430991989963,
+            "updated_at": 1430991989963,
+            "deleted_at": null,
+            "unit": null,
+            "date": null,
+            "racial_type": null,  //-------------------------------------------- WTF ?
+            "aggressivness_level": null,
+            "swarming_level": null,
+            "winter_hardiness_level": null,
+            "wake_up_month": null,
+            "label": "267"  //-------------------------------------------- WTF ?
+        },
+    "race_name":
+        {
+            "id": 323,
+            "comment": null,
+            "created_at": 1430991936656,
+            "updated_at": 1430991989962,
+            "deleted_at": null,
+            "race":
+                [ {
+                        "id": 303,
+                        "comment": null,
+                        "created_at": 1430991756006,
+                        "updated_at": 1430991989965,
+                        "deleted_at": null,
+                        "queens": [ ],
+                        "swarms": [ ],
+                        "characteristics": null,
+                        "race_name": 323, //-------------------------------------------- WTF ?
+                        "geographical_origin": null,
+                        "life_span": null,
+                        "label": "mellifera_riviera" //-------------------------------------------- WTF ?
+                  },
+                  304
+                ],
+            "name": "mellifera_riviera", //-------------------------------------------- WTF ?
+            "label": "mellifera_riviera"  //-------------------------------------------- WTF ?
+        },
+    "geographical_origin": "Monaco",
+    "life_span": 4,
+    "label": "mellifera_riviera" //-------------------------------------------- WTF ?
+  },
+  303  //-------------------------------------------- WTF ?
+] };
+
+
+// #############################################
+//
+// L'objet Race tel qu'il se justifie
+//
+// On va revenir sur des choses simples, sinon on avance pas
+// La seule chose qui est utile et je pense que la route /query remplira le job,
+// c'est de pouvoir récupérer un tableau d'objet en fournisant un tableau d'id pour une entité donnée
+//
+// #############################################
+{
+    "id": 302,
+    "name": "Monaco",
+    "geographical_origin": "Monaco",
+    "life_span": 4,
+    "comment": "le commentaire",
+    "characteristics":
+        {
+            "id": 266,
+            "unit": null, //--------------- pas d'interet d'avoir cette entité ici mais comme on parle de race, on y reviendra plus bas ...
+            "date": null,
+            "aggressivness_level": null,
+            "swarming_level": null,
+            "winter_hardiness_level": null,
+            "wake_up_month": null,
+            "comment": null,
+            "created_at": 1430986170593,
+            "updated_at": 1430986170593,
+            "deleted_at": null
+        },
+    "queens": [ 12, 258, 678 ], // ------------- id des queens
+    "swarms": [ 189, 417, 923 ], // ------------ id des swarms
+    "created_at": 1430991542224,
+    "updated_at": 1430991542225,
+    "deleted_at": null,
+}
+// #############################################
+//
+// Chaque entité Characteristic est unique et forcément liée à une Race ou une Unit
+// On ne peut et ne doit pas pouvoir modifier une Characteristic indépendamment
+// La présence au sein de Characteristic des entités liées est donc inutile
+// Sachant que Characteristic n'existe que par "convenance" ses propriétés pourraient parfaitement être intégrées à Unit et Race et économiser une table et donc une jointure permanente,
+// mais ceci est un autre débat, le modèle est valider on va pas revenir dessus
+//
+// #############################################

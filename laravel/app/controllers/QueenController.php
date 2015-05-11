@@ -11,6 +11,10 @@ class QueenController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/queens" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$queens 	= $response->json();
 		return View::make( 'queens.index', [ "queens" => $queens ] );
 	}
@@ -32,7 +36,9 @@ class QueenController extends \BaseController {
 	public function create()
 	{
 		$queen = null;
-		return View::make( 'queens.form', [ 'queen' => $queen ] );
+		$races = Race::get();
+
+		return View::make( 'queens.form', [ 'queen' => $queen, 'races' => $races ] );
 	}
 	/**
 	 * Show the form for editing the specified queen.
@@ -43,6 +49,10 @@ class QueenController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/queens/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$queen 		= $response->json();
 		return View::make( 'queens.form', [ 'queen' => $queen ] );
 	}
@@ -61,10 +71,14 @@ class QueenController extends \BaseController {
 	 */
 	public function store()
 	{
-		$inputs = Input::except( '_token' );
+		$inputs 			= Input::except( '_token' );
+		$inputs[ 'race' ] 	= Race::get( $inputs[ 'race' ] );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'queens' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'queens' );
@@ -90,7 +104,10 @@ class QueenController extends \BaseController {
 		$queen[ 'id' ] 	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $queen, 'queens' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'queens' );
@@ -104,7 +121,10 @@ class QueenController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'queens' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'queens' );

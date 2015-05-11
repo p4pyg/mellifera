@@ -11,6 +11,10 @@ class PersonController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/persons" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$persons 	= $response->json();
 		return View::make( 'persons.index', [ "persons" => $persons ] );
 	}
@@ -43,6 +47,10 @@ class PersonController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/persons/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$person 	= $response->json();
 		return View::make( 'persons.form', [ 'person' => $person ] );
 	}
@@ -72,7 +80,10 @@ class PersonController extends \BaseController {
 		$inputs = Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'persons' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'persons' );
@@ -106,7 +117,10 @@ class PersonController extends \BaseController {
 		$person[ 'id' ] = (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $person, 'persons' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'persons' );
@@ -120,7 +134,10 @@ class PersonController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'persons' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'persons' );

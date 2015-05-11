@@ -11,7 +11,12 @@ class ApiaryController extends BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/apiaries" ] );
-		$apiaries 		= $response->json();
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
+
+		$apiaries 	= $response->json();
 		return View::make( 'apiaries.index', [ "apiaries" => $apiaries ] );
 	}
 	/**
@@ -42,7 +47,11 @@ class ApiaryController extends BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/apiaries/" . $id ] );
-		$apiary 		= $response->json();
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
+		$apiary 	= $response->json();
 		return View::make( 'apiaries.form', [ 'apiary' => $apiary ] );
 	}
 	/**
@@ -72,7 +81,10 @@ class ApiaryController extends BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'apiaries' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'apiaries' );
@@ -107,7 +119,10 @@ class ApiaryController extends BaseController {
 		$apiary[ 'id' ] 	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $apiary, 'apiaries' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'apiaries' );
@@ -121,7 +136,10 @@ class ApiaryController extends BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'apiaries' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'apiaries' );

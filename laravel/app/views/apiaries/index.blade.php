@@ -22,7 +22,7 @@
 	@foreach( $apiaries as $apiary )
 		<tr id="apiary-{{ $apiary->id }}" data-item-index="{{ $apiary->id }}">
 			<td>{{ $apiary->id }}</td>
-			<td>{{ ucfirst( $apiary->apiary_name ) }}</td>
+			<td>{{ ucfirst( $apiary->name ) }}</td>
 			<td>{{ $apiary->address1 }}</td>
 			<td>{{ $apiary->address2 }}</td>
 			<td>{{ $apiary->postcode }}</td>

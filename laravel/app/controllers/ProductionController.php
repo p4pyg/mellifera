@@ -11,6 +11,10 @@ class ProductionController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/productions" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$productions 	= $response->json();
 		return View::make( 'productions.index', [ "productions" => $productions ] );
 	}
@@ -43,6 +47,10 @@ class ProductionController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/productions/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$production 		= $response->json();
 		return View::make( 'productions.form', [ 'production' => $production ] );
 	}
@@ -67,7 +75,10 @@ class ProductionController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'productions' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'productions' );
@@ -96,7 +107,10 @@ class ProductionController extends \BaseController {
 		$production[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $production, 'productions' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'productions' );
@@ -110,7 +124,10 @@ class ProductionController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'productions' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'productions' );

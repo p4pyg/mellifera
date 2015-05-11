@@ -54,8 +54,8 @@ if ( is_null( $characteristic ) ) {
 					<label>@lang( 'characteristics.wake_up_month' )</label>
 				</div>
 				<div class="input-field col l6 m6 s12">
-					<textarea name="notes" id="notes" class="materialize-textarea" cols="30" rows="10">{{ is_null( $characteristic ) ? '' : $characteristic->notes }}</textarea>
-					<label>@lang( 'characteristics.notes' )</label>
+					<textarea name="comment" id="comment" class="materialize-textarea" cols="30" rows="10">{{ is_null( $characteristic ) ? '' : $characteristic->comment }}</textarea>
+					<label>@lang( 'characteristics.comment' )</label>
 				</div>
 		</div>
 		<div class="row">

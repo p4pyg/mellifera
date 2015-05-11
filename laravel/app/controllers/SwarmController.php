@@ -11,6 +11,10 @@ class SwarmController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/swarms" ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$swarms 	= $response->json();
 		return View::make( 'swarms.index', [ "swarms" => $swarms ] );
 	}
@@ -43,6 +47,10 @@ class SwarmController extends \BaseController {
 	{
 		$client 	= new HttpClient;
 		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/swarms/" . $id ] );
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		$swarm 		= $response->json();
 		return View::make( 'swarms.form', [ 'swarm' => $swarm ] );
 	}
@@ -66,7 +74,10 @@ class SwarmController extends \BaseController {
 		$inputs 	= Input::except( '_token' );
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_store( $inputs, 'swarms' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'swarms' );
@@ -94,7 +105,10 @@ class SwarmController extends \BaseController {
 		$swarm[ 'id' ]	= (int) $id;
 		// Refactored in BeeTools Model
 		$response 		= BeeTools::entity_update( $swarm, 'swarms' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'swarms' );
@@ -108,7 +122,10 @@ class SwarmController extends \BaseController {
 	{
 		// Refactored in BeeTools Model
 		$response 	= BeeTools::entity_delete( $id, 'swarms' );
-
+		$view 		= BeeTools::is_error( $response );
+		if( $view ){
+			return $view;
+		}
 		// WORK IN PROGRESS
 		// return response
 		return Redirect::to( 'swarms' );

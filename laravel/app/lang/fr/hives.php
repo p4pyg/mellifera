@@ -12,6 +12,7 @@ return array(
 	*/
 
 	"hive" 				=> "Ruche",
+	"global"			=> "Généralités",
 	"hives" 			=> "Ruches",
 	"id" 				=> "Numéro",
 	"id_lot"			=> "Identifiant du lot",
@@ -21,7 +22,7 @@ return array(
 	"number_of_rocks"	=> "Nombre de réhausses",
 	"notes"				=> "Notes",
 	"thumbname" 		=> "Nom de la photo",
-	"die_date"			=> "Date de décés",
+	"die_date"			=> "Date de décès",
 	'create_new_hive' 	=> "Création d'une nouvelle ruche",
 	'edit_hive' 		=> "Modification d'une ruche"
 
