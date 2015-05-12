@@ -116,9 +116,9 @@ class BeeTools {
 		if( $response->statusCode() != 200 ){
 			$error['code'] 		= $response->statusCode();
 			$error['message'] 	= "<pre>" .  $response->content() . "</pre>";
-		}elseif( empty( $response->json() ) ){
-			$error['code'] 		= 404;
-			$error['message'] 	= "L'entité demandée est vide";
+		// }elseif( empty( $response->json() ) ){
+		// 	$error['code'] 		= 404;
+		// 	$error['message'] 	= "L'entité demandée est vide";
 		}else{
 			foreach ( $response->json() as $key => $item ) {
 				if( is_int( $item ) ){
