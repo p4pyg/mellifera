@@ -22,7 +22,9 @@
 			<td>{{ ucfirst( $swarm->race ) }}</td>
 			<td class="center-align">{{ $swarm->creation }}</td>
 			<td>{{ $swarm->extermination }}</td>
-			<td class="center-align">{{ ! is_null( $swarm->purpose ) ? '<i class="mdi-action-done light-green-text text-darken-1 "></i>' : '<i class="mdi-communication-dnd-on deep-orange-text text-darken-1"></i>' }}</td>
+			<td>{{ $swarm->purpose }}</td>
+			<td>{{ $swarm->label }}</td>
+
 		</tr>
 @endif
 	@endforeach
