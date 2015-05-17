@@ -1,27 +1,32 @@
 @extends('template')
 @section('content')
 @include( 'components.index_header' )
-<table id="races" class="responsive-table hover hoverable striped bordered" data-page-size="5" data-pagination="#racesPagination" >
+<table id="swarms" class="responsive-table hover hoverable striped bordered" data-page-size="5" data-pagination="#swarmsPagination" >
 	<thead>
 		<tr>
-			<th class="center-align" data-sortable="true">@lang('races.id')</th>
-			<th class="center-align" data-sortable="true">@lang('races.race_name')</th>
-			<th class="center-align" data-sortable="true">@lang('races.life_span')</th>
-			<th class="center-align" data-sortable="true">@lang('races.geographical_origin')</th>
-			<th class="center-align" data-sortable="true">@lang('races.characteristics')</th>
+			<th class="center-align" data-sortable="true">@lang('swarms.id')</th>
+			<th class="center-align" data-sortable="true">@lang('swarms.race')</th>
+			<th class="center-align" data-sortable="true">@lang('swarms.creation')</th>
+			<th class="center-align" data-sortable="true">@lang('swarms.extermination')</th>
+			<th class="center-align" data-sortable="true">@lang('swarms.purpose')</th>
 		</tr>
 	</thead>
 	<tbody>
-	@foreach( $races as $race )
-		<tr id="race-{{ $race->id }}" data-item-index="{{ $race->id }}">
-			<td class="center-align">{{ $race->id }}</td>
-			<td>{{ ucfirst( $race->race_name ) }}</td>
-			<td class="center-align">{{ $race->life_span }}</td>
-			<td>{{ $race->geographical_origin }}</td>
-			<td class="center-align">{{ ! is_null( $race->characteristics )  ? '<i class="mdi-action-done  light-green-text text-darken-1 "></i>' : '<i class="mdi-communication-dnd-on deep-orange-text text-darken-1"></i>' }}</td>
+	@foreach( $swarms as $swarm )
+@if( is_int( $swarm ) )
+	<p class="orange-text text-darken-4">Identifiant sec : <strong>{{ $swarm }}</strong></p>
+
+@else
+		<tr id="swarm-{{ $swarm->id }}" data-item-index="{{ $swarm->id }}">
+			<td class="center-align">{{ $swarm->id }}</td>
+			<td>{{ ucfirst( $swarm->race ) }}</td>
+			<td class="center-align">{{ $swarm->creation }}</td>
+			<td>{{ $swarm->extermination }}</td>
+			<td class="center-align">{{ ! is_null( $swarm->purpose ) ? '<i class="mdi-action-done light-green-text text-darken-1 "></i>' : '<i class="mdi-communication-dnd-on deep-orange-text text-darken-1"></i>' }}</td>
 		</tr>
+@endif
 	@endforeach
 	</tbody>
 </table>
-<ul class="pagination"  id="racesPagination"></ul>
+<ul class="pagination"  id="swarmsPagination"></ul>
 @stop

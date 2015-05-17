@@ -6,6 +6,7 @@
 	<li>{{ HTML::link( 'races', trans( 'races.races' ) ) }}</li>
 	<li>{{ HTML::link( 'queens', trans( 'queens.queens' ) ) }}</li>
 	<li>{{ HTML::link( 'characteristics', trans( 'characteristics.characteristics' ) ) }}</li>
+	<li>{{ HTML::link( 'swarms', trans( 'swarms.swarms' ) ) }}</li>
 	<li>{{ HTML::link( 'structures', 'Structures JSON' ) }}</li>
 	<li><a href="#">Aide</a></li>
 </ul>
