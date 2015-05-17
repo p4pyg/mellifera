@@ -13,6 +13,7 @@ return array(
 
 
 	"swarm"				=> "essaim",
+	"swarms"			=> "essaims",
 	"create_new_swarm"	=> "Créer un nouvel essaim",
 	"edit_swarm"		=> "Editer un essaim",
 	"id" 				=> "Numéro",
