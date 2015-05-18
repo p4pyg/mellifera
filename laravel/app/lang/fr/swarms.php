@@ -12,8 +12,8 @@ return array(
 	*/
 
 
-	"swarm"				=> "essaim",
-	"swarms"			=> "essaims",
+	"swarm"				=> "Essaim",
+	"swarms"			=> "Essaims",
 	"create_new_swarm"	=> "Créer un nouvel essaim",
 	"edit_swarm"		=> "Editer un essaim",
 	"id" 				=> "Numéro",
@@ -21,7 +21,7 @@ return array(
 	"creation"			=> "Création",
 	"extermination"		=> "Extermination",
 	"purpose"			=> "Usage",
-	"label"				=> "Numéro"
+	"label"				=> "Etiquette"
 
 
 );

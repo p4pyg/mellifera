@@ -9,6 +9,8 @@
 			<th class="center-align" data-sortable="true">@lang('swarms.creation')</th>
 			<th class="center-align" data-sortable="true">@lang('swarms.extermination')</th>
 			<th class="center-align" data-sortable="true">@lang('swarms.purpose')</th>
+<!-- 			<th class="center-align" data-sortable="true">@lang('swarms.label')</th>
+ -->
 		</tr>
 	</thead>
 	<tbody>
@@ -23,8 +25,7 @@
 			<td class="center-align">{{ $swarm->creation }}</td>
 			<td>{{ $swarm->extermination }}</td>
 			<td>{{ $swarm->purpose }}</td>
-			<td>{{ $swarm->label }}</td>
-
+<!-- 			<td>{{ $swarm->label }}</td> -->
 		</tr>
 @endif
 	@endforeach

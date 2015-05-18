@@ -12,6 +12,7 @@ return array(
 	*/
 
 	"hive" 				=> "Ruche",
+	"hives"				=> "Ruches",
 	"global"			=> "Généralités",
 	"hives" 			=> "Ruches",
 	"id" 				=> "Numéro",
@@ -23,8 +24,9 @@ return array(
 	"notes"				=> "Notes",
 	"thumbname" 		=> "Nom de la photo",
 	"die_date"			=> "Date de décès",
-	'create_new_hive' 	=> "Création d'une nouvelle ruche",
-	'edit_hive' 		=> "Modification d'une ruche"
-
+	"create_new_hive" 	=> "Création d'une nouvelle ruche",
+	"edit_hive" 		=> "Modification d'une ruche",
+	"code_numer" 		=> "Numéro de code",
+	"label"				=> "Etiquette"
 
 );
