@@ -61,10 +61,7 @@ if ( is_null( $person ) ) {
 				<input type="text" name="trades_with_buyers" id="trades_with_buyers" class="validate" value="{{ is_null( $person ) ? '' : $person->trades_with_buyers }}">
 				<label for="trades_with_buyers">@lang( 'persons.trades_with_buyers' )</label>
 			</div>
-			<div class="input-field col l6 m6 s12">
-				<input type="text" name="label" id="label" class="validate" value="{{ is_null( $person ) ? '' : $person->label }}">
-				<label for="label">@lang( 'persons.label' )</label>
-			</div>
+			
 			
 		@include( 'components.button_submit' )
 		</div>

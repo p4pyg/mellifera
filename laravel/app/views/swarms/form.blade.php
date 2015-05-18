@@ -42,10 +42,6 @@ if ( is_null( $swarm ) ) {
 					<input type="text" name="purpose"  id="purpose" class="validate" value="{{ is_null( $swarm ) ? '' : $swarm->purpose }}" >
 					<label for="purpose">@lang( 'swarms.purpose' )</label>
 				</div>
-			<!-- 	<div class="input-field col l12 m12 s12">
-					<input type="text" name="label"  id="label" class="validate" value="{{ is_null( $swarm ) ? '' : $swarm->label }}" >
-					<label for="label">@lang( 'swarms.label' )</label>
-				</div> -->
 			</div>	
 		@include( 'components.button_submit' )
 		</div>

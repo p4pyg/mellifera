@@ -41,10 +41,6 @@ if ( is_null( $hive ) ) {
 				<input type="text" name="code_number" id="code_number" class="validate" value="{{ is_null( $hive ) ? '' :  $hive->code_number  }}">
 				<label for="code_number">@lang( 'hives.code_number' )</label>
 			</div>
-		<!-- 	<div class="input-field col l6 m6 s12">
-				<input type="text" name="label" id="label" class="validate" value="{{ is_null( $hive ) ? '' : $hive->label }}">
-				<label for="label">@lang( 'hives.label' )</label>
-			</div> -->
 				
 		@include( 'components.button_submit' )
 		</div>

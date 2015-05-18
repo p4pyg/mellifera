@@ -10,7 +10,7 @@
 			<th data-sortable="true">@lang( 'hives.number_of_frames' )</th>
 			<th data-sortable="true">@lang( 'hives.number_of_rocks' )</th>
 			<th data-sortable="true">@lang( 'hives.code_number' )</th>
-			<!-- <th data-sortable="true">@lang( 'hives.label' )</th> -->
+		
 
 		</tr>
 	</thead>
@@ -23,7 +23,7 @@
 			<td>{{ $hive->number_of_frames }}</td>
 			<td>{{ $hive->number_of_rocks }}</td>
 			<td>{{ $hive->code_number }}</td>
-		<!-- 	<td>{{ $hive->label }}</td> -->
+		
 
 		</tr>
 	@endforeach

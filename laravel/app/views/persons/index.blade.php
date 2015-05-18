@@ -15,7 +15,7 @@
 			<th data-sortable="true">@lang( 'persons.user' )</th>
 			<th data-sortable="true">@lang( 'persons.trades_with_sellers' )</th>
 			<th data-sortable="true">@lang( 'persons.trades_with_buyers' )</th>
-			<th data-sortable="true">@lang( 'persons.label' )</th>
+
 		</tr>
 	</thead>
 	<tbody>
@@ -32,7 +32,7 @@
 			<td>{{ $person->user }}</td>
 			<td>{{ $person->trades_with_sellers }}</td>
 			<td>{{ $person->trades_with_buyers }}</td>
-			<td>{{ $person->label }}</td>
+
 		</tr>
 	@endforeach
 	</tbody>

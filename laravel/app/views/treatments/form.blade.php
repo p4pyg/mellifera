@@ -25,21 +25,21 @@ if ( is_null( $treatment ) ) {
 				<p class="tip">Indiquez ici le nom du traitement</p>
 			</div>
 			<div class="control-group all-33">
-				<label for="treatment_name">@lang( 'treatments.treatment_date' )</label>
+				<label for="treatment_date">@lang( 'treatments.treatment_date' )</label>
 				<div class="control">
 					<input type="text" name="treatment_date" id="treatment_date" placeholder="@lang( 'treatments.treatment_date' )" value="{{ is_null( $treatment ) ? '' : $treatment->treatment_date }}">
 				</div>
 				<p class="tip">Indiquez ici la date du traitement</p>
 			</div>
 			<div class="control-group all-33">
-				<label for="treatment_name">@lang( 'treatments.desease_treated' )</label>
+				<label for="desease_treated">@lang( 'treatments.desease_treated' )</label>
 				<div class="control">
 					<input type="text" name="desease_treated" id="desease_treated" placeholder="@lang( 'treatments.desease_treated' )" value="{{ is_null( $treatment ) ? '' : $treatment->desease_treated }}">
 				</div>
 				<p class="tip">Indiquez ici la maladie traitée</p>
 			</div>
 			<div class="control-group all-33">
-				<label for="treatment_name">@lang( 'treatments.product_quantity' )</label>
+				<label for="product_quantity">@lang( 'treatments.product_quantity' )</label>
 				<div class="control">
 					<input type="text" name="product_quantity" id="product_quantity" placeholder="@lang( 'treatments.product_quantity' )" value="{{ is_null( $treatment ) ? '' : $treatment->product_quantity }}">
 				</div>
