@@ -52,7 +52,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "http://api.mellifera.cu.cc/atomic/atomic/" . $string,
+			'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $string,
 			'params' 	=> json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -74,7 +74,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "http://api.mellifera.cu.cc/atomic/atomic/" . $string,
+			'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $string,
 			'params' 	=>  json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -92,7 +92,7 @@ class BeeTools {
 	 */
 	static public function entity_delete( $id, $string )
 	{
-		$url 	= "http://api.mellifera.cu.cc/atomic/atomic/" . $string . "/" . $id;
+		$url 	= "http://api.mellifera.cu.cc/atomic/" . $string . "/" . $id;
 		$json 	= '{}';
 		$ch 	= curl_init();
 		curl_setopt( $ch, CURLOPT_URL, $url );

@@ -10,7 +10,7 @@ class NuisanceController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/nuisances" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/nuisances" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -46,7 +46,7 @@ class NuisanceController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/nuisances/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/nuisances/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

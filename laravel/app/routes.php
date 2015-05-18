@@ -64,7 +64,7 @@ Route::get( 'structures', [ function(){
 
 Route::get( 'structures/{param}', [ function( $param){
 	$request = [
-		'url' 		=> "http://api.mellifera.cu.cc/atomic/atomic/" . $param,
+		'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $param,
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
@@ -80,7 +80,7 @@ Route::get( 'structures/{param}', [ function( $param){
 Route::post( 'structures', [ function(){
 	$inputs = Input::all();
 	$request = [
-		'url' 		=> "http://api.mellifera.cu.cc/atomic/atomic/" . $inputs['entity'],
+		'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $inputs['entity'],
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];

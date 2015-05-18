@@ -10,7 +10,7 @@ class StrengtheController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/strengthes" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/strengthes" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -46,7 +46,7 @@ class StrengtheController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/strengthes/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/strengthes/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
