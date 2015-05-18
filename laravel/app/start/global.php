@@ -79,3 +79,12 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+/**
+* Notre driver d'authentification Mellifera
+*/
+
+Auth::extend('mellifera', function($app) {
+	return new Mellifera\Auth\MelliferaAuthProvider;
+});
