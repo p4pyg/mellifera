@@ -10,7 +10,7 @@ class UnitController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/units" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/units" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -46,7 +46,7 @@ class UnitController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/units/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/units/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

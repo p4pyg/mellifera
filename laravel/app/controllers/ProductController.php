@@ -10,7 +10,7 @@ class ProductController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/products" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/products" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -46,7 +46,7 @@ class ProductController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/products/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/products/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

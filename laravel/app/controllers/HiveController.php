@@ -10,7 +10,7 @@ class HiveController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/beehives" ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/beehives" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -46,7 +46,7 @@ class HiveController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/beehives/" . $id ] );
+		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/atomic/beehives/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

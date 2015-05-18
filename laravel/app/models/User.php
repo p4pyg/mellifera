@@ -39,7 +39,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 		// Uncomment this bloc when webservice is ready
 		$request = [
-			'url' 			=> "http://api.mellifera.cu.cc/signup",
+			'url' 			=> "http://api.mellifera.cu.cc/atomic/atomic/signup",
 			'description' 	=> [ "email","password","client_id","client_key" ],
 			'params' 		=> json_encode( $user ),
 			'headers' 		=> [ 'Content-type: application/json' ]
