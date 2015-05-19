@@ -31,7 +31,58 @@ Route::get('backoffice', [ function()
 /**
  * Authentification
  */
+//Route::Controller('user', 'UserController');
 
+//Route::get('register', [function() {
+//		return View::make('register');
+//	}, 'as' => 'backoffice.register' ] );
+
+Route::get( 'signup', [ 'uses' => 'UserController@signup', 'as' => 'backoffice.signup'] );
+Route::post( 'signup', [ 'uses' => 'UserController@create', 'as' => 'backoffice.create'] );
+
+Route::get( 'login', [ 'uses' => 'UserController@login', 'as' => 'backoffice.login'] );
+Route::post( 'signin', [ 'uses' => 'UserController@signin', 'as' => 'backoffice.signin'] );
+
+
+/*Route::get('inscription', [ function() {
+
+			$user = new User;
+			$user->email = 'test@test.test';
+			// TODO : faire fonctionner Hash::make() ou mcrypt()
+			//$user->pass = mcrypt(Input::get('pass'));
+			//$user->pass = Hash::make(Input::get('pass'));
+			$user->password = 'pass';
+			$user->client_id = hash('crc32', $_SERVER['HTTP_USER_AGENT']);
+			$user->client_key = "t454pPr154L1r30Uqu01?";
+			//$user->person = '{}';
+
+			$request = [
+				'url' 		=> "http://api.mellifera.cu.cc/signup",
+				'params' 	=> json_encode($user),
+				'headers' 	=> ['Content-type: application/json' ]
+			];
+			$client 	= new HttpClient;
+			$response 	= $client->post( $request );
+			dd($response);
+
+//			return Redirect::to('signin')->with('message', 'Merci, votre inscription a bien été prise en compte');
+			return Redirect::to('/backoffice')->with('message', 'Merci, votre inscription a bien été prise en compte');
+		//	return Redirect::to('signup')->with('message','Des erreurs de validation sont constatées')->withErrors($validator)->withInput();
+		
+	} // inscription
+]);
+
+
+
+
+
+
+/*
+Route::post('signup', [ function() {
+
+});
+*/
+/*
 Route::get('signin', [ function()
 {
 	$user_token = User::authenticate( 'greeftdc@gmail.com', '12345' );
@@ -50,7 +101,7 @@ Route::get('logout', [function()
 	Session::forget('token');
 	return Redirect::to( '/' );
 } , 'as' => 'users.logout' ] );
-
+*/
 /************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 /**
  * Visualisation des structures JSON pour chaque entité

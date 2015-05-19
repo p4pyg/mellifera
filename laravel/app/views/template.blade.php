@@ -12,6 +12,9 @@
 
 	</head>
 	<body>
+	@if(Session::has('message'))
+    <p class="alert">{{ Session::get('message') }}</p>
+	@endif
 	@if( $entity !== 'landing' )
 		<header>
 			@include( 'topbar' )
