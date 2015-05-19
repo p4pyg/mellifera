@@ -22,29 +22,30 @@ if ( is_null( $treatment ) ) {
 				<div class="control">
 					<input type="text" name="treatment_name" id="treatment_name" placeholder="@lang( 'treatments.treatment_name' )" value="{{ is_null( $treatment ) ? '' : $treatment->treatment_name }}">
 				</div>
-				<p class="tip">Indiquez ici le nom de la treatment</p>
+				<p class="tip">Indiquez ici le nom du traitement</p>
 			</div>
 			<div class="control-group all-33">
-				<label for="characteristics">@lang( 'treatments.characteristics' )</label>
+				<label for="treatment_date">@lang( 'treatments.treatment_date' )</label>
 				<div class="control">
-					<input type="text" name="characteristics" id="characteristics" value="{{ is_null( $treatment ) ? '' :  $treatment->characteristics  }}">
+					<input type="text" name="treatment_date" id="treatment_date" placeholder="@lang( 'treatments.treatment_date' )" value="{{ is_null( $treatment ) ? '' : $treatment->treatment_date }}">
 				</div>
-				<p class="tip">Indiquez ici les caractéristiques de la treatment</p>
+				<p class="tip">Indiquez ici la date du traitement</p>
 			</div>
 			<div class="control-group all-33">
-				<label for="geographical_origin">@lang( 'treatments.geographical_origin' )</label>
+				<label for="desease_treated">@lang( 'treatments.desease_treated' )</label>
 				<div class="control">
-					<input type="text" name="geographical_origin" id="geographical_origin" value="{{ is_null( $treatment ) ? '' : $treatment->geographical_origin }}">
+					<input type="text" name="desease_treated" id="desease_treated" placeholder="@lang( 'treatments.desease_treated' )" value="{{ is_null( $treatment ) ? '' : $treatment->desease_treated }}">
 				</div>
-				<p class="tip">Indiquez ici l'origine géographique</p>
+				<p class="tip">Indiquez ici la maladie traitée</p>
 			</div>
 			<div class="control-group all-33">
-				<label for="life_span">@lang( 'treatments.life_span' )</label>
+				<label for="product_quantity">@lang( 'treatments.product_quantity' )</label>
 				<div class="control">
-					<input type="text" name="life_span"  id="life_span"  value="{{ is_null( $treatment ) ? '' : $treatment->life_span }}" >
+					<input type="text" name="product_quantity" id="product_quantity" placeholder="@lang( 'treatments.product_quantity' )" value="{{ is_null( $treatment ) ? '' : $treatment->product_quantity }}">
 				</div>
-				<p class="tip">Indiquez ici la méthode de clippage</p>
+				<p class="tip">Indiquez ici la quantité de produit utilisée</p>
 			</div>
+
 
 		</div>
 		<button class="ink-button" id="valid">Valider</button>

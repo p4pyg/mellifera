@@ -37,7 +37,6 @@ if ( is_null( $race ) ) {
 				<div class="input-field col l12 m12 s12">
 					<input type="text" name="life_span"  id="life_span" class="validate" value="{{ is_null( $race ) ? '' : $race->life_span }}" >
 					<label for="life_span">@lang( 'races.life_span' )</label>
-				</div>
 			</div>
 			<div class="col l6 m6 s12">
 				<h5>@lang( 'characteristics.characteristics' )</h5>

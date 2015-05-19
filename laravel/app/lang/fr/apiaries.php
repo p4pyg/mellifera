@@ -12,6 +12,7 @@ return array(
 	*/
 
 	"create_new_apiary" => "Création d'un nouveau rucher",
+	"apiary_name"		=> "Nom du rucher",
 	"weathers"			=> "Conditions météorologiques",
 	"apiaries"			=> "Ruchers",
 	"id" 				=> "Numéro",

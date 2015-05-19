@@ -12,6 +12,8 @@ return array(
 	*/
 
 	"hive" 				=> "Ruche",
+	"hives"				=> "Ruches",
+	"global"			=> "Généralités",
 	"hives" 			=> "Ruches",
 	"id" 				=> "Numéro",
 	"id_lot"			=> "Identifiant du lot",
@@ -21,9 +23,10 @@ return array(
 	"number_of_rocks"	=> "Nombre de réhausses",
 	"notes"				=> "Notes",
 	"thumbname" 		=> "Nom de la photo",
-	"die_date"			=> "Date de décés",
-	'create_new_hive' 	=> "Création d'une nouvelle ruche",
-	'edit_hive' 		=> "Modification d'une ruche"
-
+	"die_date"			=> "Date de décès",
+	"create_new_hive" 	=> "Création d'une nouvelle ruche",
+	"edit_hive" 		=> "Modification d'une ruche",
+	"code_numer" 		=> "Numéro de code",
+	"label"				=> "Etiquette"
 
 );

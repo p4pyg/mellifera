@@ -149,7 +149,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 
 			/* Markers */
 			var infobox_close = 0;
-			$.get( "http://api.mellifera.cu.cc/apiaries ", function( apiaries ) {
+			$.get( "http://api.mellifera.cu.cc/atomic/apiaries ", function( apiaries ) {
 				$.each( apiaries, function( index, apiary ){
 					var contentString 	= '<div class="infobox-inner" style="color: ' + textcolor + ';"><a href="/apiary/edit/' + apiary.id + '">' + apiary.name + '</a></div>';
 					var infobox 		= new InfoBox(

@@ -12,7 +12,8 @@ return array(
 	*/
 
 
-	"treatments"			=> "Traitement",
+	"treatments"			=> "Traitements",
+	"treatment"				=> "Traitement",
 	"create_new_treatment"	=> "Créer un nouveau traitement",
 	"edit_treatment"		=> "Editer un traitement",
 	"id" 					=> "Numéro",
