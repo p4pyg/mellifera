@@ -48,6 +48,12 @@
 
 			<h2 class="center-align">La mobilité en prime</h2>
 			<p class="center-align">Sur smatphone ou tablette, synchronisez les données collectées sur le terrain, visualisez l'état de vos ruches, organisez vos transhumances</p>
+			<div class="col l6 m6 s12">
+				<img src="images/qr-code.png" alt="QR Code - Android">
+			</div>
+			<div class="col l6 m6 s12">
+				<img src="images/qr-code.png" alt="QR Code - Webview">
+			</div>
 		</div>
 	</div>
 
