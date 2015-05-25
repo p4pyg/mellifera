@@ -68,7 +68,7 @@ Route::post( 'signin', [ 'uses' => 'UserController@signin', 'as' => 'backoffice.
 //			return Redirect::to('signin')->with('message', 'Merci, votre inscription a bien été prise en compte');
 			return Redirect::to('/backoffice')->with('message', 'Merci, votre inscription a bien été prise en compte');
 		//	return Redirect::to('signup')->with('message','Des erreurs de validation sont constatées')->withErrors($validator)->withInput();
-		
+
 	} // inscription
 ]);
 
