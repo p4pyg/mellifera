@@ -1,4 +1,5 @@
 <?php list( $entity, $page ) = explode( '.', Route::currentRouteName() ); ?>
+
 <div class="row valign-wrapper">
 	<div class="col l8 m8 s8">
 		<h2>@lang( $entity . '.' . $entity )&nbsp;</h2>

@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Auth\Guard;
 /*
 |--------------------------------------------------------------------------
 | Register The Laravel Class Loader
@@ -85,6 +85,9 @@ require app_path().'/filters.php';
 * Notre driver d'authentification Mellifera
 */
 
-Auth::extend('mellifera', function($app) {
-	return new Mellifera\Auth\MelliferaAuthProvider;
+Auth::extend('mellifera', function() {
+	return new Guard(
+		new Mellifera\Auth\MelliferaAuthProvider,
+		App::make('session.store')
+	);
 });

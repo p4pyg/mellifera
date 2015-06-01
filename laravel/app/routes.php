@@ -37,11 +37,11 @@ Route::get('backoffice', [ function()
 //		return View::make('register');
 //	}, 'as' => 'backoffice.register' ] );
 
-Route::get( 'signup', [ 'uses' => 'UserController@signup', 'as' => 'backoffice.signup'] );
-Route::post( 'signup', [ 'uses' => 'UserController@create', 'as' => 'backoffice.create'] );
+Route::get( 'signup', 	[ 'uses' => 'UserController@signup', 	'as' => 'backoffice.signup' ] );
+Route::post( 'signup', 	[ 'uses' => 'UserController@create', 	'as' => 'backoffice.create' ] );
 
-Route::get( 'login', [ 'uses' => 'UserController@login', 'as' => 'backoffice.login'] );
-Route::post( 'signin', [ 'uses' => 'UserController@signin', 'as' => 'backoffice.signin'] );
+Route::get( 'login', 	[ 'uses' => 'UserController@login', 	'as' => 'backoffice.login' 	] );
+Route::post( 'signin', 	[ 'uses' => 'UserController@signin', 	'as' => 'backoffice.signin' ] );
 
 
 /*Route::get('inscription', [ function() {
@@ -184,6 +184,15 @@ Route::post( 'file/edit/{id}', 	[ 'uses' => 'FileController@update', 	'as' => 'f
 Route::get( 'file/delete/{id}',	[ 'uses' => 'FileController@delete', 	'as' => 'files.delete' 	] );
 
 /**
+ * Gestion des fichiers
+ */
+Route::get( 'documents', 			[ 'uses' => 'DocumentController@index', 	'as' => 'documents.index' 	] );
+Route::get( 'document/edit', 		[ 'uses' => 'DocumentController@create', 	'as' => 'documents.create' 	] );
+Route::get( 'document/edit/{id}', 	[ 'uses' => 'DocumentController@edit', 		'as' => 'documents.edit' 	] );
+Route::post( 'document/edit', 		[ 'uses' => 'DocumentController@store', 	'as' => 'documents.store' 	] );
+Route::post( 'document/edit/{id}', 	[ 'uses' => 'DocumentController@update', 	'as' => 'documents.update' 	] );
+Route::get( 'document/delete/{id}',	[ 'uses' => 'DocumentController@delete', 	'as' => 'documents.delete' 	] );
+/**
  * Gestion des ruches
  */
 Route::get( 'hives', 			[ 'uses' => 'HiveController@index', 	'as' => 'hives.index' 	] );
@@ -222,6 +231,15 @@ Route::get( 'person/edit/{id}', 	[ 'uses' => 'PersonController@edit', 	'as' => '
 Route::post( 'person/edit', 		[ 'uses' => 'PersonController@store', 	'as' => 'persons.store' 	] );
 Route::post( 'person/edit/{id}', 	[ 'uses' => 'PersonController@update', 	'as' => 'persons.update' 	] );
 Route::get( 'person/delete/{id}',	[ 'uses' => 'PersonController@delete', 	'as' => 'persons.delete' 	] );
+/**
+ * Gestion des utilisateurs
+ */
+Route::get( 'users', 				[ 'uses' => 'UserController@index', 	'as' => 'users.index' 	] );
+Route::get( 'user/edit', 			[ 'uses' => 'UserController@create', 	'as' => 'users.create' 	] );
+Route::get( 'user/edit/{id}', 		[ 'uses' => 'UserController@edit', 		'as' => 'users.edit' 	] );
+Route::post( 'user/edit', 			[ 'uses' => 'UserController@store', 	'as' => 'users.store' 	] );
+Route::post( 'user/edit/{id}', 		[ 'uses' => 'UserController@update', 	'as' => 'users.update' 	] );
+Route::get( 'user/delete/{id}',		[ 'uses' => 'UserController@delete', 	'as' => 'users.delete' 	] );
 
 /**
  * Gestion des produits

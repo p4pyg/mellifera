@@ -40,6 +40,15 @@ class BeeTools {
 	}
 
 	/**
+	 * Error code
+	 * @param  integer $code error code
+	 * @return  string human readable error
+	 */
+	static function error_code( $code ){
+		return trans( 'errors.' . $code );
+	}
+
+	/**
 	 * Refactoring for controllers
 	 * Store method
 	 * @param  [array]  $data   [array of data from form]
@@ -117,8 +126,8 @@ class BeeTools {
 			$error['code'] 		= $response->statusCode();
 			$error['message'] 	= "<pre>" .  $response->content() . "</pre>";
 		}elseif( empty( $response->json() ) ){
-			$error['code'] 		= 404;
-			$error['message'] 	= "L'entité demandée est vide";
+			list( $entity, $page ) = explode( '.', Route::currentRouteName() );
+			return Redirect::to( str_singular( $entity ) . '/edit' )->with( [ 'message' => trans('documents.news') ] );
 		}
 
 		if( !empty( $error ) )

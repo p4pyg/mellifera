@@ -70,24 +70,44 @@
 	<div class="container  brown-text">
 		<div id="description" class="row">
 			<div class="col l6 m6 s12">
-				<img class="responsive-img" src="images/logo4.svg" alt="">
+				<img class="responsive-img" src="images/logo4-frame.svg" alt="">
+			</div>
+			<div class="col l6 m6 s12">
 				<h3>Gérez vos essaims</h3>
 				<p>Indiquez la race et l'origine d'une reine, son intégration à la colonnie et appréciez la force globale.</p>
 			</div>
 			<div class="col l6 m6 s12">
-				<img class="responsive-img" src="images/logo3.svg" alt="">
+				<img class="responsive-img" src="images/logo5-hive.svg" alt="">
+			</div>
+			<div class="col l6 m6 s12">
+				<img class="responsive-img" src="images/logo3-production.svg" alt="">
+			</div>
+			<div class="col l6 m6 s12">
 				<h3>Listez vos ruches</h3>
 				<p>Visualisez les ruches composant votre rucher, accedez à l'historique de chacune d'entre elles, paramétrez leur caractéristiques.</p>
 			</div>
 			<div class="col l6 m6 s12">
-				<img class="responsive-img" src="images/logo2.svg" alt="">
+				<img class="responsive-img" src="images/logo5-hive-v2.svg" alt="">
+			</div>
+			<div class="col l6 m6 s12">
+				<img class="responsive-img" src="images/logo2-activity.svg" alt="">
+			</div>
+			<div class="col l6 m6 s12">
 				<h3>Localisez vos ruchers</h3>
 				<p>Un outil de cartographie vous permet de visualiser la disposition de vos ruchers et ainsi vous aider à plannifier les repositionement dans le respect des règles de distance entre rucher.</p>
 			</div>
 			<div class="col l6 m6 s12">
-				<img class="responsive-img" src="images/logo1.svg" alt="">
+				<img class="responsive-img" src="images/logo7-treatments.svg" alt="">
+			</div>
+			<div class="col l6 m6 s12">
+				<img class="responsive-img" src="images/logo1-cert.svg" alt="">
+			</div>
+			<div class="col l6 m6 s12">
 				<h3>Planifiez vos actions</h3>
 				<p>Depuis l'interface de gestion, organisez vos traitements et interventions sur les ruchers, éditez vos étiquettes et feuilles d'intervention. </p>
+			</div>
+			<div class="col l6 m6 s12">
+				<img class="responsive-img" src="images/logo6-weather.svg" alt="">
 			</div>
 		</div>
 	</div>

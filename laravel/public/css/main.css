@@ -110,6 +110,10 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .warp-image img{
   width : 50%;
 }
+#header .parallax{
+  background-color:#F0B801
+}
+
 #header h2{
   padding : 1rem;
   width: 80%;

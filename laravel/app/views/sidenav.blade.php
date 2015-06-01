@@ -9,6 +9,8 @@
 	<li>{{ HTML::link( 'swarms', trans( 'swarms.swarms' ) ) }}</li>
 	<li>{{ HTML::link( 'treatments', trans( 'treatments.treatments' ) ) }}</li>
 	<li>{{ HTML::link( 'persons', trans( 'persons.persons' ) ) }}</li>
+	<li>{{ HTML::link( 'users', trans( 'users.users' ) ) }}</li>
+	<li>{{ HTML::link( 'documents', trans( 'documents.documents' ) ) }}</li>
 	<li>{{ HTML::link( 'structures', 'Structures JSON' ) }}</li>
 	<li><a href="#">Aide</a></li>
 </ul>
