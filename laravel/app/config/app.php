@@ -121,9 +121,10 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		// 'Mellifera\Meauth\MeauthServiceProvider',
+		'Mellifera\Mauth\MauthServiceProvider',
 		'Vinelab\Http\HttpServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Dinesh\Barcode\BarcodeServiceProvider',
 
 	),
 
@@ -193,6 +194,8 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 		'MyHttp'          => 'Vinelab\Http\Facades\Client',
 		'Debugbar'        => 'Barryvdh\Debugbar\Facade',
+		'DNS1D'           => 'Dinesh\Barcode\Facades\DNS1DFacade',
+		'DNS2D'           => 'Dinesh\Barcode\Facades\DNS2DFacade',
 
 
 	),

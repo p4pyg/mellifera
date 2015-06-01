@@ -1,6 +1,6 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
-use Mellifera\Auth as MeAuth;
+use Mellifera\MeAuth as MeAuth;
 
 class UserController extends \BaseController {
 
@@ -40,7 +40,7 @@ class UserController extends \BaseController {
 		} else {
 			return Redirect::back()
 			->with( 'message', trans( 'users.login_error' ) )
-			->withInput();
+			->withInput( Input::all() );
 		}
 	}
 

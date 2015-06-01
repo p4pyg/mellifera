@@ -1,0 +1,20 @@
+{
+    "name": "mellifera/mauth",
+    "description": "",
+    "authors": [
+        {
+            "name": "NFA036",
+            "email": "anon@host.tld"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Mellifera\\Mauth": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

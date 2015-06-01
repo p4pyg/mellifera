@@ -330,3 +330,8 @@ Route::get( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@edit', 		'as' => 'uni
 Route::post( 'unit/edit', 		[ 'uses' => 'UnitController@store', 	'as' => 'units.store' 	] );
 Route::post( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
 Route::get( 'unit/delete/{id}',	[ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
+
+Route::get( 'test/barcode/{number}', function( $number ){
+	echo DNS1D::getBarcodeSVG( $number, "EAN8",3,33,"green");
+
+} );

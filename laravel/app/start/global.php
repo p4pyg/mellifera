@@ -18,7 +18,7 @@ ClassLoader::addDirectories(array(
 	app_path().'/models',
 	app_path().'/database/seeds',
 
-));
+) );
 
 /*
 |--------------------------------------------------------------------------
@@ -85,9 +85,9 @@ require app_path().'/filters.php';
 * Notre driver d'authentification Mellifera
 */
 
-Auth::extend('mellifera', function() {
-	return new Guard(
-		new Mellifera\Auth\MelliferaAuthProvider,
-		App::make('session.store')
-	);
-});
+// Auth::extend('mellifera', function() {
+// 	return new Guard(
+// 		new  Mellifera\Meauth\MeauthServiceProvider,
+// 		App::make('session.store')
+// 	);
+// } );

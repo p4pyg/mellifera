@@ -1,17 +1,12 @@
-<?php
-
-namespace Mellifera\Auth;
+<?php namespace Mellifera\Mauth;
 
 use Illuminate\Auth\UserProviderInterface;
-use	Illuminate\Auth\GenericUser;
-use	Illuminate\Auth\UserInterface;
-use Illuminate\Auth\UserTrait;
+use Illuminate\Auth\UserInterface;
 use Vinelab\Http\Client as HttpClient;
 
-class MelliferaAuthProvider implements UserProviderInterface, UserInterface {
+class MauthUserProvider implements UserProviderInterface{
 
-	public $user;
-
+	protected $user;
 	/**
 	 * Essaie de trouver un User correspondant aux paramètres passés
 	 * @param array [email,password,client_id,client_key]
@@ -86,30 +81,7 @@ class MelliferaAuthProvider implements UserProviderInterface, UserInterface {
 	}
 
 
-	public function getAuthIdentifier(){
-		return $this->user;
-	}
-
-	public function getAuthPassword(){
-		return new \Exception( 'not implemented' );
-	}
-
-
-
-
 	public function retrieveById( $id ) {
-		return new \Exception( 'not implemented' );
-	}
-
-	public function setRememberToken( $value ){
-		return new \Exception( 'not implemented' );
-	}
-
-	public function getRememberTokenName(){
-		return new \Exception( 'not implemented' );
-	}
-
-	public function getRememberToken(){
 		return new \Exception( 'not implemented' );
 	}
 
@@ -121,4 +93,13 @@ class MelliferaAuthProvider implements UserProviderInterface, UserInterface {
 		return new \Exception( 'not implemented' );
 	}
 
+
+
+
 }
+
+
+
+
+
+ ?>
