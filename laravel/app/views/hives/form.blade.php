@@ -22,27 +22,38 @@ if ( is_null( $hive ) ) {
 {{	Form::open( [ 'url' => 'hive/edit/' . ( is_null( $hive ) ? '' :  $hive->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'hive_form' ] )	}}
 		<div class="row">
 			<div class="input-field col l6 m6 s12">
+				<input type="text" name="code_number" id="code_number" class="validate" value="{{ is_null( $hive ) ? '' :  $hive->code_number  }}">
+				<label for="code_number">@lang( 'hives.code_number' )</label>
+			</div>
+			<div class="input-field col l6 m6 s12">
 				<input type="text" name="id_lot" id="id_lot" class="validate" value="{{ is_null( $hive ) ? '' : $hive->id_lot }}">
 				<label for="id_lot">@lang( 'hives.id_lot' )</label>
 			</div>
 			<div class="input-field col l6 m6 s12">
-				<input type="text" name="beehive_type" id="beehive_type" class="validate" value="{{ is_null( $hive ) ? '' : $hive->beehive_type }}">
+				<p>
+					<label for="number_of_frames">@lang( 'hives.number_of_frames' )</label>
+				</p>
+				<br />
+				<p class="range-field">
+					<input type="range" name="number_of_frames"  id="number_of_frames" class="validate" min="0" max="10" value="{{ is_null( $hive ) ? '' : $hive->number_of_frames }}"/>
+				<p class="range-field">
+			</div>
+			<div class="input-field col l6 m6 s12">
+				<select name="beehive_type" id="beehive_type">
+					<option value="" disabled {{ is_null( $hive ) ? 'selected' : ( is_null( $hive->beehive_type ) ? 'selected' : '' ) }}></option>
+					@foreach( Hive::get_types() as $type )
+					<option value="{{ $type }}"  {{ is_null( $hive ) ? '' : ( is_null( $hive->beehive_type ) ? '' : 'selected'  ) }}>{{ $type }}</option>
+					@endforeach
+				</select>
 				<label for="beehive_type">@lang( 'hives.beehive_type' )</label>
 			</div>
-			<div class="input-field col l6 m6 s12">
-				<input type="text" name="number_of_frames" id="number_of_frames" class="validate" value="{{ is_null( $hive ) ? '' : $hive->number_of_frames }}">
-				<label for="number_of_frames">@lang( 'hives.number_of_frames' )</label>
+{{-- 			<div class="input-field col l6 m6 s12">
+				<input type="text" name="number_of_rocks" id="number_of_rocks" class="validate" value="{{ is_null( $hive ) ? '' :  $hive->number_of_rocks  }}">
+				<label for="number_of_rocks">@lang( 'hives.number_of_rocks' )</label>
+			</div> --}}
+			<div class="input-field col l12 m12 s12">
+				@include( 'components.button_submit' )
 			</div>
-			<div class="input-field col l6 m6 s12">
-				<input type="text" name="number_of_rockscode_number" id="number_of_rockscode_number" class="validate" value="{{ is_null( $hive ) ? '' :  $hive->number_of_rockscode_number  }}">
-				<label for="number_of_rockscode_number">@lang( 'hives.number_of_rockscode_number' )</label>
-			</div>
-				<div class="input-field col l6 m6 s12">
-				<input type="text" name="code_number" id="code_number" class="validate" value="{{ is_null( $hive ) ? '' :  $hive->code_number  }}">
-				<label for="code_number">@lang( 'hives.code_number' )</label>
-			</div>
-				
-		@include( 'components.button_submit' )
 		</div>
 
 {{ Form::close() }}

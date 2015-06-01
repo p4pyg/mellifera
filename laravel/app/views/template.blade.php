@@ -3,7 +3,7 @@
 <html lang="fr">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1, but Firefox is the best">
 		<title>Mellifera</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 		{{ HTML::style( "bower_components/Ink/dist/css/font-awesome.min.css" ) }}
@@ -63,6 +63,7 @@
 @endif
 @if( in_array( $page, [ 'create', 'edit' ] ) )
 		<script type="text/javascript">
+
 			$( document ).ready( function(){
 				$( '#delete' ).on( 'click', function(){
 					document.location.href="/{{  str_singular( $entity )  }}/delete/" + $( this ).attr( 'data-item-index' );
@@ -91,6 +92,9 @@
 
 				} );
 				$('select').material_select();
+				@if( Session::has('message') )
+					Materialize.toast( "{{ Session::get( 'message' ) }}", 5000 );
+				@endif
 			} );
 		</script>
 @endif

@@ -5,7 +5,8 @@
 	<thead>
 		<tr>
 			<th class="align-left" data-sortable="true">@lang( 'persons.id' )</th>
-			<th data-sortable="true">@lang( 'persons.name' )</th>
+			<th data-sortable="true">@lang( 'persons.first_name' )</th>
+			<th data-sortable="true">@lang( 'persons.last_name' )</th>
 			<th data-sortable="true">@lang( 'persons.address1' )</th>
 			<th data-sortable="true">@lang( 'persons.address2' )</th>
 			<th data-sortable="true">@lang( 'persons.postcode' )</th>
@@ -22,7 +23,8 @@
 	@foreach( $persons as $person )
 		<tr id="person-{{ $person->id }}" data-item-index="{{ $person->id }}">
 			<td>{{ $person->id }}</td>
-			<td>{{ ucfirst( $person->name ) }}</td>
+			<td>{{ ucfirst( $person->first_name ) }}</td>
+			<td>{{ ucfirst( $person->last_name ) }}</td>
 			<td>{{ $person->address1 }}</td>
 			<td>{{ $person->address2 }}</td>
 			<td>{{ $person->postcode }}</td>

@@ -1,4 +1,4 @@
-@extends('template')
+first_name@extends('template')
 @section('content')
 <?php
 if ( is_null( $person ) ) {
@@ -22,8 +22,12 @@ if ( is_null( $person ) ) {
 {{	Form::open( [ 'url' => 'person/edit/' . ( is_null( $person ) ? '' :  $person->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'person_form' ] )	}}
 		<div class="row">
 			<div class="input-field col l6 m6 s12">
-				<input type="text" name="name" id="name" class="validate" value="{{ is_null( $person ) ? '' : $person->name }}">
-				<label for="name">@lang( 'persons.name' )</label>
+				<input type="text" name="first_name" id="first_name" class="validate" value="{{ is_null( $person ) ? '' : $person->first_name }}">
+				<label for="first_name">@lang( 'persons.first_name' )</label>
+			</div>
+			<div class="input-field col l6 m6 s12">
+				<input type="text" name="last_name" id="last_name" class="validate" value="{{ is_null( $person ) ? '' : $person->last_name }}">
+				<label for="last_name">@lang( 'persons.last_name' )</label>
 			</div>
 			<div class="input-field col l6 m6 s12">
 				<input type="text" name="address1" id="address1" class="validate" value="{{ is_null( $person ) ? '' : $person->address1 }}">

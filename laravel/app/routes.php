@@ -31,7 +31,58 @@ Route::get('backoffice', [ function()
 /**
  * Authentification
  */
+//Route::Controller('user', 'UserController');
 
+//Route::get('register', [function() {
+//		return View::make('register');
+//	}, 'as' => 'backoffice.register' ] );
+
+Route::get( 'signup', 	[ 'uses' => 'UserController@signup', 	'as' => 'backoffice.signup' ] );
+Route::post( 'signup', 	[ 'uses' => 'UserController@create', 	'as' => 'backoffice.create' ] );
+
+Route::get( 'login', 	[ 'uses' => 'UserController@login', 	'as' => 'backoffice.login' 	] );
+Route::post( 'signin', 	[ 'uses' => 'UserController@signin', 	'as' => 'backoffice.signin' ] );
+
+
+/*Route::get('inscription', [ function() {
+
+			$user = new User;
+			$user->email = 'test@test.test';
+			// TODO : faire fonctionner Hash::make() ou mcrypt()
+			//$user->pass = mcrypt(Input::get('pass'));
+			//$user->pass = Hash::make(Input::get('pass'));
+			$user->password = 'pass';
+			$user->client_id = hash('crc32', $_SERVER['HTTP_USER_AGENT']);
+			$user->client_key = "t454pPr154L1r30Uqu01?";
+			//$user->person = '{}';
+
+			$request = [
+				'url' 		=> "http://api.mellifera.cu.cc/signup",
+				'params' 	=> json_encode($user),
+				'headers' 	=> ['Content-type: application/json' ]
+			];
+			$client 	= new HttpClient;
+			$response 	= $client->post( $request );
+			dd($response);
+
+//			return Redirect::to('signin')->with('message', 'Merci, votre inscription a bien été prise en compte');
+			return Redirect::to('/backoffice')->with('message', 'Merci, votre inscription a bien été prise en compte');
+		//	return Redirect::to('signup')->with('message','Des erreurs de validation sont constatées')->withErrors($validator)->withInput();
+
+	} // inscription
+]);
+
+
+
+
+
+
+/*
+Route::post('signup', [ function() {
+
+});
+*/
+/*
 Route::get('signin', [ function()
 {
 	$user_token = User::authenticate( 'greeftdc@gmail.com', '12345' );
@@ -50,7 +101,7 @@ Route::get('logout', [function()
 	Session::forget('token');
 	return Redirect::to( '/' );
 } , 'as' => 'users.logout' ] );
-
+*/
 /************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 /**
  * Visualisation des structures JSON pour chaque entité
@@ -133,6 +184,15 @@ Route::post( 'file/edit/{id}', 	[ 'uses' => 'FileController@update', 	'as' => 'f
 Route::get( 'file/delete/{id}',	[ 'uses' => 'FileController@delete', 	'as' => 'files.delete' 	] );
 
 /**
+ * Gestion des fichiers
+ */
+Route::get( 'documents', 			[ 'uses' => 'DocumentController@index', 	'as' => 'documents.index' 	] );
+Route::get( 'document/edit', 		[ 'uses' => 'DocumentController@create', 	'as' => 'documents.create' 	] );
+Route::get( 'document/edit/{id}', 	[ 'uses' => 'DocumentController@edit', 		'as' => 'documents.edit' 	] );
+Route::post( 'document/edit', 		[ 'uses' => 'DocumentController@store', 	'as' => 'documents.store' 	] );
+Route::post( 'document/edit/{id}', 	[ 'uses' => 'DocumentController@update', 	'as' => 'documents.update' 	] );
+Route::get( 'document/delete/{id}',	[ 'uses' => 'DocumentController@delete', 	'as' => 'documents.delete' 	] );
+/**
  * Gestion des ruches
  */
 Route::get( 'hives', 			[ 'uses' => 'HiveController@index', 	'as' => 'hives.index' 	] );
@@ -171,6 +231,15 @@ Route::get( 'person/edit/{id}', 	[ 'uses' => 'PersonController@edit', 	'as' => '
 Route::post( 'person/edit', 		[ 'uses' => 'PersonController@store', 	'as' => 'persons.store' 	] );
 Route::post( 'person/edit/{id}', 	[ 'uses' => 'PersonController@update', 	'as' => 'persons.update' 	] );
 Route::get( 'person/delete/{id}',	[ 'uses' => 'PersonController@delete', 	'as' => 'persons.delete' 	] );
+/**
+ * Gestion des utilisateurs
+ */
+Route::get( 'users', 				[ 'uses' => 'UserController@index', 	'as' => 'users.index' 	] );
+Route::get( 'user/edit', 			[ 'uses' => 'UserController@create', 	'as' => 'users.create' 	] );
+Route::get( 'user/edit/{id}', 		[ 'uses' => 'UserController@edit', 		'as' => 'users.edit' 	] );
+Route::post( 'user/edit', 			[ 'uses' => 'UserController@store', 	'as' => 'users.store' 	] );
+Route::post( 'user/edit/{id}', 		[ 'uses' => 'UserController@update', 	'as' => 'users.update' 	] );
+Route::get( 'user/delete/{id}',		[ 'uses' => 'UserController@delete', 	'as' => 'users.delete' 	] );
 
 /**
  * Gestion des produits
@@ -261,3 +330,8 @@ Route::get( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@edit', 		'as' => 'uni
 Route::post( 'unit/edit', 		[ 'uses' => 'UnitController@store', 	'as' => 'units.store' 	] );
 Route::post( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
 Route::get( 'unit/delete/{id}',	[ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
+
+Route::get( 'test/barcode/{number}', function( $number ){
+	echo DNS1D::getBarcodeSVG( $number, "EAN8",3,33,"green");
+
+} );

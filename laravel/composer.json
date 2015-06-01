@@ -4,16 +4,16 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "additionnals-vendors-packages-docs":[
-        "http://packalyst.com/packages/package/ludo237/barcode",
+        "http://packalyst.com/packages/package/dinesh/barcode",
         "http://packalyst.com/packages/package/thujohn/pdf"
     ],
     "require": {
         "laravel/framework": "4.2.*",
         "vinelab/http": "1.2.0",
-        "barryvdh/laravel-debugbar":"~1.8"
+        "barryvdh/laravel-debugbar":"~1.8",
+        "dinesh/barcode": "V3.0"
     },
     "require-dev": {
-        "ludo237/barcode": "dev-master",
         "thujohn/pdf": "dev-master"
     },
     "autoload": {

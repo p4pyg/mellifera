@@ -40,6 +40,15 @@ class BeeTools {
 	}
 
 	/**
+	 * Error code
+	 * @param  integer $code error code
+	 * @return  string human readable error
+	 */
+	static function error_code( $code ){
+		return trans( 'errors.' . $code );
+	}
+
+	/**
 	 * Refactoring for controllers
 	 * Store method
 	 * @param  [array]  $data   [array of data from form]
@@ -117,18 +126,8 @@ class BeeTools {
 			$error['code'] 		= $response->statusCode();
 			$error['message'] 	= "<pre>" .  $response->content() . "</pre>";
 		}elseif( empty( $response->json() ) ){
-			$error['code'] 		= 404;
-			$error['message'] 	= "L'entité demandée est vide";
-		}else{
-			foreach ( $response->json() as $key => $item ) {
-				if( is_int( $item ) ){
-					$error['code'] 		= 500;
-					$error['message'] 	= "L'entité demandée se compose d'identifiants et d'objets.<br />";
-					$error['message']  .= "Un élément de type 'Entier' a été détécté en position : " . ( $key + 1 ) . "<br />";
-					$error['message']  .= "Ce résultat n'est pas attendu<br />";
-					$error['message']  .= "<pre>" . str_replace( $item, '<span class="red-text">' . $item . '</span>' ,str_replace( '},', '},<br />', $response->content() ) ) . "</pre>";
-				}
-			}
+			list( $entity, $page ) = explode( '.', Route::currentRouteName() );
+			return Redirect::to( str_singular( $entity ) . '/edit' )->with( [ 'message' => trans('documents.news') ] );
 		}
 
 		if( !empty( $error ) )
