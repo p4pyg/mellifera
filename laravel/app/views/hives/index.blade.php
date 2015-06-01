@@ -10,7 +10,7 @@
 			<th data-sortable="true">@lang( 'hives.beehive_type' )</th>
 			<th data-sortable="true">@lang( 'hives.number_of_frames' )</th>
 			<th data-sortable="true">@lang( 'hives.number_of_rocks' )</th>
-			<th>@lang( 'hives.barcode' ) EAN13</th>
+			<th>@lang( 'hives.barcode' )</th>
 
 
 		</tr>
@@ -24,7 +24,7 @@
 			<td>{{ $hive->beehive_type }}</td>
 			<td>{{ $hive->number_of_frames }}</td>
 			<td>{{ $hive->number_of_rocks }}</td>
-			<td>{{ DNS1D::getBarcodeSVG( $hive->id, "EAN13",2,40,"#E65100") }}</td>
+			<td>{{ DNS2D::getBarcodeSVG( $hive->id, "QRCODE",3,3,"#E65100") }}</td>
 
 		</tr>
 	@endforeach

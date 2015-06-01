@@ -121,7 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
-		'Mellifera\Mauth\MauthServiceProvider',
+		//'Mellifera\Mauth\MauthServiceProvider',
 		'Vinelab\Http\HttpServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Dinesh\Barcode\BarcodeServiceProvider',
