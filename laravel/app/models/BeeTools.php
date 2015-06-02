@@ -125,9 +125,7 @@ class BeeTools {
 	 */
 	static public function is_error( $response ){
 		$error = [];
-		if( ! empty( $response->json() ) )
-			return false;
-		else
+		if( empty( $response->json() ) )
 			$error['blank'] = true;
 
 		if( $response->statusCode() != 200 ){
@@ -143,6 +141,7 @@ class BeeTools {
 			}
 			return View::make( 'errors.http_response', [ 'response' => $error ] );
 		}
+		return false;
 
 	}
 }
