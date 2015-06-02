@@ -14,8 +14,11 @@ if ( is_null( $queen ) ) {
 			<h2>{{ $title }}&nbsp;</h2>
 	</div>
 	<div class="col l2 m2 s2 valign">
+		@include( 'components.button_submit' )
+	</div>
+	<div class="col l2 m2 s2 valign">
 	@if( ! is_null( $queen ) )
-			@include( 'components.button_delete', [ 'item' => $queen ] )
+		@include( 'components.button_delete', [ 'item' => $queen ] )
 	@endif
 	</div>
 </div>
@@ -48,9 +51,6 @@ if ( is_null( $queen ) ) {
 			@endforeach
 		</select>
 	<label>@lang( 'queens.race' )</label>
-	</div>
-	<div class="input-field col l6 m6 s12">
-		@include( 'components.button_submit' )
 	</div>
 </div>
 {{ Form::close() }}

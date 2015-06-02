@@ -12,6 +12,7 @@ return array(
 	*/
 
 	"characteristics"			=> "Caractéristiques",
+	"news" 						=> "Aucune caractériqtique n'existe",
 	"id" 						=> "Numéro",
 	"date"						=> "Date",
 	"racial_type"				=> "Race",
