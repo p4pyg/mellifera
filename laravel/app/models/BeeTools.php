@@ -125,18 +125,25 @@ class BeeTools {
 	 */
 	static public function is_error( $response ){
 		$error = [];
+		if( ! empty( $response->json() ) )
+			return false;
+		else
+			$error['blank'] = true;
+
 		if( $response->statusCode() != 200 ){
 			$error['code'] 		= $response->statusCode();
 			$error['message'] 	= "<pre>" .  $response->content() . "</pre>";
-		}elseif( empty( $response->json() ) ){
-			list( $entity, $page ) = explode( '.', Route::currentRouteName() );
-			return Redirect::to( str_singular( $entity ) . '/edit' )->with( [ 'message' => trans('documents.news') ] );
+			$error['blank'] 	= false;
 		}
 
-		if( !empty( $error ) )
+		if( !empty( $error ) ){
+			if( $error['blank'] ){
+				list( $entity, $page ) = explode( '.', Route::currentRouteName() );
+				return Redirect::to( str_singular( $entity ) . '/edit' )->with( [ 'message' => trans('documents.news') ] );
+			}
 			return View::make( 'errors.http_response', [ 'response' => $error ] );
-		else
-			return false;
+		}
+
 	}
 }
 ?>
