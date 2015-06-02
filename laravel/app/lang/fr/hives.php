@@ -16,7 +16,6 @@ return array(
 	"global"			=> "Généralités",
 	"hives" 			=> "Ruches",
 	"id" 				=> "Identifiant",
-	"id_lot"			=> "Lot",
 	"beehive_type"		=> "Type de ruche",
 	"acquisition_date"	=> "Date d'acquisition",
 	"number_of_frames"	=> "Nombre de cadres",

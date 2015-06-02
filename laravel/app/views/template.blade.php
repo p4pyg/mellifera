@@ -32,7 +32,9 @@
 			@yield('content')
 	@endif
 		@include( 'components.button_scroll_top' )
-		{{ HTML::script( "https://code.jquery.com/jquery-2.1.1.min.js" ) }}
+		{{ HTML::script( "bower_components/jquery/dist/jquery.min.js" ) }}
+		{{ HTML::script( "bower_components/jquery-ui/jquery-ui.min.js" ) }}
+		{{ HTML::script( "bower_components/jquery-ui.autocomplete.match/lib/jquery-ui.autocomplete.match.js" ) }}
 		{{ HTML::script( "bower_components/Ink/dist/js/ink-all.min.js" ) }}
 		{{ HTML::script( "bower_components/materialize/dist/js/materialize.min.js" ) }}
 		<script>
@@ -92,6 +94,13 @@
 
 				} );
 				$('select').material_select();
+				@if( $entity == 'hives' )
+				$('#beehive_type').autocomplete({
+					highlight: true,
+					minLength: 0,
+					source: types
+				});
+				@endif
 				@if( Session::has('message') )
 					Materialize.toast( "{{ Session::get( 'message' ) }}", 5000 );
 				@endif

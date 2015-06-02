@@ -107,7 +107,7 @@ Route::get('logout', [function()
  * Visualisation des structures JSON pour chaque entité
  */
 Route::get( 'structures', [ function(){
-	$entities = [ "apiaries", "beehives", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "race_names", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
+	$entities = [ "apiaries", "beehives", "beehivetypes", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "racenames", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
 
 	return View::make( 'structures.search', [ 'entities' => $entities ] );
 } , 'as' => 'structures.list' ]);
@@ -141,6 +141,27 @@ Route::post( 'structures', [ function(){
 
 	return View::make( 'structures.index', [ 'structures' => $structures ] );
 }, 'as' => 'structures.search' ] );
+
+
+/**
+ * Insérer de la données pour une colonne dans une table
+ */
+Route::get( 'seeds', function( ){
+	// Type de ruches
+	// $table = 'beehivetypes';
+	// $column= 'label';
+	// $datas = [ 'Ronde', 'Bâtisse chaude', 'Bâtisse froide', 'Warré', 'WBC', 'Langstroth', 'Dadant'];
+	//
+	// Espèce d'abeilles
+	// $table = 'racenames';
+	// $column= 'name';
+	// $datas = [ 'Bretonne', 'Corse', 'Cévenole', 'Espagnole', 'Carnica', 'Ligustica', 'Sicula', 'Cecropia', 'Macedonica' ];
+
+	foreach ($datas as $data)
+		BeeTools::entity_store( [ $column => $data ], $table );
+
+} );
+
 
 /************************************************************************** ACCÈS AUX ENTITÉS **************************************************************************/
 /**
@@ -331,7 +352,5 @@ Route::post( 'unit/edit', 		[ 'uses' => 'UnitController@store', 	'as' => 'units.
 Route::post( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
 Route::get( 'unit/delete/{id}',	[ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
 
-Route::get( 'test/barcode/{number}', function( $number ){
-	echo DNS1D::getBarcodeSVG( $number, "EAN8",3,33,"green");
 
-} );
+

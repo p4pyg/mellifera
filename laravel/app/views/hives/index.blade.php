@@ -6,7 +6,6 @@
 		<tr>
 			<th data-sortable="true">@lang( 'hives.code_number' )</th>
 			<th class="align-left" data-sortable="true">@lang( 'hives.id' )</th>
-			<th data-sortable="true">@lang( 'hives.id_lot' )</th>
 			<th data-sortable="true">@lang( 'hives.beehive_type' )</th>
 			<th data-sortable="true">@lang( 'hives.number_of_frames' )</th>
 			<th data-sortable="true">@lang( 'hives.number_of_rocks' )</th>
@@ -20,7 +19,6 @@
 		<tr id="hive-{{ $hive->id }}" data-item-index="{{ $hive->id }}">
 			<td>{{ $hive->code_number }}</td>
 			<td>{{ $hive->id }}</td>
-			<td>{{ ucfirst( $hive->id_lot ) }}</td>
 			<td>{{ $hive->beehive_type }}</td>
 			<td>{{ $hive->number_of_frames }}</td>
 			<td>{{ $hive->number_of_rocks }}</td>
