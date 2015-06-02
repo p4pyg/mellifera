@@ -125,7 +125,8 @@ class BeeTools {
 	 */
 	static public function is_error( $response ){
 		$error = [];
-		if( empty( $response->json() ) )
+		$r = $response->json();
+		if( empty( $r ) )
 			$error['blank'] = true;
 
 		if( $response->statusCode() != 200 ){
