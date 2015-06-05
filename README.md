@@ -3,6 +3,8 @@
 _Membres du groupe :_
 Cyril - Yoann - Laurent
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/85033b42-5da3-409f-b5ef-9702e213d9d4/big.png)](https://insight.sensiolabs.com/projects/85033b42-5da3-409f-b5ef-9702e213d9d4)
+
 _Objectifs :_
 
 Réalisation d'une interface web permettant de gérer des ruches lors de transhumances, de construire des essaims pour la vente et la production de miel, et organiser des cycles de production de ruchers.
