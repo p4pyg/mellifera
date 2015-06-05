@@ -1,5 +1,6 @@
 <?php namespace Mellifera\Mauth;
 
+use Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Guard;
 class MauthServiceProvider extends ServiceProvider {
@@ -20,7 +21,7 @@ class MauthServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('mellifera/mauth');
-		\Auth::extend('mellifera', function()
+		Auth::extend('mellifera', function()
 		{
 		    return new Guard(new MauthUserProvider, $this->app['session.store']);
 		});

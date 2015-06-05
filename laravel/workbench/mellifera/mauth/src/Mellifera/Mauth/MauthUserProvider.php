@@ -17,9 +17,6 @@ class MauthUserProvider implements UserProviderInterface{
 
 		if( !empty( $cred['email'] ) ) {
 
-
-
-			// ################ Attente gestion de la route signin pour authentification
 			$request = [
 				'url' 		=> "http://api.mellifera.cu.cc/signin",
 				'params' 	=> json_encode( $cred ),
@@ -28,28 +25,26 @@ class MauthUserProvider implements UserProviderInterface{
 			$client 	= new HttpClient;
 			$response 	= $client->post( $request );
 
-
-			// ################ JSON attendu en cas de succés HEADER HTTP CODE 200
-			// $response_header 	= 200;
-			//$response 	= '{"user":{"id":8,"name":"contact","email":"contact@impermanenceweb.fr"},"group":{"id":95,"owner":true},"token":"AF345EC9371B30A25"}';
-
-			// ################ JSON attendu en cas d'erreur HEADER HTTP CODE 201 / 401
-			// $response_header 	= 201;
-			// $response 	= '{ "code" : 1 }';
-
-
 			if( ! \BeeTools::is_error( $response ) ){
 				$data = $response->json();
-				$user = new GenericUser( [
-					'user' => $data->user,
-					'group'=> $data->group,
-					'token'=> $data->token
+
+				$user = new \Illuminate\Auth\GenericUser( [
+					'id' 		=> $data->id,
+					'email' 	=> $data->email,
+					'token' 	=> $data->token,
+					'person' 	=> $data->person,
+					'group' 	=> $data->group,
+					'is_owner' 	=> ( $data->id === $data->group->owner ? true : false )
 					] );
 				\Session::flash( 'message', trans( 'users.welcome') );
 			}else{
 				$data = $response->json();
-				\Session::put( 'response', $data  ); // \BeeTools::error_code( $data->code )
-				\Session::put( 'login_error', $data->message );
+
+				// ############################# Stand by
+				// Flash provisoire dans l'attente d'un code d'erreur dans le retour json du webservice
+				// \Session::flash( 'message', \BeeTools::error_code( $data->code ) );
+
+				\Session::flash( 'message', $data->message );
 				return  null;
 			}
 
@@ -66,24 +61,46 @@ class MauthUserProvider implements UserProviderInterface{
 	 */
 	public function validateCredentials( \Illuminate\Auth\UserInterface $user, array $cred ) {
 
-		// ################ Le webservice gère la validation
-		// echo '<h3>ValidateCredentials - USER </h3>';
-		// echo '<pre>';
-		// print_r( $user );
-		// echo '</pre>';
-		// echo '<h3>MelliUser</h3>';
-		// echo '<pre>';
-		// print_r( $cred );
-		// echo '</pre>';
-		// die( '<p style="color:red; font-weight:bold;">Debug</p> Test authentification' );
 		$this->user = $user;
 		return true;
 	}
 
-
+	/**
+	 * Récupère l'ensemble des données propre à un utilisateur
+	 * @param  integer $id identifiant de l'utilisateur
+	 * @return MautUser Objet utilisateur spécifique à l'application
+	 */
 	public function retrieveById( $id ) {
-		return new \Exception( 'not implemented' );
+
+		$user = null;
+		$request = [
+				'url' 		=> "http://api.mellifera.cu.cc/atomic/users/" . $id,
+				'headers' 	=> ['Content-type: application/json; APIKEY:' . \Config::get( 'app.key' ) ]
+			];
+		$client 	= new HttpClient;
+		$response 	= $client->get( $request );
+		$data 		= $response->json();
+
+		$group 		= \User::get_group( $data->group->id );
+		$person 	= \User::get_person( $data->person->id );
+
+		$user 		= new \Illuminate\Auth\GenericUser( [
+						'id' 		=> $data->id,
+						'email' 	=> $data->email,
+						'token' 	=> $data->token,
+						'person' 	=> $person,
+						'group' 	=> $group,
+						'is_owner' 	=> ( $data->id === $group->owner->id ? true : false )
+
+						] );
+		if( ! is_null( $user ) )
+			return new MauthUser( $user );
 	}
+
+
+	/**
+	 * NOT IMPLEMENTED
+	 */
 
 	public function retrieveByToken( $id, $token ) {
 		return new \Exception( 'not implemented' );
@@ -92,14 +109,5 @@ class MauthUserProvider implements UserProviderInterface{
 	public function updateRememberToken( UserInterface $user, $token ) {
 		return new \Exception( 'not implemented' );
 	}
-
-
-
-
 }
-
-
-
-
-
- ?>
+?>

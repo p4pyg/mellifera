@@ -21,7 +21,14 @@ class UserController extends \BaseController {
 	public function login() {
 		return View::make('auth.login');
 	}
-
+	/**
+	 * Logout action
+	 * @return View backoffice.home
+	 */
+	public function logout() {
+		Auth::logout();
+		return  Redirect::to( 'backoffice' )->with( 'message', trans( 'users.logout' ) );
+	}
 	/**
 	 * Record authenticated user in session
 	 * @return Back with message confirm OR fail

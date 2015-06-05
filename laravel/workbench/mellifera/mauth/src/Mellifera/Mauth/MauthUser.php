@@ -7,12 +7,20 @@ class MauthUser implements UserInterface{
 	protected $token 	= "";
 	protected $user 	= null;
 	public $id 			= null;
-	public $username 	= "";
+	public $email 		= '';
+	public $person 		= null;
+	public $group 		= null;
+	public $is_owner 	= false;
 
-	public function __construct( GenericUser $user ){
-	    $this->user 	= $user;
-	    $this->id 		= $user->id;
-	    $this->username = $user->email;
+	public function __construct( \Illuminate\Auth\GenericUser $user ){
+		$this->user 	= $user;
+		$this->id 		= $user->id;
+		$this->email 	= $user->email;
+		$this->username = $user->email;
+		$this->token 	= $user->token;
+		$this->person 	= $user->person;
+		$this->group 	= $user->group;
+		$this->is_owner = $user->is_owner;
 	}
 
 	/**
@@ -22,7 +30,7 @@ class MauthUser implements UserInterface{
 	 */
 	public function getAuthIdentifier()
 	{
-		return $this->id;
+		return $this->user->id;
 	}
 
 	/**
@@ -32,8 +40,14 @@ class MauthUser implements UserInterface{
 	 */
 	public function getAuthPassword()
 	{
-	    return null;
+		return null;
 	}
+
+
+	/**
+	 * NOT IMPLEMENTED
+	 */
+
 	public function setRememberToken($value){}
 	public function getRememberToken(){}
 	public function getRememberTokenName(){}
