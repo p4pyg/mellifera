@@ -10,7 +10,7 @@ return array(
 	| Les lignes suivantes représentent les traductions en français des termes et expressions utilisés lorsque l'on parle de espèce d'abeille
 	|
 	*/
-
+	"news" 					=> "Aucune espèce n'existe, vous allez créer votre première espèce.",
 	"race" 					=> "Espèce",
 	"races" 				=> "Espèces",
 	"global" 				=> "Généralité",

@@ -94,8 +94,17 @@
 
 				} );
 				$('select').material_select();
+
+
+				@if( $entity == 'races' )
+				$('#name').autocomplete({
+					highlight: true,
+					minLength: 0,
+					source: names
+				});
+				@endif
 				@if( $entity == 'hives' )
-				$('#beehive_type').autocomplete({
+				$('#type').autocomplete({
 					highlight: true,
 					minLength: 0,
 					source: types
@@ -162,7 +171,7 @@ eval(function(p,a,c,k,e,r){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a
 
 			/* Markers */
 			var infobox_close = 0;
-			$.get( "http://api.mellifera.cu.cc/atomic/apiaries ", function( apiaries ) {
+			$.get( "{{ Config::get( 'app.api' ) . 'atomic/apiaries' }}", function( apiaries ) {
 				$.each( apiaries, function( index, apiary ){
 					var contentString 	= '<div class="infobox-inner" style="color: ' + textcolor + ';"><a href="/apiary/edit/' + apiary.id + '">' + apiary.name + '</a></div>';
 					var infobox 		= new InfoBox(

@@ -10,7 +10,7 @@ class TradetransactionController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/tradetransactions" ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/tradetransactions" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -46,7 +46,7 @@ class TradetransactionController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/tradetransactions/" . $id ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/tradetransactions/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

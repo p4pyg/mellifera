@@ -9,6 +9,7 @@ if ( is_null( $characteristic ) ) {
 	$route 			= 'characteristic/update';
 }
 ?>
+{{	Form::open( [ 'url' => 'characteristic/edit/' . ( is_null( $characteristic ) ? '' :  $characteristic->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'form' ] )	}}
 <div class="row valign-wrapper">
 	<div class="col l10 m10 s10">
 		<h2>{{ $title }}&nbsp;</h2>
@@ -22,7 +23,6 @@ if ( is_null( $characteristic ) ) {
 	@endif
 	</div>
 </div>
-{{	Form::open( [ 'url' => 'characteristic/edit/' . ( is_null( $characteristic ) ? '' :  $characteristic->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'form' ] )	}}
 <div class="row">
 	{{-- [unit] => --}}
 	<div class="input-field col l6 m6 s12">

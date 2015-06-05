@@ -9,6 +9,7 @@ if ( is_null( $race ) ) {
 	$route 			= 'race/update';
 }
 ?>
+{{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'race_form' ] )	}}
 <div class="row valign-wrapper">
 	<div class="col l8 m8 s8">
 		<h2>{{ $title }}&nbsp;</h2>
@@ -25,13 +26,12 @@ if ( is_null( $race ) ) {
 	@endif
 	</div>
 </div>
-{{	Form::open( [ 'url' => 'race/edit/' . ( is_null( $race ) ? '' :  $race->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'race_form' ] )	}}
 <div class="row">
 	<div class="col l6 m6 s12">
 		<h5>@lang( 'races.global' )</h5>
 		<div class="input-field col l12 m12 s12">
-			<input type="text" name="race_name" id="race_name" class="validate" value="{{ is_null( $race ) ? '' : $race->race_name }}">
-			<label for="race_name">@lang( 'races.race_name' )</label>
+			<input type="text" name="name" id="name" class="validate" value="{{ is_null( $race ) ? '' : $race->name }}">
+			<label for="name">@lang( 'races.name' )</label>
 		</div>
 		<div class="input-field col l12 m12 s12">
 			<input type="text" name="geographical_origin" id="geographical_origin" class="validate" value="{{ is_null( $race ) ? '' : $race->geographical_origin }}">
@@ -84,4 +84,7 @@ if ( is_null( $race ) ) {
 	</div>
 </div>
 {{ Form::close() }}
+<script>
+var names = {{ BeeTools::get_arraylist( 'races', 'name' ) }};
+</script>
 @stop

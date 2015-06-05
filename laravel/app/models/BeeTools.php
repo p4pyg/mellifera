@@ -64,7 +64,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $string,
+			'url' 		=> Config::get( 'app.api' ) . 'atomic/' . $string,
 			'params' 	=> json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -86,7 +86,7 @@ class BeeTools {
 		foreach ( $data as $key => $item )
 			$entity[$key] = $item === '' ? null : $item;
 		$request = [
-			'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $string,
+			'url' 		=> Config::get( 'app.api' ) . 'atomic/' . $string,
 			'params' 	=>  json_encode( $entity ),
 			'headers' 	=> ['Content-type: application/json' ]
 		];
@@ -104,7 +104,7 @@ class BeeTools {
 	 */
 	static public function entity_delete( $id, $string )
 	{
-		$url 	= "http://api.mellifera.cu.cc/atomic/" . $string . "/" . $id;
+		$url 	= Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $id;
 		$json 	= '{}';
 		$ch 	= curl_init();
 		curl_setopt( $ch, CURLOPT_URL, $url );
@@ -117,6 +117,38 @@ class BeeTools {
 
 		return $response;
 	}
+
+	/**
+	 * Méthode permettant de lister des libellés nomenclaturés couplés à une liste de libellés personnalisés
+	 * @param string $entity nom de l'entité pour laquelle on souhaite créer l'autocomplétion
+	 * @param string $column nom de la propriété à autocompléter
+	 * @return Response JSON Array
+	 */
+	static public function get_arraylist( $entity, $column, $custom_only = null ){
+
+		$client 		= new HttpClient;
+		$master 		= str_singular( $entity ) . '_' . str_plural( $column );
+
+
+		$response 		= $client->get( [ 'url' => Config::get( 'app.api' ) . 'column/' . $entity . '/' . $column ] );
+		$custom_types 	= $response->json();
+
+		if( is_null( $custom_only ) ){
+			$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . 'column/' . $master . '/name' ] );
+			$top_types 	= $response->json();
+
+			$arraylist 	= array_merge( $top_types->datas, $custom_types->datas );
+		}else
+			$arraylist 	= $custom_types->datas;
+
+
+		foreach ( $arraylist as $key => $item )
+			if( $item->value == ''|| is_null( $item->value ) )
+				unset( $arraylist[ $key ] );
+
+		return json_encode( $arraylist );
+	}
+
 
 	/**
 	 * Webservice errors

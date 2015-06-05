@@ -115,7 +115,7 @@ Route::get( 'structures', [ function(){
 
 Route::get( 'structures/{param}', [ function( $param){
 	$request = [
-		'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $param,
+		'url' 		=> Config::get( 'app.api' ) . "atomic/" . $param,
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
@@ -131,7 +131,7 @@ Route::get( 'structures/{param}', [ function( $param){
 Route::post( 'structures', [ function(){
 	$inputs = Input::all();
 	$request = [
-		'url' 		=> "http://api.mellifera.cu.cc/atomic/" . $inputs['entity'],
+		'url' 		=> Config::get( 'app.api' ) . "atomic/" . $inputs['entity'],
 		'params' 	=> '{}',
 		'headers' 	=> ['Content-type: application/json' ]
 	];
@@ -148,12 +148,12 @@ Route::post( 'structures', [ function(){
  */
 Route::get( 'seeds', function( ){
 	// Type de ruches
-	// $table = 'beehivetypes';
-	// $column= 'label';
+	// $table = 'beehive_types';
+	// $column= 'name';
 	// $datas = [ 'Ronde', 'Bâtisse chaude', 'Bâtisse froide', 'Warré', 'WBC', 'Langstroth', 'Dadant'];
 	//
 	// Espèce d'abeilles
-	// $table = 'racenames';
+	// $table = 'race_names';
 	// $column= 'name';
 	// $datas = [ 'Bretonne', 'Corse', 'Cévenole', 'Espagnole', 'Carnica', 'Ligustica', 'Sicula', 'Cecropia', 'Macedonica' ];
 

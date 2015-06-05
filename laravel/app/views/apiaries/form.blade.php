@@ -9,6 +9,7 @@ if ( is_null( $apiary ) ) {
 	$route 			= 'apiary/update';
 }
 ?>
+{{	Form::open( [ 'url' => 'apiary/edit/' . ( is_null( $apiary ) ? '' :  $apiary->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'apiary_form' ] )	}}
 <div class="row valign-wrapper">
 	<div class="col l10 m10 s10">
 		<h2>{{ $title }}&nbsp;</h2>
@@ -22,7 +23,6 @@ if ( is_null( $apiary ) ) {
 	@endif
 	</div>
 </div>
-{{	Form::open( [ 'url' => 'apiary/edit/' . ( is_null( $apiary ) ? '' :  $apiary->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'apiary_form' ] )	}}
 <div class="row">
 	<div class="input-field col l6 m6 s12">
 		<input type="text" name="name" id="name" class="validate" value="{{ is_null( $apiary ) ? '' : $apiary->name }}">

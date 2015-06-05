@@ -19,7 +19,7 @@
 @else
 		<tr id="race-{{ $race->id }}" data-item-index="{{ $race->id }}">
 			<td class="center-align">{{ $race->id }}</td>
-			<td>{{ ucfirst( $race->race_name->name ) }}</td>
+			<td>{{ ucfirst( $race->name ) }}</td>
 			<td class="center-align">{{ $race->life_span }}</td>
 			<td>{{ $race->geographical_origin }}</td>
 			<td class="center-align">{{ ! is_null( $race->characteristics ) ? '<i class="mdi-action-done light-green-text text-darken-1 "></i>' : '<i class="mdi-communication-dnd-on deep-orange-text text-darken-1"></i>' }}</td>

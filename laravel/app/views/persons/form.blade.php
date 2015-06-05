@@ -9,6 +9,7 @@ if ( is_null( $person ) ) {
 	$route 			= 'person/update';
 }
 ?>
+{{	Form::open( [ 'url' => 'person/edit/' . ( is_null( $person ) ? '' :  $person->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'person_form' ] )	}}
 <div class="row valign-wrapper">
 	<div class="col l10 m10 s10">
 		<h2>{{ $title }}&nbsp;</h2>
@@ -22,7 +23,6 @@ if ( is_null( $person ) ) {
 	@endif
 	</div>
 </div>
-{{	Form::open( [ 'url' => 'person/edit/' . ( is_null( $person ) ? '' :  $person->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'person_form' ] )	}}
 <div class="row">
 	<div class="input-field col l6 m6 s12">
 		<input type="text" name="first_name" id="first_name" class="validate" value="{{ is_null( $person ) ? '' : $person->first_name }}">

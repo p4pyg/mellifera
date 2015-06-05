@@ -9,6 +9,7 @@ if ( is_null( $queen ) ) {
 		$route = 'queen/update';
 }
 ?>
+{{  Form::open( [ 'url' => 'queen/edit/' . ( is_null( $queen ) ? '' : $queen->id ), 'method' => 'POST', 'class' => 'col s12', 'id' => 'queen_form' ] )  }}
 <div class="row valign-wrapper">
 	<div class="col l10 m10 s10">
 			<h2>{{ $title }}&nbsp;</h2>
@@ -22,7 +23,6 @@ if ( is_null( $queen ) ) {
 	@endif
 	</div>
 </div>
-{{  Form::open( [ 'url' => 'queen/edit/' . ( is_null( $queen ) ? '' : $queen->id ), 'method' => 'POST', 'class' => 'col s12', 'id' => 'queen_form' ] )  }}
 <div class="row">
 	<div class="input-field col l6 m6 s12">
 		<input type="text" class="datepicker picker__input" name="birth_date" id="birth_date">

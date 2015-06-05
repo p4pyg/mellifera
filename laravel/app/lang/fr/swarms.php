@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return array(
 
@@ -11,7 +11,7 @@ return array(
 	|
 	*/
 
-
+	"news" 				=> "Aucun essaim n'existe, vous allez créer votre premier essaim.",
 	"swarm"				=> "Essaim",
 	"swarms"			=> "Essaims",
 	"create_new_swarm"	=> "Créer un nouvel essaim",

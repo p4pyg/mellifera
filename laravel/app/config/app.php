@@ -28,6 +28,8 @@ return array(
 
 	'url' => 'http://www.mellifera.cu.cc/',
 
+	'api' => 'http://api.mellifera.cu.cc/',
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Timezone

@@ -10,7 +10,7 @@ class CharacteristicController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/characteristics" ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/characteristics" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -45,7 +45,7 @@ class CharacteristicController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/characteristics/" . $id ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/characteristics/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

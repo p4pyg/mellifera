@@ -9,8 +9,9 @@ if ( is_null( $treatment ) ) {
 	$route 			= 'treatment/update';
 }
 ?>
+{{	Form::open( [ 'url' => 'treatment/edit/' . ( is_null( $treatment ) ? '' :  $treatment->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'treatment_form' ] )	}}
 <div class="row valign-wrapper">
-<div class="col l8 m8 s8">
+	<div class="col l8 m8 s8">
 		<h2>{{ $title }}&nbsp;</h2>
 	</div>
 	<div class="col l2 m2 s2 valign">
@@ -25,7 +26,6 @@ if ( is_null( $treatment ) ) {
 	@endif
 	</div>
 </div>
-{{	Form::open( [ 'url' => 'treatment/edit/' . ( is_null( $treatment ) ? '' :  $treatment->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'treatment_form' ] )	}}
 <div class="row">
 	<div class="col l6 m6 s12">
 		<div class="input-field col l12 m12 s12">

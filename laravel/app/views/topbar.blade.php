@@ -6,22 +6,22 @@
 			<li>{{ HTML::link( 'backoffice', 'Mon exploitation', [ "class" => "waves-effect waves-light" ] ) }}</li>
 			<li>{{ HTML::link( 'account', 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
 			<li>{{ HTML::link( 'logout', 'Me déconnecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
-			{{--@if(!Auth::check())
+			@if(!Auth::check())
 				<li>{{ HTML::link( 'login', 'Se connecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
 			@else
 				<li>{{ HTML::link( 'logout', 'Se deconnecter, [ "class" => "waves-effect waves-light" ]' ) }}</li>
-			@endif--}}
+			@endif
 		</ul>
 		<ul class="side-nav" id="mobile-menu">
 			<li>{{ HTML::link( 'backoffice', 'Mon exploitation', [ "class" => "waves-effect waves-light" ] ) }}</li>
 			<li>{{ HTML::link( 'account', 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
 			<li>{{ HTML::link( 'logout', 'Me déconnecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
 
-			{{--@if(Auth::check())
+			@if(Auth::check())
 				<li>{{ HTML::link( 'login', 'Se connecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
 			@else
 				<li>{{ HTML::link( 'logout', 'Se deconnecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
-			@endif--}}
+			@endif
 
 		</ul>
 	</div>

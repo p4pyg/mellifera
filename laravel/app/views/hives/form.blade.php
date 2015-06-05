@@ -9,6 +9,7 @@ if ( is_null( $hive ) ) {
 	$route 			= 'hive/update';
 }
 ?>
+{{	Form::open( [ 'url' => 'hive/edit/' . ( is_null( $hive ) ? '' :  $hive->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'hive_form' ] )	}}
 <div class="row valign-wrapper">
 	<div class="col l10 m10 s10">
 		<h2>{{ $title }}&nbsp;</h2>
@@ -22,7 +23,6 @@ if ( is_null( $hive ) ) {
 	@endif
 	</div>
 </div>
-{{	Form::open( [ 'url' => 'hive/edit/' . ( is_null( $hive ) ? '' :  $hive->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'hive_form' ] )	}}
 <div class="row">
 	<div class="input-field col l6 m6 s12">
 		<input type="text" name="code_number" id="code_number" class="validate" value="{{ is_null( $hive ) ? '' :  $hive->code_number  }}">
@@ -38,12 +38,12 @@ if ( is_null( $hive ) ) {
 		<p class="range-field">
 	</div>
 	<div class="input-field col l6 m6 s12">
-		<input type="text" name="beehive_type" id="beehive_type" value="{{ is_null( $hive ) ? '' : $hive->beehive_type }}">
-		<label for="beehive_type">@lang( 'hives.beehive_type' )</label>
+		<input type="text" name="type" id="type" value="{{ is_null( $hive ) ? '' : $hive->type }}">
+		<label for="type">@lang( 'hives.type' )</label>
 	</div>
 </div>
 {{ Form::close() }}
 <script>
-var types = {{ Hive::get_types() }};
+var types = {{ BeeTools::get_arraylist( 'beehives', 'type' ) }};
 </script>
 @stop

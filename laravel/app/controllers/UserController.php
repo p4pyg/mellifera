@@ -51,7 +51,7 @@ class UserController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/users" ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/users" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -84,13 +84,13 @@ class UserController extends \BaseController {
 			//$user->pass = mcrypt(Input::get('pass'));
 			//$user->pass = Hash::make(Input::get('pass'));
 			$user->password 	= Input::get('password');
-			$user->client_id  	= "id";
+			$user->client_id  	= Request::getClientIp();
 			$user->client_key 	= Config::get('app.key');
 			//dd($user);
 			//$user->person = {};
 
 			$request = [
-				'url' 		=> "http://api.mellifera.cu.cc/signup",
+				'url' 		=> Config::get( 'app.api' ) . "signup",
 				'params' 	=> json_encode( $user ),
 				'headers' 	=> ['Content-type: application/json' ]
 			];
@@ -111,7 +111,7 @@ class UserController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/users/" . $id ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/users/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

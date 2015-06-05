@@ -9,6 +9,7 @@ if ( is_null( $swarm ) ) {
 	$route 			= 'swarm/update';
 }
 ?>
+{{	Form::open( [ 'url' => 'swarm/edit/' . ( is_null( $swarm ) ? '' :  $swarm->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'swarm_form' ] )	}}
 <div class="row valign-wrapper">
 	<div class="col l8 m8 s8">
 		<h2>{{ $title }}&nbsp;</h2>
@@ -25,7 +26,6 @@ if ( is_null( $swarm ) ) {
 	@endif
 	</div>
 </div>
-{{	Form::open( [ 'url' => 'swarm/edit/' . ( is_null( $swarm ) ? '' :  $swarm->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'swarm_form' ] )	}}
 <div class="row">
 	<div class="col l6 m6 s12">
 		<h5>@lang( 'swarms.global' )</h5>

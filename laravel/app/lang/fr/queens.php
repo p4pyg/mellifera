@@ -10,7 +10,7 @@ return array(
 	| Les lignes suivantes représentent les traductions en français des termes et expressions utilisés lorsque l'on parle de reines
 	|
 	*/
-
+	"news" 					=> "Aucune reine n'existe, vous allez créer votre première reine.",
 	"queen" 				=> "Reine",
 	"queens" 				=> "Reines",
 	"id" 					=> "Numéro",

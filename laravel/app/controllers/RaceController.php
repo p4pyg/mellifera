@@ -10,7 +10,7 @@ class RaceController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/races" ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/races" ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -45,7 +45,7 @@ class RaceController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => "http://api.mellifera.cu.cc/atomic/races/" . $id ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/races/" . $id ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -78,14 +78,14 @@ class RaceController extends BaseController {
 		$characteristics[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
 		// Refactored in BeeTools Model
 		$response_characteristic 	= BeeTools::entity_store( $characteristics, 'characteristics' );
-		$view 		= BeeTools::is_error( $response );
+		$view 		= BeeTools::is_error( $response_characteristic );
 		if( $view ){
 			return $view;
 		}
 		$race['characteristics'] 	= $response_characteristic;
 		// Refactored in BeeTools Model
 		$response_race 				= BeeTools::entity_store( $race, 'races' );
-		$view 		= BeeTools::is_error( $response );
+		$view 		= BeeTools::is_error( $response_race );
 		if( $view ){
 			return $view;
 		}
