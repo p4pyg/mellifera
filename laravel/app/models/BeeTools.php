@@ -155,7 +155,7 @@ class BeeTools {
 	 * @param  response $response Object Response from Webservice
 	 * @return  View Custom view for display error | false
 	 */
-	static public function is_error( $response ){
+	static public function is_error( Vinelab\Http\Response $response ){
 		$error = [];
 		$r = $response->json();
 		if( empty( $r ) )
