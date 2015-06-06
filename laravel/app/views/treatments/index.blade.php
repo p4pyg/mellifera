@@ -14,7 +14,7 @@
 					<th class="align-left" data-sortable="true">@lang('treatments.id')</th>
 					<th data-sortable="true">@lang('treatments.treatment_date')</th>
 					<th class="align-center" data-sortable="true">@lang('treatments.desease_treated')</th>
-					<th data-sortable="true">@lang('treatments.product_quantity')</th> 
+					<th data-sortable="true">@lang('treatments.product_quantity')</th>
 				</tr>
 			</thead>
 			<tbody>

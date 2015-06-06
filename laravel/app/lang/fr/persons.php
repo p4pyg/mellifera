@@ -27,6 +27,6 @@ return array(
 	"trades_with_sellers"	=> "Transactions avec vendeurs",
 	"trades_with_buyers"	=> "Transactions avec acheteurs",
 	"label"					=> "Etiquette"
-	
+
 
 );

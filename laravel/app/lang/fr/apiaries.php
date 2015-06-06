@@ -36,7 +36,4 @@ return array(
 	"notes" 			=> "Commentaire",
 	"rank" 				=> "Note",
 	"edit_apiary"		=> "Edition d'un rucher"
-
-
-
 );
