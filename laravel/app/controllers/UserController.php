@@ -87,14 +87,11 @@ class UserController extends \BaseController {
 		if($validator->passes()) {
 			$user 		 = new User;
 			$user->email = Input::get('email');
-			// TODO : faire fonctionner Hash::make() ou mcrypt()
-			//$user->pass = mcrypt(Input::get('pass'));
-			//$user->pass = Hash::make(Input::get('pass'));
+
 			$user->password 	= Input::get('password');
 			$user->client_id  	= Request::getClientIp();
 			$user->client_key 	= Config::get('app.key');
-			//dd($user);
-			//$user->person = {};
+
 
 			$request = [
 				'url' 		=> Config::get( 'app.api' ) . "signup",
