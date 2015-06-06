@@ -60,6 +60,7 @@ class UserController extends \BaseController {
 			return $view;
 		}
 		$users 	= $response->json();
+
 		return View::make( 'users.index', [ "users" => $users ] );
 	}
 
@@ -74,10 +75,10 @@ class UserController extends \BaseController {
 		// Todo
 	}
 	/**
-	 * Show the form for creating a new user.
+	 * Show the form for creating owner.
 	 * @return View users.form with user null
 	 */
-	public function create() {
+	public function create_owner() {
 		$validator = Validator::make( Input::all(), User::$rules );
 
 		if($validator->passes()) {
@@ -105,6 +106,17 @@ class UserController extends \BaseController {
 		} // if validator
 
 	} // postCreate
+
+	/**
+	 * Show the form for creating a new user.
+	 * @return View users.form with user null
+	 */
+	public function create()
+	{
+		$user = null;
+		return View::make( 'users.form', [ 'user' => $user ] );
+	}
+
 	/**
 	 * Show the form for editing the specified user.
 	 * @param  int  $id
@@ -139,16 +151,37 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		$inputs 	= Input::except( '_token' );
-		// Refactored in BeeTools Model
-		$response 	= BeeTools::entity_store( $inputs, 'users' );
-		$view 		= BeeTools::is_error( $response );
-		if( $view ){
-			return $view;
-		}
-		// WORK IN PROGRESS
-		// return response
-		return Redirect::to( 'users' );
+		$validator = Validator::make( Input::all(), User::$rules );
+
+		if($validator->passes()) {
+			$user 		 = new User;
+			$user->email = Input::get('email');
+
+			$user->password 	= Input::get('password');
+			$user->client_id  	= Request::getClientIp();
+			$user->client_key 	= Config::get('app.key');
+			$user->group 		= [ "id" => Auth::user()->group->id ];
+
+
+			$request = [
+				'url' 		=> Config::get( 'app.api' ) . "signup",
+				'params' 	=> json_encode( $user ),
+				'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+			];
+			$client 	= new HttpClient;
+
+			// Add here the response test on create user !important
+			$response = $client->post( $request );
+			$view 		= BeeTools::is_error( $response );
+			if( $view ){
+				return $view;
+			}
+
+
+			return Redirect::to( 'users' )->with( 'message', 'users.signup_success' );
+		} else {
+			return Redirect::back()->with( 'message','users.signup_error' )->withErrors( $validator )->withInput();
+		} // if validator
 	}
 	/**
 	 * Update the specified user in storage.

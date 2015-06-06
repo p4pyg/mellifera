@@ -1,5 +1,4 @@
-
-<?php if( !isset($entity) ) $entity = $item; ?>
+<?php if( ! isset( $entity ) ) $entity = $item; ?>
 {{ HTML::decode(
 	HTML::link(
 		$entity ,

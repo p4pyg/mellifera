@@ -99,7 +99,7 @@ Route::get('backoffice', [ function()
 
 // Inscription
 Route::get( 'signup', 	[ 'uses' => 'UserController@signup', 	'as' => 'backoffice.signup' ] );
-Route::post( 'signup', 	[ 'uses' => 'UserController@create', 	'as' => 'backoffice.create' ] );
+Route::post( 'signup', 	[ 'uses' => 'UserController@create_owner', 	'as' => 'backoffice.create_owner' ] );
 // Connexion
 Route::get( 'login', 	[ 'uses' => 'UserController@login', 	'as' => 'backoffice.login' 	] );
 Route::post( 'signin', 	[ 'uses' => 'UserController@signin', 	'as' => 'backoffice.signin' ] );
