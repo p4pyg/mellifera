@@ -96,7 +96,9 @@ class UserController extends \BaseController {
 				'headers' 	=> ['Content-type: application/json' ]
 			];
 			$client 	= new HttpClient;
-			$response 	= $client->post( $request );
+
+			// Add here the response test on create user !important
+			$client->post( $request );
 
 			return Redirect::to( 'login' )->with( 'message', 'users.signup_success' );
 		} else {

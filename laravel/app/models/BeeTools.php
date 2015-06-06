@@ -170,6 +170,7 @@ class BeeTools {
 		if( !empty( $error ) ){
 			if( $error['blank'] ){ // si aucun élément n'est retourné, redirection vers le formulaire de création
 				list( $entity, $page ) = explode( '.', Route::currentRouteName() );
+				unset( $page );
 				return Redirect::to( str_singular( $entity ) . '/edit' )->with( [ 'message' => trans( $entity . '.news') ] );
 			}
 			return View::make( 'errors.http_response', [ 'response' => $error ] );
