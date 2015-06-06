@@ -15,7 +15,7 @@ return array(
 	"news" 						=> "Aucune caractériqtique n'existe",
 	"id" 						=> "Numéro",
 	"date"						=> "Date",
-	"racial_type"				=> "Race",
+	"racial_type"				=> "Type de la race",
 	"aggressivness_level"		=> "Niveau d'agressivité",
 	"swarming_level"			=> "Niveau d'essaim",
 	"winter_hardiness_level"	=> "Niveau de dureté de l'hiver",

@@ -20,11 +20,13 @@ Nous utiliserons dans ce projet les outils de developpement back-end modernes te
 *  Laravel (v4.2) http://laravel.com/docs/4.2
 _L'utilisation de la dernière version (5) engendrerait une consommation trop importante de temps pour l'apprentissage de l'utilisation et l'intégration des nouveautés mais à déteminer tout de même_
 
-Pour le framework front-end, le choix se porte sur :
+Pour la partie front-end, le choix se porte sur deux frameworks :
 
+*  Materialize CSS http://materializecss.com
 *  Ink CSS http://ink.sapo.pt/
 
-Qui se démarque par l'intégration de facilitateur ergonomiques et sa documentation bien fournie
+Qui se démarquent par l'intégration de facilitateur ergonomiques et leurs documentations bien fournies.
+De façon générale, c'est MaterializeCSS qui est utilisé majoritairement. Seul quelques composants seulement sont importés à partir de InkCSS
 
 D'autres outils seront utilisés cette fois au niveau de l'environnement de développement :
 
@@ -34,6 +36,6 @@ D'autres outils seront utilisés cette fois au niveau de l'environnement de dév
 *  Git http://git-scm.com/ pour la gestion des versions
 *  Phpdocs http://www.phpdoc.org/ pour la production de la documentation
 
-TEST!
+Enfin une phase d'audit PHP à été mise en oeuvre à l'aide SensioLabsInsight ainsi que l'analyseur de coût BlackFire.io
 
 

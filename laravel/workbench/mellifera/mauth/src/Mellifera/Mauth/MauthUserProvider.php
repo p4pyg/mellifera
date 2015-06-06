@@ -20,7 +20,7 @@ class MauthUserProvider implements UserProviderInterface{
 			$request = [
 				'url' 		=> "http://api.mellifera.cu.cc/signin",
 				'params' 	=> json_encode( $cred ),
-				'headers' 	=> ['Content-type: application/json; APIKEY:' . $cred['client_key'] ]
+				'headers' 	=> ['Content-type: application/json;']
 			];
 			$client 	= new HttpClient;
 			$response 	= $client->post( $request );
@@ -34,8 +34,9 @@ class MauthUserProvider implements UserProviderInterface{
 					'token' 	=> $data->token,
 					'person' 	=> $data->person,
 					'group' 	=> $data->group,
-					'is_owner' 	=> ( $data->id === $data->group->owner ? true : false )
+					'is_owner' 	=> false
 					] );
+				\Session::put('api_token', $data->token );
 				\Session::flash( 'message', trans( 'users.welcome') );
 			}else{
 				$data = $response->json();
@@ -75,14 +76,18 @@ class MauthUserProvider implements UserProviderInterface{
 		$user = null;
 		$request = [
 				'url' 		=> "http://api.mellifera.cu.cc/atomic/users/" . $id,
-				'headers' 	=> ['Content-type: application/json; APIKEY:' . \Config::get( 'app.key' ) ]
+				'headers' 	=> ['Content-type: application/json;','APIKEY:' . \Session::get( 'api_token' ) ]
 			];
 		$client 	= new HttpClient;
 		$response 	= $client->get( $request );
 		$data 		= $response->json();
 
 		$group 		= \User::get_group( $data->group->id );
-		$person 	= \User::get_person( $data->person->id );
+
+		if( ! is_null( $data->person ) )
+			$person 	= \User::get_person( $data->person->id );
+		else
+			$person = null;
 
 		$user 		= new \Illuminate\Auth\GenericUser( [
 						'id' 		=> $data->id,

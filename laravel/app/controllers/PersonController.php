@@ -10,7 +10,7 @@ class PersonController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/persons" ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/persons", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -46,7 +46,7 @@ class PersonController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/persons/" . $id ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/persons/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

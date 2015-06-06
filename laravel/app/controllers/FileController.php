@@ -10,7 +10,10 @@ class FileController extends BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/files" ] );
+		$response 	= $client->get( [
+										'url' => Config::get( 'app.api' ) . "atomic/files",
+										'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+									] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -45,7 +48,10 @@ class FileController extends BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/files/" . $id ] );
+		$response 	= $client->get( [
+										'url' => Config::get( 'app.api' ) . "atomic/files/" . $id,
+										'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+									] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

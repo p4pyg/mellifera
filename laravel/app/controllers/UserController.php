@@ -54,7 +54,7 @@ class UserController extends \BaseController {
 	public function index()
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/users" ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/users", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;
@@ -113,7 +113,7 @@ class UserController extends \BaseController {
 	public function edit( $id )
 	{
 		$client 	= new HttpClient;
-		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/users/" . $id ] );
+		$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/users/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
 		$view 		= BeeTools::is_error( $response );
 		if( $view ){
 			return $view;

@@ -66,7 +66,7 @@ class BeeTools {
 		$request = [
 			'url' 		=> Config::get( 'app.api' ) . 'atomic/' . $string,
 			'params' 	=> json_encode( $entity ),
-			'headers' 	=> ['Content-type: application/json' ]
+			'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->post( $request );
@@ -88,7 +88,7 @@ class BeeTools {
 		$request = [
 			'url' 		=> Config::get( 'app.api' ) . 'atomic/' . $string,
 			'params' 	=>  json_encode( $entity ),
-			'headers' 	=> ['Content-type: application/json' ]
+			'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
 		];
 		$client 	= new HttpClient;
 		$response 	= $client->put( $request );
@@ -107,6 +107,7 @@ class BeeTools {
 		$url 	= Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $id;
 		$json 	= '{}';
 		$ch 	= curl_init();
+		// Add here headers : 'Content-type: application/json' & 'APIKEY:' . \Session::get( 'api_token' )  important!
 		curl_setopt( $ch, CURLOPT_URL, $url );
 		curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "DELETE" );
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, $json );
@@ -130,11 +131,17 @@ class BeeTools {
 		$master 		= str_singular( $entity ) . '_' . str_plural( $column );
 
 
-		$response 		= $client->get( [ 'url' => Config::get( 'app.api' ) . 'column/' . $entity . '/' . $column ] );
+		$response 		= $client->get( [
+											'url' 		=> Config::get( 'app.api' ) . 'column/' . $entity . '/' . $column,
+											'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+										] );
 		$custom_types 	= $response->json();
 
 		if( is_null( $custom_only ) ){
-			$response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . 'column/' . $master . '/name' ] );
+			$response 	= $client->get( [
+											'url' 		=> Config::get( 'app.api' ) . 'column/' . $master . '/name',
+											'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+										] );
 			$top_types 	= $response->json();
 
 			$arraylist 	= array_merge( $top_types->datas, $custom_types->datas );

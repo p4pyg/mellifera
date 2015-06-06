@@ -15,11 +15,10 @@ return array(
 	"races" 				=> "Espèces",
 	"global" 				=> "Généralité",
 	"id" 					=> "Numéro",
-	"raceName"				=> "Nom",
+	"name"					=> "Nom",
 	"characteristics"		=> "Caractérisques",
 	"geographical_origin"	=> "Origine géographique",
 	"life_span"				=> "Durée de vie",
-	"race_name"				=> "Nom",
 	'create_new_race' 		=> "Création d'une nouvelle espèce",
 	'edit_race' 			=> "Modification d'une espèce"
 
