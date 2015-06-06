@@ -1,6 +1,5 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
-use Mellifera\MeAuth as MeAuth;
 
 class UserController extends \BaseController {
 
