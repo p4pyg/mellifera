@@ -34,10 +34,7 @@ class UserController extends \BaseController {
 	 * @return Back with message confirm OR fail
 	 */
 	public function signin() {
-		// echo '<pre>';
-		// print_r(Input::all());
-		// echo '</pre>';
-		// die('<p style="color:orange; font-weight:bold;">Raison : Validator ici</p>');
+		// Add validator here
 		if( Auth::attempt( [
 							'email' 	=> Input::get( 'email' ),
 							'password' 	=> Input::get( 'password' ),

@@ -1,11 +1,3 @@
-<?php
-
-// echo '<pre>';
-// print_r( Auth::user() );
-// echo '</pre>';
-// die('<p style="color:orange; font-weight:bold;">Raison</p>');
-
- ?>
 <nav>
 	<div class="nav-wrapper">
 		<a href="/" class="brand-logo"><h4>Mellifera<small> Back-office</small></h4></a>
