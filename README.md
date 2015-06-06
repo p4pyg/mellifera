@@ -3,7 +3,7 @@
 _Membres du groupe :_
 Cyril - Yoann - Laurent
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/25e2b5cb-c6e7-4cd9-81d5-f6ad53d64a1a/small.png)](https://insight.sensiolabs.com/projects/25e2b5cb-c6e7-4cd9-81d5-f6ad53d64a1a)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/25e2b5cb-c6e7-4cd9-81d5-f6ad53d64a1a/big.png)](https://insight.sensiolabs.com/projects/25e2b5cb-c6e7-4cd9-81d5-f6ad53d64a1a)
 
 _Objectifs :_
 
