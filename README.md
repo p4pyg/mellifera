@@ -38,6 +38,6 @@ D'autres outils seront utilisés cette fois au niveau de l'environnement de dév
 
 Enfin une phase d'audit PHP à été mise en oeuvre à l'aide SensioLabsInsight ainsi que l'analyseur de coût BlackFire.io
 
-D'autres outils statistiques et qualité de code ont été déployer à toute fin utile.
+D'autres outils statistiques et qualité de code ont été déployé à toute fin utile.
 
 
