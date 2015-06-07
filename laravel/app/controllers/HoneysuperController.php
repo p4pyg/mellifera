@@ -50,7 +50,7 @@ class HoneysuperController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [
-                                    'url'       => Config::get( 'app.api' ) . "atomic/honeysupers/" . $id ],
+                                    'url'       => Config::get( 'app.api' ) . "atomic/honeysupers/" . $id ,
                                     'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
         $view 		= BeeTools::is_error( $response );
