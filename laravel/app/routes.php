@@ -1,5 +1,5 @@
 <?php
-	use Vinelab\Http\Client as HttpClient;
+    use Vinelab\Http\Client as HttpClient;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,59 +18,59 @@
 /**
  * Visualisation des structures JSON pour chaque entité
  */
-Route::get( 'structures', [ function(){
-	$entities = [ "apiaries", "beehives", "beehivetypes", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "racenames", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
+Route::get( 'structures', [ function () {
+    $entities = [ "apiaries", "beehives", "beehivetypes", "characteristics", "feedings", "files", "honeysupers", "nuisances", "persons", "products", "productions", "queens", "racenames", "races", "strengthes", "swarms", "tradetransactions", "treatments", "units", "weathers", "users" ];
 
-	return View::make( 'structures.search', [ 'entities' => $entities ] );
+    return View::make( 'structures.search', [ 'entities' => $entities ] );
 } , 'as' => 'structures.list' ]);
 
 
-Route::get( 'structures/{param}', [ function( $param){
-	$request = [
-		'url' 		=> Config::get( 'app.api' ) . "atomic/" . $param,
-		'params' 	=> '{}',
-		'headers' 	=> ['Content-type: application/json' ]
-	];
-	$client 	= new HttpClient;
-	$response 	= $client->post( $request );
-	$structures[ $param ] = $response->json();
+Route::get( 'structures/{param}', [ function ($param) {
+    $request = [
+        'url' 		=> Config::get( 'app.api' ) . "atomic/" . $param,
+        'params' 	=> '{}',
+        'headers' 	=> ['Content-type: application/json' ]
+    ];
+    $client 	= new HttpClient;
+    $response 	= $client->post( $request );
+    $structures[ $param ] = $response->json();
 
-	return View::make( 'structures.index', [ 'structures' => $structures ] );
+    return View::make( 'structures.index', [ 'structures' => $structures ] );
 
 }, 'as' => 'structures.api' ] );
 
 
-Route::post( 'structures', [ function(){
-	$inputs = Input::all();
-	$request = [
-		'url' 		=> Config::get( 'app.api' ) . "atomic/" . $inputs['entity'],
-		'params' 	=> '{}',
-		'headers' 	=> ['Content-type: application/json' ]
-	];
-	$client 	= new HttpClient;
-	$response 	= $client->post( $request );
-	$structures[ $inputs['entity'] ] = $response->json();
+Route::post( 'structures', [ function () {
+    $inputs = Input::all();
+    $request = [
+        'url' 		=> Config::get( 'app.api' ) . "atomic/" . $inputs['entity'],
+        'params' 	=> '{}',
+        'headers' 	=> ['Content-type: application/json' ]
+    ];
+    $client 	= new HttpClient;
+    $response 	= $client->post( $request );
+    $structures[ $inputs['entity'] ] = $response->json();
 
-	return View::make( 'structures.index', [ 'structures' => $structures ] );
+    return View::make( 'structures.index', [ 'structures' => $structures ] );
 }, 'as' => 'structures.search' ] );
 
 
 /**
  * Insérer de la données pour une colonne dans une table
  */
-Route::get( 'seeds', function( ){
-	// Type de ruches
-	// $table = 'beehive_types';
-	// $column= 'name';
-	// $datas = [ 'Ronde', 'Bâtisse chaude', 'Bâtisse froide', 'Warré', 'WBC', 'Langstroth', 'Dadant'];
-	//
-	// Espèce d'abeilles
-	// $table = 'race_names';
-	// $column= 'name';
-	// $datas = [ 'Bretonne', 'Corse', 'Cévenole', 'Espagnole', 'Carnica', 'Ligustica', 'Sicula', 'Cecropia', 'Macedonica' ];
+Route::get( 'seeds', function () {
+    // Type de ruches
+    // $table = 'beehive_types';
+    // $column= 'name';
+    // $datas = [ 'Ronde', 'Bâtisse chaude', 'Bâtisse froide', 'Warré', 'WBC', 'Langstroth', 'Dadant'];
+    //
+    // Espèce d'abeilles
+    // $table = 'race_names';
+    // $column= 'name';
+    // $datas = [ 'Bretonne', 'Corse', 'Cévenole', 'Espagnole', 'Carnica', 'Ligustica', 'Sicula', 'Cecropia', 'Macedonica' ];
 
-	foreach ($datas as $data)
-		BeeTools::entity_store( [ $column => $data ], $table );
+    foreach ($datas as $data)
+        BeeTools::entity_store( [ $column => $data ], $table );
 
 } );
 
@@ -80,17 +80,15 @@ Route::get( 'seeds', function( ){
 /**
  * Accès landing page
  */
-Route::get('/', [ function()
-{
-	return View::make('landing.index');
+Route::get('/', [ function () {
+    return View::make('landing.index');
 }, 'as' => 'landing.index' ] );
 
 /**
  * Accès back-office
  */
-Route::get('backoffice', [ function()
-{
-	return View::make('home');
+Route::get('backoffice', [ function () {
+    return View::make('home');
 }, 'as' => 'backoffice.home' ] );
 
 /**
@@ -294,6 +292,3 @@ Route::get( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@edit', 		'as' => 'uni
 Route::post( 'unit/edit', 		[ 'uses' => 'UnitController@store', 	'as' => 'units.store' 	] );
 Route::post( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
 Route::get( 'unit/delete/{id}',	[ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
-
-
-

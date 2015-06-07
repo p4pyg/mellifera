@@ -30,7 +30,10 @@ class MauthUser implements UserInterface{
 	 */
 	public function getAuthIdentifier()
 	{
-		return $this->user->id;
+		if( !is_null( $this->user ) )
+			return $this->user->id;
+		else
+			return false;
 	}
 
 	/**

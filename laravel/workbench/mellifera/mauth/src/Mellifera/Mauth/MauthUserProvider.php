@@ -29,11 +29,11 @@ class MauthUserProvider implements UserProviderInterface{
 				$data = $response->json();
 
 				$user = new \Illuminate\Auth\GenericUser( [
-					'id' 		=> $data->id,
-					'email' 	=> $data->email,
-					'token' 	=> $data->token,
-					'person' 	=> $data->person,
-					'group' 	=> $data->group,
+					'id' 		=> $data->id, 		// 303
+					'email' 	=> $data->email, 	// test@impermanenceweb.fr
+					'token' 	=> $data->token, 	// 0fb57035063f7c44c624a78a371727c5
+					'person' 	=> $data->person, 	// null
+					'group' 	=> $data->group, 	// 322
 					'is_owner' 	=> false
 					] );
 				\Session::put('api_token', $data->token );
@@ -82,24 +82,37 @@ class MauthUserProvider implements UserProviderInterface{
 		$response 	= $client->get( $request );
 		$data 		= $response->json();
 
-		$group 		= \User::get_group( $data->group->id );
+		if( ! is_null( $data->group ) )
+			$group 		= \User::get_group( $data->group->id );
+		else
+			$group = null;
+
+		// echo '<pre>';
+		// print_r($group);
+		// echo '</pre>';
+		// die('<p style="color:orange; font-weight:bold;">Raison</p>');
 
 		if( ! is_null( $data->person ) )
 			$person 	= \User::get_person( $data->person->id );
 		else
 			$person = null;
 
-		$user 		= new \Illuminate\Auth\GenericUser( [
+		if( ! is_null( $group ) )
+			$user 	= new \Illuminate\Auth\GenericUser( [
 						'id' 		=> $data->id,
 						'email' 	=> $data->email,
 						'token' 	=> $data->token,
 						'person' 	=> $person,
 						'group' 	=> $group,
 						'is_owner' 	=> ( $data->id === $group->owner->id ? true : false )
+					] );
+		else
+			$user = null;
 
-						] );
 		if( ! is_null( $user ) )
 			return new MauthUser( $user );
+		else
+			return null;
 	}
 
 
