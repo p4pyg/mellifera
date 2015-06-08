@@ -69,6 +69,12 @@ class RaceController extends BaseController
         $inputs = Input::except( '_token', 'characteristic_id');
         $race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_comment' );
 
+        $names = BeeTools::get_arraylist( 'races', 'name', false, true );
+
+        $type_id    = array_search( $inputs[ 'name' ] , $names );
+        $race_name  = $inputs[ 'name' ];
+
+        $inputs['name'] = [ 'name' => $race_name ];
 
         $characteristics = [];
         foreach ( $inputs as $key => $input )

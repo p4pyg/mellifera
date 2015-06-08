@@ -101,19 +101,30 @@
                 $('select').material_select();
 
 
-                @if( $entity == 'races' )
-                $('#name').autocomplete({
-                    highlight: true,
-                    minLength: 0,
-                    source: names
-                });
+                @if( $entity == 'races' || $entity == 'characteristics' )
+	                $('#name').autocomplete({
+	                    highlight: true,
+	                    minLength: 0,
+	                    source: names
+	                });
+	                $('#characteristic_racial_type').autocomplete({
+	                    highlight: true,
+	                    minLength: 0,
+	                    source: names
+	                });
+	                $('#racial_type').autocomplete({
+	                    highlight: true,
+	                    minLength: 0,
+	                    source: names
+	                });
+
                 @endif
                 @if( $entity == 'hives' )
-                $('#type').autocomplete({
-                    highlight: true,
-                    minLength: 0,
-                    source: types
-                });
+	                $('#type').autocomplete({
+	                    highlight: true,
+	                    minLength: 0,
+	                    source: types
+	                });
                 @endif
 
             } );

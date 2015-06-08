@@ -5,7 +5,7 @@
     <thead>
         <tr>
             <th class="align-left" data-sortable="true">@lang( 'characteristics.id' )</th>
-            {{-- <th data-sortable="true">@lang( 'characteristics.racial_type' )</th> --}}
+            <th data-sortable="true">@lang( 'characteristics.racial_type' )</th>
             <th data-sortable="true">@lang( 'characteristics.date' )</th>
             <th data-sortable="true">@lang( 'characteristics.aggressivness_level' )</th>
             <th data-sortable="true">@lang( 'characteristics.swarming_level' )</th>
@@ -17,7 +17,7 @@
     @foreach( $characteristics as $characteristic )
         <tr id="characteristic-{{ $characteristic->id }}" data-item-index="{{ $characteristic->id }}">
             <td>{{ $characteristic->id }}</td>
-            {{-- <td>{{ $characteristic->racial_type }}</td> --}}
+            <td>{{ $characteristic->racial_type }}</td>
             <td>{{ date( 'd-m-Y', strtotime( $characteristic->date ) ) }}</td>
             <td>{{ $characteristic->aggressivness_level }}</td>
             <td>{{ $characteristic->swarming_level }}</td>

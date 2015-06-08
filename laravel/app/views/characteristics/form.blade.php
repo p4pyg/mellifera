@@ -11,8 +11,11 @@ if ( is_null( $characteristic ) ) {
 ?>
 {{	Form::open( [ 'url' => 'characteristic/edit/' . ( is_null( $characteristic ) ? '' :  $characteristic->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'form' ] )	}}
 <div class="row valign-wrapper">
-    <div class="col l10 m10 s10">
+    <div class="col l8 m8 s8">
         <h2>{{ $title }}&nbsp;</h2>
+    </div>
+    <div class="col l2 m2 s2 valign">
+        @include( 'components.button_back', [ 'item' => 'characteristics' ] )
     </div>
     <div class="col l2 m2 s2 valign">
         @include( 'components.button_submit' )
@@ -62,4 +65,7 @@ if ( is_null( $characteristic ) ) {
     </div>
 </div>
 {{ Form::close() }}
+<script>
+var names = {{ BeeTools::get_arraylist( 'races', 'name' ) }};
+</script>
 @stop

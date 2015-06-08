@@ -13,7 +13,7 @@ return array(
 
     "characteristics"			=> "Caractéristiques",
     "news" 						=> "Aucune caractériqtique n'existe",
-    "id" 						=> "Numéro",
+    "id" 						=> "Identifiant",
     "date"						=> "Date",
     "racial_type"				=> "Type de la race",
     "aggressivness_level"		=> "Niveau d'agressivité",
@@ -22,6 +22,7 @@ return array(
     "wake_up_month"				=> "Mois de réveil",
     "notes"						=> "Commentaire",
     'create_new_characteristic' => "Création d'une nouvelle caractéristique",
-    'edit_characteristic' 		=> "Modification d'une caractéristique"
+    'edit_characteristic' 		=> "Modification d'une caractéristique",
+    "comment"                   => "Observation"
 
 );
