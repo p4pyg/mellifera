@@ -4,7 +4,7 @@
     <div class="navbar-fixed">
         <nav>
             <div class="nav-wrapper">
-                <a href="#"><img src="landing/images/bee.png" style="width:5rem; margin-top : 1rem; margin-left : 1rem" alt="BEE"></a>
+                <a href="#"><img src="images/logo4-frame.svg" style="width: 4rem; margin-left : 1rem" alt="BEE"></a>
                 <a href="#" data-activates="mobile-landing-menu" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                 <ul id="landing-menu" class="right hide-on-med-and-down">
                     <li><a href="/backoffice">Accès au back-office</a></li>
