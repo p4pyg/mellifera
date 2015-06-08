@@ -79,9 +79,16 @@ class HiveController extends \BaseController
     public function store()
     {
         $inputs     = Input::except( '_token' );
+        // Récupération de la collection des identifiants de beehive_types
+        $types = BeeTools::get_arraylist( 'beehives', 'type', false, true );
+
+        $type_id    = array_search( $inputs[ 'type' ] , $types );
+        $type_name  = $inputs[ 'type' ];
+
+        $inputs['type'] = [ 'name' => $type_name ];
         // Refactored in BeeTools Model
-        $response   = BeeTools::entity_store( $inputs, 'beehives' );
-        $view       = BeeTools::is_error( $response );
+        $response       = BeeTools::entity_store( $inputs, 'beehives' );
+        $view           = BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
@@ -111,6 +118,13 @@ class HiveController extends \BaseController
     {
         $hive           = Input::except( '_token' );
         $hive[ 'id' ]   = (int)$id;
+        // Récupération de la collection des identifiants de beehive_types
+        $types = BeeTools::get_arraylist( 'beehives', 'type', false, true );
+
+        $type_id    = array_search( $hive[ 'type' ] , $types );
+        $type_name  = $hive[ 'type' ];
+
+        $hive['type'] = [ 'name' => $type_name ];
         // Refactored in BeeTools Model
         $response       = BeeTools::entity_update( $hive, 'beehives' );
         $view       = BeeTools::is_error( $response );

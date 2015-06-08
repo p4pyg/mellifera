@@ -38,7 +38,7 @@ if ( is_null( $hive ) ) {
         <p class="range-field">
     </div>
     <div class="input-field col l6 m6 s12">
-        <input type="text" name="type" id="type" value="{{ is_null( $hive ) ? '' : $hive->type }}">
+        <input type="text" name="type" id="type" value="{{ is_null( $hive ) ? '' : $hive->type->name }}">
         <label for="type">@lang( 'hives.type' )</label>
     </div>
 </div>

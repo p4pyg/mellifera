@@ -23,6 +23,9 @@ class MauthUser implements UserInterface{
 		$this->is_owner = $user->is_owner;
 	}
 
+	public function getAuthUser(){
+		return $this->user;
+	}
 	/**
 	 * Get the unique identifier for the user.
 	 *

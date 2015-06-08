@@ -63,12 +63,12 @@ class BeeTools
         foreach ( $data as $key => $item )
             $entity[$key] = $item === '' ? null : $item;
         $request = [
-            'url' 		=> Config::get( 'app.api' ) . 'atomic/' . $string,
-            'params' 	=> json_encode( $entity ),
-            'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+            'url'       => Config::get( 'app.api' ) . 'atomic/' . $string,
+            'params'    => json_encode( $entity ),
+            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
         ];
-        $client 	= new HttpClient;
-        $response 	= $client->post( $request );
+        $client     = new HttpClient;
+        $response   = $client->post( $request );
         return $response;
     }
 
@@ -85,12 +85,12 @@ class BeeTools
         foreach ( $data as $key => $item )
             $entity[$key] = $item === '' ? null : $item;
         $request = [
-            'url' 		=> Config::get( 'app.api' ) . 'atomic/' . $string,
-            'params' 	=>  json_encode( $entity ),
-            'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+            'url'       => Config::get( 'app.api' ) . 'atomic/' . $string,
+            'params'    =>  json_encode( $entity ),
+            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
         ];
-        $client 	= new HttpClient;
-        $response 	= $client->put( $request );
+        $client     = new HttpClient;
+        $response   = $client->put( $request );
         return $response;
     }
 
@@ -103,16 +103,16 @@ class BeeTools
      */
     public static function entity_delete($id, $string)
     {
-        $url 	= Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $id;
-        $json 	= '{}';
-        $ch 	= curl_init();
+        $url    = Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $id;
+        $json   = '{}';
+        $ch     = curl_init();
         // Add here headers : 'Content-type: application/json' & 'APIKEY:' . \Session::get( 'api_token' )  important!
         curl_setopt( $ch, CURLOPT_URL, $url );
         curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "DELETE" );
         curl_setopt( $ch, CURLOPT_POSTFIELDS, $json );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        $result 	= curl_exec( $ch );
-        $response 	= json_decode( $result );
+        $result     = curl_exec( $ch );
+        $response   = json_decode( $result );
         curl_close( $ch );
 
         return $response;
@@ -122,36 +122,45 @@ class BeeTools
      * Méthode permettant de lister des libellés nomenclaturés couplés à une liste de libellés personnalisés
      * @param string $entity nom de l'entité pour laquelle on souhaite créer l'autocomplétion
      * @param string $column nom de la propriété à autocompléter
-     * @return Response JSON Array
+     * @param boolean $custom_only mettre à vrai pour retourner uniquement les types propres à l'exploitation
+     * @param boolean $retrieve_id mettre à vrai pour retourner un tableau indexé avec les identifiants des types et leur valeur respective
+     * @return mixed Response JSON Array / PHP array
      */
-    public static function get_arraylist($entity, $column, $custom_only = null)
+    public static function get_arraylist($entity, $column, $custom_only = false, $retrieve_id = false)
     {
-        $client 		= new HttpClient;
-        $master 		= str_singular( $entity ) . '_' . str_plural( $column );
+        $client         = new HttpClient;
+        $master         = str_singular( $entity ) . '_' . str_plural( $column );
 
 
-        $response 		= $client->get( [
-                                            'url' 		=> Config::get( 'app.api' ) . 'column/' . $entity . '/' . $column,
-                                            'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+        $response       = $client->get( [
+                                            'url'       => Config::get( 'app.api' ) . 'column/' . $entity . '/' . $column,
+                                            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                         ] );
-        $custom_types 	= $response->json();
+        $custom_types   = $response->json();
 
-        if( is_null( $custom_only ) ){
-            $response 	= $client->get( [
-                                            'url' 		=> Config::get( 'app.api' ) . 'column/' . $master . '/name',
-                                            'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+        if( ! $custom_only ){
+            $response   = $client->get( [
+                                            'url'       => Config::get( 'app.api' ) . 'column/' . $master . '/name',
+                                            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                         ] );
-            $top_types 	= $response->json();
+            $top_types  = $response->json();
 
-            $arraylist 	= array_merge( $top_types->datas, $custom_types->datas );
+            $arraylist  = array_merge( $top_types->datas, $custom_types->datas );
         }else
-            $arraylist 	= $custom_types->datas;
+            $arraylist  = $custom_types->datas;
 
 
         foreach ( $arraylist as $key => $item )
             if( $item->value == ''|| is_null( $item->value ) )
                 unset( $arraylist[ $key ] );
 
+        if( $retrieve_id ){
+            $array_id = [];
+            foreach ( $arraylist as $key => $item ) {
+                $array_id[ $item->id ] = $item->value;
+            }
+            return $array_id;
+        }
         return json_encode( $arraylist );
     }
 
@@ -169,9 +178,9 @@ class BeeTools
             $error['blank'] = true;
 
         if( $response->statusCode() != 200 ){
-            $error['code'] 		= $response->statusCode();
-            $error['message'] 	= "<pre>" .  $response->content() . "</pre>";
-            $error['blank'] 	= false;
+            $error['code']      = $response->statusCode();
+            $error['message']   = "<pre>" .  $response->content() . "</pre>";
+            $error['blank']     = false;
         }
 
         if( !empty( $error ) ){

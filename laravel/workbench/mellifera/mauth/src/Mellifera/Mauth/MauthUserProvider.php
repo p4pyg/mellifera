@@ -74,6 +74,8 @@ class MauthUserProvider implements UserProviderInterface{
 	public function retrieveById( $id ) {
 
 		$user = null;
+		$group= null;
+		$person=null;
 		$request = [
 				'url' 		=> "http://api.mellifera.cu.cc/atomic/users/" . $id,
 				'headers' 	=> ['Content-type: application/json;','APIKEY:' . \Session::get( 'api_token' ) ]
@@ -82,37 +84,33 @@ class MauthUserProvider implements UserProviderInterface{
 		$response 	= $client->get( $request );
 		$data 		= $response->json();
 
-		if( ! is_null( $data->group ) )
-			$group 		= \User::get_group( $data->group->id );
-		else
-			$group = null;
+		if( ! empty ( $data ) ){
 
-		// echo '<pre>';
-		// print_r($group);
-		// echo '</pre>';
-		// die('<p style="color:orange; font-weight:bold;">Raison</p>');
+			if( ! is_null( $data->group ) )
+				$group 		= \User::get_group( $data->group->id );
+			else
+				$group = null;
 
-		if( ! is_null( $data->person ) )
-			$person 	= \User::get_person( $data->person->id );
-		else
-			$person = null;
+			if( ! is_null( $data->person ) )
+				$person 	= \User::get_person( $data->person->id );
+			else
+				$person = null;
 
-		if( ! is_null( $group ) )
 			$user 	= new \Illuminate\Auth\GenericUser( [
 						'id' 		=> $data->id,
 						'email' 	=> $data->email,
 						'token' 	=> $data->token,
 						'person' 	=> $person,
 						'group' 	=> $group,
-						'is_owner' 	=> ( $data->id === $group->owner->id ? true : false )
+						'is_owner' 	=> ( ! is_null( $group ) && $data->id === $group->owner->id ? true : false )
 					] );
-		else
-			$user = null;
+		}
 
 		if( ! is_null( $user ) )
 			return new MauthUser( $user );
-		else
+		else{
 			return null;
+		}
 	}
 
 
