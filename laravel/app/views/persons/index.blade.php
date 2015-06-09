@@ -12,10 +12,6 @@
             <th data-sortable="true">@lang( 'persons.postcode' )</th>
             <th data-sortable="true">@lang( 'persons.city' )</th>
             <th data-sortable="true">@lang( 'persons.phone' )</th>
-            <th data-sortable="true">@lang( 'persons.email' )</th>
-            <th data-sortable="true">@lang( 'persons.user' )</th>
-            <th data-sortable="true">@lang( 'persons.trades_with_sellers' )</th>
-            <th data-sortable="true">@lang( 'persons.trades_with_buyers' )</th>
 
         </tr>
     </thead>
@@ -30,10 +26,6 @@
             <td>{{ $person->postcode }}</td>
             <td>{{ $person->city }}</td>
             <td>{{ $person->phone }}</td>
-            <td>{{ $person->email }}</td>
-            <td>{{ $person->user }}</td>
-            <td>{{ $person->trades_with_sellers }}</td>
-            <td>{{ $person->trades_with_buyers }}</td>
 
         </tr>
     @endforeach

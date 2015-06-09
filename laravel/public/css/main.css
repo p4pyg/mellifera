@@ -32,7 +32,7 @@ a{
   color : #e65100;
 }
 footer.page-footer{
-	margin-top : 0;
+	margin-top : 5rem;
 	color : #FAFAFA;
 	background-color: #3E2723;
 }
@@ -56,6 +56,11 @@ table tr th[data-sortable="true"] i {
 
 ul.pagination{
 	padding : 1rem;
+}
+
+legend{
+  font-size : 1.2rem;
+  color : #888888;
 }
 
 [type="radio"]:checked + label::after{

@@ -11,10 +11,12 @@ return array(
     |
     */
 
-    "persons"				=> "Responsables",
-    "person"				=> "Responsable",
-    "create_new_person" 	=> "Créer un nouveau responsable",
-    "edit_person"			=> "Editer un responsable",
+    "persons"				=> "Profils",
+    "person"				=> "Profil",
+    "create_new_person" 	=> "Gérez votre profil",
+    "edit_person"			=> "Gérez votre profil",
+    "ident_info"            => "Informations principales",
+    "optionnal_info"        => "Informations complémentaires",
     "last_name" 			=> "Nom",
     "first_name" 			=> "Prénom",
     "address1" 				=> "Adresse",

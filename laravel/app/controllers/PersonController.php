@@ -77,16 +77,29 @@ class PersonController extends \BaseController
      */
     public function store()
     {
-        $inputs = Input::except( '_token' );
+        $person = Input::except( '_token', 'email', 'password', 'password_confirmation' );
+        $user   = Input::only( 'email', 'password' );
+        $password = Input::only( 'password_confirmation' );
+
+        if( $user['password'] === $password['password_confirmation'] ){
+            $response   = BeeTools::entity_update( $user, 'users' );
+            $view       = BeeTools::is_error( $response );
+            if( $view ){
+                return $view;
+            }
+        }
+
+
+
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'persons' );
+        $response 	= BeeTools::entity_store( $person, 'persons' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
         // WORK IN PROGRESS
         // return response
-        return Redirect::to( 'persons' );
+        return Redirect::back();
     }
     /**
      * Update the specified person in storage.
@@ -113,8 +126,19 @@ class PersonController extends \BaseController
      */
     public function update($index)
     {
-        $person = Input::except( '_token' );
+        $person = Input::except( '_token', 'email', 'password', 'password_confirmation' );
         $person[ 'id' ] = (int) $index;
+
+        $user   = Input::only( 'email', 'password' );
+        $password = Input::only( 'password_confirmation' );
+
+        if( $user['password'] === $password['password_confirmation'] ){
+            $response   = BeeTools::entity_update( $user, 'users' );
+            $view       = BeeTools::is_error( $response );
+            if( $view ){
+                return $view;
+            }
+        }
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $person, 'persons' );
         $view 		= BeeTools::is_error( $response );
@@ -123,7 +147,7 @@ class PersonController extends \BaseController
         }
         // WORK IN PROGRESS
         // return response
-        return Redirect::to( 'persons' );
+        return Redirect::back();
     }
     /**
      * Remove the specified person from storage.

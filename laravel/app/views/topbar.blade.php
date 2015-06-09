@@ -7,7 +7,7 @@
                 <li>{{ HTML::link( 'login', 'Se connecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
             @else
                 <li>{{ HTML::link( 'backoffice', 'Mon exploitation', [ "class" => "waves-effect waves-light" ] ) }}</li>
-                <li>{{ HTML::link( 'account', 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
+                <li>{{ HTML::link( 'person/edit/' . ( is_null( Auth::user()->person ) ? '' : Auth::user()->person->id ), 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
                 <li>{{ HTML::link( 'logout', 'Se deconnecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
             @endif
         </ul>
@@ -16,7 +16,7 @@
                 <li>{{ HTML::link( 'login', 'Se connecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
             @else
                 <li>{{ HTML::link( 'backoffice', 'Mon exploitation', [ "class" => "waves-effect waves-light" ] ) }}</li>
-                <li>{{ HTML::link( 'account', 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
+                <li>{{ HTML::link( 'person/edit/' . ( is_null( Auth::user()->person ) ? '' : Auth::user()->person->id ), 'Mon compte', [ "class" => "waves-effect waves-light" ] ) }}</li>
                 <li>{{ HTML::link( 'logout', 'Se deconnecter', [ "class" => "waves-effect waves-light" ] ) }}</li>
             @endif
 
