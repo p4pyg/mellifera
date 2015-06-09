@@ -40,4 +40,11 @@ class RoboFile extends \Robo\Tasks
              ->checkout( $branch )
              ->run();
     }
+
+    /**
+     * Tests
+     */
+    public function testUnit(){
+        $this->taskPHPUnit()->run();
+    }
 }

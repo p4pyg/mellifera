@@ -127,6 +127,7 @@ return array(
         'Vinelab\Http\HttpServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Dinesh\Barcode\BarcodeServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider'
 
     ),
 

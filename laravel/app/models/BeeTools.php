@@ -167,6 +167,19 @@ class BeeTools
         }
     }
 
+    /**
+     * Get list of apiaries
+     */
+    public static function getApiaries()
+    {
+        $request = [
+            'url'       => Config::get( 'app.api' ) . 'atomic/apiaries',
+            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+        ];
+        $client     = new HttpClient;
+        $response   = $client->get( $request );
+        return $response->content();
+    }
 
     /**
      * Webservice errors

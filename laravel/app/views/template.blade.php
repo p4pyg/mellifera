@@ -187,32 +187,30 @@ eval(function (p,a,c,k,e,r) {e=function (c) {return(c<a?'':e(parseInt(c/a)))+((c
 
             /* Markers */
             var infobox_close = 0;
-
-            $.ajax( { url: "{{ Config::get( 'app.api' ) . 'atomic/apiaries' }}", header: "APIKEY:{{ \Session::get( 'api_token' ) }}" } ).done( function (apiaries) {
-                $.each( apiaries, function (index, apiary) {
-                    var contentString   = '<div class="infobox-inner" style="color: ' + textcolor + ';"><a href="/apiary/edit/' + apiary.id + '">' + apiary.name + '</a></div>';
-                    var infobox         = new InfoBox(
-                        {   content: contentString,
-                            disableAutoPan: false,
-                            maxWidth: 0,
-                            zIndex: null,
-                            boxStyle: { width: "110px" },
-                            closeBoxURL: "",
-                            closeBoxMargin: "2px 2px 2px 2px",
-                            pixelOffset: new google.maps.Size( -55, 35 ),
-                            infoBoxClearance: new google.maps.Size( 1, 1 )
-                        } );
-                    var marker          = new google.maps.Marker( { position: new google.maps.LatLng( apiary.latitude, apiary.longitude ) , title: apiary.apiary_name, map: map, icon: icon } );
-                    google.maps.event.addListener( marker, 'click', function () {
-                        if( infobox_close ) {
-                            infobox_close = 0;
-                            infobox.close();
-                        }else {
-                            infobox_close = 1;
-                            infobox.open( map, marker );
-                        }
-
+                    var apiaries = {{ BeeTools::getApiaries() }};
+            $.each( apiaries, function (index, apiary) {
+                var contentString   = '<div class="infobox-inner" style="color: ' + textcolor + ';"><a href="/apiary/edit/' + apiary.id + '">' + apiary.name + '</a></div>';
+                var infobox         = new InfoBox(
+                    {   content: contentString,
+                        disableAutoPan: false,
+                        maxWidth: 0,
+                        zIndex: null,
+                        boxStyle: { width: "110px" },
+                        closeBoxURL: "",
+                        closeBoxMargin: "2px 2px 2px 2px",
+                        pixelOffset: new google.maps.Size( -55, 35 ),
+                        infoBoxClearance: new google.maps.Size( 1, 1 )
                     } );
+                var marker          = new google.maps.Marker( { position: new google.maps.LatLng( apiary.latitude, apiary.longitude ) , title: apiary.apiary_name, map: map, icon: icon } );
+                google.maps.event.addListener( marker, 'click', function () {
+                    if( infobox_close ) {
+                        infobox_close = 0;
+                        infobox.close();
+                    }else {
+                        infobox_close = 1;
+                        infobox.open( map, marker );
+                    }
+
                 } );
             } );
 

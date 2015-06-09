@@ -18,7 +18,7 @@ class MauthUserProvider implements UserProviderInterface{
 		if( !empty( $cred['email'] ) ) {
 
 			$request = [
-				'url' 		=> "http://api.mellifera.cu.cc/signin",
+				'url' 		=> \Config::get( 'app.api' ) . 'signin',
 				'params' 	=> json_encode( $cred ),
 				'headers' 	=> ['Content-type: application/json;']
 			];
@@ -29,11 +29,11 @@ class MauthUserProvider implements UserProviderInterface{
 				$data = $response->json();
 
 				$user = new \Illuminate\Auth\GenericUser( [
-					'id' 		=> $data->id, 		// 303
-					'email' 	=> $data->email, 	// test@impermanenceweb.fr
-					'token' 	=> $data->token, 	// 0fb57035063f7c44c624a78a371727c5
-					'person' 	=> $data->person, 	// null
-					'group' 	=> $data->group, 	// 322
+					'id' 		=> $data->id,
+					'email' 	=> $data->email,
+					'token' 	=> $data->token,
+					'person' 	=> $data->person,
+					'group' 	=> $data->group,
 					'is_owner' 	=> false
 					] );
 				\Session::put('api_token', $data->token );
@@ -77,7 +77,7 @@ class MauthUserProvider implements UserProviderInterface{
 		$group= null;
 		$person=null;
 		$request = [
-				'url' 		=> "http://api.mellifera.cu.cc/atomic/users/" . $index,
+				'url' 		=> \Config::get( 'app.api' ) . 'users/' . $index,
 				'headers' 	=> ['Content-type: application/json;','APIKEY:' . \Session::get( 'api_token' ) ]
 			];
 		$client 	= new HttpClient;
