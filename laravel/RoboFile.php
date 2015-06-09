@@ -37,6 +37,7 @@ class RoboFile extends \Robo\Tasks
              ->push('origin','master')
              ->push('prod', 'master')
              ->push('--mirror', 'github')
+             ->checkout( $branch )
              ->run();
     }
 }
