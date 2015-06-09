@@ -25,32 +25,18 @@ class RoboFile extends \Robo\Tasks
      * @param $commit message for the commit
      * @param $branche branch name destination
      */
-    public function repoPush( $commit, $branch = null ){
+    public function repoPush( $commit, $branch ){
 
-        if ( ! is_null ( $branch ) ){
             $this->taskGitStack()
              ->stopOnFail()
              ->add('-A')
              ->commit( $commit )
              ->push('origin', $branch )
-             ->run();
-        }else{
-            $this->taskGitStack()
-             ->stopOnFail()
-             ->add('-A')
-             ->commit( $commit )
+             ->checkout( 'master' )
+             ->merge( $branch )
              ->push('origin','master')
-             ->run();
-
-            $this->taskGitStack()
-             ->stopOnFail()
              ->push('prod', 'master')
+             ->push('--mirror', 'github')
              ->run();
-
-            $this->taskGitStack()
-            ->stopOnFail()
-            ->push('--mirror', 'github')
-            ->run();
-        }
     }
 }
