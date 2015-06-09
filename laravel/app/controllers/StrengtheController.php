@@ -22,10 +22,10 @@ class StrengtheController extends \BaseController
     /**
      * Display the specified strengthe.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -40,13 +40,13 @@ class StrengtheController extends \BaseController
     }
     /**
      * Show the form for editing the specified strengthe.
-     * @param  int  $id
+     * @param  int  $index
      * @return View strengthes.form with strengthe
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/strengthes/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/strengthes/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -90,13 +90,13 @@ class StrengtheController extends \BaseController
      * 			"checking_date" 		=> [timestamp],
      * 			"number_of_brood_frames"=> [integer]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $strengthe 			= Input::except( '_token' );
-        $strengthe[ 'id' ]	= (int) $id;
+        $strengthe[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $strengthe, 'strengthes' );
         $view 		= BeeTools::is_error( $response );
@@ -109,13 +109,13 @@ class StrengtheController extends \BaseController
     }
     /**
      * Remove the specified strengthe from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'strengthes' );
+        $response 	= BeeTools::entity_delete( $index, 'strengthes' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

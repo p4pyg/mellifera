@@ -22,10 +22,10 @@ class UnitController extends \BaseController
     /**
      * Display the specified unit.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -40,13 +40,13 @@ class UnitController extends \BaseController
     }
     /**
      * Show the form for editing the specified unit.
-     * @param  int  $id
+     * @param  int  $index
      * @return View units.form with unit
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/units/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/units/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -98,13 +98,13 @@ class UnitController extends \BaseController
      * 			"association_date" 		=> [timestamp],
      * 			"separation_date" 		=> [timestamp]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $unit 			= Input::except( '_token' );
-        $unit[ 'id' ]	= (int) $id;
+        $unit[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $unit, 'units' );
         $view 		= BeeTools::is_error( $response );
@@ -117,13 +117,13 @@ class UnitController extends \BaseController
     }
     /**
      * Remove the specified unit from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'units' );
+        $response 	= BeeTools::entity_delete( $index, 'units' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

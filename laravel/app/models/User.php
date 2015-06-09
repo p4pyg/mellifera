@@ -28,11 +28,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     protected $hidden = array('remember_token');
 
 
-    public static function get_group($id = null)
+    public static function get_group($index = null)
     {
         $client 	= new HttpClient;
         $request = [
-                'url'		=> Config::get( 'app.api' ) . 'atomic/groups' . ( is_null( $id ) ? '' : '/' . $id ),
+                'url'		=> Config::get( 'app.api' ) . 'atomic/groups' . ( is_null( $index ) ? '' : '/' . $index ),
                 'headers' 	=> ['Content-type: application/json;','APIKEY:' . \Session::get( 'api_token' ) ]
             ];
         $response 	= $client->get( $request );
@@ -44,11 +44,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $response->json();
 
     }
-    public static function get_person($id = null)
+    public static function get_person($index = null)
     {
         $client 	= new HttpClient;
         $request = [
-                'url'		=> Config::get( 'app.api' ) . 'atomic/persons' . ( is_null( $id ) ? '' : '/' . $id ),
+                'url'		=> Config::get( 'app.api' ) . 'atomic/persons' . ( is_null( $index ) ? '' : '/' . $index ),
                 'headers' 	=> ['Content-type: application/json;','APIKEY:' . \Session::get( 'api_token' ) ]
             ];
         $response 	= $client->get( $request );

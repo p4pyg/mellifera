@@ -25,10 +25,10 @@ class HoneysuperController extends \BaseController
     /**
      * Display the specified honeysuper.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -43,14 +43,14 @@ class HoneysuperController extends \BaseController
     }
     /**
      * Show the form for editing the specified honeysuper.
-     * @param  int  $id
+     * @param  int  $index
      * @return View honeysupers.form with honeysuper
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [
-                                    'url'       => Config::get( 'app.api' ) . "atomic/honeysupers/" . $id ,
+                                    'url'       => Config::get( 'app.api' ) . "atomic/honeysupers/" . $index ,
                                     'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
         $view 		= BeeTools::is_error( $response );
@@ -94,13 +94,13 @@ class HoneysuperController extends \BaseController
      * 			"unit" 					=> [object],
      * 			"honeysuper_date" 		=> [timestamp],
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $honeysuper 			= Input::except( '_token' );
-        $honeysuper[ 'id' ]	= (int) $id;
+        $honeysuper[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $honeysuper, 'honeysupers' );
         $view 		= BeeTools::is_error( $response );
@@ -113,13 +113,13 @@ class HoneysuperController extends \BaseController
     }
     /**
      * Remove the specified honeysuper from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'honeysupers' );
+        $response 	= BeeTools::entity_delete( $index, 'honeysupers' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

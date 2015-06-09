@@ -25,10 +25,10 @@ class HiveController extends \BaseController
     /**
      * Display the specified hive.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -43,14 +43,14 @@ class HiveController extends \BaseController
     }
     /**
      * Show the form for editing the specified hive.
-     * @param  int  $id
+     * @param  int  $index
      * @return View hives.form with hive
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client     = new HttpClient;
         $response   = $client->get( [
-                                        'url' => Config::get( 'app.api' ) . "atomic/beehives/" . $id,
+                                        'url' => Config::get( 'app.api' ) . "atomic/beehives/" . $index,
                                         'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
         $view       = BeeTools::is_error( $response );
@@ -111,13 +111,13 @@ class HiveController extends \BaseController
      *      "number_of_rocks"   => [integer],
      *      "notes"             => [string]
      *      ];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $hive           = Input::except( '_token' );
-        $hive[ 'id' ]   = (int)$id;
+        $hive[ 'id' ]   = (int)$index;
         // Récupération de la collection des identifiants de beehive_types
         $types = BeeTools::get_arraylist( 'beehives', 'type', false, true );
 
@@ -137,13 +137,13 @@ class HiveController extends \BaseController
     }
     /**
      * Remove the specified hive from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response   = BeeTools::entity_delete( $id, 'beehives' );
+        $response   = BeeTools::entity_delete( $index, 'beehives' );
         $view       = BeeTools::is_error( $response );
         if( $view ){
             return $view;

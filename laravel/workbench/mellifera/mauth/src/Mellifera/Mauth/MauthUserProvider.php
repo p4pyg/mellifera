@@ -68,16 +68,16 @@ class MauthUserProvider implements UserProviderInterface{
 
 	/**
 	 * Récupère l'ensemble des données propre à un utilisateur
-	 * @param  integer $id identifiant de l'utilisateur
+	 * @param  integer $index identifiant de l'utilisateur
 	 * @return MautUser Objet utilisateur spécifique à l'application
 	 */
-	public function retrieveById( $id ) {
+	public function retrieveById( $index ) {
 
 		$user = null;
 		$group= null;
 		$person=null;
 		$request = [
-				'url' 		=> "http://api.mellifera.cu.cc/atomic/users/" . $id,
+				'url' 		=> "http://api.mellifera.cu.cc/atomic/users/" . $index,
 				'headers' 	=> ['Content-type: application/json;','APIKEY:' . \Session::get( 'api_token' ) ]
 			];
 		$client 	= new HttpClient;
@@ -118,7 +118,7 @@ class MauthUserProvider implements UserProviderInterface{
 	 * NOT IMPLEMENTED
 	 */
 
-	public function retrieveByToken( $id, $token ) {
+	public function retrieveByToken( $index, $token ) {
 		return new \Exception( 'not implemented' );
 	}
 

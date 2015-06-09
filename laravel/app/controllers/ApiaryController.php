@@ -25,10 +25,10 @@ class ApiaryController extends BaseController
     /**
      * Display the specified apiary.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -43,14 +43,14 @@ class ApiaryController extends BaseController
     }
     /**
      * Show the form for editing the specified apiary.
-     * @param  int  $id
+     * @param  int  $index
      * @return View apiaries.form with apiary
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [
-                                        'url' => Config::get( 'app.api' ) . "atomic/apiaries/" . $id,
+                                        'url' => Config::get( 'app.api' ) . "atomic/apiaries/" . $index,
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
         $view 		= BeeTools::is_error( $response );
@@ -116,13 +116,13 @@ class ApiaryController extends BaseController
      * 			"notes" 			=> [string],
      * 			"rank" 				=> [integer]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $apiary 			= Input::except( '_token' );
-        $apiary[ 'id' ] 	= (int) $id;
+        $apiary[ 'id' ] 	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $apiary, 'apiaries' );
         $view 		= BeeTools::is_error( $response );
@@ -135,13 +135,13 @@ class ApiaryController extends BaseController
     }
     /**
      * Remove the specified apiary from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'apiaries' );
+        $response 	= BeeTools::entity_delete( $index, 'apiaries' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

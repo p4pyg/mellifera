@@ -22,10 +22,10 @@ class NuisanceController extends \BaseController
     /**
      * Display the specified nuisance.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -40,13 +40,13 @@ class NuisanceController extends \BaseController
     }
     /**
      * Show the form for editing the specified nuisance.
-     * @param  int  $id
+     * @param  int  $index
      * @return View nuisances.form with nuisance
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/nuisances/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/nuisances/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -88,13 +88,13 @@ class NuisanceController extends \BaseController
      * 			"nuisance_date" 		=> [timestamp],
      * 			"nuisance_type" 		=> [string],
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $nuisance 			= Input::except( '_token' );
-        $nuisance[ 'id' ]	= (int) $id;
+        $nuisance[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $nuisance, 'nuisances' );
         $view 		= BeeTools::is_error( $response );
@@ -107,13 +107,13 @@ class NuisanceController extends \BaseController
     }
     /**
      * Remove the specified nuisance from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'nuisances' );
+        $response 	= BeeTools::entity_delete( $index, 'nuisances' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

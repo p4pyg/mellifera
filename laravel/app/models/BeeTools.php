@@ -40,6 +40,8 @@ class BeeTools
 
 
 
+
+
     /**
      * Error code
      * @param  integer $code error code
@@ -97,13 +99,13 @@ class BeeTools
     /**
      * Refactoring for controllers
      * Delete method
-     * @param  [int]    $id     [object id]
+     * @param  [int]    $index     [object id]
      * @param  [string] $string [object name]
      * @return [object]         [response]
      */
-    public static function entity_delete($id, $string)
+    public static function entity_delete($index, $string)
     {
-        $url    = Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $id;
+        $url    = Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $index;
         $json   = '{}';
         $ch     = curl_init();
         // Add here headers : 'Content-type: application/json' & 'APIKEY:' . \Session::get( 'api_token' )  important!
@@ -124,7 +126,7 @@ class BeeTools
      * @param string $column nom de la propriété à autocompléter
      * @param boolean $custom_only mettre à vrai pour retourner uniquement les types propres à l'exploitation
      * @param boolean $retrieve_id mettre à vrai pour retourner un tableau indexé avec les identifiants des types et leur valeur respective
-     * @return mixed Response JSON Array / PHP array
+     * @return mixed Response JSON Array / PHP array indexed by id from $entity
      */
     public static function get_arraylist($entity, $column, $custom_only = false, $retrieve_id = false)
     {
@@ -149,19 +151,20 @@ class BeeTools
         }else
             $arraylist  = $custom_types->datas;
 
-
+        $array_by_id = [];
         foreach ( $arraylist as $key => $item )
-            if( $item->value == ''|| is_null( $item->value ) )
-                unset( $arraylist[ $key ] );
+            if( $item->value !== '' && is_string( $item->value ) )
+                $array_by_id[ $item->id ] = $item->value;
 
         if( $retrieve_id ){
-            $array_id = [];
-            foreach ( $arraylist as $key => $item ) {
-                $array_id[ $item->id ] = $item->value;
+            return $array_by_id;
+        }else{
+            $simple_json_array = [];
+            foreach ($array_by_id as $value) {
+                array_push( $simple_json_array, $value );
             }
-            return $array_id;
+            return json_encode( $simple_json_array );
         }
-        return json_encode( $arraylist );
     }
 
 
@@ -173,13 +176,13 @@ class BeeTools
     public static function is_error(Vinelab\Http\Response $response)
     {
         $error = [];
-        $r = $response->json();
-        if( empty( $r ) )
+        $ws_response = $response->json();
+        if( empty( $ws_response ) )
             $error['blank'] = true;
 
         if( $response->statusCode() != 200 ){
             $error['code']      = $response->statusCode();
-            $error['message']   = "<pre>" .  $response->content() . "</pre>";
+            $error['message']   = $response->content();
             $error['blank']     = false;
         }
 

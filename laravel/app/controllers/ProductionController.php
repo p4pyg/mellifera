@@ -22,10 +22,10 @@ class ProductionController extends \BaseController
     /**
      * Display the specified production.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -40,13 +40,13 @@ class ProductionController extends \BaseController
     }
     /**
      * Show the form for editing the specified production.
-     * @param  int  $id
+     * @param  int  $index
      * @return View productions.form with production
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/productions/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/productions/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -98,13 +98,13 @@ class ProductionController extends \BaseController
      * 			"harvest_date" 		=> [timestamp],
      * 			"harvest_weight" 	=> [integer]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $production 			= Input::except( '_token' );
-        $production[ 'id' ]	= (int) $id;
+        $production[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $production, 'productions' );
         $view 		= BeeTools::is_error( $response );
@@ -117,13 +117,13 @@ class ProductionController extends \BaseController
     }
     /**
      * Remove the specified production from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'productions' );
+        $response 	= BeeTools::entity_delete( $index, 'productions' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

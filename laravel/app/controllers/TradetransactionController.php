@@ -22,10 +22,10 @@ class TradetransactionController extends \BaseController
     /**
      * Display the specified tradetransaction.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -40,13 +40,13 @@ class TradetransactionController extends \BaseController
     }
     /**
      * Show the form for editing the specified tradetransaction.
-     * @param  int  $id
+     * @param  int  $index
      * @return View tradetransactions.form with tradetransaction
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/tradetransactions/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/tradetransactions/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -90,13 +90,13 @@ class TradetransactionController extends \BaseController
      * 			"value" 				=> [float],
      * 			"notes" 				=> [string]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $tradetransaction 			= Input::except( '_token' );
-        $tradetransaction[ 'id' ]	= (int) $id;
+        $tradetransaction[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $tradetransaction, 'tradetransactions' );
         $view 		= BeeTools::is_error( $response );
@@ -109,13 +109,13 @@ class TradetransactionController extends \BaseController
     }
     /**
      * Remove the specified tradetransaction from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'tradetransactions' );
+        $response 	= BeeTools::entity_delete( $index, 'tradetransactions' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

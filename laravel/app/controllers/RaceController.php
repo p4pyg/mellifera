@@ -21,10 +21,10 @@ class RaceController extends BaseController
     /**
      * Display the specified race.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -39,19 +39,30 @@ class RaceController extends BaseController
     }
     /**
      * Show the form for editing the specified race.
-     * @param  int  $id
+     * @param  int  $index
      * @return View races.form with race
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/races/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/races/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $view       = BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
-        $race 		= $response->json();
-        return View::make( 'races.form', [ 'race' => $race ] );
+        $race       = $response->json();
+
+// echo '<pre>';
+// print_r($response);
+// echo '</pre>';
+// die('<p style="color:orange; font-weight:bold;">Raison</p>');
+        $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/characteristics/" . $race->characteristic->id, 'headers'  => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $view       = BeeTools::is_error( $response );
+        if( $view ){
+            return $view;
+        }
+        $characteristic  = $response->json();
+        return View::make( 'races.form', [ 'race' => $race, 'characteristic' => $characteristic ] );
     }
     /**
      * Store a newly created race in storage.
@@ -69,29 +80,33 @@ class RaceController extends BaseController
         $inputs = Input::except( '_token', 'characteristic_id');
         $race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_comment' );
 
-        $names = BeeTools::get_arraylist( 'races', 'name', false, true );
+        $names          = BeeTools::get_arraylist( 'races', 'name', false, true );
+        $race_name_id   = array_search( $race[ 'name' ] , $names );
+        $race_name      = $race[ 'name' ];
+        $race['name']   = [ 'name' => $race_name ];
 
-        $type_id    = array_search( $inputs[ 'name' ] , $names );
-        $race_name  = $inputs[ 'name' ];
-
-        $inputs['name'] = [ 'name' => $race_name ];
 
         $characteristics = [];
         foreach ( $inputs as $key => $input )
             if( str_contains( $key, 'characteristic_' ) )
                 $characteristics[ str_replace( 'characteristic_', '', $key ) ] = $input;
 
+        $characteristics_race_name_id   = array_search( $characteristics[ 'racial_type' ] , $names );
+        $characteristics_race_name      = $characteristics[ 'racial_type' ];
+        $characteristics['racial_type'] = null;//[ 'name' => $characteristics_race_name ];
+
         $characteristics[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
+
         // Refactored in BeeTools Model
         $response_characteristic 	= BeeTools::entity_store( $characteristics, 'characteristics' );
         $view 		= BeeTools::is_error( $response_characteristic );
         if( $view ){
             return $view;
         }
-        $race['characteristics'] 	= $response_characteristic;
+        $race['characteristic'] 	= $response_characteristic;
         // Refactored in BeeTools Model
-        $response_race 				= BeeTools::entity_store( $race, 'races' );
-        $view 		= BeeTools::is_error( $response_race );
+        $response_race 	= BeeTools::entity_store( $race, 'races' );
+        $view 		    = BeeTools::is_error( $response_race );
         if( $view ){
             return $view;
         }
@@ -109,10 +124,10 @@ class RaceController extends BaseController
      * 			"life_span" 			=> [integer],
      * 			"race_name" 			=> [string]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $inputs = Input::except( '_token' );
         $race 	= Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_comment' );
@@ -133,7 +148,7 @@ class RaceController extends BaseController
         if( $view ){
             return $view;
         }
-        $race[ 'id' ] 	= (int) $id;
+        $race[ 'id' ] 	= (int) $index;
         $race['characteristics'] 	= $response_characteristic;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $race, 'races' );
@@ -148,13 +163,13 @@ class RaceController extends BaseController
     }
     /**
      * Remove the specified race from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'races' );
+        $response 	= BeeTools::entity_delete( $index, 'races' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

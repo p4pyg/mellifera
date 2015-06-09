@@ -260,6 +260,9 @@ button.picker__close:focus,
 .ui-autocomplete-match {
     color: #e65100;
 }
+.ui-helper-hidden-accessible{
+  display : none;
+}
 /*----------------------------------------------------------------
     Map
 ----------------------------------------------------------------*/

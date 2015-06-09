@@ -22,10 +22,10 @@ class QueenController extends \BaseController
     /**
      * Display the specified queen.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -42,13 +42,13 @@ class QueenController extends \BaseController
     }
     /**
      * Show the form for editing the specified queen.
-     * @param  int  $id
+     * @param  int  $index
      * @return View queens.form with queen
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -95,13 +95,13 @@ class QueenController extends \BaseController
      * 			"death_date" 	=> [timestamp],
      * 			"clipping" 		=> [boolean]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $queen 			= Input::except( '_token' );
-        $queen[ 'id' ] 	= (int) $id;
+        $queen[ 'id' ] 	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $queen, 'queens' );
         $view 		= BeeTools::is_error( $response );
@@ -114,13 +114,13 @@ class QueenController extends \BaseController
     }
     /**
      * Remove the specified queen from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'queens' );
+        $response 	= BeeTools::entity_delete( $index, 'queens' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

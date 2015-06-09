@@ -24,10 +24,10 @@ class CharacteristicController extends BaseController
     /**
      * Display the specified characteristic.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -42,14 +42,14 @@ class CharacteristicController extends BaseController
     }
     /**
      * Show the form for editing the specified characteristic.
-     * @param  int  $id
+     * @param  int  $index
      * @return View characteristics.form with characteristic
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [
-                                        'url' => Config::get( 'app.api' ) . "atomic/characteristics/" . $id,
+                                        'url' => Config::get( 'app.api' ) . "atomic/characteristics/" . $index,
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
         $view 		= BeeTools::is_error( $response );
@@ -102,13 +102,13 @@ class CharacteristicController extends BaseController
      * 					"winter_hardiness_level"=> [integer],
      * 					"wake_up_month" 		=> [string]
      * 				];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $characteristic 			= Input::except( '_token' );
-        $characteristic[ 'id' ] 	= (int) $id;
+        $characteristic[ 'id' ] 	= (int) $index;
         $characteristic[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristic[ 'date' ] ) );
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $characteristic, 'characteristics' );
@@ -122,13 +122,13 @@ class CharacteristicController extends BaseController
     }
     /**
      * Remove the specified characteristic from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'characteristics' );
+        $response 	= BeeTools::entity_delete( $index, 'characteristics' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

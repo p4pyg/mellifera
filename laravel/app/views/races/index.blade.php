@@ -5,10 +5,9 @@
     <thead>
         <tr>
             <th class="center-align" data-sortable="true">@lang('races.id')</th>
-            <th class="center-align" data-sortable="true">@lang('races.race_name')</th>
+            <th class="center-align" data-sortable="true">@lang('races.name')</th>
             <th class="center-align" data-sortable="true">@lang('races.life_span')</th>
             <th class="center-align" data-sortable="true">@lang('races.geographical_origin')</th>
-            <th class="center-align" data-sortable="true">@lang('races.characteristics')</th>
         </tr>
     </thead>
     <tbody>
@@ -19,10 +18,9 @@
 @else
         <tr id="race-{{ $race->id }}" data-item-index="{{ $race->id }}">
             <td class="center-align">{{ $race->id }}</td>
-            <td>{{ ucfirst( $race->name ) }}</td>
+            <td>{{ ucfirst( $race->name->name ) }}</td>
             <td class="center-align">{{ $race->life_span }}</td>
             <td>{{ $race->geographical_origin }}</td>
-            <td class="center-align">{{ ! is_null( $race->characteristics ) ? '<i class="mdi-action-done light-green-text text-darken-1 "></i>' : '<i class="mdi-communication-dnd-on deep-orange-text text-darken-1"></i>' }}</td>
         </tr>
 @endif
     @endforeach

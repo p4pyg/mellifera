@@ -30,8 +30,7 @@
             @include( 'footer' )
         </footer>
     @else
-
-            @yield('content')
+        @yield('content')
     @endif
         @include( 'components.button_scroll_top' )
         {{ HTML::script( "bower_components/jquery/dist/jquery.min.js" ) }}
@@ -58,8 +57,8 @@
                 var tableObj = new Table( tableElement );
             } );
             Ink.requireModules(['Ink.UI.Pagination_1'], function (Pagination) {
-                Pagination._optionDefinition.previousLabel 	= ['String', '<i class="mdi-navigation-chevron-left"></i>'];
-                Pagination._optionDefinition.nextLabel 		= ['String', '<i class="mdi-navigation-chevron-right"></i>'];
+                Pagination._optionDefinition.previousLabel  = ['String', '<i class="mdi-navigation-chevron-left"></i>'];
+                Pagination._optionDefinition.nextLabel      = ['String', '<i class="mdi-navigation-chevron-right"></i>'];
             });
             $( document ).ready( function () {
                 $( "tr[id^='{{ str_singular( $entity ) }}']" ).on( 'click', function () {
@@ -102,29 +101,30 @@
 
 
                 @if( $entity == 'races' || $entity == 'characteristics' )
-	                $('#name').autocomplete({
-	                    highlight: true,
-	                    minLength: 0,
-	                    source: names
-	                });
-	                $('#characteristic_racial_type').autocomplete({
-	                    highlight: true,
-	                    minLength: 0,
-	                    source: names
-	                });
-	                $('#racial_type').autocomplete({
-	                    highlight: true,
-	                    minLength: 0,
-	                    source: names
-	                });
+
+                    $('#name').autocomplete({
+                        highlight: true,
+                        minLength: 0,
+                        source: names
+                    });
+                    $('#characteristic_racial_type').autocomplete({
+                        highlight: true,
+                        minLength: 0,
+                        source: names
+                    });
+                    $('#racial_type').autocomplete({
+                        highlight: true,
+                        minLength: 0,
+                        source: names
+                    });
 
                 @endif
                 @if( $entity == 'hives' )
-	                $('#type').autocomplete({
-	                    highlight: true,
-	                    minLength: 0,
-	                    source: types
-	                });
+                    $('#type').autocomplete({
+                        highlight: true,
+                        minLength: 0,
+                        source: types
+                    });
                 @endif
 
             } );
@@ -153,24 +153,24 @@ eval(function (p,a,c,k,e,r) {e=function (c) {return(c<a?'':e(parseInt(c/a)))+((c
     function googleMap()
     {
         $( '.map' ).each( function (i, e) {
-            $map 		= $( e );
-            $map_lat 	= $map.attr( 'data-mapLat' );
-            $map_lon 	= $map.attr( 'data-mapLon' );
-            $map_zoom 	= parseInt( $map.attr( 'data-mapZoom' ) );
-            $map_img 	= $map.attr( 'data-img' );
-            $map_color 	= $map.attr( 'data-color' );
+            $map        = $( e );
+            $map_lat    = $map.attr( 'data-mapLat' );
+            $map_lon    = $map.attr( 'data-mapLon' );
+            $map_zoom   = parseInt( $map.attr( 'data-mapZoom' ) );
+            $map_img    = $map.attr( 'data-img' );
+            $map_color  = $map.attr( 'data-color' );
             $map_height = $map.attr( 'data-height' );
-            var latlng 	= new google.maps.LatLng( $map_lat, $map_lon );
+            var latlng  = new google.maps.LatLng( $map_lat, $map_lon );
             var options = { scrollwheel: false, draggable: true, zoomControl: true, disableDoubleClickZoom: false, disableDefaultUI: false, zoom: $map_zoom, center: latlng, mapTypeId: google.maps.MapTypeId.ROADMAP };
 
             /* Map's style */
             if ( $map_color == 'invert' ) {
-                var styles 	= [ { "stylers": [ { "invert_lightness": "true" }, { "hue": "0xffbb00" }, { "saturation": "-100" }, { "lightness": "15" } ] } ],
-                textcolor 	= '#333';
+                var styles  = [ { "stylers": [ { "invert_lightness": "true" }, { "hue": "0xffbb00" }, { "saturation": "-100" }, { "lightness": "15" } ] } ],
+                textcolor   = '#333';
             }
-            var styledMap 	= new google.maps.StyledMapType( styles, { name: "Styled Map" } );
-            var map 		= new google.maps.Map( $map[0], options );
-            var icon 		= { url: $map_img, size: null, origin: new google.maps.Point( 0, 0 ), anchor: new google.maps.Point( 8, 8 ), scaledSize: new google.maps.Size( 24, 24 ) };
+            var styledMap   = new google.maps.StyledMapType( styles, { name: "Styled Map" } );
+            var map         = new google.maps.Map( $map[0], options );
+            var icon        = { url: $map_img, size: null, origin: new google.maps.Point( 0, 0 ), anchor: new google.maps.Point( 8, 8 ), scaledSize: new google.maps.Size( 24, 24 ) };
             map.mapTypes.set( 'map_style', styledMap );
             map.setMapTypeId( 'map_style' );
             if ( ! $map.parent( 'div' ).is( 'main' ) ) {
@@ -190,9 +190,9 @@ eval(function (p,a,c,k,e,r) {e=function (c) {return(c<a?'':e(parseInt(c/a)))+((c
 
             $.ajax( { url: "{{ Config::get( 'app.api' ) . 'atomic/apiaries' }}", header: "APIKEY:{{ \Session::get( 'api_token' ) }}" } ).done( function (apiaries) {
                 $.each( apiaries, function (index, apiary) {
-                    var contentString 	= '<div class="infobox-inner" style="color: ' + textcolor + ';"><a href="/apiary/edit/' + apiary.id + '">' + apiary.name + '</a></div>';
-                    var infobox 		= new InfoBox(
-                        { 	content: contentString,
+                    var contentString   = '<div class="infobox-inner" style="color: ' + textcolor + ';"><a href="/apiary/edit/' + apiary.id + '">' + apiary.name + '</a></div>';
+                    var infobox         = new InfoBox(
+                        {   content: contentString,
                             disableAutoPan: false,
                             maxWidth: 0,
                             zIndex: null,
@@ -202,7 +202,7 @@ eval(function (p,a,c,k,e,r) {e=function (c) {return(c<a?'':e(parseInt(c/a)))+((c
                             pixelOffset: new google.maps.Size( -55, 35 ),
                             infoBoxClearance: new google.maps.Size( 1, 1 )
                         } );
-                    var marker 			= new google.maps.Marker( { position: new google.maps.LatLng( apiary.latitude, apiary.longitude ) , title: apiary.apiary_name, map: map, icon: icon } );
+                    var marker          = new google.maps.Marker( { position: new google.maps.LatLng( apiary.latitude, apiary.longitude ) , title: apiary.apiary_name, map: map, icon: icon } );
                     google.maps.event.addListener( marker, 'click', function () {
                         if( infobox_close ) {
                             infobox_close = 0;

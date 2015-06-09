@@ -22,10 +22,10 @@ class TreatmentController extends \BaseController
     /**
      * Display the specified treatment.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -40,13 +40,13 @@ class TreatmentController extends \BaseController
     }
     /**
      * Show the form for editing the specified treatment.
-     * @param  int  $id
+     * @param  int  $index
      * @return View treatments.form with treatment
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/treatments/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/treatments/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -90,13 +90,13 @@ class TreatmentController extends \BaseController
      * 			"desease_treated" 		=> [string]
      * 			"product_quantity" 		=> [float],
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $treatment 			= Input::except( '_token' );
-        $treatment[ 'id' ]	= (int) $id;
+        $treatment[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $treatment, 'treatments' );
         $view 		= BeeTools::is_error( $response );
@@ -109,13 +109,13 @@ class TreatmentController extends \BaseController
     }
     /**
      * Remove the specified treatment from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'treatments' );
+        $response 	= BeeTools::entity_delete( $index, 'treatments' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

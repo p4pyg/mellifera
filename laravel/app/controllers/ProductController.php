@@ -22,10 +22,10 @@ class ProductController extends \BaseController
     /**
      * Display the specified product.
      *
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function show($id)
+    public function show($index)
     {
         // Todo
     }
@@ -40,13 +40,13 @@ class ProductController extends \BaseController
     }
     /**
      * Show the form for editing the specified product.
-     * @param  int  $id
+     * @param  int  $index
      * @return View products.form with product
      */
-    public function edit($id)
+    public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/products/" . $id, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/products/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
@@ -96,13 +96,13 @@ class ProductController extends \BaseController
      * 			"unit_price" 		=> [float],
      * 			"notes" 			=> [string]
      * 		];
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function update($id)
+    public function update($index)
     {
         $product 			= Input::except( '_token' );
-        $product[ 'id' ]	= (int) $id;
+        $product[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $product, 'products' );
         $view 		= BeeTools::is_error( $response );
@@ -115,13 +115,13 @@ class ProductController extends \BaseController
     }
     /**
      * Remove the specified product from storage.
-     * @param  int  $id
+     * @param  int  $index
      * @return Response
      */
-    public function delete($id)
+    public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $id, 'products' );
+        $response 	= BeeTools::entity_delete( $index, 'products' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

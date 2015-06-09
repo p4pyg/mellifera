@@ -6,7 +6,7 @@ class MauthUser implements UserInterface{
 
 	protected $token 	= "";
 	protected $user 	= null;
-	public $id 			= null;
+	public $index 			= null;
 	public $email 		= '';
 	public $person 		= null;
 	public $group 		= null;
