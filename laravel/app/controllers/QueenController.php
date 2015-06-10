@@ -9,13 +9,13 @@ class QueenController extends \BaseController
      */
     public function index()
     {
-        $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $client     = new HttpClient;
+        $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens", 'headers'    => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $view       = BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
-        $queens 	= $response->json();
+        $queens     = $response->json();
         return View::make( 'queens.index', [ "queens" => $queens ] );
     }
 
@@ -47,38 +47,43 @@ class QueenController extends \BaseController
      */
     public function edit($index)
     {
-        $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $client     = new HttpClient;
+        $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens/" . $index, 'headers'  => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $view       = BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
-        $queen 		= $response->json();
-        return View::make( 'queens.form', [ 'queen' => $queen ] );
+        $queen      = $response->json();
+        $races = Race::get();
+        return View::make( 'queens.form', [ 'queen' => $queen, 'races' => $races ] );
     }
     /**
      * Store a newly created queen in storage.
      * Object structure for HTTP POST
      * $queen = [
-     * 			"transaction" 	=> [object],
-     * 			"unit" 			=> [object],
-     * 			"race" 			=> [object],
-     * 			"birth_date" 	=> [timestamp],
-     * 			"death_date" 	=> [timestamp],
-     * 			"clipping" 		=> [boolean]
-     * 		];
+     *          "transaction"   => [object],
+     *          "unit"          => [object],
+     *          "race"          => [object],
+     *          "birth_date"    => [timestamp],
+     *          "death_date"    => [timestamp],
+     *          "clipping"      => [boolean]
+     *      ];
      * @return Response
      */
     public function store()
     {
-        $inputs 			= Input::except( '_token' );
-        $inputs[ 'race' ] 	= Race::get( $inputs[ 'race' ] );
+        // @TODO association à une race
+        $inputs             = Input::except( '_token', 'race' );
+
+        $queen[ 'birth_date' ] = $queen[ 'birth_date' ] != '' ? date( 'Y-m-d', strtotime( $queen[ 'birth_date' ] ) ) : '';
+        $queen[ 'death_date' ] = $queen[ 'death_date' ] != '' ? date( 'Y-m-d', strtotime( $queen[ 'death_date' ] ) ) : '';
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'queens' );
-        $view 		= BeeTools::is_error( $response );
+        $response           = BeeTools::entity_store( $inputs, 'queens' );
+        $view               = BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
+
         // WORK IN PROGRESS
         // return response
         return Redirect::to( 'queens' );
@@ -87,24 +92,27 @@ class QueenController extends \BaseController
      * Update the specified queen in storage.
      * Object structure for HTTP PUT
      * $queen = [
-     * 			"id" 			=> [integer][notnull],
-     * 			"transaction" 	=> [object],
-     * 			"unit" 			=> [object],
-     * 			"race" 			=> [object],
-     * 			"birth_date" 	=> [timestamp],
-     * 			"death_date" 	=> [timestamp],
-     * 			"clipping" 		=> [boolean]
-     * 		];
+     *          "id"            => [integer][notnull],
+     *          "transaction"   => [object],
+     *          "unit"          => [object],
+     *          "race"          => [object],
+     *          "birth_date"    => [timestamp],
+     *          "death_date"    => [timestamp],
+     *          "clipping"      => [boolean]
+     *      ];
      * @param  int  $index
      * @return Response
      */
     public function update($index)
     {
-        $queen 			= Input::except( '_token' );
-        $queen[ 'id' ] 	= (int) $index;
+         // @TODO association à une race
+        $queen          = Input::except( '_token', 'race' );
+        $queen[ 'id' ]  = (int) $index;
+        $queen[ 'birth_date' ] = $queen[ 'birth_date' ] != '' ? date( 'Y-m-d', strtotime( $queen[ 'birth_date' ] ) ) : '';
+        $queen[ 'death_date' ] = $queen[ 'death_date' ] != '' ? date( 'Y-m-d', strtotime( $queen[ 'death_date' ] ) ) : '';
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $queen, 'queens' );
-        $view 		= BeeTools::is_error( $response );
+        $response       = BeeTools::entity_update( $queen, 'queens' );
+        $view       = BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
@@ -120,11 +128,16 @@ class QueenController extends \BaseController
     public function delete($index)
     {
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $index, 'queens' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
+        $response   = BeeTools::entity_delete( $index, 'queens' );
+
+        echo '<pre>';
+        print_r($response);
+        echo '</pre>';
+        die('<p style="color:orange; font-weight:bold;">Raison</p>');
+        // $view       = BeeTools::is_error( $response );
+        // if( $view ){
+        //     return $view;
+        // }
         // WORK IN PROGRESS
         // return response
         return Redirect::to( 'queens' );

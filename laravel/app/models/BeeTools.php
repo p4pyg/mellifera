@@ -1,6 +1,9 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
-
+/**
+ * Class outil propre à l'application
+ * Cette classe est composée de méthodes statiques généralisant des fonctionnalités utilisées dans l'ensemble des controlleurs, modèles et vues
+ */
 class BeeTools
 {
     /**
@@ -36,11 +39,6 @@ class BeeTools
             return $months;
         return $months[ $index ];
     }
-
-
-
-
-
 
     /**
      * Error code
@@ -108,10 +106,10 @@ class BeeTools
         $url    = Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $index;
         $json   = '{}';
         $ch     = curl_init();
-        // Add here headers : 'Content-type: application/json' & 'APIKEY:' . \Session::get( 'api_token' )  important!
         curl_setopt( $ch, CURLOPT_URL, $url );
         curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "DELETE" );
         curl_setopt( $ch, CURLOPT_POSTFIELDS, $json );
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'APIKEY:' . \Session::get( 'api_token' ) ] );
         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
         $result     = curl_exec( $ch );
         $response   = json_decode( $result );
@@ -169,6 +167,7 @@ class BeeTools
 
     /**
      * Get list of apiaries
+     * @return JSON array list of apiaies for current exploitatation
      */
     public static function getApiaries()
     {
