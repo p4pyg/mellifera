@@ -1,7 +1,13 @@
 @extends('template')
 @section('content')
 @include( 'components.index_header' )
+<?php
 
+/**
+ * @todo  Tester le contenu de la propriété is_in afin de proposer une association et indiquer le statut d'association de la reine
+ */
+
+?>
 <table id="queens" class="responsive-table hover hoverable striped bordered" data-page-size="5" data-pagination="#queensPagination" >
     <thead>
         <tr>

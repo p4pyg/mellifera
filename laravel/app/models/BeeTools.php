@@ -54,7 +54,6 @@ class BeeTools
         return $interval->m . 'mois';
     }
 
-
     /**
      * Error code
      * @param  integer $code error code
@@ -129,7 +128,6 @@ class BeeTools
         $result     = curl_exec( $ch );
         $response   = json_decode( $result );
         curl_close( $ch );
-
         return $response;
     }
 

@@ -36,7 +36,8 @@ class SwarmController extends \BaseController
     public function create()
     {
         $swarm = null;
-        return View::make( 'swarms.form', [ 'swarm' => $swarm ] );
+        $races = Race::get();
+        return View::make( 'swarms.form', [ 'swarm' => $swarm, 'races' => $races ] );
     }
     /**
      * Show the form for editing the specified swarm.
@@ -52,7 +53,8 @@ class SwarmController extends \BaseController
             return $view;
         }
         $swarm 		= $response->json();
-        return View::make( 'swarms.form', [ 'swarm' => $swarm ] );
+        $units      = [];
+        return View::make( 'swarms.form', [ 'swarm' => $swarm, 'units' => $units ] );
     }
     /**
      * Store a newly created swarm in storage.

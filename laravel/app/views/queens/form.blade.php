@@ -28,11 +28,11 @@ if ( is_null( $queen ) ) {
 </div>
 <div class="row">
     <div class="input-field col l6 m6 s12">
-        <input type="text" class="datepicker picker__input" name="birth_date" id="birth_date" value="{{ is_null( $queen ) ? '' : date( 'd-m-Y', strtotime( $queen->birth_date ) ) }}">
+        <input type="text" class="datepicker picker__input" name="birth_date" id="birth_date" value="{{ is_null( $queen ) || is_null( $queen->birth_date ) ? '' : date( 'd-m-Y', strtotime( $queen->birth_date ) ) }}">
         <label for="birth_date">@lang( 'queens.birth_date' )</label>
     </div>
     <div class="input-field col l6 m6 s12">
-        <input type="text" class="datepicker picker__input" name="death_date" id="death_date" value="{{ is_null( $queen ) ? '' : date( 'd-m-Y', strtotime( $queen->death_date ) ) }}">
+        <input type="text" class="datepicker picker__input" name="death_date" id="death_date" value="{{ is_null( $queen ) || is_null( $queen->death_date ) ? '' : date( 'd-m-Y', strtotime( $queen->death_date ) ) }}">
         <label for="death_date">@lang( 'queens.death_date' )</label>
     </div>
     <div class="col l6 m6 s12">

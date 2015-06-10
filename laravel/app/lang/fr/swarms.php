@@ -17,11 +17,11 @@ return array(
     "create_new_swarm"	=> "Créer un nouvel essaim",
     "edit_swarm"		=> "Editer un essaim",
     "id" 				=> "Numéro",
+    "origin"            => "Colonnie d'origine",
     "race"				=> "Race",
-    "creation"			=> "Création",
-    "extermination"		=> "Extermination",
+    "extermination"		=> "Date d'extermination",
     "purpose"			=> "Usage",
-    "label"				=> "Etiquette"
+    "comment"           => "Commentaire"
 
 
 );

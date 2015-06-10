@@ -1,12 +1,12 @@
 <ul id="slide-out" class="side-nav">
     {{-- <li>{{ HTML::link( 'home', 'Accueil' ) }}</li> --}}
     {{-- <li><a href="#">Colonies</a></li> --}}
-    <li>{{ HTML::link( 'apiaries', trans( 'apiaries.apiaries' ) ) }}</li>
-    <li>{{ HTML::link( 'hives', trans( 'hives.hives' ) ) }}</li>
     <li>{{ HTML::link( 'races', trans( 'races.races' ) ) }}</li>
-    <li>{{ HTML::link( 'queens', trans( 'queens.queens' ) ) }}</li>
     <li>{{ HTML::link( 'characteristics', trans( 'characteristics.characteristics' ) ) }}</li>
+    <li>{{ HTML::link( 'queens', trans( 'queens.queens' ) ) }}</li>
     <li>{{ HTML::link( 'swarms', trans( 'swarms.swarms' ) ) }}</li>
+    <li>{{ HTML::link( 'hives', trans( 'hives.hives' ) ) }}</li>
+    <li>{{ HTML::link( 'apiaries', trans( 'apiaries.apiaries' ) ) }}</li>
     <li>{{ HTML::link( 'treatments', trans( 'treatments.treatments' ) ) }}</li>
     <li>{{ HTML::link( 'persons', trans( 'persons.persons' ) ) }}</li>
     @if( Auth::user()->is_owner )

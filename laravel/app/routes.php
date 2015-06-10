@@ -104,7 +104,14 @@ Route::post( 'signin', 	[ 'uses' => 'UserController@signin', 	'as' => 'backoffic
 // Déconnexion
 Route::get( 'logout', 	[ 'uses' => 'UserController@logout', 	'as' => 'backoffice.logout' ] );
 
+Route::filter( 'auth', function(){
+    if( ! Auth::check() )
+        return Redirect::to( '/' );
+
+} );
 /************************************************************************** ACCÈS AUX ENTITÉS **************************************************************************/
+
+Route::group( [ "before" => "auth" ], function(){
 /**
  * Gestion des ruchers
  */
@@ -292,3 +299,5 @@ Route::get( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@edit', 		'as' => 'uni
 Route::post( 'unit/edit', 		[ 'uses' => 'UnitController@store', 	'as' => 'units.store' 	] );
 Route::post( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
 Route::get( 'unit/delete/{id}',	[ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
+
+} );
