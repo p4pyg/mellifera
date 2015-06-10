@@ -1,6 +1,7 @@
 @extends('template')
 @section('content')
 @include( 'components.index_header' )
+
 <table id="queens" class="responsive-table hover hoverable striped bordered" data-page-size="5" data-pagination="#queensPagination" >
     <thead>
         <tr>
@@ -18,7 +19,7 @@
         <tr id="queen-{{ $queen->id }}" data-item-index="{{ $queen->id }}">
             <td>{{ $queen->id }}</td>
             <td>{{ $queen->race }}</td>
-            <td>{{ date( 'Y', time() ) - date( 'Y' , strtotime( $queen->birth_date ) ) }}</td>
+            <td>{{ BeeTools::elapsedTime( $queen->birth_date ) }}</td>
             <td>{{ $queen->origin }}</td>
             <td>{{ $queen->clipping }}</td>
             <td>{{ empty ($queen->is_in ) ? "N.A" : "is_in" }}</td>

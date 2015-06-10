@@ -28,5 +28,7 @@ return array(
     "oct" 			=> "Octobre",
     "nov" 			=> "Novembre",
     "dec" 			=> "Décembre",
+    "year"          => "an",
+    "month"         => "mois"
 
 );

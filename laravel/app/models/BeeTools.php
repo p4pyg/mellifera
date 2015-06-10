@@ -41,6 +41,21 @@ class BeeTools
     }
 
     /**
+     * Calcul d'un âge
+     * @param string $birth_date date de naissance Y-m-d
+     * @return string âge en années | mois
+     */
+    public static function elapsedTime( $birth_date )
+    {
+        $birth      = new DateTime( $birth_date );
+        $interval   = date_create( 'now' )->diff( $birth );
+        if( $year = $interval->y > 0 )
+            return $interval->y . '&nbsp;' . ( $year > 1 ? str_plural( trans( 'tools.year' ) ) : trans( 'tools.year' ) ) . '&nbsp;' . $interval->m . '&nbsp;' . trans( 'tools.month' );
+        return $interval->m . 'mois';
+    }
+
+
+    /**
      * Error code
      * @param  integer $code error code
      * @return  string human readable error
