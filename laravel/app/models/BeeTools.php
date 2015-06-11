@@ -194,6 +194,22 @@ class BeeTools
     }
 
     /**
+     * Méthode récursive de nettoyage des objets
+     */
+    public static function cleanObject( $object )
+    {
+        $keys = [ 'created_at', 'updated_at', 'deleted_at', 'label' ];
+        foreach ( $object as $key => $item ) {
+            if( is_object( $item ) )
+                BeeTools::cleanObject( $item );
+            if( in_array( $key, $keys ) )
+                unset( $object->$key );
+        }
+        return $object;
+    }
+
+
+    /**
      * Webservice errors
      * @param  response $response Object Response from Webservice
      * @return  View Custom view for display error | false

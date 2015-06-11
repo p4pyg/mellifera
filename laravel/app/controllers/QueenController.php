@@ -105,13 +105,20 @@ class QueenController extends \BaseController
      */
     public function update($index)
     {
-         // @TODO association à une race
-        $queen          = Input::except( '_token', 'race' );
+         // @TODO association à une race IN PROGRESS !!!!
+        $queen          = Input::except( '_token' );
         $queen[ 'id' ]  = (int) $index;
         $queen[ 'birth_date' ] = $queen[ 'birth_date' ] != '' ? date( 'Y-m-d', strtotime( $queen[ 'birth_date' ] ) ) : '';
         $queen[ 'death_date' ] = $queen[ 'death_date' ] != '' ? date( 'Y-m-d', strtotime( $queen[ 'death_date' ] ) ) : '';
+
+        $queen['race'] = Race::get( $queen['race'] );
+        $queen['race'] = BeeTools::cleanObject( $queen['race'] );
+        // echo '<pre>';
+        // print_r( $queen );
+        // echo '</pre>';
+        // die('<p style="color:orange; font-weight:bold;">Raison</p>');
         // Refactored in BeeTools Model
-        $response       = BeeTools::entity_update( $queen, 'queens' );
+        $response   = BeeTools::entity_update( $queen, 'queens' );
         $view       = BeeTools::is_error( $response );
         if( $view ){
             return $view;
