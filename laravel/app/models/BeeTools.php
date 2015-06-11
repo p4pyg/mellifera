@@ -202,7 +202,7 @@ class BeeTools
         foreach ( $object as $key => $item ) {
             if( is_object( $item ) )
                 BeeTools::cleanObject( $item );
-            if( in_array( $key, $keys ) )
+            if( in_array( $key, $keys ) || is_null( $item ) || $item == '' || ( is_array( $item ) && empty( $item ) ) )
                 unset( $object->$key );
         }
         return $object;
