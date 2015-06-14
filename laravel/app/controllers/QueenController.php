@@ -10,11 +10,12 @@ class QueenController extends \BaseController
     public function index()
     {
         $client     = new HttpClient;
-        $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens", 'headers'    => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response   = $client->get( [
+                                    'url'     => Config::get( 'app.api' ) . "atomic/queens",
+                                    'headers' => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+                                ] );
         $view       = BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
+        if( $view ) return $view;                                                                                               // Retour de la vue d'erreur
         $queens     = $response->json();
         return View::make( 'queens.index', [ "queens" => $queens ] );
     }
@@ -27,7 +28,15 @@ class QueenController extends \BaseController
      */
     public function show($index)
     {
-        // Todo
+        $client     = new HttpClient;
+        $response   = $client->get( [
+                                    'url'     => Config::get( 'app.api' ) . "atomic/queens/" . $index,
+                                    'headers' => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+                                ] );
+        $view       = BeeTools::is_error( $response );
+        if( $view ) return $view;                                                                                               // Retour de la vue d'erreur
+        $queen      = $response->json();
+        return View::make( 'queens.show', [ "queen" => $queen ] );
     }
     /**
      * Show the form for creating a new queen.
@@ -37,7 +46,6 @@ class QueenController extends \BaseController
     {
         $queen = null;
         $races = Race::get();
-
         return View::make( 'queens.form', [ 'queen' => $queen, 'races' => $races ] );
     }
     /**
@@ -48,12 +56,14 @@ class QueenController extends \BaseController
     public function edit($index)
     {
         $client     = new HttpClient;
-        $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/queens/" . $index, 'headers'  => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response   = $client->get( [
+                                    'url'     => Config::get( 'app.api' ) . "atomic/queens/" . $index,
+                                    'headers' => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+                                ] );
         $view       = BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        $queen      = $response->json();
+        if( $view ) return $view;                                                                                               // Retour de la vue d'erreur
+
+        $queen = $response->json();
         $races = Race::get();
         return View::make( 'queens.form', [ 'queen' => $queen, 'races' => $races ] );
     }
@@ -129,8 +139,7 @@ class QueenController extends \BaseController
      */
     public function delete( $index )
     {
-        // Refactored in BeeTools Model
-        $response   = BeeTools::entity_delete( $index, 'queens' );
+        $response = BeeTools::entity_delete( $index, 'queens' );
         return Redirect::to( 'queens' );
     }
 }

@@ -1,16 +1,28 @@
 # MISE EN PRODUCTION
-La mise en production n'est pas automatique.
-Même après avoir "merge" votre branche avec la branche master sur le dépot gitlab, le serveur de production ne prend pas en compte ces modifications, une manipulation supplémentaire est nécessaire.
 
-## Configuration d'une télécommande de mise en production
-Sur votre poste de travail, configurez une nouvelle télécommande :
-`git remote add prod ssh://mellifera@ip.server.prod:port/home/mellifera/mellifera-pro.git`
+## Pré-requis
 
-Puis vous pouvez pousser la branche "master" sur le serveur de production :
-`git push prod master`
+*  Installation de Robo 
+*  Télécommandes Git configurées pour :
+    -  GitLab
+    -  Serveur production
+    -  GitHub
 
-Un mot de passe vous est demandé, c'est normal, le fonctionnement diffère du dépôt GitLab, ici pas de clé SSH pour l'authentification (restons simple)
-Une fois authentifié, la procédure de mise en production s'effectue. La mise à jour du répertoire web est automatisée. Vous pouvez joindre http://backoffice.mellifera.cu.cc avec votre navigateur préféré.
+_Merci de me contacter avant d'effectuer les procédures suivantes:_
 
-> Les ip, port et mot de passe vous seront communiqués par e-mail.
-> En cas d'oubli ou de problème, merci de me contacter : laurent@impermanenceweb.fr
+_Le dépot GitHub permet d'automatiser un audit qualité sur le code produit, un hook et configuré pour déclencher un scan par SensioLabsInsight et produire un rapport. L'icône SensioLabsInsight du README.md est mise à jour au terme de l'audit. Il est bien évidemment nécessaire de créer un compte GitHub et de faire une demande de rattachement au compte principal_
+
+_Concernant la télécommande du serveur "Production", il est obligatoire d'enregistrer vos clés SSH publiques dans le fichier ./ssh/authorized\_keys du VPS._
+
+### Mode d'installation recommandée
+
+`
+# cd /opt
+# wget http://robo.li/robo.phar
+# chmod +x robo.phar && mv robo.phar /usr/bin/robo
+`
+
+La mise en production peut être automatisée en utilisant l'éxécuteur de tâches Robo.
+À la racine du projet se trouve un fichier PHP RoboFile.php contenant quelques tâches. Pour connaitre la liste des tâches implémentées, ouvrez un terminal et placez pour à la racine du projet.
+Saisissez la commande :
+`robo --list`

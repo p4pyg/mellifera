@@ -30,7 +30,7 @@ if ( is_null( $race ) ) {
     <div class="col l6 m6 s12">
         <h5>@lang( 'races.global' )</h5>
         <div class="input-field col l12 m12 s12">
-            <input type="text" name="name" id="name" class="validate" value="{{ is_null( $race ) ? '' : $race->name->name }}">
+            <input type="text" name="name" id="name" class="validate" value="{{ is_null( $race ) ? '' : $race->label }}">
             <label for="name">@lang( 'races.name' )</label>
         </div>
         <div class="input-field col l12 m12 s12">

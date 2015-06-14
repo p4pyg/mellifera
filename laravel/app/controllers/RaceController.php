@@ -52,16 +52,15 @@ class RaceController extends BaseController
         }
         $race       = $response->json();
 
-// echo '<pre>';
-// print_r($response);
-// echo '</pre>';
-// die('<p style="color:orange; font-weight:bold;">Raison</p>');
-        $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/characteristics/" . $race->characteristic->id, 'headers'  => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view       = BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        $characteristic  = $response->json();
+        if( !is_null( $race->characteristic ) ){
+            $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/characteristics/" . $race->characteristic->id, 'headers'  => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+            $view       = BeeTools::is_error( $response );
+            if( $view ){
+                return $view;
+            }
+            $characteristic  = $response->json();
+        }else
+            $characteristic  = null;
         return View::make( 'races.form', [ 'race' => $race, 'characteristic' => $characteristic ] );
     }
     /**
@@ -144,7 +143,7 @@ class RaceController extends BaseController
             $response_characteristic 	= BeeTools::entity_store( $characteristics, 'characteristics' );
         } else
             $response_characteristic 	= BeeTools::entity_update( $characteristics, 'characteristics' );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::is_error( $response_characteristic );
         if( $view ){
             return $view;
         }

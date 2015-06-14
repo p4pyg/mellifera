@@ -29,6 +29,8 @@ return array(
     "nov" 			=> "Novembre",
     "dec" 			=> "Décembre",
     "year"          => "an",
-    "month"         => "mois"
+    "month"         => "mois",
+    "unit_add"      => "Ajouter des unités de production",
+    "show"          => "Voir les détails"
 
 );

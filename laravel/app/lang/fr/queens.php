@@ -21,7 +21,7 @@ return array(
     "false"					=> "Non",
     "age"					=> "Âge",
     "origin"				=> "Origine",
-    // "clip"					=> [ "Non" , "Oui" ],
+    "is_in"					=> "Affectation",
     "current_swarm"			=> "Essaim actuel",
     "thumbnail"				=> "Photo",
     "thumbname" 			=> "Nom de la photo",

@@ -239,6 +239,7 @@ Route::get( 'queen/edit/{id}', 	[ 'uses' => 'QueenController@edit', 	'as' => 'qu
 Route::post( 'queen/edit', 		[ 'uses' => 'QueenController@store', 	'as' => 'queens.store' 	] );
 Route::post( 'queen/edit/{id}', [ 'uses' => 'QueenController@update', 	'as' => 'queens.update' ] );
 Route::get( 'queen/delete/{id}',[ 'uses' => 'QueenController@delete', 	'as' => 'queens.delete' ] );
+Route::get( 'queen/show/{id}',  [ 'uses' => 'QueenController@show',     'as' => 'queens.show'   ] );
 
 /**
  * Gestion des races
@@ -293,11 +294,12 @@ Route::get( 'treatment/delete/{id}',[ 'uses' => 'TreatmentController@delete',	'a
 /**
  * Gestion des unités
  */
-Route::get( 'units', 			[ 'uses' => 'UnitController@index', 	'as' => 'units.index' 	] );
-Route::get( 'unit/edit', 		[ 'uses' => 'UnitController@create',	'as' => 'units.create'	] );
-Route::get( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@edit', 		'as' => 'units.edit' 	] );
-Route::post( 'unit/edit', 		[ 'uses' => 'UnitController@store', 	'as' => 'units.store' 	] );
-Route::post( 'unit/edit/{id}', 	[ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
-Route::get( 'unit/delete/{id}',	[ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
+Route::get( 'units', 			    [ 'uses' => 'UnitController@index', 	'as' => 'units.index' 	] );
+Route::get( 'unit/edit', 		    [ 'uses' => 'UnitController@create',	'as' => 'units.create'	] );
+Route::get( 'unit/new/apiary/{id}', [ 'uses' => 'UnitController@create',    'as' => 'units.create'  ] );
+Route::get( 'unit/edit/{id}', 	    [ 'uses' => 'UnitController@edit', 		'as' => 'units.edit' 	] );
+Route::post( 'unit/edit', 		    [ 'uses' => 'UnitController@store', 	'as' => 'units.store' 	] );
+Route::post( 'unit/edit/{id}', 	    [ 'uses' => 'UnitController@update',	'as' => 'units.update'	] );
+Route::get( 'unit/delete/{id}',	    [ 'uses' => 'UnitController@delete',	'as' => 'units.delete'	] );
 
 } );

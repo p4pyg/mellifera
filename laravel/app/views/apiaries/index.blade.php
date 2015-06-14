@@ -16,10 +16,12 @@
             <th data-sortable="true">@lang( 'apiaries.vegetation_type' )</th>
             <th data-sortable="true">@lang( 'apiaries.hives_capacity' )</th>
             <th data-sortable="true">@lang( 'apiaries.rank' )</th>
+            <th>@lang( 'apiaries.action' )</th>
         </tr>
     </thead>
     <tbody>
     @foreach( $apiaries as $apiary )
+
         <tr id="apiary-{{ $apiary->id }}" data-item-index="{{ $apiary->id }}">
             <td>{{ $apiary->id }}</td>
             <td>{{ ucfirst( $apiary->name ) }}</td>
@@ -33,6 +35,7 @@
             <td>{{ $apiary->vegetation_type }}</td>
             <td>{{ $apiary->hives_capacity }}</td>
             <td>{{ $apiary->rank }}</td>
+            <td>@include( 'components.button_unit_add', [ 'entity' => "unit", 'apiary_id' => $apiary->id  ] )</td>
         </tr>
     @endforeach
     </tbody>

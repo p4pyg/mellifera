@@ -21,14 +21,16 @@
         </tr>
     </thead>
     <tbody>
+
     @foreach( $queens as $queen )
+
         <tr id="queen-{{ $queen->id }}" data-item-index="{{ $queen->id }}">
             <td>{{ $queen->id }}</td>
-            <td>{{ $queen->race }}</td>
+            <td>{{ !is_null( $queen->race ) ? $queen->race->label : '' }}</td>
             <td>{{ BeeTools::elapsedTime( $queen->birth_date ) }}</td>
             <td>{{ $queen->origin }}</td>
             <td>{{ $queen->clipping }}</td>
-            <td>{{ empty ($queen->is_in ) ? "N.A" : "is_in" }}</td>
+            <td>@if( empty ($queen->is_in ) ) "N.A" @else @include( 'components.button_show', [ 'entity' => 'queen', 'item' => $queen->id ] ) @endif</td>
             <td>{{ is_null( $queen->death_date ) ? '-' : date( 'd/m/Y', strtotime( $queen->death_date ) ) }}</td>
         </tr>
     @endforeach

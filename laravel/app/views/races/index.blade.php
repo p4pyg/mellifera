@@ -18,7 +18,7 @@
 @else
         <tr id="race-{{ $race->id }}" data-item-index="{{ $race->id }}">
             <td class="center-align">{{ $race->id }}</td>
-            <td>{{ ucfirst( $race->name->name ) }}</td>
+            <td>{{ ucfirst( $race->label ) }}</td>
             <td class="center-align">{{ $race->life_span }}</td>
             <td>{{ $race->geographical_origin }}</td>
         </tr>

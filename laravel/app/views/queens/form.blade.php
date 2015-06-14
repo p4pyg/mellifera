@@ -50,7 +50,7 @@ if ( is_null( $queen ) ) {
         <select name="race">
             <option value="" disabled selected ></option>
             @foreach( $races as $race )
-            <option value="{{ $race->id }}">{{ $race->name->name }}</option>
+            <option value="{{ $race->id }}">{{ $race->label }}</option>
             @endforeach
         </select>
     <label>@lang( 'queens.race' )</label>

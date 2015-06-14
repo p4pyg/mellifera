@@ -33,10 +33,13 @@ class UnitController extends \BaseController
      * Show the form for creating a new unit.
      * @return View units.form with unit null
      */
-    public function create()
+    public function create( $apiary_id = null )
     {
         $unit = null;
-        return View::make( 'units.form', [ 'unit' => $unit ] );
+        $queens = Queen::get();
+        $hives  = Hive::get();
+        $swarms = Swarm::get();
+        return View::make( 'units.form', [ 'unit' => $unit, 'apiary_id' => $apiary_id, 'queens' => $queens, 'hives' => $hives, 'swarms' => $swarms ] );
     }
     /**
      * Show the form for editing the specified unit.
@@ -52,7 +55,10 @@ class UnitController extends \BaseController
             return $view;
         }
         $unit 		= $response->json();
-        return View::make( 'units.form', [ 'unit' => $unit ] );
+        $queens = Queen::get();
+        $hives  = Hive::get();
+        $swarms = Swarm::get();
+        return View::make( 'units.form', [ 'unit' => $unit, 'queens' => $queens, 'hives' => $hives, 'swarms' => $swarms ] );
     }
     /**
      * Store a newly created unit in storage.
@@ -72,13 +78,44 @@ class UnitController extends \BaseController
      */
     public function store()
     {
-        $inputs 	= Input::except( '_token' );
-        // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'units' );
+        $inputs 	= Input::except( '_token', 'apiary_id' );
+        $entity = [];
+        foreach ( $inputs as $key => $item )
+            $entity[$key] = $item === '' ? null : $item;
+        $entity = BeeTools::cleanObject( $entity );
+
+        $request = [
+            'url'       => Config::get( 'app.api' ) . 'atomic/association',
+            'params'    => json_encode( $entity ),
+            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+        ];
+        $client     = new HttpClient;
+        $response   = $client->post( $request );
+
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
+        $apiary = Input::only( 'apiary_id' );
+        if( $apiary != '' ){
+            $unit = $response->content();
+            $unit = json_decode( $unit );
+            $transhumance = [ "apiary" => $apiary['apiary_id'], "units" => [ $unit->id ] ];
+
+            $request = [
+                'url'       => Config::get( 'app.api' ) . 'atomic/transhumance',
+                'params'    => json_encode( $transhumance ),
+                'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+            ];
+            $client     = new HttpClient;
+            $response   = $client->post( $request );
+
+            $view       = BeeTools::is_error( $response );
+            if( $view ){
+                return $view;
+            }
+        }
+
         // WORK IN PROGRESS
         // return response
         return Redirect::to( 'units' );
