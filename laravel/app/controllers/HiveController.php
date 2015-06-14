@@ -17,45 +17,7 @@ class HiveController extends \BaseController
         $view       = BeeTools::is_error( $response );
         if( $view ) return $view;
 
-        $hives      = $response->json();
-
-        $response   = $client->get( [
-                                    'url' => Config::get( 'app.api' ) . "atomic/apiaries",
-                                    'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                    ] );
-
-        $apiaries   = $response->json();
-        foreach ( $apiaries as $apiary ) {
-            if( ! is_null( $apiary->productions ) ){
-                foreach ( $apiary->productions as $production) {
-                    $response   = $client->get( [
-                                    'url' => Config::get( 'app.api' ) . "atomic/productions/" . $production->id,
-                                    'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                    ] );
-                    $production = $response->json();
-                    if( ! is_null( $production->unit ) ){
-                        if( is_object( $production->unit ) ){
-                            $response   = $client->get( [
-                                            'url' => Config::get( 'app.api' ) . "atomic/units/" . $production->unit->id,
-                                            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                            ] );
-                            $unit = $response->json();
-                            foreach( $hives as $key => $hive ){
-                                if( $hive->id == $unit->beehive->id )
-                                    $hives[ $key ]->apiary = $apiary->name;
-                            }
-                        }else{
-                            foreach ( $production->unit as $unit ) {
-                                $response   = $client->get( [
-                                                'url' => Config::get( 'app.api' ) . "atomic/units/" . $unit->id,
-                                                'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                                ] );
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        $hives      = Hive::getHivesApiarie( $response->json() );
 
         return View::make( 'hives.index', [ "hives" => $hives ] );
     }
