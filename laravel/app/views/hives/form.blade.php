@@ -11,11 +11,14 @@ if ( is_null( $hive ) ) {
 ?>
 {{	Form::open( [ 'url' => 'hive/edit/' . ( is_null( $hive ) ? '' :  $hive->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'hive_form' ] )	}}
 <div class="row valign-wrapper">
-    <div class="col l10 m10 s10">
+    <div class="col l8 m8 s8">
         <h2>{{ $title }}&nbsp;</h2>
     </div>
     <div class="col l2 m2 s2 valign">
         @include( 'components.button_submit' )
+    </div>
+        <div class="col l2 m2 s2 valign">
+        @include( 'components.button_back', [ 'item' => 'hives' ] )
     </div>
     <div class="col l2 m2 s2 valign">
     @if( ! is_null( $hive ) )
@@ -38,7 +41,7 @@ if ( is_null( $hive ) ) {
         <p class="range-field">
     </div>
     <div class="input-field col l6 m6 s12">
-        <input type="text" name="type" id="type" value="{{ is_null( $hive ) ? '' : $hive->type->name }}">
+        <input type="text" name="type" id="type" value="{{ ( is_null( $hive ) || is_null( $hive->type ) ) ? '' : $hive->type->name }}">
         <label for="type">@lang( 'hives.type' )</label>
     </div>
 </div>

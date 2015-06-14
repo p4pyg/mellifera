@@ -27,6 +27,7 @@ return array(
     "edit_hive" 		=> "Modification d'une ruche",
     "code_number" 		=> "Numéro/Nom",
     "label"				=> "Etiquette",
+    "alert"             => "Alerte",
     "barcode" 			=> "Qrcode"
 
 );

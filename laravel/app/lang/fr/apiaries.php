@@ -12,6 +12,8 @@ return array(
     */
 
     "news"              => "Aucun rucher n'existe, vous allez créer votre premier rucher.",
+    "apiaries"          => "Ruchers",
+    "apiary"            => "Rucher",
     "create_new_apiary" => "Création d'un nouveau rucher",
     "apiary_name"       => "Nom",
     "weathers"          => "Conditions météorologiques",

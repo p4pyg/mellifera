@@ -31,6 +31,7 @@ return array(
     "year"          => "an",
     "month"         => "mois",
     "unit_add"      => "Ajouter des unités de production",
-    "show"          => "Voir les détails"
+    "show"          => "Voir les détails",
+    "messages"      => [ 'Non évaluée', 'Rien à signaler', 'À surveiller', 'Préoccupant', 'Critique' ]
 
 );
