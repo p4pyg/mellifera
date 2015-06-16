@@ -1,5 +1,7 @@
 <?php
     use Vinelab\Http\Client as HttpClient;
+// header("Access-Control-Allow-Origin: *");
+// header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");
 
 /*
 |--------------------------------------------------------------------------
@@ -11,7 +13,6 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-
 
 /************************************************************************** UNIQUEMENT EN PHASE DE DEVELOPPEMENT **************************************************************************/
 

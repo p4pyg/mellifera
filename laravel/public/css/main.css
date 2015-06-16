@@ -205,6 +205,11 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 /*----------------------------------------------------------------
     Select
 ----------------------------------------------------------------*/
+.dropdown-content{
+  background-color: #fff;
+  z-index : 999;
+
+}
 .dropdown-content li > a, .dropdown-content li > span{
   color : #e65100;
 }

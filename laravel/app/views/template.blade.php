@@ -15,9 +15,11 @@
     @if( $entity !== 'landing' )
         <header>
             @include( 'topbar' )
+            {{--
             @if( Auth::check() )
                 @include( 'sidenav' )
             @endif
+            --}}
         </header>
         <main role="main">
             <div class="container">
@@ -41,6 +43,7 @@
         <script>
             $( document ).ready( function () {
                 $( ".button-collapse" ).sideNav();
+                $(".dropdown-button").dropdown();
                 $('.parallax').parallax();
                 $('.slider').slider({full_width: false});
                 @if( Session::has('message') )
@@ -187,8 +190,9 @@ eval(function (p,a,c,k,e,r) {e=function (c) {return(c<a?'':e(parseInt(c/a)))+((c
 
             /* Markers */
             var infobox_close = 0;
-                    var apiaries = {{ BeeTools::getApiaries() }};
+            var apiaries = {{ BeeTools::getApiaries() }};
             $.each( apiaries, function (index, apiary) {
+
                 var contentString   = '<div class="infobox-inner" style="color: ' + textcolor + ';"><a href="/apiary/edit/' + apiary.id + '">' + apiary.name + '</a></div>';
                 var infobox         = new InfoBox(
                     {   content: contentString,
