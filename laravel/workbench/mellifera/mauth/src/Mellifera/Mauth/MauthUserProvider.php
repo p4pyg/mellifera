@@ -39,8 +39,10 @@ class MauthUserProvider implements UserProviderInterface{
 				\Session::put('api_token', $data->token );
 				\Session::flash( 'message', trans( 'users.welcome') );
 			}else{
-				$data = $response->json();
-
+				if ($response->statusCode() == 502){
+					\Session::flash('message', trans('tools.ws_error'));
+					return null;
+				}
 				// ############################# Stand by
 				// Flash provisoire dans l'attente d'un code d'erreur dans le retour json du webservice
 				// \Session::flash( 'message', \BeeTools::error_code( $data->code ) );

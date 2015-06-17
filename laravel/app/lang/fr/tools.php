@@ -40,6 +40,7 @@ return array(
     "logout"        => "Me déconnecter",
     "login"         => "Me connecter",
     "dashboard"     => "Tableau de bord",
-    "dash_info"     => "Cette page présente les différentes statistiques de l'exploitation."
+    "dash_info"     => "Cette page présente les différentes statistiques de l'exploitation.",
+    "ws_error"      => "Accès au serveur de données momentanément indisponible.",
 
 );

@@ -99,8 +99,15 @@ Route::get('logout',    [ 'uses' => 'UserController@logout',    'as' => 'backoff
 
 /************************************************************************** FILTRE AUTHENTIFICATION **************************************************************************/
 Route::filter('auth', function(){
-    if (!Auth::check())
+    // $ws_is_up = false;//BeeTools::isUp();
+
+    // if (!$ws_is_up) {
+    //     return Redirect::back()->with('message', trans('tools.ws_error'));
+    // }
+    if (!Auth::check()){
         return Redirect::to('login');
+    }
+
 
 });
 /************************************************************************** ACCÈS AUX ENTITÉS **************************************************************************/
