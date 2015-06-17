@@ -6,7 +6,7 @@
         <h2>@lang( 'users.signin_title' )&nbsp;</h2>
     </div>
     <div class="col l2 m2 s2 valign">
-        @include( 'components.button_back', [ 'item' => 'backoffice' ]  )
+        @include( 'components.button_back', [ 'item' => '/' ]  )
     </div>
     <div class="col l2 m2 s2 valign">
         @include( 'components.button_submit' )

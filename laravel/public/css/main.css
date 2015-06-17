@@ -53,7 +53,9 @@ table tr th[data-sortable="true"]:hover i {
 table tr th[data-sortable="true"] i {
   padding-left: .5em;
 }
-
+table tr{
+  min-height : 2rem;
+}
 ul.pagination{
 	padding : 1rem;
 }

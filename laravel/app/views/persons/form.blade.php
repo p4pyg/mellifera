@@ -10,6 +10,7 @@ if ( is_null( $person ) ) {
 }
 ?>
 {{	Form::open( [ 'url' => 'person/edit/' . ( is_null( $person ) ? '' :  $person->id ) , 'method' => 'POST', 'class' => 'col s12', 'id' => 'person_form' ] )	}}
+<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 <div class="row valign-wrapper">
     <div class="col l8 m8 s8">
         <h2>{{ $title }}&nbsp;</h2>

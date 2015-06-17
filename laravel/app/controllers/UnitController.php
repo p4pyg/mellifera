@@ -35,10 +35,10 @@ class UnitController extends \BaseController
      */
     public function create( $apiary_id = null )
     {
-        $unit = null;
-        $queens = Queen::get();
+        $unit   = null;
+        $queens = Unit::have( Queen::get() );
+        $swarms = Unit::have( Swarm::get() );
         $hives  = Hive::get();
-        $swarms = Swarm::get();
         return View::make( 'units.form', [ 'unit' => $unit, 'apiary_id' => $apiary_id, 'queens' => $queens, 'hives' => $hives, 'swarms' => $swarms ] );
     }
     /**
@@ -49,7 +49,10 @@ class UnitController extends \BaseController
     public function edit($index)
     {
         $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/units/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
+        $response 	= $client->get( [
+                                    'url' => Config::get( 'app.api' ) . "atomic/units/" . $index,
+                                    'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+                                ] );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;

@@ -14,7 +14,7 @@ class BeeTools
      */
     public static function entity_table($string)
     {
-        return mb_strtolower( str_plural( $string ) );
+        return mb_strtolower(str_plural($string));
     }
 
     /**
@@ -25,7 +25,7 @@ class BeeTools
      */
     public static function table_entity($string)
     {
-        return ucfirst( str_singular( $string ) );
+        return ucfirst(str_singular($string));
     }
 
     /**
@@ -34,8 +34,8 @@ class BeeTools
      */
     public static function list_month($index = null)
     {
-        $months = [ trans( 'tools.jan' ), trans( 'tools.feb' ), trans( 'tools.mar' ), trans( 'tools.apr' ), trans( 'tools.may' ), trans( 'tools.jun' ), trans( 'tools.jul' ), trans( 'tools.aug' ), trans( 'tools.sept' ), trans( 'tools.oct' ), trans( 'tools.nov' ), trans( 'tools.dec' ) ];
-        if( is_null( $index ) )
+        $months = [ trans('tools.jan'), trans('tools.feb'), trans('tools.mar'), trans('tools.apr'), trans('tools.may'), trans('tools.jun'), trans('tools.jul'), trans('tools.aug'), trans('tools.sept'), trans('tools.oct'), trans('tools.nov'), trans('tools.dec') ];
+        if(is_null($index))
             return $months;
         return $months[ $index ];
     }
@@ -45,12 +45,12 @@ class BeeTools
      * @param string $birth_date date de naissance Y-m-d
      * @return string âge en années | mois
      */
-    public static function elapsedTime( $birth_date )
+    public static function elapsedTime($birth_date)
     {
-        $birth      = new DateTime( $birth_date );
-        $interval   = date_create( 'now' )->diff( $birth );
-        if( $year = $interval->y > 0 )
-            return $interval->y . '&nbsp;' . ( $year > 1 ? str_plural( trans( 'tools.year' ) ) : trans( 'tools.year' ) ) . '&nbsp;' . $interval->m . '&nbsp;' . trans( 'tools.month' );
+        $birth      = new DateTime($birth_date);
+        $interval   = date_create('now')->diff($birth);
+        if($year = $interval->y > 0)
+            return $interval->y . '&nbsp;' . ($year > 1 ? str_plural(trans('tools.year')) : trans('tools.year')) . '&nbsp;' . $interval->m . '&nbsp;' . trans('tools.month');
         return $interval->m . 'mois';
     }
 
@@ -61,7 +61,7 @@ class BeeTools
      */
     public static function error_code($code)
     {
-        return trans( 'errors.' . $code );
+        return trans('errors.' . $code);
     }
 
     /**
@@ -74,15 +74,15 @@ class BeeTools
     public static function entity_store($data, $string)
     {
         $entity = [];
-        foreach ( $data as $key => $item )
+        foreach ($data as $key => $item)
             $entity[$key] = $item === '' ? null : $item;
         $request = [
-            'url'       => Config::get( 'app.api' ) . 'atomic/' . $string,
-            'params'    => json_encode( $entity ),
-            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+            'url'       => Config::get('app.api') . 'atomic/' . $string,
+            'params'    => json_encode($entity),
+            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
         ];
         $client     = new HttpClient;
-        $response   = $client->post( $request );
+        $response   = $client->post($request);
         return $response;
     }
 
@@ -96,16 +96,16 @@ class BeeTools
     public static function entity_update($data, $string)
     {
         $entity = [];
-        foreach ( $data as $key => $item )
+        foreach ($data as $key => $item)
             $entity[$key] = $item === '' ? null : $item;
         $request = [
-            'url'       => Config::get( 'app.api' ) . 'atomic/' . $string,
-            'params'    => json_encode( $entity ),
-            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+            'url'       => Config::get('app.api') . 'atomic/' . $string,
+            'params'    => json_encode($entity),
+            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
         ];
 
         $client     = new HttpClient;
-        $response   = $client->put( $request );
+        $response   = $client->put($request);
         return $response;
     }
 
@@ -118,17 +118,17 @@ class BeeTools
      */
     public static function entity_delete($index, $string)
     {
-        $url    = Config::get( 'app.api' ) . 'atomic/' . $string . "/" . $index;
+        $url    = Config::get('app.api') . 'atomic/' . $string . "/" . $index;
         $json   = '{}';
         $ch     = curl_init();
-        curl_setopt( $ch, CURLOPT_URL, $url );
-        curl_setopt( $ch, CURLOPT_CUSTOMREQUEST, "DELETE" );
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, $json );
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'APIKEY:' . \Session::get( 'api_token' ) ] );
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        $result     = curl_exec( $ch );
-        $response   = json_decode( $result );
-        curl_close( $ch );
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [ 'APIKEY:' . \Session::get('api_token') ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result     = curl_exec($ch);
+        $response   = json_decode($result);
+        curl_close($ch);
         return $response;
     }
 
@@ -143,39 +143,42 @@ class BeeTools
     public static function get_arraylist($entity, $column, $custom_only = false, $retrieve_id = false)
     {
         $client         = new HttpClient;
-        $master         = str_singular( $entity ) . '_' . str_plural( $column );
+        $master         = str_singular($entity) . '_' . str_plural($column);
 
 
-        $response       = $client->get( [
-                                            'url'       => Config::get( 'app.api' ) . 'column/' . $entity . '/' . $column,
-                                            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                        ] );
+        $response       = $client->get([
+                                            'url'       => Config::get('app.api') . 'column/' . $entity . '/' . $column,
+                                            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
+                                        ]);
         $custom_types   = $response->json();
 
-        if( ! $custom_only ){
-            $response   = $client->get( [
-                                            'url'       => Config::get( 'app.api' ) . 'column/' . $master . '/name',
-                                            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                        ] );
+        if(! $custom_only){
+            $response   = $client->get([
+                                            'url'       => Config::get('app.api') . 'column/' . $master . '/name',
+                                            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
+                                        ]);
             $top_types  = $response->json();
-
-            $arraylist  = array_merge( $top_types->datas, $custom_types->datas );
+            if (isset($custom_types->datas)){
+                $arraylist  = array_merge($top_types->datas, $custom_types->datas);
+            } else {
+                $arraylist  = $top_types->datas;
+            }
         }else
             $arraylist  = $custom_types->datas;
 
         $array_by_id = [];
-        foreach ( $arraylist as $key => $item )
-            if( $item->value !== '' && is_string( $item->value ) )
+        foreach ($arraylist as $key => $item)
+            if($item->value !== '' && is_string($item->value))
                 $array_by_id[ $item->id ] = $item->value;
 
-        if( $retrieve_id ){
+        if($retrieve_id){
             return $array_by_id;
         }else{
             $simple_json_array = [];
             foreach ($array_by_id as $value) {
-                array_push( $simple_json_array, $value );
+                array_push($simple_json_array, $value);
             }
-            return json_encode( $simple_json_array );
+            return json_encode($simple_json_array);
         }
     }
 
@@ -186,25 +189,25 @@ class BeeTools
     public static function getApiaries()
     {
         $request = [
-            'url'       => Config::get( 'app.api' ) . 'atomic/apiaries',
-            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+            'url'       => Config::get('app.api') . 'atomic/apiaries',
+            'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
         ];
         $client     = new HttpClient;
-        $response   = $client->get( $request );
+        $response   = $client->get($request);
         return $response->content();
     }
 
     /**
      * Méthode récursive de nettoyage des objets
      */
-    public static function cleanObject( $object )
+    public static function cleanObject($object)
     {
         $keys = [ 'created_at', 'updated_at', 'deleted_at', 'label' ];
-        foreach ( $object as $key => $item ) {
-            if( is_object( $item ) )
-                BeeTools::cleanObject( $item );
-            if( in_array( $key, $keys ) || is_null( $item ) || $item == '' || ( is_array( $item ) && empty( $item ) ) )
-                unset( $object->$key );
+        foreach ($object as $key => $item) {
+            if(is_object($item))
+                BeeTools::cleanObject($item);
+            if(in_array($key, $keys) || is_null($item) || $item == '' || (is_array($item) && empty($item)))
+                unset($object->$key);
         }
         return $object;
     }
@@ -219,22 +222,22 @@ class BeeTools
     {
         $error = [];
         $ws_response = $response->json();
-        if( empty( $ws_response ) )
+        if(empty($ws_response))
             $error['blank'] = true;
 
-        if( $response->statusCode() != 200 ){
+        if($response->statusCode() != 200){
             $error['code']      = $response->statusCode();
             $error['message']   = $response->content();
             $error['blank']     = false;
         }
 
-        if( !empty( $error ) ){
-            if( $error['blank'] ){ // si aucun élément n'est retourné, redirection vers le formulaire de création
-                list( $entity, $page ) = explode( '.', Route::currentRouteName() );
-                unset( $page );
-                return Redirect::to( str_singular( $entity ) . '/edit' )->with( [ 'message' => trans( $entity . '.news') ] );
+        if(!empty($error)){
+            if($error['blank']){ // si aucun élément n'est retourné, redirection vers le formulaire de création
+                list($entity, $page) = explode('.', Route::currentRouteName());
+                unset($page);
+                return Redirect::to(str_singular($entity) . '/edit')->with([ 'message' => trans($entity . '.news') ]);
             }
-            return View::make( 'errors.http_response', [ 'response' => $error ] );
+            return View::make('errors.http_response', [ 'response' => $error ]);
         }
         return false;
 

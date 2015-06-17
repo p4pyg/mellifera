@@ -9,7 +9,7 @@
         @endif
     </div>
     <div class="col l2 m2 s2 valign">
-        @include( 'components.button_back' )
+        @include( 'components.button_back', ['item'=>'backoffice'] )
     </div>
     @if( $page !== 'show' )
     <div class="col l2 m2 s2 valign">

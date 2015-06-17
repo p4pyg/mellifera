@@ -1,7 +1,6 @@
-<?php if( ! isset( $entity ) ) $entity = $item; ?>
 {{ HTML::decode(
     HTML::link(
-        $entity ,
+        $item ,
         '<span class="mdi-content-reply"></span>',
         [
             'data-position' 	=> 'bottom',

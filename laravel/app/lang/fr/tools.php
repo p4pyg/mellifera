@@ -34,10 +34,12 @@ return array(
     "show"          => "Voir les détails",
     "messages"      => [ 'Non évaluée', 'Rien à signaler', 'À surveiller', 'Préoccupant', 'Critique' ],
     "basics"        => "Mes basiques",
-    "manage"        => "Mes exploitations",
+    "manage"        => "Mon exploitation",
     "admin"         => "Administration",
     "account"       => "Mon compte",
     "logout"        => "Me déconnecter",
-    "login"         => "Me connecter"
+    "login"         => "Me connecter",
+    "dashboard"     => "Tableau de bord",
+    "dash_info"     => "Cette page présente les différentes statistiques de l'exploitation."
 
 );

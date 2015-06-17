@@ -21,7 +21,9 @@ return array(
     "race"				=> "Race",
     "extermination"		=> "Date d'extermination",
     "purpose"			=> "Usage",
-    "comment"           => "Commentaire"
+    "comment"           => "Commentaire",
+    "multiple"          => "Combien d'essaim voulez-vous créer ?",
+    "multi_info"        => "Par défaut, un seul essaim sera créé."
 
 
 );

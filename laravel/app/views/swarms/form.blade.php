@@ -28,7 +28,7 @@ if ( is_null( $swarm ) ) {
 </div>
 <div class="row">
 
-        <h5>@lang( 'swarms.global' )</h5>
+        {{-- <h5>@lang( 'swarms.global' )</h5> --}}
         <div class="input-field col l6 m6 s12">
             <select name="origin">
                 <option value="" disabled selected ></option>
@@ -53,6 +53,16 @@ if ( is_null( $swarm ) ) {
         <div class="input-field col l6 m6 s12">
             <textarea name="comment" id="comment" class="materialize-textarea" cols="30" rows="10">{{ is_null( $swarm ) ? '' : $swarm->comment }}</textarea>
             <label>@lang( 'swarms.comment' )</label>
+        </div>
+
+        <div class="input-field col l6 m6 s12">
+            <fieldset>
+                <legend>@lang( 'swarms.multiple' )</legend>
+                <p>@lang( 'swarms.multi_info' )</p>
+                <p class="range-field">
+                    <input type="range" id="multiple" name="multiple" min="1" max="30" value="1" />
+                </p>
+            </fieldset>
         </div>
 </div>
 {{ Form::close() }}

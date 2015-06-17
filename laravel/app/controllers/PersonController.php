@@ -1,6 +1,12 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
 
+/**
+ * Controller Person
+ * - Préparation des vues des différents formulaires du CRUD
+ * - Gestion du CRUD via le webservice
+ * @see  Vinelab package de gestion des actions RestFull
+ */
 class PersonController extends \BaseController
 {
     /**
@@ -9,17 +15,20 @@ class PersonController extends \BaseController
      */
     public function index()
     {
-        $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/persons", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
+        $client     = new HttpClient;
+        $response   = $client->get([
+                                    'url'       => Config::get( 'app.api' ) . "atomic/persons",
+                                    'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
+                                ] );
+        $view       = BeeTools::is_error( $response );
+        if ( $view ){
             return $view;
         }
-        $persons 	= $response->json();
+        $persons    = $response->json();
         return View::make( 'persons.index', [ "persons" => $persons ] );
     }
 
-/**
+    /**
      * Display the specified person.
      *
      * @param  int  $index
@@ -36,7 +45,7 @@ class PersonController extends \BaseController
     public function create()
     {
         $person = null;
-        return View::make( 'persons.form', [ 'person' => $person ] );
+        return View::make('persons.form', ['person' => $person]);
     }
     /**
      * Show the form for editing the specified person.
@@ -45,108 +54,97 @@ class PersonController extends \BaseController
      */
     public function edit($index)
     {
-        $client 	= new HttpClient;
-        $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/persons/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        $person 	= $response->json();
+        $person = new Person($index);
+
         return View::make( 'persons.form', [ 'person' => $person ] );
     }
     /**
      * Store a newly created person in storage.
      * Object structure for HTTP POST
      * $person = [
-     * 			"createdAt" 			=> [timestamp],
-     * 			"updatedAt" 			=> [timestamp],
-     * 			"last_name" 			=> [string],
-     * 			"first_name" 			=> [string],
-     * 			"address1" 				=> [string],
-     * 			"address2" 				=> [string],
-     * 			"postcode" 				=> [integer],
-     * 			"city" 					=> [string],
-     * 			"phone" 				=> [long],
-     * 			"email" 				=> [string],
-     * 			"notes" 				=> [string],
-     * 			"user" 					=> [object],
-     * 			"trades_with_sellers" 	=> [object],
-     * 			"trades_with_buyers" 	=> [object]
-     * 		];
+     *          "createdAt"             => [timestamp],
+     *          "updatedAt"             => [timestamp],
+     *          "last_name"             => [string],
+     *          "first_name"            => [string],
+     *          "address1"              => [string],
+     *          "address2"              => [string],
+     *          "postcode"              => [integer],
+     *          "city"                  => [string],
+     *          "phone"                 => [long],
+     *          "email"                 => [string],
+     *          "notes"                 => [string],
+     *          "user"                  => [object],
+     *          "trades_with_sellers"   => [object],
+     *          "trades_with_buyers"    => [object]
+     *      ];
      * @return Response
      */
     public function store()
     {
-        $person = Input::except( '_token', 'email', 'password', 'password_confirmation' );
-        $user   = Input::only( 'email', 'password' );
-        $password = Input::only( 'password_confirmation' );
+        $person     = Input::except('_token', 'email', 'password', 'password_confirmation');
+        $user       = Input::only('email', 'password');
+        $password   = Input::only('password_confirmation');
 
-        if( $user['password'] === $password['password_confirmation'] ){
-            $response   = BeeTools::entity_update( $user, 'users' );
-            $view       = BeeTools::is_error( $response );
-            if( $view ){
+        if ($user['password'] === $password['password_confirmation']) {
+            $response   = BeeTools::entity_update($user, 'users');
+            $view       = BeeTools::is_error($response);
+            if ($view) {
                 return $view;
             }
         }
-
-
-
-        // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $person, 'persons' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
+        $response       = BeeTools::entity_store($person, 'persons');
+        $view           = BeeTools::is_error($response);
+        if ($view) {
             return $view;
         }
-        // WORK IN PROGRESS
-        // return response
+
         return Redirect::back();
     }
+
     /**
      * Update the specified person in storage.
      * Object structure for HTTP PUT
      * $person = [
-     * 			"id" 					=> [integer][notnull],
-     * 			"createdAt" 			=> [timestamp],
-     * 			"updatedAt" 			=> [timestamp],
-     * 			"last_name" 			=> [string],
-     * 			"first_name" 			=> [string],
-     * 			"address1" 				=> [string],
-     * 			"address2" 				=> [string],
-     * 			"postcode" 				=> [integer],
-     * 			"city" 					=> [string],
-     * 			"phone" 				=> [long],
-     * 			"email" 				=> [string],
-     * 			"notes" 				=> [string],
-     * 			"user" 					=> [object],
-     * 			"trades_with_sellers" 	=> [object],
-     * 			"trades_with_buyers" 	=> [object]
-     * 		];
+     *          "id"                    => [integer][notnull],
+     *          "createdAt"             => [timestamp],
+     *          "updatedAt"             => [timestamp],
+     *          "last_name"             => [string],
+     *          "first_name"            => [string],
+     *          "address1"              => [string],
+     *          "address2"              => [string],
+     *          "postcode"              => [integer],
+     *          "city"                  => [string],
+     *          "phone"                 => [long],
+     *          "email"                 => [string],
+     *          "notes"                 => [string],
+     *          "user"                  => [object],
+     *          "trades_with_sellers"   => [object],
+     *          "trades_with_buyers"    => [object]
+     *      ];
      * @param  int  $index
      * @return Response
      */
     public function update($index)
     {
-        $person = Input::except( '_token', 'email', 'password', 'password_confirmation' );
+        $person         = Input::except('_token', 'email', 'password', 'password_confirmation');
         $person[ 'id' ] = (int) $index;
 
-        $user   = Input::only( 'email', 'password' );
-        $password = Input::only( 'password_confirmation' );
+        $user       = Input::only('email', 'password');
+        $password   = Input::only('password_confirmation');
 
-        if( $user['password'] === $password['password_confirmation'] ){
-            $response   = BeeTools::entity_update( $user, 'users' );
-            $view       = BeeTools::is_error( $response );
-            if( $view ){
+        if ($user['password'] === $password['password_confirmation']) {
+            $response   = BeeTools::entity_update($user, 'users');
+            $view       = BeeTools::is_error($response);
+            if ($view) {
                 return $view;
             }
         }
-        // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $person, 'persons' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
+        $person['user'] = ['id' => Auth::user()->id ];
+        $response   = BeeTools::entity_update($person, 'persons');
+        $view       = BeeTools::is_error($response);
+        if ($view) {
             return $view;
         }
-        // WORK IN PROGRESS
-        // return response
         return Redirect::back();
     }
     /**
@@ -156,15 +154,8 @@ class PersonController extends \BaseController
      */
     public function delete($index)
     {
-        // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $index, 'persons' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        // WORK IN PROGRESS
-        // return response
-        return Redirect::to( 'persons' );
+        $response = BeeTools::entity_delete($index, 'persons');
+        return Redirect::to('persons');
     }
 
 }

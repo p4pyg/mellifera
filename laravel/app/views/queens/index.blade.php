@@ -30,7 +30,7 @@
             <td>{{ BeeTools::elapsedTime( $queen->birth_date ) }}</td>
             <td>{{ $queen->origin }}</td>
             <td>{{ $queen->clipping }}</td>
-            <td>@if( empty ($queen->is_in ) ) "N.A" @else @include( 'components.button_show', [ 'entity' => 'queen', 'item' => $queen->id ] ) @endif</td>
+            <td>@if( empty($queen->is_in ) ) "N.A" @else @include( 'components.button_show', [ 'entity' => 'queen', 'item' => $queen->id ] ) @endif</td>
             <td>{{ is_null( $queen->death_date ) ? '-' : date( 'd/m/Y', strtotime( $queen->death_date ) ) }}</td>
         </tr>
     @endforeach

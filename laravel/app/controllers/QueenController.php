@@ -17,6 +17,7 @@ class QueenController extends \BaseController
         $view       = BeeTools::is_error( $response );
         if( $view ) return $view;                                                                                               // Retour de la vue d'erreur
         $queens     = $response->json();
+
         return View::make( 'queens.index', [ "queens" => $queens ] );
     }
 

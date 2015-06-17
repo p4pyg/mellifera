@@ -42,12 +42,10 @@
 @endif
 <nav>
     <div class="nav-wrapper">
-        <a href="/backoffice" class="brand-logo"><h4>Mellifera<small> Back-office</small></h4></a>
+        <a href="/" class="brand-logo"><h4>Mellifera<small> Back-office</small></h4></a>
         <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
         <ul class="right hide-on-med-and-down">
-            @if( ! Auth::check() )
-                <li>{{ HTML::link( 'login', trans( 'tools.login'), [ "class" => "waves-effect waves-light" ] ) }}</li>
-            @else
+            @if(Auth::check())
                 <li><a class="dropdown-button waves-effect waves-light" id="drop-basics" href="#!" data-activates="basics">@lang( 'tools.basics')</a></li>
                 <li><a class="dropdown-button waves-effect waves-light" id="drop-manage" href="#!" data-activates="manage">@lang( 'tools.manage')</a></li>
                 <li><a class="dropdown-button waves-effect waves-light" id="drop-admin" href="#!" data-activates="admin">@lang( 'tools.admin')</a></li>
@@ -55,9 +53,7 @@
             @endif
         </ul>
         <ul class="side-nav" id="mobile-menu">
-            @if( ! Auth::check() )
-                <li>{{ HTML::link( 'login', trans( 'tools.login'), [ "class" => "waves-effect waves-light" ] ) }}</li>
-            @else
+            @if(Auth::check())
                 <li><a class="dropdown-button waves-effect waves-light" id="drop-mobile-basics" href="#!" data-activates="mobile-basics">@lang( 'tools.basics')</a></li>
                 <li><a class="dropdown-button waves-effect waves-light" id="drop-mobile-manage" href="#!" data-activates="mobile-manage">@lang( 'tools.manage')</a></li>
                 <li><a class="dropdown-button waves-effect waves-light" id="drop-mobile-admin" href="#!" data-activates="mobile-admin">@lang( 'tools.admin')</a></li>
