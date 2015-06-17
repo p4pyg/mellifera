@@ -13,8 +13,7 @@ class HomeController extends \BaseController
         $apiaries_nb    = Apiary::getNumber();
         $hives_nb       = Hive::getNumber();
         $queens_nb      = Queen::getNumber();
-        $swarms_nb =1;
-        // $swarms_nb      = Swarm::getNumber();
+        $swarms_nb      = Swarm::getNumber();
         // $users      = User::getNumber();
         return View::make('home', ['apiaries_nb' => $apiaries_nb, 'hives_nb' => $hives_nb, 'queens_nb' => $queens_nb, 'swarms_nb' => $swarms_nb]);
     }

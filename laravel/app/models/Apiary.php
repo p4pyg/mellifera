@@ -47,8 +47,6 @@ class Apiary
         $this->hives_capacity   = isset($apiary_ws->hives_capacity) ? $apiary_ws->hives_capacity:null;
         $this->apiary_notes     = isset($apiary_ws->apiary_notes) ? $apiary_ws->apiary_notes:null;
         $this->notes            = isset($apiary_ws->notes) ? $apiary_ws->notes:null;
-
-
     }
 
     /**
@@ -60,7 +58,7 @@ class Apiary
     {
         $client     = new HttpClient;
         $response   = $client->get( [
-                                        'url' => Config::get( 'app.api' ) . 'atomic/persons' . ( is_null( $index ) ? '' : '/' . $index ),
+                                        'url' => Config::get( 'app.api' ) . 'atomic/apiaries' . ( is_null( $index ) ? '' : '/' . $index ),
                                         'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
         return $response->json();
