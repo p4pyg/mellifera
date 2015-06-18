@@ -14,6 +14,7 @@ return array(
     "add"           => "Ajouter",
     "delete"        => "Supprimer",
     "submit"        => "Valider",
+    "close"         => "Fermer",
     "scrolltop"     => "Haut de page",
     "back"          => "Retour",
     "jan"           => "Janvier",

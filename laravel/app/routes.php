@@ -99,11 +99,7 @@ Route::get('logout',    [ 'uses' => 'UserController@logout',    'as' => 'backoff
 
 /************************************************************************** FILTRE AUTHENTIFICATION **************************************************************************/
 Route::filter('auth', function(){
-    // $ws_is_up = false;//BeeTools::isUp();
 
-    // if (!$ws_is_up) {
-    //     return Redirect::back()->with('message', trans('tools.ws_error'));
-    // }
     if (!Auth::check()){
         return Redirect::to('login');
     }
@@ -126,6 +122,7 @@ Route::group([ "before" => "auth" ], function(){
     Route::post('apiary/edit',      [ 'uses' => 'ApiaryController@store',   'as' => 'apiaries.store'    ]);
     Route::post('apiary/edit/{id}', [ 'uses' => 'ApiaryController@update',  'as' => 'apiaries.update'   ]);
     Route::get('apiary/delete/{id}',[ 'uses' => 'ApiaryController@delete',  'as' => 'apiaries.delete'   ]);
+
 
     /**
      * Gestion des caracteristiques d'une race
@@ -169,20 +166,21 @@ Route::group([ "before" => "auth" ], function(){
     /**
      * Gestion des ruches
      */
-    Route::get('hives',             [ 'uses' => 'HiveController@index',     'as' => 'hives.index'   ]);
-    Route::get('hive/edit',         [ 'uses' => 'HiveController@create',    'as' => 'hives.create'  ]);
-    Route::get('hive/edit/{id}',    [ 'uses' => 'HiveController@edit',      'as' => 'hives.edit'    ]);
-    Route::post('hive/edit',        [ 'uses' => 'HiveController@store',     'as' => 'hives.store'   ]);
-    Route::post('hive/edit/{id}',   [ 'uses' => 'HiveController@update',    'as' => 'hives.update'  ]);
-    Route::get('hive/delete/{id}',  [ 'uses' => 'HiveController@delete',    'as' => 'hives.delete'  ]);
+    Route::get('hives',             [ 'uses' => 'HiveController@index',     'as' => 'hives.index'       ]);
+    Route::get('hive/edit',         [ 'uses' => 'HiveController@create',    'as' => 'hives.create'      ]);
+    Route::get('hive/edit/{id}',    [ 'uses' => 'HiveController@edit',      'as' => 'hives.edit'        ]);
+    Route::post('hive/edit',        [ 'uses' => 'HiveController@store',     'as' => 'hives.store'       ]);
+    Route::post('hive/edit/{id}',   [ 'uses' => 'HiveController@update',    'as' => 'hives.update'      ]);
+    Route::get('hive/delete/{id}',  [ 'uses' => 'HiveController@delete',    'as' => 'hives.delete'      ]);
+    Route::post('hive/transhumance',[ 'uses' => 'HiveController@transhume', 'as' => 'hives.transhume'   ]);
 
     /**
      * Gestion des honeysuper
      */
     Route::get('honeysupers',               [ 'uses' => 'HoneySuperController@index',   'as' => 'honeysupers.index' ]);
     Route::get('honeysuper/edit',           [ 'uses' => 'HoneySuperController@create',  'as' => 'honeysupers.create']);
-    Route::get('honeysuper/edit/{id}',  [ 'uses' => 'HoneySuperController@edit',    'as' => 'honeysupers.edit'  ]);
-    Route::post('honeysuper/edit',      [ 'uses' => 'HoneySuperController@store',   'as' => 'honeysupers.store' ]);
+    Route::get('honeysuper/edit/{id}',      [ 'uses' => 'HoneySuperController@edit',    'as' => 'honeysupers.edit'  ]);
+    Route::post('honeysuper/edit',          [ 'uses' => 'HoneySuperController@store',   'as' => 'honeysupers.store' ]);
     Route::post('honeysuper/edit/{id}',     [ 'uses' => 'HoneySuperController@update',  'as' => 'honeysupers.update']);
     Route::get('honeysuper/delete/{id}',    [ 'uses' => 'HoneySuperController@delete',  'as' => 'honeysupers.delete']);
 

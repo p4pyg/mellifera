@@ -46,6 +46,8 @@
                 $(".dropdown-button").dropdown();
                 $('.parallax').parallax();
                 $('.slider').slider({full_width: false});
+                $('.modal-trigger').leanModal();
+                $('select').material_select();
                 @if( Session::has('message') )
                     Materialize.toast( "{{ Session::get( 'message' ) }}", 5000 );
                 @endif
@@ -64,9 +66,14 @@
                 Pagination._optionDefinition.nextLabel      = ['String', '<i class="mdi-navigation-chevron-right"></i>'];
             });
             $( document ).ready( function () {
-                $( "tr[id^='{{ str_singular( $entity ) }}']" ).on( 'click', function () {
-                    document.location.href="{{ str_singular( $entity ) }}/edit/" + $( this ).attr( 'data-item-index' );
+                $( "tr[id^='{{ str_singular( $entity ) }}'] td:first" ).on( 'click', function () {
+                    document.location.href="{{ str_singular( $entity ) }}/edit/" + $( this ).parent().attr( 'data-item-index' );
                 } );
+                @if( $entity == 'hives' )
+                    $("button[id^='trans-']").on('click', function(){
+                        $('#hive_id').val( $( this ).parent().parent().attr( 'data-item-index' ) );
+                    } );
+                @endif
             } );
         </script>
 @endif
@@ -100,7 +107,7 @@
                     format: 'd-mm-yyyy',
 
                 } );
-                $('select').material_select();
+
 
 
                 @if( $entity == 'races' || $entity == 'characteristics' )

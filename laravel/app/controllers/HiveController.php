@@ -18,8 +18,14 @@ class HiveController extends \BaseController
         if( $view ) return $view;
 
         $hives      = Hive::getHivesApiarie( $response->json() );
+        $apiaries   = Apiary::get();
+        foreach ($apiaries as $key => $apiary) {
+            if ($apiary->hives_capacity == count($apiary->productions)){
+                unset($apiaries[$key]);
+            }
+        }
 
-        return View::make( 'hives.index', [ "hives" => $hives ] );
+        return View::make( 'hives.index', [ "hives" => $hives, 'apiaries' => $apiaries ] );
     }
 
     /**
@@ -92,8 +98,6 @@ class HiveController extends \BaseController
         if( $view ){
             return $view;
         }
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to( 'hives' );
     }
     /**
@@ -112,7 +116,7 @@ class HiveController extends \BaseController
      *      "notes"             => [string]
      *      ];
      * @param  int  $index
-     * @return Response
+     * @return Redirect
      */
     public function update($index)
     {
@@ -125,32 +129,55 @@ class HiveController extends \BaseController
         $type_name  = $hive[ 'type' ];
 
         $hive['type'] = [ 'name' => $type_name ];
-        // Refactored in BeeTools Model
+
         $response       = BeeTools::entity_update( $hive, 'beehives' );
         $view       = BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to( 'hives' );
     }
     /**
      * Remove the specified hive from storage.
      * @param  int  $index
-     * @return Response
+     * @return Redirect
      */
     public function delete($index)
     {
-        // Refactored in BeeTools Model
         $response   = BeeTools::entity_delete( $index, 'beehives' );
-        $view       = BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to( 'hives' );
     }
 
+    /**
+     * Déplacer ou affecter une ruche à un rucher
+     * @return  Redirect
+     */
+    public function transhume()
+    {
+        $inputs = Input::only('apiary','hive');
+
+        $hive = Hive::get($inputs['hive']);
+        if (empty($hive->units)) {
+            $request = [
+                        'url'       => Config::get('app.api') . 'atomic/association',
+                        'params'    => json_encode(['beehive' => $hive->id]),
+                        'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
+                    ];
+            $client     = new HttpClient;
+            $response   = $client->post($request);
+            $unit       = $response->json();
+        } else {
+            $unit       = Unit::get($hive->units[0]->id);
+        }
+        $request = [
+                    'url'       => Config::get('app.api') . 'atomic/transhumance',
+                    'params'    => json_encode(['apiary' => $inputs['apiary'], 'units' => [$unit->id]]),
+                    'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
+                ];
+        $client     = new HttpClient;
+        $response   = $client->post($request);
+        $production = $response->json();
+
+        return Redirect::back();
+    }
 }

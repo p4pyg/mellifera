@@ -110,7 +110,7 @@ class Hive
         $color      = [ 'cyan darken-1', 'light-green accent-2', 'yellow lighten-1', 'orange accent-2', 'red accent-1' ];
         $icon       = [ 'mdi-action-help white-text ', 'mdi-action-done white-text ', 'mdi-action-visibility orange-text', 'mdi-alert-warning white-text ', 'mdi-alert-error white-text '];
         $messages   = trans('tools.messages');
-        return '<i class="btn-floating  center-align ' . $icon[ $level ] . ' ' . $color[ $level ] . ' tooltipped" data-tooltip="' . $messages[ $level ] . '" data-position="bottom"></i>';
+        return '<i class="btn-floating disabled center-align ' . $icon[ $level ] . ' ' . $color[ $level ] . ' tooltipped" data-tooltip="' . $messages[ $level ] . '" data-position="bottom"></i>';
     }
 
     /**
