@@ -1,6 +1,9 @@
 <?php
 use Vinelab\Http\Client as HttpClient;
 
+/**
+ * Controller Hives
+ */
 class HiveController extends \BaseController
 {
     /**
@@ -10,14 +13,34 @@ class HiveController extends \BaseController
     public function index()
     {
         $client     = new HttpClient;
-        $response   = $client->get( [
-                                        'url' => Config::get( 'app.api' ) . "atomic/beehives",
-                                        'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                    ] );
-        $view       = BeeTools::is_error( $response );
-        if( $view ) return $view;
+        $response   = $client->get([
+                                        'url' => Config::get('app.api') . "atomic/beehives",
+                                        'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]
+                                   ]);
+        $view       = BeeTools::is_error($response);
+        if ($view) {
+            return $view;
+        }
 
-        $hives      = Hive::getHivesApiaries( $response->json() );
+        $hives      = Hive::getHivesApiaries($response->json());
+
+        foreach ($hives as $key => $hive) {
+            $unit_current = $hive->units[0]->id;
+            $unit = Unit::get($unit_current);
+            if (is_object($unit->beehive) && is_object($unit->queen) && is_object($unit->swarm)){
+                $hives[$key]->need = null;
+            }
+            if (is_null($unit->queen) && is_object($unit->swarm)) {
+                $hives[$key]->need = 'queen';
+            }
+            if (is_null($unit->swarm) && is_object($unit->queen)) {
+                $hives[$key]->need = 'swarm';
+            }
+            if (is_null($unit->queen) && is_null($unit->swarm)) {
+                $hives[$key]->need = 'queen_swarm';
+            }
+        }
+
         $apiaries   = Apiary::get();
         foreach ($apiaries as $key => $apiary) {
             if ($apiary->hives_capacity == count($apiary->productions)){
@@ -25,7 +48,7 @@ class HiveController extends \BaseController
             }
         }
 
-        return View::make( 'hives.index', [ "hives" => $hives, 'apiaries' => $apiaries ] );
+        return View::make('hives.index', ["hives" => $hives, 'apiaries' => $apiaries]);
     }
 
     /**
@@ -36,7 +59,7 @@ class HiveController extends \BaseController
      */
     public function show($index)
     {
-        // Todo
+        // @Todo if needed
     }
     /**
      * Show the form for creating a new hive.
@@ -45,7 +68,7 @@ class HiveController extends \BaseController
     public function create()
     {
         $hive = null;
-        return View::make( 'hives.form', [ 'hive' => $hive ] );
+        return View::make('hives.form', ['hive' => $hive]);
     }
     /**
      * Show the form for editing the specified hive.
@@ -55,16 +78,16 @@ class HiveController extends \BaseController
     public function edit($index)
     {
         $client     = new HttpClient;
-        $response   = $client->get( [
-                                        'url' => Config::get( 'app.api' ) . "atomic/beehives/" . $index,
-                                        'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
-                                    ] );
-        $view       = BeeTools::is_error( $response );
-        if( $view ){
+        $response   = $client->get([
+                                        'url' => Config::get('app.api') . "atomic/beehives/" . $index,
+                                        'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]
+                                   ]);
+        $view       = BeeTools::is_error($response);
+        if($view){
             return $view;
         }
         $hive       = $response->json();
-        return View::make( 'hives.form', [ 'hive' => $hive ] );
+        return View::make('hives.form', ['hive' => $hive]);
     }
     /**
      * Store a newly created hive in storage.
@@ -79,26 +102,26 @@ class HiveController extends \BaseController
      *      "number_of_frames"  => [integer],
      *      "number_of_rocks"   => [integer],
      *      "notes"             => [string]
-     *      ];
+     *     ];
      * @return Response
      */
     public function store()
     {
-        $inputs     = Input::except( '_token' );
+        $inputs     = Input::except('_token');
         // Récupération de la collection des identifiants de beehive_types
-        $types = BeeTools::get_arraylist( 'beehives', 'type', false, true );
+        $types = BeeTools::get_arraylist('beehives', 'type', false, true);
 
-        $type_id    = array_search( $inputs[ 'type' ] , $types );
-        $type_name  = $inputs[ 'type' ];
+        $type_id    = array_search($inputs['type'] , $types);
+        $type_name  = $inputs['type'];
 
-        $inputs['type'] = [ 'name' => $type_name ];
+        $inputs['type'] = ['name' => $type_name];
         // Refactored in BeeTools Model
-        $response       = BeeTools::entity_store( $inputs, 'beehives' );
-        $view           = BeeTools::is_error( $response );
-        if( $view ){
+        $response       = BeeTools::entity_store($inputs, 'beehives');
+        $view           = BeeTools::is_error($response);
+        if($view){
             return $view;
         }
-        return Redirect::to( 'hives' );
+        return Redirect::to('hives');
     }
     /**
      * Update the specified hive in storage.
@@ -114,28 +137,28 @@ class HiveController extends \BaseController
      *      "number_of_frames"  => [integer],
      *      "number_of_rocks"   => [integer],
      *      "notes"             => [string]
-     *      ];
+     *     ];
      * @param  int  $index
      * @return Redirect
      */
     public function update($index)
     {
-        $hive           = Input::except( '_token' );
-        $hive[ 'id' ]   = (int)$index;
+        $hive           = Input::except('_token');
+        $hive['id']   = (int)$index;
         // Récupération de la collection des identifiants de beehive_types
-        $types = BeeTools::get_arraylist( 'beehives', 'type', false, true );
+        $types = BeeTools::get_arraylist('beehives', 'type', false, true);
 
-        $type_id    = array_search( $hive[ 'type' ] , $types );
-        $type_name  = $hive[ 'type' ];
+        $type_id    = array_search($hive['type'] , $types);
+        $type_name  = $hive['type'];
 
-        $hive['type'] = [ 'name' => $type_name ];
+        $hive['type'] = ['name' => $type_name];
 
-        $response       = BeeTools::entity_update( $hive, 'beehives' );
-        $view       = BeeTools::is_error( $response );
-        if( $view ){
+        $response       = BeeTools::entity_update($hive, 'beehives');
+        $view       = BeeTools::is_error($response);
+        if($view){
             return $view;
         }
-        return Redirect::to( 'hives' );
+        return Redirect::to('hives');
     }
     /**
      * Remove the specified hive from storage.
@@ -144,8 +167,8 @@ class HiveController extends \BaseController
      */
     public function delete($index)
     {
-        $response   = BeeTools::entity_delete( $index, 'beehives' );
-        return Redirect::to( 'hives' );
+        $response   = BeeTools::entity_delete($index, 'beehives');
+        return Redirect::to('hives');
     }
 
     /**
@@ -162,8 +185,8 @@ class HiveController extends \BaseController
             $request = [
                         'url'       => Config::get('app.api') . 'atomic/association',
                         'params'    => json_encode(['beehive' => $hive->id]),
-                        'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
-                    ];
+                        'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]
+                   ];
             $client     = new HttpClient;
             $response   = $client->post($request);
             $unit       = $response->json();
@@ -173,8 +196,8 @@ class HiveController extends \BaseController
         $request = [
                     'url'       => Config::get('app.api') . 'atomic/transhumance',
                     'params'    => json_encode(['apiary' => $inputs['apiary'], 'units' => [$unit->id]]),
-                    'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
-                ];
+                    'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]
+               ];
         $client     = new HttpClient;
         $response   = $client->post($request);
         $production = $response->json();

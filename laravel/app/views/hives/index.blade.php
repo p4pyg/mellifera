@@ -5,7 +5,8 @@
     <thead>
         <tr>
             <th data-sortable="true">@lang( 'hives.code_number' )</th>
-            <th>@lang( 'hives.alert' )</th>
+            <th>@lang('hives.alert')</th>
+            <th>@lang('hives.status')</th>
             <th data-sortable="true">@lang( 'apiaries.apiary' )</th>
             <th data-sortable="true">@lang( 'hives.type' )</th>
             <th data-sortable="true">@lang( 'hives.number_of_frames' )</th>
@@ -17,6 +18,7 @@
         <tr id="hive-{{ $hive->id }}" data-item-index="{{ $hive->id }}">
             <td>{{ $hive->code_number }}</td>
             <td class="center">{{ Hive::colorizeAlert( is_null( $hive->number_of_rocks ) ? 0 : $hive->number_of_rocks ) }}</td>
+            <td class="center">{{ is_null($hive->need) ? trans('hives.full') : trans('hives.' . $hive->need) }}</td>
             <td class="center"><a class="modal-trigger waves-effect waves-light btn-flat darken-4 z-depth-1 text-orange " id="trans-{{ $hive->id }}" href="#apiary_change">{{ ( isset( $hive->apiary ) && ! is_null( $hive->apiary) ) ? $hive->apiary : trans('hives.free')  }}</a></td>
             <td>{{ ! is_null( $hive->type ) ? $hive->type->name : null }}</td>
             <td class="center">{{ $hive->number_of_frames }}</td>
