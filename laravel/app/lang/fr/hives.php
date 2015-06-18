@@ -14,7 +14,6 @@ return array(
     "hive"              => "Ruche",
     "hives"             => "Ruches",
     "global"            => "Généralités",
-    "hives"             => "Ruches",
     "id"                => "Identifiant",
     "type"              => "Type de ruche",
     "acquisition_date"  => "Date d'acquisition",
@@ -29,6 +28,6 @@ return array(
     "label"             => "Étiquette",
     "alert"             => "Alerte",
     "barcode"           => "QrCode",
-    "free"              => "N/A"
-
+    "free"              => "N/A",
+    "hive_to_apiary"    => "Vers quel rucher voulez-vous transférer cette ruche ?",
 );

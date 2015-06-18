@@ -38,5 +38,6 @@ return array(
     "notes"             => "Commentaire",
     "rank"              => "Note",
     "action"            => "Actions",
-    "edit_apiary"       => "Edition d'un rucher"
+    "edit_apiary"       => "Édition d'un rucher",
+    "apiary_list"       => "Liste des ruchers disponibles",
 );

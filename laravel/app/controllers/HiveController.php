@@ -157,6 +157,7 @@ class HiveController extends \BaseController
         $inputs = Input::only('apiary','hive');
 
         $hive = Hive::get($inputs['hive']);
+
         if (empty($hive->units)) {
             $request = [
                         'url'       => Config::get('app.api') . 'atomic/association',

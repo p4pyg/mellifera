@@ -32,15 +32,15 @@
         <div class="modal-content">
             <div class="row">
                 <div class="col l10 m10 s10">
-                    <h4>Transhumance</h4>
+                    <h4>@lang('transhumances.transhumance')</h4>
                 </div>
                 <div class="col l2 m2 s2">
                     @include('components.button_close')
                 </div>
             </div>
-            <p>Vers quel rucher voulez-vous transférer cette ruche ?</p>
+            <p>@lang('hives.hive_to_apiary')</p>
             <fieldset>
-                <legend>Liste des ruchers disponibles</legend>
+                <legend>@lang('apiaries.apiary_list')</legend>
                 <div class="input-field col l12 m12 s12">
                     <select name="apiary" id="apiary">
                         <option value="" disabled selected ></option>

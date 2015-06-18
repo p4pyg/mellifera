@@ -70,7 +70,7 @@
                     document.location.href="{{ str_singular( $entity ) }}/edit/" + $( this ).parent().attr( 'data-item-index' );
                 } );
                 @if( $entity == 'hives' )
-                    $("button[id^='trans-']").on('click', function(){
+                    $("a[id^='trans-']").on('click', function(){
                         $('#hive_id').val( $( this ).parent().parent().attr( 'data-item-index' ) );
                     } );
                 @endif
