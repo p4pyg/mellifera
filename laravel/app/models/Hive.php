@@ -59,7 +59,7 @@ class Hive
      * @param  array $hives array of hives
      * @return  array $hives array of hives with apiary
      */
-    public static function getHivesApiarie($hives)
+    public static function getHivesApiaries($hives)
     {
         $client     = new HttpClient;
         $response   = $client->get([

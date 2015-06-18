@@ -8,12 +8,12 @@
             <div class="col l6 m6 s12">
                 <ul class="collection">
                     <li class="collection-item avatar">
-                        <img src="images/logo3-production.svg" alt="" class="circle">
+                        <img src="images/logo5-hive.svg" alt="" class="circle">
                         <span class="title">{{ $apiaries_nb }}&nbsp;{{ $apiaries_nb > 1 ? trans('apiaries.apiaries') : trans('apiaries.apiary') }}</span>
                         <a href="/apiaries" class="secondary-content"><i class="mdi-image-remove-red-eye"></i></a>
                     </li>
                     <li class="collection-item avatar">
-                        <img src="images/logo5-hive.svg" alt="" class="circle">
+                        <img src="images/logo5-hive-v2.svg" alt="" class="circle">
                         <span class="title">{{ $hives_nb }}&nbsp;{{ $hives_nb > 1 ? trans('hives.hives') : trans('hives.hive') }}</span>
                         <a href="/hives" class="secondary-content"><i class="mdi-image-remove-red-eye"></i></a>
                     </li>

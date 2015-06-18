@@ -30,4 +30,5 @@ return array(
     "barcode"           => "QrCode",
     "free"              => "N/A",
     "hive_to_apiary"    => "Vers quel rucher voulez-vous transférer cette ruche ?",
+    "hive_list"         => "Liste des ruches disponibles"
 );

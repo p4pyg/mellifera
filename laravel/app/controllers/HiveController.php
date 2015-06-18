@@ -17,7 +17,7 @@ class HiveController extends \BaseController
         $view       = BeeTools::is_error( $response );
         if( $view ) return $view;
 
-        $hives      = Hive::getHivesApiarie( $response->json() );
+        $hives      = Hive::getHivesApiaries( $response->json() );
         $apiaries   = Apiary::get();
         foreach ($apiaries as $key => $apiary) {
             if ($apiary->hives_capacity == count($apiary->productions)){

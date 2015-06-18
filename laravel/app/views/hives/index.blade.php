@@ -1,6 +1,6 @@
 @extends('template')
 @section('content')
-@include( 'components.index_header' )
+@include( 'components.index_header', ['thumb' => 'images/logo5-hive-v2.svg'] )
 <table id="hives" class="responsive-table hover hoverable striped bordered" data-page-size="10" data-pagination="#hivesPagination" >
     <thead>
         <tr>

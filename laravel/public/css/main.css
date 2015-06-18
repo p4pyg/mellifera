@@ -39,6 +39,12 @@ footer.page-footer{
 blockquote{
 	border-left: 5px solid #e65100;
 }
+.thumb{
+  width:100%;
+  -webkit-filter: opacity(.5);
+  -o-filter: opacity(.5);
+  filter: opacity(.5);
+}
 #hives.hover tbody td:nth-child(2) i{
   cursor : help;
 }

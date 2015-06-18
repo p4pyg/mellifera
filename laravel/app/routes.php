@@ -236,13 +236,14 @@ Route::group([ "before" => "auth" ], function(){
     /**
      * Gestion des reines
      */
-    Route::get('queens',            [ 'uses' => 'QueenController@index',    'as' => 'queens.index'  ]);
-    Route::get('queen/edit',        [ 'uses' => 'QueenController@create',   'as' => 'queens.create' ]);
-    Route::get('queen/edit/{id}',   [ 'uses' => 'QueenController@edit',     'as' => 'queens.edit'   ]);
-    Route::post('queen/edit',       [ 'uses' => 'QueenController@store',    'as' => 'queens.store'  ]);
-    Route::post('queen/edit/{id}', [ 'uses' => 'QueenController@update',    'as' => 'queens.update' ]);
-    Route::get('queen/delete/{id}',[ 'uses' => 'QueenController@delete',    'as' => 'queens.delete' ]);
-    Route::get('queen/show/{id}',  [ 'uses' => 'QueenController@show',     'as' => 'queens.show'   ]);
+    Route::get('queens',            [ 'uses' => 'QueenController@index',    'as' => 'queens.index'      ]);
+    Route::get('queen/edit',        [ 'uses' => 'QueenController@create',   'as' => 'queens.create'     ]);
+    Route::get('queen/edit/{id}',   [ 'uses' => 'QueenController@edit',     'as' => 'queens.edit'       ]);
+    Route::post('queen/edit',       [ 'uses' => 'QueenController@store',    'as' => 'queens.store'      ]);
+    Route::post('queen/edit/{id}',  [ 'uses' => 'QueenController@update',   'as' => 'queens.update'     ]);
+    Route::get('queen/delete/{id}', [ 'uses' => 'QueenController@delete',   'as' => 'queens.delete'     ]);
+    Route::get('queen/show/{id}',   [ 'uses' => 'QueenController@show',     'as' => 'queens.show'       ]);
+    Route::post('queen/transfert',  [ 'uses' => 'QueenController@transfert', 'as' => 'queens.transfert'  ]);
 
     /**
      * Gestion des races

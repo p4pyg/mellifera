@@ -74,6 +74,11 @@
                         $('#hive_id').val( $( this ).parent().parent().attr( 'data-item-index' ) );
                     } );
                 @endif
+                @if( $entity == 'queens' )
+                    $("a[id^='trans-']").on('click', function(){
+                        $('#queen_id').val( $( this ).parent().parent().attr( 'data-item-index' ) );
+                    } );
+                @endif
             } );
         </script>
 @endif
