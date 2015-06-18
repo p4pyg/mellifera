@@ -11,19 +11,20 @@ return array(
     |
     */
 
-    "news" 				=> "Aucun essaim n'existe, vous allez créer votre premier essaim.",
-    "swarm"				=> "Essaim",
-    "swarms"			=> "Essaims",
-    "create_new_swarm"	=> "Créer un nouvel essaim",
-    "edit_swarm"		=> "Editer un essaim",
-    "id" 				=> "Numéro",
+    "news"              => "Aucun essaim n'existe, vous allez créer votre premier essaim.",
+    "swarm"             => "Essaim",
+    "swarms"            => "Essaims",
+    "create_new_swarm"  => "Créer un nouvel essaim",
+    "edit_swarm"        => "Editer un essaim",
+    "id"                => "Numéro",
     "origin"            => "Colonnie d'origine",
-    "race"				=> "Race",
-    "extermination"		=> "Date d'extermination",
-    "purpose"			=> "Usage",
+    "race"              => "Race",
+    "extermination"     => "Date d'extermination",
+    "purpose"           => "Usage",
     "comment"           => "Commentaire",
     "multiple"          => "Combien d'essaim voulez-vous créer ?",
-    "multi_info"        => "Par défaut, un seul essaim sera créé."
+    "multi_info"        => "Par défaut, un seul essaim sera créé.",
+    "free"              => "N/A"
 
 
 );

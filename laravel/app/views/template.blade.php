@@ -79,6 +79,11 @@
                         $('#queen_id').val( $( this ).parent().parent().attr( 'data-item-index' ) );
                     } );
                 @endif
+                @if( $entity == 'swarms' )
+                    $("a[id^='trans-']").on('click', function(){
+                        $('#swarm_id').val( $( this ).parent().parent().attr( 'data-item-index' ) );
+                    } );
+                @endif
             } );
         </script>
 @endif

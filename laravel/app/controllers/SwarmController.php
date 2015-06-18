@@ -16,7 +16,8 @@ class SwarmController extends \BaseController
             return $view;
         }
         $swarms     = $response->json();
-        return View::make('swarms.index', [ "swarms" => $swarms ]) ;
+        $hives      = Hive::get();
+        return View::make('swarms.index', [ "swarms" => $swarms, "hives" => $hives ]) ;
     }
 
     /**
@@ -124,6 +125,29 @@ class SwarmController extends \BaseController
     {
         $response   = BeeTools::entity_delete($index, 'swarms') ;
         return Redirect::to('swarms') ;
+    }
+
+    /**
+     * Déplacer ou affecter un essaim à une ruche
+     * @return  Redirect
+     */
+    public function transfert()
+    {
+        $inputs = Input::only('swarm','hive');
+
+        extract($inputs);
+
+        $request = [
+                    'url'       => Config::get('app.api') . 'atomic/association',
+                    'params'    => json_encode(['swarm' => $swarm, 'beehive' => $hive]),
+                    'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
+                ];
+
+        $client     = new HttpClient;
+        $response   = $client->post($request);
+        $unit       = $response->json();
+
+        return Redirect::back();
     }
 
 }

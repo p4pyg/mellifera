@@ -27,7 +27,7 @@
                         <a href="/queens" class="secondary-content"><i class="mdi-image-remove-red-eye"></i></a>
                     </li>
                     <li class="collection-item avatar">
-                        <img src="images/logo2-activity.svg" alt="" class="circle">
+                        <img src="images/logo4-frame.svg" alt="" class="circle">
                         <span class="title">{{ $swarms_nb }}&nbsp;{{ $swarms_nb > 1 ? trans('swarms.swarms') : trans('swarms.swarm') }}</span>
                         <a href="/swarms" class="secondary-content"><i class="mdi-image-remove-red-eye"></i></a>
                     </li>
