@@ -97,14 +97,11 @@ class TradetransactionController extends \BaseController
     {
         $tradetransaction 			= Input::except( '_token' );
         $tradetransaction[ 'id' ]	= (int) $index;
-        // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $tradetransaction, 'tradetransactions' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to( 'tradetransactions' );
     }
     /**
@@ -114,14 +111,7 @@ class TradetransactionController extends \BaseController
      */
     public function delete($index)
     {
-        // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $index, 'tradetransactions' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        // WORK IN PROGRESS
-        // return response
+        BeeTools::entity_delete( $index, 'tradetransactions' );
         return Redirect::to( 'tradetransactions' );
     }
 

@@ -45,7 +45,7 @@
                 <legend>@lang('apiaries.apiary_list')</legend>
                 <div class="input-field col l12 m12 s12">
                     <select name="apiary" id="apiary">
-                        <option value="" disabled selected ></option>
+                        <option value="null" disabled selected >Aucun</option>
                         @foreach($apiaries as $apiary)
                         <option value="{{$apiary->id}}">{{$apiary->name}}</option>
                         @endforeach

@@ -24,7 +24,9 @@ return array(
     "comment"           => "Commentaire",
     "multiple"          => "Combien d'essaim voulez-vous créer ?",
     "multi_info"        => "Par défaut, un seul essaim sera créé.",
-    "free"              => "N/A"
+    "free"              => "N/A",
+    "transfert"         => "Transfert",
+    "swarm_to_hive"     => "Vers quelle ruche voulez-vous transférer cet essaim ?"
 
 
 );

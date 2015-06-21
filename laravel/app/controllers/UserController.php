@@ -216,14 +216,11 @@ class UserController extends \BaseController
     {
         $user           = Input::except('_token');
         $user['id'] = (int) $index;
-        // Refactored in BeeTools Model
         $response       = BeeTools::entity_update($user, 'users');
         $view       = BeeTools::is_error($response);
         if($view){
             return $view;
         }
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to('users');
     }
 
@@ -237,4 +234,4 @@ class UserController extends \BaseController
         $response = BeeTools::entity_delete($index, 'users');
         return Redirect::to('users');
     }
-} // UserController
+}

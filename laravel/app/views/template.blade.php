@@ -66,7 +66,8 @@
                 Pagination._optionDefinition.nextLabel      = ['String', '<i class="mdi-navigation-chevron-right"></i>'];
             });
             $( document ).ready( function () {
-                $( "tr[id^='{{ str_singular( $entity ) }}'] td:first" ).on( 'click', function () {
+                $( "tr[id^='{{ str_singular( $entity ) }}'] td:nth-child(1)" ).on( 'click', function () {
+                    console.log('click',"ok");
                     document.location.href="{{ str_singular( $entity ) }}/edit/" + $( this ).parent().attr( 'data-item-index' );
                 } );
                 @if( $entity == 'hives' )

@@ -51,7 +51,7 @@
                 <legend>@lang('hives.hive_list')</legend>
                 <div class="input-field col l12 m12 s12">
                     <select name="hive" id="hive">
-                        <option value="" disabled selected ></option>
+                        <option value="null" selected >Aucune</option>
                         @foreach($hives as $hive)
                         <option value="{{$hive->id}}">{{$hive->code_number}}</option>
                         @endforeach

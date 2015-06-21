@@ -16,7 +16,7 @@ class SwarmController extends \BaseController
             return $view;
         }
         $swarms     = $response->json();
-        $hives      = Hive::get();
+        $hives      = Hive::getIncomplete();
         return View::make('swarms.index', [ "swarms" => $swarms, "hives" => $hives ]) ;
     }
 

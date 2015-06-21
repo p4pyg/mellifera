@@ -112,14 +112,7 @@ class NuisanceController extends \BaseController
      */
     public function delete($index)
     {
-        // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $index, 'nuisances' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        // WORK IN PROGRESS
-        // return response
+        BeeTools::entity_delete( $index, 'nuisances' );
         return Redirect::to( 'nuisances' );
     }
 

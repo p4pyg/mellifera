@@ -80,19 +80,14 @@ class RaceController extends BaseController
         $inputs = Input::except( '_token', 'characteristic_id');
         $race   = Input::except( '_token', 'characteristic_id', 'characteristic_date', 'characteristic_racial_type', 'characteristic_aggressivness_level', 'characteristic_swarming_level', 'characteristic_winter_hardiness_level', 'characteristic_wake_up_month', 'characteristic_comment' );
 
-        $names          = BeeTools::get_arraylist( 'races', 'name', false, true );
-        $race_name_id   = array_search( $race[ 'name' ] , $names );
-        $race_name      = $race[ 'name' ];
-        $race['name']   = [ 'name' => $race_name ];
+        $race['name']   = [ 'name' => $race[ 'name' ] ]; // dans l'attente de modification ws $race_name
 
         $characteristics = [];
         foreach ( $inputs as $key => $input )
             if( str_contains( $key, 'characteristic_' ) )
                 $characteristics[ str_replace( 'characteristic_', '', $key ) ] = $input;
 
-        $characteristics_race_name_id   = array_search( $characteristics[ 'racial_type' ] , $names );
-        $characteristics_race_name      = $characteristics[ 'racial_type' ];
-        $characteristics['racial_type'] = null;//[ 'name' => $characteristics_race_name ];
+        $characteristics['racial_type'] = null;// dans l'attente de modification ws $characteristics_race_name
 
         $characteristics[ 'date' ]  = date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
 
@@ -107,8 +102,6 @@ class RaceController extends BaseController
         $view           = BeeTools::is_error( $response_race );
         if( $view ) return $view;
 
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to( 'races' );
     }
     /**
@@ -147,7 +140,7 @@ class RaceController extends BaseController
 
         $race[ 'id' ]               = (int) $index;
         $characteristic             = json_decode( $response_characteristic->content() );
-        // $race['characteristic']     = [ "id" => $characteristic->id ];
+        $race['characteristic']     = [ "id" => $characteristic->id ];
         $race_name                  = $race[ 'name' ];
         $race['name']               = [ 'name' => $race_name ];
 
@@ -156,8 +149,6 @@ class RaceController extends BaseController
         $view       = BeeTools::is_error( $response );
         if( $view ) return $view;
 
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to( 'races' );
     }
     /**
@@ -167,7 +158,7 @@ class RaceController extends BaseController
      */
     public function delete($index)
     {
-        $response   = BeeTools::entity_delete( $index, 'races' );
+        BeeTools::entity_delete( $index, 'races' );
         return Redirect::to( 'races' );
     }
 }

@@ -121,14 +121,7 @@ class FileController extends BaseController
      */
     public function delete($index)
     {
-        // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $index, 'files' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        // WORK IN PROGRESS
-        // return response
+        BeeTools::entity_delete( $index, 'files' );
         return Redirect::to( 'files' );
     }
 }

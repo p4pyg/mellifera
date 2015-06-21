@@ -25,19 +25,23 @@ class HiveController extends \BaseController
         $hives      = Hive::getHivesApiaries($response->json());
 
         foreach ($hives as $key => $hive) {
-            $unit_current = $hive->units[0]->id;
-            $unit = Unit::get($unit_current);
-            if (is_object($unit->beehive) && is_object($unit->queen) && is_object($unit->swarm)){
-                $hives[$key]->need = null;
-            }
-            if (is_null($unit->queen) && is_object($unit->swarm)) {
-                $hives[$key]->need = 'queen';
-            }
-            if (is_null($unit->swarm) && is_object($unit->queen)) {
-                $hives[$key]->need = 'swarm';
-            }
-            if (is_null($unit->queen) && is_null($unit->swarm)) {
-                $hives[$key]->need = 'queen_swarm';
+            if (!empty($hive->units)) {
+                $unit_current = $hive->units[0]->id;
+                $unit = Unit::get($unit_current);
+                if (is_object($unit->beehive) && is_object($unit->queen) && is_object($unit->swarm)){
+                    $hives[$key]->need = null;
+                }
+                if (is_null($unit->queen) && is_object($unit->swarm)) {
+                    $hives[$key]->need = 'queen';
+                }
+                if (is_null($unit->swarm) && is_object($unit->queen)) {
+                    $hives[$key]->need = 'swarm';
+                }
+                if (is_null($unit->queen) && is_null($unit->swarm)) {
+                    $hives[$key]->need = 'all';
+                }
+            } else {
+                $hives[$key]->need = 'all';
             }
         }
 

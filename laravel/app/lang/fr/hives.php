@@ -35,5 +35,5 @@ return array(
     "full"              => "Complète",
     "queen"             => "Pas de reine",
     "swarm"             => "Pas d'essaim",
-    "queen_swarm"       => "Vide"
+    "all"               => "Vide"
 );

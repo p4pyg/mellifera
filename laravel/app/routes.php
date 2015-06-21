@@ -1,7 +1,5 @@
 <?php
     use Vinelab\Http\Client as HttpClient;
-// header("Access-Control-Allow-Origin: *");
-// header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE,OPTIONS");
 
 /*
 |--------------------------------------------------------------------------
@@ -60,15 +58,17 @@ Route::post('structures', [ function () {
  * Insérer de la données pour une colonne dans une table
  */
 Route::get('seeds', function () {
-    // Type de ruches
-    // $table = 'beehive_types';
-    // $column= 'name';
-    // $datas = [ 'Ronde', 'Bâtisse chaude', 'Bâtisse froide', 'Warré', 'WBC', 'Langstroth', 'Dadant'];
-    //
-    // Espèce d'abeilles
-    // $table = 'race_names';
-    // $column= 'name';
-    // $datas = [ 'Bretonne', 'Corse', 'Cévenole', 'Espagnole', 'Carnica', 'Ligustica', 'Sicula', 'Cecropia', 'Macedonica' ];
+    /**
+     *   // Type de ruches
+     *   $table = 'beehive_types';
+     *   $column= 'name';
+     *   $datas = [ 'Ronde', 'Bâtisse chaude', 'Bâtisse froide', 'Warré', 'WBC', 'Langstroth', 'Dadant'];
+     *
+     *   // Espèce d'abeilles
+     *   $table = 'race_names';
+     *   $column= 'name';
+     *   $datas = [ 'Bretonne', 'Corse', 'Cévenole', 'Espagnole', 'Carnica', 'Ligustica', 'Sicula', 'Cecropia', 'Macedonica' ];
+     */
 
     foreach ($datas as $data)
         BeeTools::entity_store([ $column => $data ], $table);

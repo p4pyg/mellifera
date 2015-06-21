@@ -41,12 +41,6 @@ if ( is_null( $race ) ) {
             <input type="text" name="life_span"  id="life_span" class="validate" value="{{ is_null( $race ) ? '' : $race->life_span }}" >
             <label for="life_span">@lang( 'races.life_span' )</label>
         </div>
-        <?php
-// echo '<pre>';
-// print_r($characteristic);
-// echo '</pre>';
-// die('<p style="color:orange; font-weight:bold;">Raison</p>');
-         ?>
         <div class="input-field col s12">
             <select name="characteristic_wake_up_month">
                 <option value="" disabled {{ is_null( $race ) ? 'selected' : ( is_null( $characteristic ) ? 'selected' : '' ) }}></option>

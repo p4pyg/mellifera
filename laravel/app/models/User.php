@@ -24,7 +24,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      *
      * @var array
      */
-    //protected $hidden = array('password', 'remember_token');
     protected $hidden = array('remember_token');
 
 
@@ -36,11 +35,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface
                 'headers' 	=> ['Content-type: application/json;','APIKEY:' . \Session::get( 'api_token' ) ]
             ];
         $response 	= $client->get( $request );
-
-// echo '<pre>';
-// print_r($request);
-// echo '</pre>';
-// die('<p style="color:orange; font-weight:bold;">Raison</p>');
         return $response->json();
 
     }

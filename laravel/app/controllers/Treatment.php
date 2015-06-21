@@ -97,14 +97,11 @@ class TreatmentController extends \BaseController
     {
         $treatment 			= Input::except( '_token' );
         $treatment[ 'id' ]	= (int) $index;
-        // Refactored in BeeTools Model
         $response 		= BeeTools::entity_update( $treatment, 'treatments' );
         $view 		= BeeTools::is_error( $response );
         if( $view ){
             return $view;
         }
-        // WORK IN PROGRESS
-        // return response
         return Redirect::to( 'treatments' );
     }
     /**
@@ -114,14 +111,7 @@ class TreatmentController extends \BaseController
      */
     public function delete($index)
     {
-        // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_delete( $index, 'treatments' );
-        $view 		= BeeTools::is_error( $response );
-        if( $view ){
-            return $view;
-        }
-        // WORK IN PROGRESS
-        // return response
+        BeeTools::entity_delete( $index, 'treatments' );
         return Redirect::to( 'treatments' );
     }
 

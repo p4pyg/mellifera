@@ -127,7 +127,7 @@ class CharacteristicController extends BaseController
      */
     public function delete($index)
     {
-        $response 	= BeeTools::entity_delete( $index, 'characteristics' );
+        BeeTools::entity_delete( $index, 'characteristics' );
         return Redirect::to( 'characteristics' );
     }
 }
