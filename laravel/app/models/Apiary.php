@@ -32,7 +32,7 @@ class Apiary
 
     public function __construct1($index)
     {
-        $apiary_ws = BeeTools::cleanObject(Apiary::get($index));
+        $apiary_ws = BeeTools::cleanElement(Apiary::get($index));
         $this->id               = isset($apiary_ws->id) ? $apiary_ws->id:null;
         $this->weathers         = isset($apiary_ws->weathers) ? $apiary_ws->weathers:null;
         $this->apiary_name      = isset($apiary_ws->apiary_name) ? $apiary_ws->apiary_name:null;

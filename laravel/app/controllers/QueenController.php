@@ -101,7 +101,7 @@ class QueenController extends \BaseController
         $queen          = $response->json();                                                                                    // Récupération de l'objet fraichement créé
         $race           = Input::only('race');                                                                                // Récupération de la race à partir du formulaire
         $queen->race    = [ "id" => $race['race'] ];                                                                            // Ajout de la race à l'objet reine
-        $queen          = BeeTools::cleanObject($queen);                                                                      // Nettoyage de l'objet reine
+        $queen          = BeeTools::cleanElement($queen);                                                                      // Nettoyage de l'objet reine
         $response       = BeeTools::entityUpdate($queen, 'queens');                                                          // Mise à jour de la reine
         $view           = BeeTools::isError($response);                                                                      // Gestion d'une éventuelle erreur
         if($view) return $view;                                                                                               // Retour de la vue d'erreur
@@ -132,7 +132,7 @@ class QueenController extends \BaseController
         $queen[ 'birth_date' ]  = $queen[ 'birth_date' ] != '' ? date('Y-m-d', strtotime($queen[ 'birth_date' ])) : null;   // Mise en forme de la date de naissance
         $queen[ 'death_date' ]  = $queen[ 'death_date' ] != '' ? date('Y-m-d', strtotime($queen[ 'death_date' ])) : null;   // Mise en forme de la date de décés
         $queen[ 'race' ]        = [ "id" => $queen['race'] ];                                                                   // Ajout de la race à l'objet reine
-        $queen                  = BeeTools::cleanObject($queen);                                                              // Nettoyage de l'objet reine
+        $queen                  = BeeTools::cleanElement($queen);                                                              // Nettoyage de l'objet reine
         $response               = BeeTools::entityUpdate($queen, 'queens');                                                  // Mise à jour de la reine
         $view                   = BeeTools::isError($response);                                                              // Gestion d'une éventuelle erreur
         if($view) return $view;                                                                                               // Retour de la vue d'erreur

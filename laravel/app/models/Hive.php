@@ -28,7 +28,7 @@ class Hive
 
     public function __construct1($index)
     {
-        $hive_ws = BeeTools::cleanObject(Hive::get($index));
+        $hive_ws = BeeTools::cleanElement(Hive::get($index));
 
         $this->trades            = isset($hive_ws->trades) ? $hive_ws->trades : null;
         $this->units             = isset($hive_ws->units) ? $hive_ws->units : null;

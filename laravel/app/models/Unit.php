@@ -30,7 +30,7 @@ class Unit
 
     public function __construct1($index = null)
     {
-        $unit_ws                    = BeeTools::cleanObject(Unit::get($index));
+        $unit_ws                    = BeeTools::cleanElement(Unit::get($index));
         $this->id                   = isset($unit_ws->id) ? $unit_ws->id : null;
         $this->queen                = isset($unit_ws->queen) ? $unit_ws->queen : null;
         $this->swarm                = isset($unit_ws->swarm) ? $unit_ws->swarm : null;

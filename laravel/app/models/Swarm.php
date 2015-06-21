@@ -25,7 +25,7 @@ class Swarm
 
     public function __construct1($index)
     {
-        $swarm_ws                   = BeeTools::cleanObject(Swarm::get($index));
+        $swarm_ws                   = BeeTools::cleanElement(Swarm::get($index));
         $this->id                   = isset($swarm_ws->id) ? $swarm_ws->id:null;
         $this->is_in                = isset($swarm_ws->is_in) ? $swarm_ws->is_in : null;
         $this->trades               = isset($swarm_ws->trades) ? $swarm_ws->trades : null;

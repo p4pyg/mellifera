@@ -199,15 +199,15 @@ class BeeTools
 
     /**
      * Méthode récursive de nettoyage d'objets ou de tableaux
-     * @param objet|tableau $element
+     * @param objet|array $element
      * @return  objet|array nettoyé
      */
-    public static function cleanObject($element)
+    public static function cleanElement($element)
     {
         $keys = [ 'created_at', 'updated_at', 'deleted_at', 'label' ];
         foreach ($element as $key => $item) {
             if(is_object($item))
-                BeeTools::cleanObject($item);
+                BeeTools::cleanElement($item);
             if(in_array($key, $keys) || is_null($item) || $item == '' || (is_array($item) && empty($item)))
                 unset($element->$key);
         }

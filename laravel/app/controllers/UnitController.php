@@ -85,7 +85,7 @@ class UnitController extends \BaseController
         $entity = [];
         foreach ( $inputs as $key => $item )
             $entity[$key] = $item === '' ? null : $item;
-        $entity = BeeTools::cleanObject( $entity );
+        $entity = BeeTools::cleanElement( $entity );
 
         $request = [
             'url'       => Config::get( 'app.api' ) . 'atomic/association',

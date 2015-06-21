@@ -97,7 +97,7 @@ class RaceController extends BaseController
 
         $race['characteristic']     = $response_characteristic;
 
-        $race           = BeeTools::cleanObject( $race );
+        $race           = BeeTools::cleanElement( $race );
         $response_race  = BeeTools::entityStore( $race, 'races' );
         $view           = BeeTools::isError( $response_race );
         if( $view ) return $view;
@@ -144,7 +144,7 @@ class RaceController extends BaseController
         $race_name                  = $race[ 'name' ];
         $race['name']               = [ 'name' => $race_name ];
 
-        $race       = BeeTools::cleanObject( $race );
+        $race       = BeeTools::cleanElement( $race );
         $response   = BeeTools::entityUpdate( $race, 'races' );
         $view       = BeeTools::isError( $response );
         if( $view ) return $view;

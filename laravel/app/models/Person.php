@@ -32,7 +32,7 @@ class Person
 
     public function __construct1($index)
     {
-        $person_ws = BeeTools::cleanObject(Person::get($index));
+        $person_ws = BeeTools::cleanElement(Person::get($index));
 
         $this->id                  = $person_ws->id;
         $this->last_name           = isset($person_ws->last_name) ? $person_ws->last_name : null;

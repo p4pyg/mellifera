@@ -25,7 +25,7 @@ class Queen
 
     public function __construct1($index)
     {
-        $queen_ws = BeeTools::cleanObject(Hive::get($index));
+        $queen_ws = BeeTools::cleanElement(Hive::get($index));
 
         $this->transaction  = isset($queen_ws->transaction) ? $queen_ws->transaction : null;
         $this->unit         = isset($queen_ws->unit) ? $queen_ws->unit : null;
