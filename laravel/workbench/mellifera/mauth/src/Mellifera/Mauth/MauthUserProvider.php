@@ -25,7 +25,7 @@ class MauthUserProvider implements UserProviderInterface{
 			$client 	= new HttpClient;
 			$response 	= $client->post( $request );
 
-			if( ! \BeeTools::is_error( $response ) ){
+			if( ! \BeeTools::isError( $response ) ){
 				$data = $response->json();
 
 				$user = new \Illuminate\Auth\GenericUser( [
@@ -89,12 +89,12 @@ class MauthUserProvider implements UserProviderInterface{
 		if( ! empty ( $data ) ){
 
 			if( ! is_null( $data->group ) )
-				$group 		= \User::get_group( $data->group->id );
+				$group 		= \User::getGroup( $data->group->id );
 			else
 				$group = null;
 
 			if( ! is_null( $data->person ) )
-				$person 	= \User::get_person( $data->person->id );
+				$person 	= \User::getPerson( $data->person->id );
 			else
 				$person = null;
 
