@@ -103,10 +103,9 @@ class Hive
 
     /**
      * Incomplete hives
-     * @param  string $component nom d'un des élément composant la ruche (queen|swarm)
      * @return  Array Hives
      */
-    public static function getIncomplete($component=null)
+    public static function getIncomplete()
     {
         $hives_full = Hive::get();
         $hives      = [];
