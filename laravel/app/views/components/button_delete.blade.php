@@ -1,4 +1,4 @@
-{{ HTML::decode(
+{{-- HTML::decode(
     HTML::link(
         '#',
         '<span class="fa fa-trash tiny"></span>',
@@ -10,4 +10,4 @@
             'data-tooltip' 		=> trans( 'tools.delete' ),
             'class' 			=> 'btn-floating btn-tiny tooltipped waves-effect waves-light orange darken-4 z-depth-1 text-white center-align'
         ]
-    ) ) }}
+    ) ) --}}
