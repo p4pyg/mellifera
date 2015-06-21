@@ -45,7 +45,6 @@ class MauthUserProvider implements UserProviderInterface{
 				}
 				// ############################# Stand by
 				// Flash provisoire dans l'attente d'un code d'erreur dans le retour json du webservice
-				// \Session::flash( 'message', \BeeTools::error_code( $data->code ) );
 
 				\Session::flash( 'message', $response->content() );
 				return  null;
