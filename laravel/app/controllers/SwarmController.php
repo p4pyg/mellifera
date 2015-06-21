@@ -144,7 +144,7 @@ class SwarmController extends \BaseController
                 ];
 
         $client     = new HttpClient;
-        $response   = $client->post($request);
+        $client->post($request);
 
         return Redirect::back();
     }

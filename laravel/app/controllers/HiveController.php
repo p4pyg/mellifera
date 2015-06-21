@@ -112,9 +112,6 @@ class HiveController extends \BaseController
     public function store()
     {
         $inputs     = Input::except('_token');
-        // Récupération de la collection des identifiants de beehive_types
-        $types = BeeTools::getArraylist('beehives', 'type', false, true);
-
         $type_name  = $inputs['type']; // attente correction du ws
 
         $inputs['type'] = ['name' => $type_name];
@@ -146,12 +143,9 @@ class HiveController extends \BaseController
      */
     public function update($index)
     {
-        $hive           = Input::except('_token');
-        $hive['id']   = (int)$index;
-        // Récupération de la collection des identifiants de beehive_types
-        $types = BeeTools::getArraylist('beehives', 'type', false, true);
-
-        $type_name  = $hive['type'];  // attente correction du ws
+        $hive      = Input::except('_token');
+        $hive['id']= (int)$index;
+        $type_name = $hive['type'];  // attente correction du ws
 
         $hive['type'] = ['name' => $type_name];
 
