@@ -198,9 +198,9 @@ class BeeTools
     }
 
     /**
-     * Méthode récursive de nettoyage d'objets ou de tableaux
-     * @param objet|array $element
-     * @return  objet|array nettoyé
+     * Méthode récursive de nettoyage de tableaux
+     * @param array $element
+     * @return  array nettoyé
      */
     public static function cleanElement($element)
     {
