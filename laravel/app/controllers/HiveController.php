@@ -115,8 +115,7 @@ class HiveController extends \BaseController
         // Récupération de la collection des identifiants de beehive_types
         $types = BeeTools::get_arraylist('beehives', 'type', false, true);
 
-        $type_id    = array_search($inputs['type'] , $types);
-        $type_name  = $inputs['type'];
+        $type_name  = $inputs['type']; // attente correction du ws
 
         $inputs['type'] = ['name' => $type_name];
         // Refactored in BeeTools Model
@@ -152,8 +151,7 @@ class HiveController extends \BaseController
         // Récupération de la collection des identifiants de beehive_types
         $types = BeeTools::get_arraylist('beehives', 'type', false, true);
 
-        $type_id    = array_search($hive['type'] , $types);
-        $type_name  = $hive['type'];
+        $type_name  = $hive['type'];  // attente correction du ws
 
         $hive['type'] = ['name' => $type_name];
 
@@ -171,7 +169,7 @@ class HiveController extends \BaseController
      */
     public function delete($index)
     {
-        $response   = BeeTools::entity_delete($index, 'beehives');
+        BeeTools::entity_delete($index, 'beehives');
         return Redirect::to('hives');
     }
 
@@ -203,8 +201,7 @@ class HiveController extends \BaseController
                     'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]
                ];
         $client     = new HttpClient;
-        $response   = $client->post($request);
-        $production = $response->json();
+        $client->post($request);
 
         return Redirect::back();
     }

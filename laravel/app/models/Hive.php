@@ -113,16 +113,12 @@ class Hive
         foreach ($hives_full as $key => $hive) {
             if (!empty($hive->units)) {
                 $unit = Unit::get($hive->units[0]->id);
-        echo '<pre>';
-        print_r($unit);
-        echo '</pre>';
                 if (count($unit) < 3) {
                     array_push($hives, $hive);
                 }
             }
         }
-        die('<p style="color:orange; font-weight:bold;">Raison</p>');
-
+        return $hives;
     }
 
 

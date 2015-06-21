@@ -154,7 +154,7 @@ class PersonController extends \BaseController
      */
     public function delete($index)
     {
-        $response = BeeTools::entity_delete($index, 'persons');
+        BeeTools::entity_delete($index, 'persons');
         return Redirect::to('persons');
     }
 

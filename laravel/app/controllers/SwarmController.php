@@ -39,7 +39,7 @@ class SwarmController extends \BaseController
         $swarm = null;
         $races = Race::get();
         $units = Unit::get();
-        return View::make('swarms.form', [ 'swarm' => $swarm, 'races' => $races , 'units' => $races ]) ;
+        return View::make('swarms.form', [ 'swarm' => $swarm, 'races' => $races , 'units' => $units ]) ;
     }
     /**
      * Show the form for editing the specified swarm.
@@ -123,7 +123,7 @@ class SwarmController extends \BaseController
      */
     public function delete($index)
     {
-        $response   = BeeTools::entity_delete($index, 'swarms') ;
+        BeeTools::entity_delete($index, 'swarms') ;
         return Redirect::to('swarms') ;
     }
 
@@ -145,7 +145,6 @@ class SwarmController extends \BaseController
 
         $client     = new HttpClient;
         $response   = $client->post($request);
-        $unit       = $response->json();
 
         return Redirect::back();
     }

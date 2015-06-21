@@ -146,7 +146,7 @@ class QueenController extends \BaseController
      */
     public function delete($index)
     {
-        $response = BeeTools::entity_delete($index, 'queens');
+        BeeTools::entity_delete($index, 'queens');
         return Redirect::to('queens');
     }
 
@@ -168,7 +168,6 @@ class QueenController extends \BaseController
 
         $client     = new HttpClient;
         $response   = $client->post($request);
-        $unit       = $response->json();
 
         return Redirect::back();
     }

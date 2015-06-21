@@ -231,7 +231,7 @@ class UserController extends \BaseController
      */
     public function delete($index)
     {
-        $response = BeeTools::entity_delete($index, 'users');
+        BeeTools::entity_delete($index, 'users');
         return Redirect::to('users');
     }
 }
