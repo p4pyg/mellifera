@@ -14,7 +14,7 @@ class CharacteristicController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/characteristics",
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -52,7 +52,7 @@ class CharacteristicController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/characteristics/" . $index,
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -79,8 +79,8 @@ class CharacteristicController extends BaseController
         $inputs 	= Input::except( '_token' );
         $inputs[ 'date' ] 	= date( 'Y-m-d', strtotime( $inputs[ 'date' ] ) );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'characteristics' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'characteristics' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -111,8 +111,8 @@ class CharacteristicController extends BaseController
         $characteristic[ 'id' ] 	= (int) $index;
         $characteristic[ 'date' ] 	= date( 'Y-m-d', strtotime( $characteristic[ 'date' ] ) );
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $characteristic, 'characteristics' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $characteristic, 'characteristics' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -127,7 +127,7 @@ class CharacteristicController extends BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'characteristics' );
+        BeeTools::entityDelete( $index, 'characteristics' );
         return Redirect::to( 'characteristics' );
     }
 }

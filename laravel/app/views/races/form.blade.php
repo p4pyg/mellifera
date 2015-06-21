@@ -44,7 +44,7 @@ if ( is_null( $race ) ) {
         <div class="input-field col s12">
             <select name="characteristic_wake_up_month">
                 <option value="" disabled {{ is_null( $race ) ? 'selected' : ( is_null( $characteristic ) ? 'selected' : '' ) }}></option>
-                @foreach( BeeTools::list_month() as $key => $month )
+                @foreach( BeeTools::listMonth() as $key => $month )
                 <option value="{{ $key }}" {{ is_null( $race ) ? '' : ( is_null( $characteristic ) ? '' : ( $characteristic->wake_up_month == $key ? 'selected' : '' ) ) }}>{{ $month }}</option>
                 @endforeach
             </select>
@@ -85,6 +85,6 @@ if ( is_null( $race ) ) {
 </div>
 {{ Form::close() }}
 <script>
-var names = {{ BeeTools::get_arraylist( 'races', 'name' ) }};
+var names = {{ BeeTools::getArraylist( 'races', 'name' ) }};
 </script>
 @stop

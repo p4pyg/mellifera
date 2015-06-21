@@ -14,7 +14,7 @@ class FeedingController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/feedings",
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -52,7 +52,7 @@ class FeedingController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/feedings/" . $index,
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -74,8 +74,8 @@ class FeedingController extends BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'feedings' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'feedings' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -101,8 +101,8 @@ class FeedingController extends BaseController
         $feeding 			= Input::except( '_token' );
         $feeding[ 'id' ] 	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $feeding, 'feedings' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $feeding, 'feedings' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -117,7 +117,7 @@ class FeedingController extends BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'feedings' );
+        BeeTools::entityDelete( $index, 'feedings' );
         return Redirect::to( 'feedings' );
     }
 }

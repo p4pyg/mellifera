@@ -27,7 +27,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
     protected $hidden = array('remember_token');
 
 
-    public static function get_group($index = null)
+    public static function getGroup($index = null)
     {
         $client 	= new HttpClient;
         $request = [
@@ -38,7 +38,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
         return $response->json();
 
     }
-    public static function get_person($index = null)
+    public static function getPerson($index = null)
     {
         $client 	= new HttpClient;
         $request = [

@@ -22,7 +22,7 @@
             <td>{{ $characteristic->aggressivness_level }}</td>
             <td>{{ $characteristic->swarming_level }}</td>
             <td>{{ $characteristic->winter_hardiness_level }}</td>
-            <?php $month = BeeTools::list_month( $characteristic->wake_up_month ); ?>
+            <?php $month = BeeTools::listMonth( $characteristic->wake_up_month ); ?>
             <td>{{ is_array( $month ) ? 'ND' : $month }}</td>
         </tr>
     @endforeach

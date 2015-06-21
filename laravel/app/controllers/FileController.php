@@ -14,7 +14,7 @@ class FileController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/files",
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -52,7 +52,7 @@ class FileController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/files/" . $index,
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -76,8 +76,8 @@ class FileController extends BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'files' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'files' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -105,8 +105,8 @@ class FileController extends BaseController
         $file 			= Input::except( '_token' );
         $file[ 'id' ] 	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $file, 'files' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $file, 'files' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -121,7 +121,7 @@ class FileController extends BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'files' );
+        BeeTools::entityDelete( $index, 'files' );
         return Redirect::to( 'files' );
     }
 }

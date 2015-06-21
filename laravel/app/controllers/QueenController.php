@@ -17,7 +17,7 @@ class QueenController extends \BaseController
                                     'url'     => Config::get('app.api') . "atomic/queens",
                                     'headers' => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
                                 ]);
-        $view       = BeeTools::is_error($response);
+        $view       = BeeTools::isError($response);
         if ($view) {
             return $view;                                                                                               // Retour de la vue d'erreur
         }
@@ -40,7 +40,7 @@ class QueenController extends \BaseController
                                     'url'     => Config::get('app.api') . "atomic/queens/" . $index,
                                     'headers' => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
                                 ]);
-        $view       = BeeTools::is_error($response);
+        $view       = BeeTools::isError($response);
         if($view) return $view;                                                                                               // Retour de la vue d'erreur
         $queen      = $response->json();
         return View::make('queens.show', [ "queen" => $queen ]);
@@ -67,7 +67,7 @@ class QueenController extends \BaseController
                                     'url'     => Config::get('app.api') . "atomic/queens/" . $index,
                                     'headers' => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ]
                                 ]);
-        $view       = BeeTools::is_error($response);
+        $view       = BeeTools::isError($response);
         if($view) return $view;                                                                                               // Retour de la vue d'erreur
 
         $queen = $response->json();
@@ -93,8 +93,8 @@ class QueenController extends \BaseController
         $queen  = Input::except('_token', 'race');                                                                            // Récupération des données du formulaire sans l'association à la race
         $queen[ 'birth_date' ]  = $queen[ 'birth_date' ] != '' ? date('Y-m-d', strtotime($queen[ 'birth_date' ])) : null;   // Mise en forme de la date de naissance
         $queen[ 'death_date' ]  = $queen[ 'death_date' ] != '' ? date('Y-m-d', strtotime($queen[ 'death_date' ])) : null;   // Mise en forme de la date de décés
-        $response               = BeeTools::entity_store($queen, 'queens');                                                   // Enregistrement de la nouvelle reine
-        $view                   = BeeTools::is_error($response);                                                              // Gestion d'une éventuelle erreur
+        $response               = BeeTools::entityStore($queen, 'queens');                                                   // Enregistrement de la nouvelle reine
+        $view                   = BeeTools::isError($response);                                                              // Gestion d'une éventuelle erreur
         if($view) return $view;                                                                                               // Retour de la vue d'erreur
 
         // @TODO association à une race ---------- IN PROGRESS
@@ -102,8 +102,8 @@ class QueenController extends \BaseController
         $race           = Input::only('race');                                                                                // Récupération de la race à partir du formulaire
         $queen->race    = [ "id" => $race['race'] ];                                                                            // Ajout de la race à l'objet reine
         $queen          = BeeTools::cleanObject($queen);                                                                      // Nettoyage de l'objet reine
-        $response       = BeeTools::entity_update($queen, 'queens');                                                          // Mise à jour de la reine
-        $view           = BeeTools::is_error($response);                                                                      // Gestion d'une éventuelle erreur
+        $response       = BeeTools::entityUpdate($queen, 'queens');                                                          // Mise à jour de la reine
+        $view           = BeeTools::isError($response);                                                                      // Gestion d'une éventuelle erreur
         if($view) return $view;                                                                                               // Retour de la vue d'erreur
 
         return Redirect::to('queens');                                                                                        // Retour à la vue liste des reines
@@ -133,8 +133,8 @@ class QueenController extends \BaseController
         $queen[ 'death_date' ]  = $queen[ 'death_date' ] != '' ? date('Y-m-d', strtotime($queen[ 'death_date' ])) : null;   // Mise en forme de la date de décés
         $queen[ 'race' ]        = [ "id" => $queen['race'] ];                                                                   // Ajout de la race à l'objet reine
         $queen                  = BeeTools::cleanObject($queen);                                                              // Nettoyage de l'objet reine
-        $response               = BeeTools::entity_update($queen, 'queens');                                                  // Mise à jour de la reine
-        $view                   = BeeTools::is_error($response);                                                              // Gestion d'une éventuelle erreur
+        $response               = BeeTools::entityUpdate($queen, 'queens');                                                  // Mise à jour de la reine
+        $view                   = BeeTools::isError($response);                                                              // Gestion d'une éventuelle erreur
         if($view) return $view;                                                                                               // Retour de la vue d'erreur
 
         return Redirect::to('queens');
@@ -146,7 +146,7 @@ class QueenController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete($index, 'queens');
+        BeeTools::entityDelete($index, 'queens');
         return Redirect::to('queens');
     }
 

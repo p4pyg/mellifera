@@ -71,7 +71,7 @@ Route::get('seeds', function () {
      */
 
     foreach ($datas as $data)
-        BeeTools::entity_store([ $column => $data ], $table);
+        BeeTools::entityStore([ $column => $data ], $table);
 
 });
 
@@ -90,7 +90,7 @@ Route::get('/', [ 'uses' => 'HomeController@landing', 'as' => 'landing.index' ])
 
 // Inscription
 Route::get('signup',    [ 'uses' => 'UserController@signup',    'as' => 'backoffice.signup' ]);
-Route::post('signup',   [ 'uses' => 'UserController@create_owner',  'as' => 'backoffice.create_owner' ]);
+Route::post('signup',   [ 'uses' => 'UserController@createOwner',  'as' => 'backoffice.createOwner' ]);
 // Connexion
 Route::get('login',     [ 'uses' => 'UserController@login',     'as' => 'backoffice.login'  ]);
 Route::post('signin',   [ 'uses' => 'UserController@signin',    'as' => 'backoffice.signin' ]);

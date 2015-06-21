@@ -11,7 +11,7 @@ class TradetransactionController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/tradetransactions", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -47,7 +47,7 @@ class TradetransactionController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/tradetransactions/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -70,8 +70,8 @@ class TradetransactionController extends \BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'tradetransactions' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'tradetransactions' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -97,8 +97,8 @@ class TradetransactionController extends \BaseController
     {
         $tradetransaction 			= Input::except( '_token' );
         $tradetransaction[ 'id' ]	= (int) $index;
-        $response 		= BeeTools::entity_update( $tradetransaction, 'tradetransactions' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $tradetransaction, 'tradetransactions' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -111,7 +111,7 @@ class TradetransactionController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'tradetransactions' );
+        BeeTools::entityDelete( $index, 'tradetransactions' );
         return Redirect::to( 'tradetransactions' );
     }
 

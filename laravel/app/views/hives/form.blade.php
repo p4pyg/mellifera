@@ -47,6 +47,6 @@ if ( is_null( $hive ) ) {
 </div>
 {{ Form::close() }}
 <script>
-var types = {{ BeeTools::get_arraylist( 'beehives', 'type' ) }};
+var types = {{ BeeTools::getArraylist( 'beehives', 'type' ) }};
 </script>
 @stop

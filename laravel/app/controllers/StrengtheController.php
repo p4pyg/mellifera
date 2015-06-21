@@ -11,7 +11,7 @@ class StrengtheController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/strengthes", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -47,7 +47,7 @@ class StrengtheController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/strengthes/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -70,8 +70,8 @@ class StrengtheController extends \BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'strengthes' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'strengthes' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -98,8 +98,8 @@ class StrengtheController extends \BaseController
         $strengthe 			= Input::except( '_token' );
         $strengthe[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $strengthe, 'strengthes' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $strengthe, 'strengthes' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -114,7 +114,7 @@ class StrengtheController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'strengthes' );
+        BeeTools::entityDelete( $index, 'strengthes' );
         return Redirect::to( 'strengthes' );
     }
 

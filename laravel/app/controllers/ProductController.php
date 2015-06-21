@@ -11,7 +11,7 @@ class ProductController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/products", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -47,7 +47,7 @@ class ProductController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/products/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -73,8 +73,8 @@ class ProductController extends \BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'products' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'products' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -104,8 +104,8 @@ class ProductController extends \BaseController
         $product 			= Input::except( '_token' );
         $product[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $product, 'products' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $product, 'products' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -120,7 +120,7 @@ class ProductController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'products' );
+        BeeTools::entityDelete( $index, 'products' );
         return Redirect::to( 'products' );
     }
 

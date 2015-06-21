@@ -11,7 +11,7 @@ class ProductionController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/productions", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -47,7 +47,7 @@ class ProductionController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/productions/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -74,8 +74,8 @@ class ProductionController extends \BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'productions' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'productions' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -106,8 +106,8 @@ class ProductionController extends \BaseController
         $production 			= Input::except( '_token' );
         $production[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $production, 'productions' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $production, 'productions' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -122,7 +122,7 @@ class ProductionController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'productions' );
+        BeeTools::entityDelete( $index, 'productions' );
         return Redirect::to( 'productions' );
     }
 

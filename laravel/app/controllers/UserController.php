@@ -66,7 +66,7 @@ class UserController extends \BaseController
     {
         $client     = new HttpClient;
         $response   = $client->get(['url' => Config::get('app.api') . "atomic/users", 'headers'     => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]]);
-        $view       = BeeTools::is_error($response);
+        $view       = BeeTools::isError($response);
         if($view){
             return $view;
         }
@@ -90,7 +90,7 @@ class UserController extends \BaseController
      * Show the form for creating owner.
      * @return View users.form with user null
      */
-    public function create_owner()
+    public function createOwner()
     {
         $validator = Validator::make(Input::all(), User::$rules);
 
@@ -137,7 +137,7 @@ class UserController extends \BaseController
     {
         $client     = new HttpClient;
         $response   = $client->get(['url' => Config::get('app.api') . "atomic/users/" . $index, 'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]]);
-        $view       = BeeTools::is_error($response);
+        $view       = BeeTools::isError($response);
         if($view){
             return $view;
         }
@@ -184,7 +184,7 @@ class UserController extends \BaseController
 
             // Add here the response test on create user !important
             $response = $client->post($request);
-            $view     = BeeTools::is_error($response);
+            $view     = BeeTools::isError($response);
             if($view){
                 return $view;
             }
@@ -216,8 +216,8 @@ class UserController extends \BaseController
     {
         $user           = Input::except('_token');
         $user['id'] = (int) $index;
-        $response       = BeeTools::entity_update($user, 'users');
-        $view       = BeeTools::is_error($response);
+        $response       = BeeTools::entityUpdate($user, 'users');
+        $view       = BeeTools::isError($response);
         if($view){
             return $view;
         }
@@ -231,7 +231,7 @@ class UserController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete($index, 'users');
+        BeeTools::entityDelete($index, 'users');
         return Redirect::to('users');
     }
 }

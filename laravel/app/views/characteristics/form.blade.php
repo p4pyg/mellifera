@@ -53,7 +53,7 @@ if ( is_null( $characteristic ) ) {
     <div class="input-field col l6 m6 s12">
         <select name="wake_up_month">
             <option value="" disabled {{ is_null( $characteristic ) ? 'selected' : '' }}></option>
-            @foreach( BeeTools::list_month() as $key => $month )
+            @foreach( BeeTools::listMonth() as $key => $month )
             <option value="{{ $key }}" {{ is_null( $characteristic ) ? '' : ( $characteristic->wake_up_month == $key ? 'selected' : '' ) }}>{{ $month }}</option>
             @endforeach
         </select>
@@ -66,6 +66,6 @@ if ( is_null( $characteristic ) ) {
 </div>
 {{ Form::close() }}
 <script>
-var names = {{ BeeTools::get_arraylist( 'races', 'name' ) }};
+var names = {{ BeeTools::getArraylist( 'races', 'name' ) }};
 </script>
 @stop

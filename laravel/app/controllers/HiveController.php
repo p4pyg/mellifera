@@ -17,7 +17,7 @@ class HiveController extends \BaseController
                                         'url' => Config::get('app.api') . "atomic/beehives",
                                         'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]
                                    ]);
-        $view       = BeeTools::is_error($response);
+        $view       = BeeTools::isError($response);
         if ($view) {
             return $view;
         }
@@ -86,7 +86,7 @@ class HiveController extends \BaseController
                                         'url' => Config::get('app.api') . "atomic/beehives/" . $index,
                                         'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')]
                                    ]);
-        $view       = BeeTools::is_error($response);
+        $view       = BeeTools::isError($response);
         if($view){
             return $view;
         }
@@ -113,14 +113,14 @@ class HiveController extends \BaseController
     {
         $inputs     = Input::except('_token');
         // Récupération de la collection des identifiants de beehive_types
-        $types = BeeTools::get_arraylist('beehives', 'type', false, true);
+        $types = BeeTools::getArraylist('beehives', 'type', false, true);
 
         $type_name  = $inputs['type']; // attente correction du ws
 
         $inputs['type'] = ['name' => $type_name];
         // Refactored in BeeTools Model
-        $response       = BeeTools::entity_store($inputs, 'beehives');
-        $view           = BeeTools::is_error($response);
+        $response       = BeeTools::entityStore($inputs, 'beehives');
+        $view           = BeeTools::isError($response);
         if($view){
             return $view;
         }
@@ -149,14 +149,14 @@ class HiveController extends \BaseController
         $hive           = Input::except('_token');
         $hive['id']   = (int)$index;
         // Récupération de la collection des identifiants de beehive_types
-        $types = BeeTools::get_arraylist('beehives', 'type', false, true);
+        $types = BeeTools::getArraylist('beehives', 'type', false, true);
 
         $type_name  = $hive['type'];  // attente correction du ws
 
         $hive['type'] = ['name' => $type_name];
 
-        $response       = BeeTools::entity_update($hive, 'beehives');
-        $view       = BeeTools::is_error($response);
+        $response       = BeeTools::entityUpdate($hive, 'beehives');
+        $view       = BeeTools::isError($response);
         if($view){
             return $view;
         }
@@ -169,7 +169,7 @@ class HiveController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete($index, 'beehives');
+        BeeTools::entityDelete($index, 'beehives');
         return Redirect::to('hives');
     }
 

@@ -11,7 +11,7 @@ class SwarmController extends \BaseController
     {
         $client     = new HttpClient;
         $response   = $client->get([ 'url' => Config::get('app.api')  . "atomic/swarms", 'headers'  => ['Content-type: application/json','APIKEY:' . \Session::get('api_token')  ] ]) ;
-        $view       = BeeTools::is_error($response) ;
+        $view       = BeeTools::isError($response) ;
         if ($view) {
             return $view;
         }
@@ -50,7 +50,7 @@ class SwarmController extends \BaseController
     {
         $client     = new HttpClient;
         $response   = $client->get([ 'url' => Config::get('app.api') . "atomic/swarms/" . $index, 'headers'    => ['Content-type: application/json','APIKEY:' . \Session::get('api_token') ] ]) ;
-        $view       = BeeTools::is_error($response) ;
+        $view       = BeeTools::isError($response) ;
         if ($view) {
             return $view;
         }
@@ -79,8 +79,8 @@ class SwarmController extends \BaseController
         $input  = Input::only('multiple');
         $multi  = $input['multiple'];
         while ($multi > 0) {
-            $response   = BeeTools::entity_store($inputs, 'swarms');
-            $view       = BeeTools::is_error($response);
+            $response   = BeeTools::entityStore($inputs, 'swarms');
+            $view       = BeeTools::isError($response);
             if ($view) {
                 return $view;
             }
@@ -109,8 +109,8 @@ class SwarmController extends \BaseController
     {
         $swarm          = Input::except('_token') ;
         $swarm[ 'id' ]  = (int) $index;
-        $response       = BeeTools::entity_update($swarm, 'swarms') ;
-        $view           = BeeTools::is_error($response) ;
+        $response       = BeeTools::entityUpdate($swarm, 'swarms') ;
+        $view           = BeeTools::isError($response) ;
         if ($view) {
             return $view;
         }
@@ -123,7 +123,7 @@ class SwarmController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete($index, 'swarms') ;
+        BeeTools::entityDelete($index, 'swarms') ;
         return Redirect::to('swarms') ;
     }
 

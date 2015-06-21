@@ -14,7 +14,7 @@ class HoneysuperController extends \BaseController
                                     'url' => Config::get( 'app.api' ) . "atomic/honeysupers",
                                     'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -53,7 +53,7 @@ class HoneysuperController extends \BaseController
                                     'url'       => Config::get( 'app.api' ) . "atomic/honeysupers/" . $index ,
                                     'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -75,8 +75,8 @@ class HoneysuperController extends \BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'honeysupers' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'honeysupers' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -102,8 +102,8 @@ class HoneysuperController extends \BaseController
         $honeysuper 			= Input::except( '_token' );
         $honeysuper[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $honeysuper, 'honeysupers' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $honeysuper, 'honeysupers' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -118,7 +118,7 @@ class HoneysuperController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'honeysupers' );
+        BeeTools::entityDelete( $index, 'honeysupers' );
         return Redirect::to( 'honeysupers' );
     }
 

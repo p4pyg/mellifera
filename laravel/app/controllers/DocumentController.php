@@ -14,7 +14,7 @@ class DocumentController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/files",
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -53,7 +53,7 @@ class DocumentController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/files/" . $index,
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -77,8 +77,8 @@ class DocumentController extends BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'documents' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'documents' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -106,8 +106,8 @@ class DocumentController extends BaseController
         $document 			= Input::except( '_token' );
         $document[ 'id' ] 	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $document, 'documents' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $document, 'documents' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -122,7 +122,7 @@ class DocumentController extends BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'documents' );
+        BeeTools::entityDelete( $index, 'documents' );
         return Redirect::to( 'documents' );
     }
 }

@@ -11,7 +11,7 @@ class RaceController extends BaseController
     {
         $client     = new HttpClient;
         $response   = $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/races", 'headers'     => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view       = BeeTools::is_error( $response );
+        $view       = BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -49,7 +49,7 @@ class RaceController extends BaseController
                                     'url' => Config::get( 'app.api' ) . "atomic/races/" . $index,
                                     'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                 ] );
-        $view       = BeeTools::is_error( $response );
+        $view       = BeeTools::isError( $response );
         if( $view ) return $view;
 
         $race       = $response->json();
@@ -91,15 +91,15 @@ class RaceController extends BaseController
 
         $characteristics[ 'date' ]  = date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
 
-        $response_characteristic    = BeeTools::entity_store( $characteristics, 'characteristics' );
-        $view       = BeeTools::is_error( $response_characteristic );
+        $response_characteristic    = BeeTools::entityStore( $characteristics, 'characteristics' );
+        $view       = BeeTools::isError( $response_characteristic );
         if( $view ) return $view;
 
         $race['characteristic']     = $response_characteristic;
 
         $race           = BeeTools::cleanObject( $race );
-        $response_race  = BeeTools::entity_store( $race, 'races' );
-        $view           = BeeTools::is_error( $response_race );
+        $response_race  = BeeTools::entityStore( $race, 'races' );
+        $view           = BeeTools::isError( $response_race );
         if( $view ) return $view;
 
         return Redirect::to( 'races' );
@@ -131,11 +131,11 @@ class RaceController extends BaseController
         $characteristics[ 'date' ] = date( 'Y-m-d', strtotime( $characteristics[ 'date' ] ) );
         if( $characteristics['id'] == '' ){
             unset( $characteristics['id'] );
-            $response_characteristic    = BeeTools::entity_store( $characteristics, 'characteristics' );
+            $response_characteristic    = BeeTools::entityStore( $characteristics, 'characteristics' );
         }else
-            $response_characteristic    = BeeTools::entity_update( $characteristics, 'characteristics' );
+            $response_characteristic    = BeeTools::entityUpdate( $characteristics, 'characteristics' );
 
-        $view = BeeTools::is_error( $response_characteristic );
+        $view = BeeTools::isError( $response_characteristic );
         if( $view ) return $view;
 
         $race[ 'id' ]               = (int) $index;
@@ -145,8 +145,8 @@ class RaceController extends BaseController
         $race['name']               = [ 'name' => $race_name ];
 
         $race       = BeeTools::cleanObject( $race );
-        $response   = BeeTools::entity_update( $race, 'races' );
-        $view       = BeeTools::is_error( $response );
+        $response   = BeeTools::entityUpdate( $race, 'races' );
+        $view       = BeeTools::isError( $response );
         if( $view ) return $view;
 
         return Redirect::to( 'races' );
@@ -158,7 +158,7 @@ class RaceController extends BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'races' );
+        BeeTools::entityDelete( $index, 'races' );
         return Redirect::to( 'races' );
     }
 }

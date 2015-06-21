@@ -14,7 +14,7 @@ class ApiaryController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/apiaries",
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -53,7 +53,7 @@ class ApiaryController extends BaseController
                                         'url' => Config::get( 'app.api' ) . "atomic/apiaries/" . $index,
                                         'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                     ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -86,8 +86,8 @@ class ApiaryController extends BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'apiaries' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'apiaries' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -124,8 +124,8 @@ class ApiaryController extends BaseController
         $apiary 			= Input::except( '_token' );
         $apiary[ 'id' ] 	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $apiary, 'apiaries' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $apiary, 'apiaries' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -140,7 +140,7 @@ class ApiaryController extends BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'apiaries' );
+        BeeTools::entityDelete( $index, 'apiaries' );
         return Redirect::to( 'apiaries' );
     }
 }

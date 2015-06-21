@@ -11,7 +11,7 @@ class UnitController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/units", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -53,7 +53,7 @@ class UnitController extends \BaseController
                                     'url' => Config::get( 'app.api' ) . "atomic/units/" . $index,
                                     'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                 ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -95,7 +95,7 @@ class UnitController extends \BaseController
         $client     = new HttpClient;
         $response   = $client->post( $request );
 
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -113,7 +113,7 @@ class UnitController extends \BaseController
             $client     = new HttpClient;
             $response   = $client->post( $request );
 
-            $view       = BeeTools::is_error( $response );
+            $view       = BeeTools::isError( $response );
             if( $view ){
                 return $view;
             }
@@ -145,8 +145,8 @@ class UnitController extends \BaseController
     {
         $unit 			= Input::except( '_token' );
         $unit[ 'id' ]	= (int) $index;
-        $response 		= BeeTools::entity_update( $unit, 'units' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $unit, 'units' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -159,7 +159,7 @@ class UnitController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'units' );
+        BeeTools::entityDelete( $index, 'units' );
         return Redirect::to( 'units' );
     }
 

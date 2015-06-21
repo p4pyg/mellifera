@@ -11,7 +11,7 @@ class TreatmentController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/treatments", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -47,7 +47,7 @@ class TreatmentController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/treatments/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -70,8 +70,8 @@ class TreatmentController extends \BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'treatments' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'treatments' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -97,8 +97,8 @@ class TreatmentController extends \BaseController
     {
         $treatment 			= Input::except( '_token' );
         $treatment[ 'id' ]	= (int) $index;
-        $response 		= BeeTools::entity_update( $treatment, 'treatments' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $treatment, 'treatments' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -111,7 +111,7 @@ class TreatmentController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'treatments' );
+        BeeTools::entityDelete( $index, 'treatments' );
         return Redirect::to( 'treatments' );
     }
 

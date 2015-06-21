@@ -12,7 +12,7 @@ class BeeTools
      * @param  [string] $string [name of entity]
      * @return [string]         [name of table]
      */
-    public static function entity_table($string)
+    public static function entityTable($string)
     {
         return mb_strtolower(str_plural($string));
     }
@@ -23,7 +23,7 @@ class BeeTools
      * @param  [string] $string [name of table]
      * @return [string]         [name of entity]
      */
-    public static function table_entity($string)
+    public static function tableEntity($string)
     {
         return ucfirst(str_singular($string));
     }
@@ -32,7 +32,7 @@ class BeeTools
      * Helper list of month
      * @return [array]
      */
-    public static function list_month($index = null)
+    public static function listMonth($index = null)
     {
         $months = [ trans('tools.jan'), trans('tools.feb'), trans('tools.mar'), trans('tools.apr'), trans('tools.may'), trans('tools.jun'), trans('tools.jul'), trans('tools.aug'), trans('tools.sept'), trans('tools.oct'), trans('tools.nov'), trans('tools.dec') ];
         if(is_null($index))
@@ -59,7 +59,7 @@ class BeeTools
      * @param  integer $code error code
      * @return  string human readable error
      */
-    public static function error_code($code)
+    public static function errorCode($code)
     {
         return trans('errors.' . $code);
     }
@@ -71,7 +71,7 @@ class BeeTools
      * @param  [string] $string [object name]
      * @return [object]         [response]
      */
-    public static function entity_store($data, $string)
+    public static function entityStore($data, $string)
     {
         $entity = [];
         foreach ($data as $key => $item)
@@ -93,7 +93,7 @@ class BeeTools
      * @param  [string] $string [object name]
      * @return [object]         [response]
      */
-    public static function entity_update($data, $string)
+    public static function entityUpdate($data, $string)
     {
         $entity = [];
         foreach ($data as $key => $item)
@@ -116,7 +116,7 @@ class BeeTools
      * @param  [string] $string [object name]
      * @return [object]         [response]
      */
-    public static function entity_delete($index, $string)
+    public static function entityDelete($index, $string)
     {
         $url    = Config::get('app.api') . 'atomic/' . $string . "/" . $index;
         $json   = '{}';
@@ -140,7 +140,7 @@ class BeeTools
      * @param boolean $retrieve_id mettre à vrai pour retourner un tableau indexé avec les identifiants des types et leur valeur respective
      * @return mixed Response JSON Array / PHP array indexed by id from $entity
      */
-    public static function get_arraylist($entity, $column, $custom_only = false, $retrieve_id = false)
+    public static function getArraylist($entity, $column, $custom_only = false, $retrieve_id = false)
     {
         $client         = new HttpClient;
         $master         = str_singular($entity) . '_' . str_plural($column);
@@ -220,7 +220,7 @@ class BeeTools
      * @param  response $response Object Response from Webservice
      * @return  View Custom view for display error | false
      */
-    public static function is_error(Vinelab\Http\Response $response)
+    public static function isError(Vinelab\Http\Response $response)
     {
         $error = [];
         $ws_response = $response->json();

@@ -20,7 +20,7 @@ class PersonController extends \BaseController
                                     'url'       => Config::get( 'app.api' ) . "atomic/persons",
                                     'headers'   => ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ]
                                 ] );
-        $view       = BeeTools::is_error( $response );
+        $view       = BeeTools::isError( $response );
         if ( $view ){
             return $view;
         }
@@ -86,14 +86,14 @@ class PersonController extends \BaseController
         $password   = Input::only('password_confirmation');
 
         if ($user['password'] === $password['password_confirmation']) {
-            $response   = BeeTools::entity_update($user, 'users');
-            $view       = BeeTools::is_error($response);
+            $response   = BeeTools::entityUpdate($user, 'users');
+            $view       = BeeTools::isError($response);
             if ($view) {
                 return $view;
             }
         }
-        $response       = BeeTools::entity_store($person, 'persons');
-        $view           = BeeTools::is_error($response);
+        $response       = BeeTools::entityStore($person, 'persons');
+        $view           = BeeTools::isError($response);
         if ($view) {
             return $view;
         }
@@ -133,15 +133,15 @@ class PersonController extends \BaseController
         $password   = Input::only('password_confirmation');
 
         if ($user['password'] === $password['password_confirmation']) {
-            $response   = BeeTools::entity_update($user, 'users');
-            $view       = BeeTools::is_error($response);
+            $response   = BeeTools::entityUpdate($user, 'users');
+            $view       = BeeTools::isError($response);
             if ($view) {
                 return $view;
             }
         }
         $person['user'] = ['id' => Auth::user()->id ];
-        $response   = BeeTools::entity_update($person, 'persons');
-        $view       = BeeTools::is_error($response);
+        $response   = BeeTools::entityUpdate($person, 'persons');
+        $view       = BeeTools::isError($response);
         if ($view) {
             return $view;
         }
@@ -154,7 +154,7 @@ class PersonController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete($index, 'persons');
+        BeeTools::entityDelete($index, 'persons');
         return Redirect::to('persons');
     }
 

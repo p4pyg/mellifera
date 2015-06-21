@@ -11,7 +11,7 @@ class NuisanceController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/nuisances", 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -47,7 +47,7 @@ class NuisanceController extends \BaseController
     {
         $client 	= new HttpClient;
         $response 	= $client->get( [ 'url' => Config::get( 'app.api' ) . "atomic/nuisances/" . $index, 'headers' 	=> ['Content-type: application/json','APIKEY:' . \Session::get( 'api_token' ) ] ] );
-        $view 		= BeeTools::is_error( $response );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -69,8 +69,8 @@ class NuisanceController extends \BaseController
     {
         $inputs 	= Input::except( '_token' );
         // Refactored in BeeTools Model
-        $response 	= BeeTools::entity_store( $inputs, 'nuisances' );
-        $view 		= BeeTools::is_error( $response );
+        $response 	= BeeTools::entityStore( $inputs, 'nuisances' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -96,8 +96,8 @@ class NuisanceController extends \BaseController
         $nuisance 			= Input::except( '_token' );
         $nuisance[ 'id' ]	= (int) $index;
         // Refactored in BeeTools Model
-        $response 		= BeeTools::entity_update( $nuisance, 'nuisances' );
-        $view 		= BeeTools::is_error( $response );
+        $response 		= BeeTools::entityUpdate( $nuisance, 'nuisances' );
+        $view 		= BeeTools::isError( $response );
         if( $view ){
             return $view;
         }
@@ -112,7 +112,7 @@ class NuisanceController extends \BaseController
      */
     public function delete($index)
     {
-        BeeTools::entity_delete( $index, 'nuisances' );
+        BeeTools::entityDelete( $index, 'nuisances' );
         return Redirect::to( 'nuisances' );
     }
 
