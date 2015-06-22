@@ -33,10 +33,6 @@ if ( is_null( $characteristic ) ) {
         <label>@lang( 'characteristics.date' )</label>
     </div>
     <div class="input-field col l6 m6 s12">
-        <input type="text" name="racial_type" id="racial_type" value="{{ is_null( $characteristic ) ? '' : $characteristic->racial_type }}" >
-        <label>@lang( 'characteristics.racial_type' )</label>
-    </div>
-    <div class="input-field col l6 m6 s12">
         <h6>@lang( 'characteristics.aggressivness_level' )</h6>
         <p class="range-field">
             <input type="range" id="aggressivness_level" name="aggressivness_level" min="0" max="100" value="{{ is_null( $characteristic ) ? '' : $characteristic->aggressivness_level }}" />
